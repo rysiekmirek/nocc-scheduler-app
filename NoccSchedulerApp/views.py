@@ -5,5 +5,8 @@ import requests
 
 
 def schedule_tour(request):
-    form = TourForm()
+    if request.method == 'POST':
+        form = TourForm(request.POST)
+    else:
+        form = TourForm()
     return render (request, "schedule-tour.html", {'form': form} )
