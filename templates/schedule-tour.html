@@ -11,12 +11,13 @@
 </head>
   <body>
     <h1>Schedule NOCC Tour</h1>
-    
+
     <form action="" method="post">
       {% csrf_token %}
       {% for field in form %}
             <ul>{{ field.label_tag }} {{ field }}</ul>
         {% endfor %}
+        
       <input type="submit" value="Submit">
   </form>
 
