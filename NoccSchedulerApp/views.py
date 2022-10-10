@@ -5,4 +5,4 @@ import requests
 
 
 def schedule_tour(request):
-    return HttpResponse (request, "schedule-tour.html")
+    return render (request, "schedule-tour.html")
