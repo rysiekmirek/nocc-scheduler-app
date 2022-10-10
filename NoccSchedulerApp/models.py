@@ -9,7 +9,7 @@ class Tour(models.Model):
     alternate_contact = models.CharField(max_length=300)
     attendees_akamai = models.IntegerField(default=0)
     attendees_guests = models.IntegerField(default=0)
-    is_current_customer = models.BooleanField() 
+    is_current_customer = models.BooleanField()
     CATEGORY_CHOICES = [
         ('existing customer', 'Existing Customer'),
         ('new prospect', 'New Prospect'),
@@ -25,7 +25,8 @@ class Tour(models.Model):
     )
     is_nocc_required = models.BooleanField()
     date = models.DateField()
-    time = models.TimeField()
+    start_time = models.TimeField()
+    end_time = models.TimeField()
     location = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True,
