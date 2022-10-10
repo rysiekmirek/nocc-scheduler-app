@@ -10,3 +10,4 @@ def schedule_tour(request):
     else:
         form = TourForm()
     return render (request, "schedule-tour.html", {'form': form} )
+    
