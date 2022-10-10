@@ -1,5 +1,5 @@
 from .models import Tour
-from django.forms import ModelForm,DateTimeInput
+from django.forms import ModelForm, DateTimeInput
 
 
 class TourForm(ModelForm):

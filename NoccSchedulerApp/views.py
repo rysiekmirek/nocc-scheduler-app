@@ -3,8 +3,6 @@ from django.core.mail import send_mail, EmailMessage, EmailMultiAlternatives
 from .models import Tour
 from .forms import TourForm
 import requests
-import uuid
-
 
 
 def schedule_tour(request):
@@ -27,8 +25,8 @@ def schedule_tour(request):
         msg = EmailMessage(subject, html_content, from_email, to)
         msg.content_subtype = "html"
         msg.send()
-        
-        
+
+
     form = TourForm()
     context={
         'tours': Tour.objects.all().order_by('date'),
