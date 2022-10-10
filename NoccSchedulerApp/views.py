@@ -5,4 +5,5 @@ import requests
 
 
 def schedule_tour(request):
-    return render (request, "schedule-tour.html")
+    form = TourForm()
+    return render (request, "schedule-tour.html", {'form': form} )
