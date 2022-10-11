@@ -17,9 +17,11 @@
   <hr>
     <form action="" method="post">
       {% csrf_token %}
+      <ul>
       {% for field in form %}
-            <ul>{{ field.label_tag }} {{ field }}</ul>
+            <li>{{ field.label_tag }} {{ field }}</li>
         {% endfor %}
+      </ul>
       <input type="submit" value="Submit">
   </form>
 
