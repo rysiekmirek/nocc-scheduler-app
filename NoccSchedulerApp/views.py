@@ -8,8 +8,10 @@ def schedule_tour(request):
     if request.method == 'POST':
         form = TourForm(request.POST)
         form.save()
-        form = TourForm()
     else:
-        form = TourForm()
-    return render (request, "schedule-tour.html", {'form': form} )
+        context={
+         'tours': Tour.objects.all().order_by('-created')
+        }
+    form = TourForm()
+    return render (request, "schedule-tour.html", {'form': form} , context=context)
     
