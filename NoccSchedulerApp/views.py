@@ -13,5 +13,5 @@ def schedule_tour(request):
         'tours': Tour.objects.all().order_by('-created')
     }
     form = TourForm()
-    return render (request, "schedule-tour.html", {'form': form} , context=context)
+    return render (request, "schedule-tour.html", {'form': form} , context)
     
