@@ -10,7 +10,7 @@ def schedule_tour(request):
         form.save()
     form = TourForm()
     context={
-        'tours': Tour.objects.all().order_by('start_time').values(),
+        'tours': Tour.objects.all().order_by('start_time'),
         'form': form
     }
     return render (request, "schedule-tour.html", context)
