@@ -16,7 +16,7 @@ def schedule_tour(request):
         ['rysiekmirek@gmail.com'],
         fail_silently=False,
         )
-    form = TourForm(request.POST)
+    form = TourForm()
     context={
         'tours': Tour.objects.all().order_by('date'),
         'form': form
