@@ -20,8 +20,9 @@
           ***Please note that a NOCC Tour person may not be available for the selected day, but we will try our best to accommodate your request.
       </div>
 
-      <div class="b-example-divider"></div>
+  <div class="b-example-divider"></div>
 
+  <div class="col-lg-10 mx-auto">
       <h2>New tour</h2> 
       <form class="row gy-4 gx-3 align-items-center" action="" method="post">
         {% csrf_token %}
@@ -32,14 +33,13 @@
         {% endfor %}
       <button type="submit" class="btn btn-primary">Submit</button>
       </form>
-    
+    </div>
+
       <hr>
     </div>
 
 
     <div class="b-example-divider"></div>
-
-
 
 
   <h2>Scheduled tours</h2> 
