@@ -135,5 +135,5 @@ EMAIL_HOST = 'h19.microhost.pl'
 EMAIL_PORT = '465'
 EMAIL_HOST_USER = 'nocc-tour-scheduler@srv30945.seohost.com.pl'
 EMAIL_HOST_PASSWORD = 'nocc-tour-scheduler'
-EMAIL_USE_TLS = True
+EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
