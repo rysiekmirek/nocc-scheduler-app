@@ -26,6 +26,7 @@
   <div class="col-lg-10 mx-auto">
       <h2>New tour</h2>
       <hr>
+      <div class="container text-center">
       <form class="row gy-2 gx-2 align-items-center" action="" method="post">
         {% csrf_token %}
         {% for field in form %}
@@ -38,7 +39,7 @@
       <button type="submit" class="btn btn-primary btn-lg">Submit</button>
       </div>
       </form>
-
+      </div>
 
   <div class="b-example-divider"></div>
 
