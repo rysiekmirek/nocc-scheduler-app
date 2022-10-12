@@ -29,7 +29,7 @@
       <form class="row gy-2 gx-2 align-items-center" action="" method="post">
         {% csrf_token %}
         {% for field in form %}
-          <div class="col-auto">
+          <div class="col-auto text-center">
              {{ field.label_tag }} {{ field }} <i><small style="color:#9e9e9e">{{ field.help_text }}</small></i>
           </div>
         {% endfor %}
