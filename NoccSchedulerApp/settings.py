@@ -127,3 +127,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#email settings
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'h19.microhost.pl'
+EMAIL_PORT = '465'
+EMAIL_HOST_USER = 'nocc-tour-scheduler@srv30945.seohost.com.pl'
+EMAIL_HOST_PASSWORD = 'nocc-tour-scheduler'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = True
