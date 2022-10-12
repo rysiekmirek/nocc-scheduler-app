@@ -23,11 +23,11 @@
 
   <div class="b-example-divider"></div>
 
-  <div class="col-lg-10 mx-auto">
+  <div class="col-lg-10 mx-auto bg-light">
       <h2>New tour</h2>
       <hr>
-      <div class="container text-center bg-light">
-      <form class="row gx-3 gy-2" action="" method="post">
+      <div class="container text-center">
+      <form class="row gx-4 gy-3" action="" method="post">
         {% csrf_token %}
         {% for field in form %}
           <div class="col-sm">
