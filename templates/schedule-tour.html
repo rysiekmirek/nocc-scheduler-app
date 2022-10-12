@@ -59,10 +59,10 @@
                 <th>Attendees akamai</th>
                 <th>Attendees guests</th>
                 <th>Nocc required</th>
+                <th>Location</th>
                 <th>Date</th>
                 <th>Start time</th>
                 <th>End time</th>
-                <th>Location</th>
             </tr>
           
       {%for tour in tours %}
@@ -74,10 +74,10 @@
                 <td>{{tour.attendees_akamai}}</td>
                 <td>{{tour.attendees_guests}}</td>
                 <td>{{tour.nocc_required}}</td>
+                <td>{{tour.location}}</td>
                 <td>{{tour.date}}</td>
                 <td>{{tour.start_time}}</td>
                 <td>{{tour.end_time}}</td>
-                <td>{{tour.location}}</td>
             </tr>
           
       {% endfor %}
