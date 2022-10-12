@@ -15,7 +15,7 @@
       <img class="d-block mx-auto mb-4" src="/media/akamai_fav.png" alt="" width="72" height="72">
       <h1 class="display-6 fw-bold">NOCC External/Internal Customer Tour Request</h1>
       <div class="col-lg-8 mx-auto">
-        <p class="lead mb-2"><small>Scheduling a NOCC tour is as simple as submitting a NOCC Tour request form. 
+        <p class="lead mb-4"><small>Scheduling a NOCC tour is as simple as submitting a NOCC Tour request form. 
           After your request has been submitted, someone from our NOCC team will be in touch with you. 
           ***Please note that a NOCC Tour person may not be available for the selected day, but we will try our best to accommodate your request.</small>
       </div>
@@ -30,7 +30,7 @@
         {% csrf_token %}
         {% for field in form %}
           <div class="col-auto">
-             {{ field.label_tag }} {{ field }} <!--<i><small style="color:#9e9e9e">{{ field.help_text }}</small></i> -->
+             {{ field.label_tag }} {{ field }} <i><small style="color:#9e9e9e">{{ field.help_text }}</small></i>
           </div>
         {% endfor %}
       </div>
