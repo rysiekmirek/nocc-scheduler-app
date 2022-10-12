@@ -25,8 +25,8 @@ class Tour(models.Model):
     )
     nocc_required = models.BooleanField()
     date = models.DateField()
-    start_time = models.TimeField()
-    end_time = models.TimeField()
+    start_time = models.TimeField(help_text="e.g. 11:30 a.m.")
+    end_time = models.TimeField(help_text="e.g. 12:30 a.m.")
     location = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True,
