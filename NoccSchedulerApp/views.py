@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse
-from django.core.mail import send_mail
+#from django.core.mail import send_mail
 from .models import Tour
 from .forms import TourForm
 import requests
