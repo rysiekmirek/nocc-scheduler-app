@@ -26,11 +26,11 @@
   <div class="col-lg-10 mx-auto">
       <h2>New tour</h2>
       <hr>
-      <div class="container text-center">
-      <form class="row gy-3 gx-2 align-items-center" action="" method="post">
+      <div class="container text-center bg-light">
+      <form class="row g-3 align-items-center" action="" method="post">
         {% csrf_token %}
         {% for field in form %}
-          <div class="col-auto">
+          <div class="col-sm">
              {{ field.label_tag }} {{ field }} <i><small style="color:#9e9e9e">{{ field.help_text }}</small></i>
           </div>
         {% endfor %}
