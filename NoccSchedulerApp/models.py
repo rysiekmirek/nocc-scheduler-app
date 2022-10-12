@@ -24,8 +24,8 @@ class Tour(models.Model):
         default='existing customer',
     )
     nocc_required = models.BooleanField()
-    date = models.DateField()
     location = models.CharField(max_length=100)
+    date = models.DateField()
     start_time = models.TimeField(help_text="use local time for location")
     end_time = models.TimeField(help_text="use local time for location")
     created = models.DateTimeField(auto_now_add=True)
