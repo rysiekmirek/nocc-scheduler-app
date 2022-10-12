@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse
-#from django.core.mail import send_mail
+from django.core.mail import send_mail
 from .models import Tour
 from .forms import TourForm
 import requests
@@ -22,15 +22,3 @@ def schedule_tour(request):
         'form': form
     }
     return render (request, "schedule-tour.html", context)
-    
-
-
-    
-
-send_mail(
-    'Subject here',
-    'Here is the message.',
-    'from@example.com',
-    ['to@example.com'],
-    fail_silently=False,
-)
