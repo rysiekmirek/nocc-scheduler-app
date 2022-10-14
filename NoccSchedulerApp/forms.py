@@ -5,7 +5,8 @@ from django.forms import ModelForm,DateTimeInput
 class TourForm(ModelForm):
     class Meta:
         model = Tour
-        fields = '__all__'
+        #fields = '__all__'
+        exclude = ('id',)
         widgets = {
             'date': DateTimeInput(attrs={'type': 'date'}),
             'start_time': DateTimeInput(attrs={'type': 'time'}),
