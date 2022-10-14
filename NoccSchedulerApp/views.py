@@ -14,7 +14,7 @@ def schedule_tour(request):
             dbentry = form.save(commit=False)
             dbentry.id = uuid.uuid4()
             dbentry.save()
-        tour_data = Tor.objects.all()
+        tour_data = Tour.objects.all()
         email = EmailMessage(
         subject = '[NOCC-Tour-Scheduler] - New Tour',
         body = 'Hi, new tour was scheduled.' + tour_data,
