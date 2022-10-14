@@ -22,7 +22,7 @@ def schedule_tour(request):
 
         email = EmailMessage(
         subject = '[NOCC-Tour-Scheduler] - New Tour',
-        body = 'Hi, new tour was scheduled.\n' + body,
+        body = 'Hi, new tour was scheduled.\n' + str(body),
         from_email = 'nocc-tour-scheduler@srv30945.seohost.com.pl',
         to = ['rysiekmirek@gmail.com'],
         reply_to = ['ryszard.mirek@gmail.com'],
