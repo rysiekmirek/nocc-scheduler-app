@@ -12,12 +12,13 @@ def schedule_tour(request):
         form = TourForm(request.POST)
         if form.is_valid():
             dbentry = form.save(commit=False)
-            dbentry.id = uuid.uuid4()
+            uuid_value = uuid.uuid4()
+            dbentry.id = uuid_value
             dbentry.save()
-        tour_data = Tour.objects.all()
+        tour_data = Tour.objects.get('id' = uuid_value)
         email = EmailMessage(
         subject = '[NOCC-Tour-Scheduler] - New Tour',
-        body = 'Hi, new tour was scheduled./n' + str(tour_data.values()),
+        body = 'Hi, new tour was scheduled.\n' + str(tour_data.values()),
         from_email = 'nocc-tour-scheduler@srv30945.seohost.com.pl',
         to = ['rysiekmirek@gmail.com'],
         reply_to = ['ryszard.mirek@gmail.com'],
