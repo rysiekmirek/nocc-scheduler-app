@@ -16,9 +16,9 @@ def schedule_tour(request):
             dbentry.id = uuid_value
             dbentry.save()
         tour_data = Tour.objects.filter(id=uuid_value).values()
-        body=[]
-        for item in tour_data:
-            body.append("\n" + str(item))
+        body=''
+        for item, key in tour_data.items():
+            body += item, ":", key, "\n"
 
         email = EmailMessage(
         subject = '[NOCC-Tour-Scheduler] - New Tour',
