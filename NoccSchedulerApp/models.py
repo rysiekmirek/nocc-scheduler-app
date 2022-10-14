@@ -1,5 +1,4 @@
 from django.db import models
-import uuid
 
 
 class Tour(models.Model):
@@ -29,8 +28,7 @@ class Tour(models.Model):
     start_time = models.TimeField(help_text="use local time for location")
     end_time = models.TimeField(help_text="use local time for location")
     created = models.DateTimeField(auto_now_add=True)
-    id = models.UUIDField(default=uuid.uuid4, unique=True,
-                            primary_key=True, editable=True)
+    id = models.UUIDField(unique=True, primary_key=True, editable=True)
     def __str__(self):
         return self.tour_name
                             
