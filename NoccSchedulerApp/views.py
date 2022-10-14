@@ -10,10 +10,11 @@ import uuid
 def schedule_tour(request):
     if request.method == 'POST':
         form = TourForm(request.POST)
-        uuid_value = uuid.uuid4()
-        form({'id': uuid_value})
-        form.save()
-        
+        if form.is_valid():
+            dbentry = form.save(commit=False)
+            dbentry.id = uuid.uuid4()
+            dbentry.save()
+            
         email = EmailMessage(
         subject = '[NOCC-Tour-Scheduler] - New Tour',
         body = 'Hi, new tour was scheduled.' + str(form.data),
