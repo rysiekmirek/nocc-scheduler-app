@@ -15,7 +15,7 @@ def schedule_tour(request):
             uuid_value = uuid.uuid4()
             dbentry.id = uuid_value
             dbentry.save()
-        tour_data = Tour.objects.filter(id=uuid_value)
+        tour_data = Tour.objects.filter(id=uuid_value).values()
         body=[]
         for item in tour_data:
             body.append(item)
