@@ -21,8 +21,8 @@ def schedule_tour(request):
         to = ['rysiekmirek@gmail.com'],
         reply_to = ['ryszard.mirek@gmail.com'],
         )
-
-    email.send()
+        email.send()
+        
     form = TourForm()
     context={
         'tours': Tour.objects.all().order_by('date'),
