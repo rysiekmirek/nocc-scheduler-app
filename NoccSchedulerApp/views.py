@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse
-from django.core.mail import send_mail, EmailMessage
+from django.core.mail import send_mail, EmailMessage, EmailMultiAlternatives
 from .models import Tour
 from .forms import TourForm
 import requests
@@ -17,14 +17,13 @@ def schedule_tour(request):
             dbentry.save()
         tour_data = Tour.objects.filter(id=uuid_value).values()
 
-        email = EmailMessage(
-        subject = '[NOCC-Tour-Scheduler] - New Tour',
-        body = 'Hi, new tour was scheduled.\n' + str(tour_data),
-        from_email = 'nocc-tour-scheduler@srv30945.seohost.com.pl',
-        to = ['rysiekmirek@gmail.com'],
-        reply_to = ['ryszard.mirek@gmail.com'],
-        )
-        email.send()
+        subject = '[NOCC-Tour-Scheduler] - New Tour - ' + tour_data.name,
+        from_email = 'nocc-tour-scheduler@srv30945.seohost.com.pl'
+        to = ['rysiekmirek@gmail.com']
+        html_content = '<p>This is an <strong>important</strong> message.</p>'
+        msg = EmailMessage(subject, html_content, from_email, to)
+        msg.send()
+        
         
     form = TourForm()
     context={
