@@ -20,10 +20,10 @@ def schedule_tour(request):
         subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data['tour_name'] + " \" was scheduled"
         from_email = 'nocc-tour-scheduler@srv30945.seohost.com.pl'
         to = ['rysiekmirek@gmail.com']
-        html_content = '<p>Tour details: \n</p>'
+        html_content = '<p>Tour details:</p>'
         for key, data in tour_data.items():
-            html_content += str(key) + ":"
-            html_content += str(data) + "\n"
+            html_content += str(key) + " : "
+            html_content += str(data) + "<br>"
         msg = EmailMessage(subject, html_content, from_email, to)
         msg.content_subtype = "html"
         msg.send()
