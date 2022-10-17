@@ -15,13 +15,13 @@ def schedule_tour(request):
             uuid_value = uuid.uuid4()
             dbentry.id = uuid_value
             dbentry.save()
-        tour_data = Tour.objects.filter(id=uuid_value).values()[0]
+        tour_data = Tour.objects.filter(id=uuid_value).values()
 
-        subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data['tour_name']] + " \" was scheduled"
+        subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data[0]['tour_name']] + " \" was scheduled"
         from_email = 'nocc-tour-scheduler@srv30945.seohost.com.pl'
         to = ['rysiekmirek@gmail.com']
         html_content = '<p>Tour details: /n</p>'
-        for key, data in tour_data.items():
+        for key, data in tour_data[0].items():
             html_content += key, data
         msg = EmailMessage(subject, html_content, from_email, to)
         msg.content_subtype = "html"
