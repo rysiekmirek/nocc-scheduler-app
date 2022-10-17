@@ -17,7 +17,7 @@ def schedule_tour(request):
             dbentry.save()
         tour_data = Tour.objects.filter(id=uuid_value).values()
 
-        subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data[0]['tour_name']] + " \" was scheduled"
+        subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data[0]['tour_name'] + " \" was scheduled"
         from_email = 'nocc-tour-scheduler@srv30945.seohost.com.pl'
         to = ['rysiekmirek@gmail.com']
         html_content = '<p>Tour details: /n</p>'
