@@ -22,8 +22,8 @@ def schedule_tour(request):
         to = ['rysiekmirek@gmail.com']
         html_content = '<p>Tour details: /n</p>'
         for key, data in tour_data[0].items():
-            html_content += key
-            html_content += data
+            html_content += str(key)
+            html_content += str(data)
         msg = EmailMessage(subject, html_content, from_email, to)
         msg.content_subtype = "html"
         msg.send()
