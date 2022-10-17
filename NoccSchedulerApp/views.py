@@ -15,9 +15,9 @@ def schedule_tour(request):
             uuid_value = uuid.uuid4()
             dbentry.id = uuid_value
             dbentry.save()
-        tour_data = Tour.objects.filter(id=uuid_value).values()
+        tour_data = Tour.objects.filter(id=uuid_value)
 
-        subject = '[NOCC-Tour-Scheduler] - New Tour - ' + tour_data[0]['tour_name']
+        subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data[0]['tour_name'] + " \" was scheduled"
         from_email = 'nocc-tour-scheduler@srv30945.seohost.com.pl'
         to = ['rysiekmirek@gmail.com']
         html_content = '<p>This is an <strong>important</strong> message.</p>'
