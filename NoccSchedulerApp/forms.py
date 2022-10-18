@@ -25,12 +25,12 @@ class TourForm(ModelForm):
         for existing_tour in Tour.objects.all():
             if cleaned_data.get('date') == existing_tour.date:
                 if existing_tour.start_time <= start_time <= existing_tour.end_time:
-                    raise ValidationError(
-                        {'start_time': _("Start time colides with an exising tour", code='invalid')})
+                    self.add_error(
+                        'start_time', ValidationError(_("Start time colides with an exising tour"), code='invalid'))
                 if existing_tour.start_time <= end_time <= existing_tour.end_time:
-                    raise ValidationError(
-                        {'end_time': _("Start time colides with an exising tour", code='invalid')})
+                    self.add_error(
+                        'end_time', ValidationError(_("Start time colides with an exising tour"), code='invalid'))
                 if start_time <= existing_tour.start_time and end_time >= existing_tour.end_time:
                     raise ValidationError({'start_time': ValidationError(
-                        _('Tour ca\'t encompas existing tour'), code='invalid'), 'end_time': ValidationError(
-                        _('Tour ca\'t encompas existing tour'), code='invalid')})
+                        _('Tour can\'t encompas existing tour'), code='invalid'), 'end_time': ValidationError(
+                        _('Tour can\'t encompas existing tour'), code='invalid')})
