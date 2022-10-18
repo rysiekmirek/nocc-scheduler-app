@@ -41,6 +41,6 @@ def tour_details(request, pk):
     tour_data = Tour.objects.get(id=pk).values()
     context = {
         'tour_data': tour_data,
-        'form': TourForm(initial=tour_data),
+        'form': TourForm()
     }
     return render (request, "tour-details.html", context)
