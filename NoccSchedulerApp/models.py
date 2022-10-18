@@ -27,6 +27,8 @@ class Tour(models.Model):
     date = models.DateField()
     start_time = models.TimeField(help_text="use local time for location")
     end_time = models.TimeField(help_text="use local time for location")
+    approved = models.BooleanField()
+    nocc_person_assigned = models.BooleanField()
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(unique=True, primary_key=True, editable=True)
     def __str__(self):

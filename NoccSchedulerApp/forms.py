@@ -6,7 +6,7 @@ class TourForm(ModelForm):
     class Meta:
         model = Tour
         #fields = '__all__'
-        exclude = ('id',)
+        exclude = ('id','approved','nocc_person_assigned')
         widgets = {
             'date': DateTimeInput(attrs={'type': 'date'}),
             'start_time': DateTimeInput(attrs={'type': 'time'}),
