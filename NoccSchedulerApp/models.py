@@ -26,32 +26,13 @@ class Tour(models.Model):
         default='existing customer',
     )
     nocc_required = models.BooleanField()
-    location = models.CharField(max_length=100)
+    LOCATION_CHOICES = [('cambridge','Cambridge'), ('krakow','Kraków'), ('bangalore','Bangalore')]
+    location = models.CharField(max_length=100,choices=LOCATION_CHOICES,default='Cambridge')
     date = models.DateField()
     start_time = models.TimeField(help_text="use local time for location")
     end_time = models.TimeField(help_text="use local time for location")
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(unique=True, primary_key=True, editable=True)
-
-    def clean(self):
-        # self.clean_fields()
-        start_time = self.start_time
-        end_time = self.end_time
-        if start_time >= end_time:
-            raise ValidationError({'end_time': ValidationError(
-                _('End time has to be after start time'), code='invalid')})
-        for existing_tour in Tour.objects.all():
-            if self.date == existing_tour.date:
-                if existing_tour.start_time <= start_time <= existing_tour.end_time:
-                    raise ValidationError(
-                        {'start_time': _("Start time colides with an exising tour", code='invalid')})
-                if existing_tour.start_time <= end_time <= existing_tour.end_time:
-                    raise ValidationError(
-                        {'end_time': _("Start time colides with an exising tour", code='invalid')})
-                if start_time <= existing_tour.start_time and end_time >= existing_tour.end_time:
-                    raise ValidationError({'start_time': ValidationError(
-                        _('Tour ca\'t encompas existing tour'), code='invalid'), 'end_time': ValidationError(
-                        _('Tour ca\'t encompas existing tour'), code='invalid')})
 
     def __str__(self):
         return self.tour_name
