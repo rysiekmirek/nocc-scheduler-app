@@ -38,7 +38,7 @@ def schedule_tour(request):
     return render (request, "schedule-tour.html", context)
 
 def tour_details(request, pk):
-    tour_data = Tour.objects.get(id=pk).values()
+    tour_data = Tour.objects.get(id=pk)
     context = {
         'tour_data': tour_data,
         'form': TourForm()
