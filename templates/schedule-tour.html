@@ -63,6 +63,8 @@
                 <th>Date</th>
                 <th>Start time</th>
                 <th>End time</th>
+                <th>Approved</th>
+                <th>Nocc Person Assigned</th>
             </tr>
           
       {%for tour in tours %}
@@ -78,6 +80,9 @@
                 <td>{{tour.date}}</td>
                 <td>{{tour.start_time}}</td>
                 <td>{{tour.end_time}}</td>
+                <td>{{tour.approved}}</td>
+                <td>{{tour.nocc_person_assigned}}</td>
+                <td>Edit</td>
             </tr>
           
       {% endfor %}
