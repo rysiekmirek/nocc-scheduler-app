@@ -15,7 +15,7 @@ def schedule_tour(request):
             uuid_value = uuid.uuid4()
             dbentry.id = uuid_value
             dbentry.save()
-        tour_data = Tour.objects.get(id=uuid_value).values()
+        tour_data = Tour.objects.filter(id=uuid_value).values()[0]
 
         subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data['tour_name'] + " \" was scheduled"
         from_email = 'nocc-tour-scheduler@srv30945.seohost.com.pl'
@@ -38,7 +38,7 @@ def schedule_tour(request):
     return render (request, "schedule-tour.html", context)
 
 def tour_details(request, pk):
-    tour_data = Tour.objects.get(id=pk)
+    tour_data = Tour.objects.filter(id=pk)
     print (tour_data)
     context = {
         'tour_data': tour_data,
