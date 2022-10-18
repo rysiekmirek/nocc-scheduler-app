@@ -38,7 +38,7 @@ def schedule_tour(request):
     return render (request, "schedule-tour.html", context)
 
 def tour_details(request, pk):
-    tour_data = Tour.objects.filter(id=pk)
+    tour_data = Tour.objects.filter(id=pk).values()[0]
     print (tour_data)
     context = {
         'tour_data': tour_data,
