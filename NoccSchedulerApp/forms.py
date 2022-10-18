@@ -12,3 +12,9 @@ class TourForm(ModelForm):
             'start_time': DateTimeInput(attrs={'type': 'time'}),
             'end_time': DateTimeInput(attrs={'type': 'time'}),
         }
+
+class TourFormEdit(ModelForm):
+    class Meta:
+        model = Tour
+        fields = '__all__'
+        #exclude = ('id','approved','nocc_person_assigned')

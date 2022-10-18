@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.core.mail import send_mail, EmailMessage, EmailMultiAlternatives
 from .models import Tour
-from .forms import TourForm
+from .forms import TourForm, TourFormEdit
 import requests
 import uuid
 
@@ -42,6 +42,6 @@ def tour_details(request, pk):
     print (tour_data)
     context = {
         'tour_data': tour_data,
-        'form': TourForm(initial=tour_data)
+        'form': TourFormEdit(initial=tour_data)
     }
     return render (request, "tour-details.html", context)
