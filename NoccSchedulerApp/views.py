@@ -15,15 +15,16 @@ def schedule_tour(request):
             uuid_value = uuid.uuid4()
             dbentry.id = uuid_value
             dbentry.save()
-        tour_data = Tour.objects.filter(id=uuid_value).values()[0]
+        tour_data = Tour.objects.get(id=uuid_value).values()
 
         subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data['tour_name'] + " \" was scheduled"
         from_email = 'nocc-tour-scheduler@srv30945.seohost.com.pl'
         to = ['rysiekmirek@gmail.com']
-        html_content = '<h2>Hi John,</h2><br><h3>Tour details:</h3>'
+        html_content = '<h2>Hi '+ tour_data['requestor_name'] + ',</h2><br><h3>Tour details:</h3>'
         for key, data in tour_data.items():
             html_content += "<b>" + str(key) + "</b> : "
             html_content += "<i>" + str(data) + "</i><br>"
+        html_content += "\n Please visit http://194.233.175.38:8000/schedule-tour/tour-details/" + str(tour_data['id'])
         msg = EmailMessage(subject, html_content, from_email, to)
         msg.content_subtype = "html"
         msg.send()
@@ -35,3 +36,10 @@ def schedule_tour(request):
         'form': form
     }
     return render (request, "schedule-tour.html", context)
+
+    def tour_details(request, pk):
+        context = {
+            'tour_data': Tour.objects.get(id=pk),
+            'form': TourForm(initial=tour_data),
+        }
+        return render (request, "tour-details.html", context)
