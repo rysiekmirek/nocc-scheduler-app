@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.core.mail import send_mail, EmailMessage, EmailMultiAlternatives
+from django.contrib import messages
 from .models import Tour
 from .forms import TourForm, TourFormEdit
 import requests
@@ -39,7 +40,15 @@ def schedule_tour(request):
 
 def tour_details(request, pk):
     tour_data = Tour.objects.filter(id=pk).values()[0]
-    print (tour_data)
+    
+    if request.method == 'POST':
+        instance = Tour.objects.get(id=pk)
+        form = TourFormEdit(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Użytkownik został utworzony')
+            return redirect('/schedule-tour/')
+
     context = {
         'tour_data': tour_data,
         'form': TourFormEdit(initial=tour_data)
