@@ -54,3 +54,10 @@ def tour_details(request, pk):
         'form': TourFormEdit(initial=tour_data)
     }
     return render (request, "tour-details.html", context)
+
+
+def calendar(request):
+    return render (request, calendar.html )
+
+def login(request):
+    return render (request, login.html )
