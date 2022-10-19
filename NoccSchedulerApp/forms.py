@@ -11,6 +11,7 @@ class TourForm(ModelForm):
             'date': DateTimeInput(attrs={'type': 'date'}),
             'start_time': DateTimeInput(attrs={'type': 'time'}),
             'end_time': DateTimeInput(attrs={'type': 'time'}),
+            'comment': Textarea(attrs={'rows':1, 'cols':50}),
         }
 
 class TourFormEdit(ModelForm):
