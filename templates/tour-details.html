@@ -10,20 +10,22 @@
     <link rel="icon" type="image/x-icon" href="/media/akamai_fav.png">
 </head>
   <body>
-    <div class="container">
-      <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-          <img class="d-block mx-auto mb-4" src="/media/akamai_fav.png" alt="" width="52" height="52">
-          <span class="fs-4 fw-bold">NOCC Customer Tour Request</span>
-        </a>
-  
-        <ul class="nav nav-pills">
-          <li class="nav-item"><a href="/schedule-tour/" class="nav-link" aria-current="page">Home</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Calendar</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Log in/out</a></li>
-        </ul>
-      </header>
-    </div>
+
+    <nav class="navbar navbar-expand-md navbar-light">
+      <div class="container-fluid mx-5 my-5">
+        <a class="navbar-brand" href="/schedule-tour/"><img class="img-fluid" src="/media/akamai_fav.png" alt="logo" width="60" height="60"></a>
+        <span class="fs-4 fw-bold text-start">NOCC Customer Tour Request</span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="True" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+          <div class="nav navbar-nav">
+            <a class="nav-link" href="/schedule-tour/"><button type="button" class="btn btn-outline-secondary btn-sm"> Home </button></a>
+            <a class="nav-link" href="#"><button type="button" class="btn btn-outline-secondary btn-sm"> Calendar </button></a>
+            <a class="nav-link" href="#"><button type="button" class="btn btn-outline-secondary btn-sm">Log in/out</button></a>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </nav>
 
   <div class="b-example-divider"></div>
 
