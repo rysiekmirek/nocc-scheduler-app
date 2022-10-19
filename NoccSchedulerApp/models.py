@@ -28,7 +28,18 @@ class Tour(models.Model):
     start_time = models.TimeField(help_text="use local time for location")
     end_time = models.TimeField(help_text="use local time for location")
     approved = models.BooleanField(default=False)
-    nocc_person_assigned = models.BooleanField(default=False)
+    PERSON_ASSIGNED_CHOICES = [
+        ('None', 'None'),
+        ('Adam', 'Adam'),
+        ('Brian', 'Brian'),
+        ('Charlie', 'Charlie'),
+    ]
+    nocc_person_assigned = models.CharField(
+        max_length=30,
+        choices=PERSON_ASSIGNED_CHOICES,
+        default='None',
+    )
+    comment=models.TextField(max_length=2000, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(unique=True, primary_key=True, editable=True)
     def __str__(self):
