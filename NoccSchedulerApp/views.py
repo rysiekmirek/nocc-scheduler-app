@@ -47,7 +47,7 @@ def tour_details(request, pk):
         if form.is_valid():
             form.save()
             messages.success(request, 'Użytkownik został utworzony')
-            return redirect('/schedule-tour/')
+            return redirect('/schedule-tour/tour-details/'+pk)
 
     context = {
         'tour_data': tour_data,
