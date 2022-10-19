@@ -18,3 +18,6 @@ class TourFormEdit(ModelForm):
         model = Tour
         #fields = '__all__'
         exclude = ('id',)
+        widgets = {
+          'comment': forms.Textarea(attrs={'rows':1, 'cols':50}),
+        }
