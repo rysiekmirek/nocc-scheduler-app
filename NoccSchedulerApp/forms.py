@@ -16,5 +16,5 @@ class TourForm(ModelForm):
 class TourFormEdit(ModelForm):
     class Meta:
         model = Tour
-        fields = '__all__'
-        #exclude = ('id','approved','nocc_person_assigned')
+        #fields = '__all__'
+        exclude = ('id',)
