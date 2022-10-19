@@ -23,7 +23,12 @@ class Tour(models.Model):
         default='existing customer',
     )
     nocc_required = models.BooleanField()
-    location = models.CharField(max_length=100)
+    LOCATION_CHOICES = [
+        ('cambridge','Cambridge'), 
+        ('krakow','Kraków'), 
+        ('bangalore','Bangalore')
+        ]
+    location = models.CharField(max_length=100,choices=LOCATION_CHOICES,default='Cambridge')
     date = models.DateField()
     start_time = models.TimeField(help_text="use local time for location")
     end_time = models.TimeField(help_text="use local time for location")
