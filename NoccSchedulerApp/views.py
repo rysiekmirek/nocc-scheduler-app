@@ -25,7 +25,7 @@ def schedule_tour(request):
         for key, data in tour_data.items():
             html_content += "<b>" + str(key) + "</b> : "
             html_content += "<i>" + str(data) + "</i><br>"
-        html_content += "\n\n Please visit \n <a href=\"http://194.233.175.38:8000/schedule-tour/tour-details/\"" + str(tour_data['id'])
+        html_content += "\n\n Please visit \n <a href=\"http://194.233.175.38:8000/schedule-tour/tour-details/\">Click</a>" + str(tour_data['id'])
         msg = EmailMessage(subject, html_content, from_email, to)
         msg.content_subtype = "html"
         msg.send()
