@@ -1,5 +1,5 @@
 from .models import Tour
-from django.forms import ModelForm,DateTimeInput
+from django.forms import ModelForm,DateTimeInput,Textarea
 
 
 class TourForm(ModelForm):
@@ -19,5 +19,5 @@ class TourFormEdit(ModelForm):
         #fields = '__all__'
         exclude = ('id',)
         widgets = {
-          'comment': forms.Textarea(attrs={'rows':1, 'cols':50}),
+          'comment': Textarea(attrs={'rows':1, 'cols':50}),
         }
