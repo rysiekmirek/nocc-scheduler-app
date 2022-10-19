@@ -21,6 +21,8 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('schedule-tour/', views.schedule_tour, name = 'schedule-tour' ),
-    path('schedule-tour/tour-details/<str:pk>/', views.tour_details, name = 'tour-details' ),
+    path('tour-details/<str:pk>/', views.tour_details, name = 'tour-details' ),
+    path('calendar/', views.calendar, name = 'calendar' ),
+    path('login/', views.login, name = 'login' ),
+    path('', views.main, name = 'main' ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

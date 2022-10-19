@@ -8,7 +8,7 @@ import uuid
 
 
 
-def schedule_tour(request):
+def main(request):
     if request.method == 'POST':
         form = TourForm(request.POST)
         if form.is_valid():
@@ -19,13 +19,13 @@ def schedule_tour(request):
         tour_data = Tour.objects.filter(id=uuid_value).values()[0]
 
         subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data['tour_name'] + " \" was scheduled"
-        from_email = 'nocc-tour-scheduler@srv30945.seohost.com.pl'
+        from_email = 'nocc-tour-scheduler@akamai.com'
         to = ['rysiekmirek@gmail.com']
         html_content = '<h2>Hi '+ tour_data['requestor_name'] + ',</h2><br><h3>Tour details:</h3>'
         for key, data in tour_data.items():
             html_content += "<b>" + str(key) + "</b> : "
             html_content += "<i>" + str(data) + "</i><br>"
-        html_content += "\n\n Please visit \n <a href=\"http://194.233.175.38:8000/schedule-tour/tour-details/"+str(tour_data['id'])+"\">Click</a>"
+        html_content += "\n\n Please visit \n <a href=\"http://194.233.175.38:8000/tour-details/"+str(tour_data['id'])+"\">Click</a>"
         msg = EmailMessage(subject, html_content, from_email, to)
         msg.content_subtype = "html"
         msg.send()
@@ -36,7 +36,7 @@ def schedule_tour(request):
         'tours': Tour.objects.all().order_by('date'),
         'form': form
     }
-    return render (request, "schedule-tour.html", context)
+    return render (request, "main.html", context)
 
 def tour_details(request, pk):
     tour_data = Tour.objects.filter(id=pk).values()[0]
@@ -46,8 +46,8 @@ def tour_details(request, pk):
         form = TourFormEdit(request.POST, instance=instance)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Użytkownik został utworzony')
-            return redirect('/schedule-tour/tour-details/'+pk)
+            messages.success(request, 'Tour details updated')
+            return redirect('/tour-details/'+pk)
 
     context = {
         'tour_data': tour_data,
