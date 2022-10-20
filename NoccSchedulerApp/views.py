@@ -19,7 +19,9 @@ def main(request):
         tour_data = Tour.objects.filter(id=uuid_value).values()[0]
         subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data['tour_name'] + " \" was scheduled"
         from_email = 'nocc-tour-scheduler@akamai.com'
-        to = ['rysiekmirek@gmail.com']
+        to = [tour_data['requestor_email'], 'rmirek@akamai.com']
+        if tour_data['nocc_required']:
+            to.append('nocc-tix@akamai.com')
         html_content = '<h2>Hi '+ tour_data['requestor_name'] + ',</h2><br><h3>Tour details:</h3>'
         for key, data in tour_data.items():
             html_content += "<b>" + str(key) + "</b> : "
