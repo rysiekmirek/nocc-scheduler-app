@@ -5,7 +5,8 @@ from .models import Tour
 from .forms import TourForm, TourFormEdit
 import requests
 import uuid
-
+from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate, logout
 
 
 def main(request):
@@ -68,4 +69,27 @@ def calendar(request):
     return render (request, "calendar.html" )
 
 def login(request):
-    return render (request, "login.html" )
+
+    if request.user.is_authenticated:
+        return redirect ('/')
+
+    if request.method == 'POST':
+        username = request.POST['f_username']
+        password = request.POST['f_password']
+
+        try:
+            user = User.objects.get(username=username)
+        except:
+            messages.warning(request, 'User not found')
+            return render(request, 'login.html', {'my_message': 'User not found'})
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect ('/')
+        else:
+            messages.error(request, 'Usernam or password incorrect, try again')
+            return render(request, 'login.html', {'my_message': 'Usernam or password incorrect, try again'})
+
+    return render(request, "login.html")
