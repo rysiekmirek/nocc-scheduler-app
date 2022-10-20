@@ -59,7 +59,7 @@ def tour_details(request, pk):
                     subject = '[NOCC-Tour-Scheduler] - Your tour " ' + tour_data['tour_name'] + " \" was approved"
                     from_email = 'nocc-tour-scheduler@akamai.com'
                     to = [tour_data['requestor_email'], 'rmirek@akamai.com']
-                    html_content += "<h2>Hi" + tour_data['requestor_name'] + ", </h2><br> To check status of the request check <br> <a href=\"http://194.233.175.38:8000/\">http://194.233.175.38:8000</a>"
+                    html_content = "<h2>Hi" + tour_data['requestor_name'] + ", </h2><br> To check status of the request check <br> <a href=\"http://194.233.175.38:8000/\">http://194.233.175.38:8000</a>"
                     msg = EmailMessage(subject, html_content, from_email, to)
                     msg.content_subtype = "html"
                     msg.send()
@@ -68,7 +68,7 @@ def tour_details(request, pk):
                     subject = '[NOCC-Tour-Scheduler] - Your tour " ' + tour_data['tour_name'] + " \" was rejected"
                     from_email = 'nocc-tour-scheduler@akamai.com'
                     to = [tour_data['requestor_email'], 'rmirek@akamai.com']
-                    html_content += "<h2>Hi" + tour_data['requestor_name'] + ", </h2><br> To check status of the request check <br> <a href=\"http://194.233.175.38:8000/\">http://194.233.175.38:8000</a>"
+                    html_content = "<h2>Hi" + tour_data['requestor_name'] + ", </h2><br> To check status of the request check <br> <a href=\"http://194.233.175.38:8000/\">http://194.233.175.38:8000</a>"
                     msg = EmailMessage(subject, html_content, from_email, to)
                     msg.content_subtype = "html"
                     msg.send()
