@@ -91,7 +91,7 @@ def login_user(request):
             login(request, user)
             return redirect ('/')
         else:
-            messages.error(request, 'Usernam or password incorrect, try again')
+            messages.warning(request, 'Usernam or password incorrect, try again')
             return render(request, 'login.html')
 
     return render(request, "login.html")
