@@ -23,7 +23,7 @@
             {% if request.user.is_authenticated %}
             <a class="nav-link" href="/logout/"><button type="button" class="btn btn-outline-secondary btn-sm"> Log out, <b>{{request.user}}</b></button></a>
             {% else %}
-            <a class="nav-link" href="/login/"><button type="button" class="btn btn-outline-secondary btn-sm"> Log in </button></a>
+            <a class="nav-link" href="/login/"><button type="button" class="btn btn-outline-secondary btn-sm"> Log in as admin </button></a>
             {% endif %}
           </div>
         </div>
