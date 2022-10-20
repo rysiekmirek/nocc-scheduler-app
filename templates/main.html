@@ -48,7 +48,7 @@
             </tr>
           
       {%for tour in tours %}
-            <tr {%if tour.approved == True %} class="table-success" {% else %} class="table-secondary" {% endif%}>
+            <tr {%if tour.approved == True %} class="table-success" {% else %} class="table-warning" {% endif%}>
                 <td>{{tour.tour_name}}</td>
                 <td>{{tour.requestor_name}}</td>
                 <td>{{tour.requestor_email}}</td>
