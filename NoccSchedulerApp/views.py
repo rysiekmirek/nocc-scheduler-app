@@ -95,3 +95,8 @@ def login_user(request):
             return render(request, 'login.html', {'my_message': 'Usernam or password incorrect, try again'})
 
     return render(request, "login.html")
+
+
+def logout_user(request):
+    logout(request)
+    return redirect("/login/")
