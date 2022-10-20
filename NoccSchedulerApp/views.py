@@ -52,7 +52,7 @@ def tour_details(request, pk):
                 if form_hold.approved ==True and tour_data['approved'] ==False:
                     messages.success(request, 'Requestor will be informed that tour was approved')
                 elif form_hold.approved ==False and tour_data['approved'] ==True:
-                    messages.danger(request, 'Requestor will be informed that tour was rejected')
+                    messages.warning(request, 'Requestor will be informed that tour was rejected')
 
             form.save()
             return redirect('/tour-details/'+pk)
