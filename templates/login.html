@@ -2,6 +2,42 @@
 
 {% block content %}
 
-<h1 class="text-center">Login page comming soon ... </h1>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+<h1 class="display-5 fw-bold">Log in</h1>
+<br>
+<b style="color: red">{{message}}</b>
+
+<div class="col-lg-4 mx-auto">
+
+<p class="lead mb-4">
+<form action="" method="POST">
+      {% csrf_token %}
+
+    <div class="container-md">
+    <div class="form-floating">
+    <input class="form-control" type="text" name="f_username" id="f_username">
+    <label for="f_username">Username</label>
+    </div>
+    <br>
+    <div class="form-floating">
+    <input class="form-control" type="password" name="f_password" id="f_password">
+    <label for="f_password">Password</label>
+    </div>
+    <br>
+    <button id="submit" type="submit" class="btn btn-secondary btn-lg btn-block"> Log in </button>
+
+    </div>
+
+</form>
+</p>
+</div>
 
 {% endblock %}
