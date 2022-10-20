@@ -42,7 +42,7 @@ def main(request):
     }
     return render (request, "main.html", context)
 
-@login_required(login_url='/')
+@login_required(login_url='/login/')
 def tour_details(request, pk):
     tour_data = Tour.objects.filter(id=pk).values()[0]
     
