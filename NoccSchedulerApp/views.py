@@ -56,9 +56,22 @@ def tour_details(request, pk):
                 form_hold = form.save(commit=False)
                 if form_hold.approved ==True and tour_data['approved'] ==False:
                     messages.success(request, 'Requestor will be informed that tour was approved')
+                    subject = '[NOCC-Tour-Scheduler] - Your tour " ' + tour_data['tour_name'] + " \" was approved"
+                    from_email = 'nocc-tour-scheduler@akamai.com'
+                    to = [tour_data['requestor_email'], 'rmirek@akamai.com']
+                    html_content += "<h2>Hi" + tour_data['requestor_name'] + ", </h2><br> To check status of the request check <br> <a href=\"http://194.233.175.38:8000/\">http://194.233.175.38:8000</a>"
+                    msg = EmailMessage(subject, html_content, from_email, to)
+                    msg.content_subtype = "html"
+                    msg.send()
                 elif form_hold.approved ==False and tour_data['approved'] ==True:
                     messages.warning(request, 'Requestor will be informed that tour was rejected')
-
+                    subject = '[NOCC-Tour-Scheduler] - Your tour " ' + tour_data['tour_name'] + " \" was rejected"
+                    from_email = 'nocc-tour-scheduler@akamai.com'
+                    to = [tour_data['requestor_email'], 'rmirek@akamai.com']
+                    html_content += "<h2>Hi" + tour_data['requestor_name'] + ", </h2><br> To check status of the request check <br> <a href=\"http://194.233.175.38:8000/\">http://194.233.175.38:8000</a>"
+                    msg = EmailMessage(subject, html_content, from_email, to)
+                    msg.content_subtype = "html"
+                    msg.send()
             form.save()
             return redirect('/tour-details/'+pk)
 
