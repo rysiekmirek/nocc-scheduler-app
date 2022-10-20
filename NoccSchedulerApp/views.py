@@ -16,11 +16,11 @@ def main(request):
             uuid_value = uuid.uuid4()
             dbentry.id = uuid_value
             dbentry.save()
-        tour_data = Tour.objects.filter(id=uuid_value)[0]
-        subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data.tour_name + " \" was scheduled"
+        tour_data = Tour.objects.filter(id=uuid_value).values()[0]
+        subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data['tour_name'] + " \" was scheduled"
         from_email = 'nocc-tour-scheduler@akamai.com'
         to = ['rysiekmirek@gmail.com']
-        html_content = '<h2>Hi '+ tour_data.requestor_name + ',</h2><br><h3>Tour details:</h3>'
+        html_content = '<h2>Hi '+ tour_data.['requestor_name'] + ',</h2><br><h3>Tour details:</h3>'
         for key, data in tour_data.items():
             html_content += "<b>" + str(key) + "</b> : "
             html_content += "<i>" + str(data) + "</i><br>"
