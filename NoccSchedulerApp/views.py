@@ -83,7 +83,7 @@ def login_user(request):
             user = User.objects.get(username=username)
         except:
             messages.warning(request, 'User not found')
-            return render(request, 'login.html', {'my_message': 'User not found'})
+            return render(request, 'login.html')
 
         user = authenticate(request, username=username, password=password)
 
@@ -92,7 +92,7 @@ def login_user(request):
             return redirect ('/')
         else:
             messages.error(request, 'Usernam or password incorrect, try again')
-            return render(request, 'login.html', {'my_message': 'Usernam or password incorrect, try again'})
+            return render(request, 'login.html')
 
     return render(request, "login.html")
 
