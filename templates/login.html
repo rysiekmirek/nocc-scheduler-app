@@ -2,15 +2,6 @@
 
 {% block content %}
 
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
-
-
 <h1 class="display-5 fw-bold text-center">Log in</h1>
 <br>
 <b style="color: red">{{message}}</b>
