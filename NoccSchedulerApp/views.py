@@ -7,6 +7,8 @@ import requests
 import uuid
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
+
 
 
 def main(request):
@@ -68,7 +70,7 @@ def tour_details(request, pk):
 def calendar(request):
     return render (request, "calendar.html" )
 
-def login(request):
+def login_user(request):
 
     if request.user.is_authenticated:
         return redirect ('/')

@@ -23,6 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('tour-details/<str:pk>/', views.tour_details, name = 'tour-details' ),
     path('calendar/', views.calendar, name = 'calendar' ),
-    path('login/', views.login, name = 'login' ),
+    path('login/', views.login_user, name = 'login' ),
     path('', views.main, name = 'main' ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
