@@ -46,8 +46,12 @@ def tour_details(request, pk):
         instance = Tour.objects.get(id=pk)
         form = TourFormEdit(request.POST, instance=instance)
         if form.is_valid():
+            if form.has_changed():
+                messages.success(request, 'Tour details updated')
+                form_hold = form.save(commit=False)
+                if form_hold.approved:
+                    messages.success(request, 'Requestor will be informed that tour was approved')
             form.save()
-            messages.success(request, 'Tour details updated')
             return redirect('/tour-details/'+pk)
 
     context = {
