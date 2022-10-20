@@ -18,8 +18,7 @@ def main(request):
             dbentry.save()
         tour_data = Tour.objects.filter(id=uuid_value).values()[0]
         tour_data2 = Tour.objects.filter(id=uuid_value)
-        for data in tour_data2:
-            print (data)
+        print (tour_data2.location)
         subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data['tour_name'] + " \" was scheduled"
         from_email = 'nocc-tour-scheduler@akamai.com'
         to = ['rysiekmirek@gmail.com']
