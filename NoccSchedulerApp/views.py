@@ -19,8 +19,9 @@ def main(request):
             uuid_value = uuid.uuid4()
             dbentry.id = uuid_value
             dbentry.save()
+        messages.success(request, 'Your tour has been submited and confirmation email sent to You. Please wait for approval from local NOCC representative.')
         tour_data = Tour.objects.filter(id=uuid_value).values()[0]
-        subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data['tour_name'] + " \" was scheduled"
+        subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data['tour_name'] + " \" was requested, please wait for approval email"
         from_email = 'nocc-tour-scheduler@akamai.com'
         to = [tour_data['requestor_email'], 'rmirek@akamai.com']
         if tour_data['nocc_required']:
@@ -29,7 +30,7 @@ def main(request):
         for key, data in tour_data.items():
             html_content += "<b>" + str(key) + "</b> : "
             html_content += "<i>" + str(data) + "</i><br>"
-        html_content += "\n\n Please visit \n <a href=\"http://194.233.175.38:8000/tour-details/"+str(tour_data['id'])+"\">Click</a>"
+        html_content += "<br> To check status of the request check <br> <a href=\"http://194.233.175.38:8000/\">http://194.233.175.38:8000</a>"
         msg = EmailMessage(subject, html_content, from_email, to)
         msg.content_subtype = "html"
         msg.send()
