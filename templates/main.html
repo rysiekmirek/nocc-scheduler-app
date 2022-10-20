@@ -28,7 +28,7 @@
   <h2>Scheduled tours</h2> 
   <hr>
   <div class="table-responsive">
-    <table class="table table-striped table-sm caption-top">
+    <table class="table table-hover table-sm caption-top">
       
             <tr>
                 <th>Tour name</th>
@@ -48,7 +48,7 @@
             </tr>
           
       {%for tour in tours %}
-            <tr>
+            <tr {%if tour.approved == True %} class="table-success" {% else %} class="table-light" {% endif%}>
                 <td>{{tour.tour_name}}</td>
                 <td>{{tour.requestor_name}}</td>
                 <td>{{tour.requestor_email}}</td>
