@@ -45,6 +45,7 @@ class Tour(models.Model):
         default='None',
     )
     comment=models.TextField(max_length=2000, null=True, blank=True)
+    feedback=models.TextField(max_length=2000, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(unique=True, primary_key=True, editable=True)
     def __str__(self):
