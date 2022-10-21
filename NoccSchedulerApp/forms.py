@@ -1,5 +1,5 @@
 from .models import Tour
-from django.forms import ModelForm, DateTimeInput, Textarea, UUIDField
+from django.forms import ModelForm, DateTimeInput, TextInput, Textarea
 
 
 class TourForm(ModelForm):
@@ -22,5 +22,5 @@ class TourFormEdit(ModelForm):
         widgets = {
           'comment': Textarea(attrs={'rows':1, 'cols':50}),
           'feedback': Textarea(attrs={'rows':1, 'cols':50, 'readonly': 'readonly'}),
-          #'id': UUIDField(attrs={'readonly': 'readonly'}),
+          'id': TextInput(attrs={'readonly': 'readonly'}),
         }
