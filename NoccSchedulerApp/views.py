@@ -30,7 +30,7 @@ def main(request):
         for key, data in tour_data.items():
             html_content += "<b>" + str(key) + "</b> : "
             html_content += "<i>" + str(data) + "</i><br>"
-        html_content += "<br> To check status of the request check <br> <a href=\"http://194.233.175.38:8000/\">http://194.233.175.38:8000</a>"
+        html_content += "<br> To check status of the request see <br> <a href=\"http://194.233.175.38:8000/\">http://194.233.175.38:8000</a>"
         msg = EmailMessage(subject, html_content, from_email, to)
         msg.content_subtype = "html"
         msg.send()
