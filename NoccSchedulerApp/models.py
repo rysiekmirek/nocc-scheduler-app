@@ -32,7 +32,11 @@ class Tour(models.Model):
     date = models.DateField()
     start_time = models.TimeField(help_text="use local time for location")
     end_time = models.TimeField(help_text="use local time for location")
-    approved = models.BooleanField(default=False)
+    STATUS_CHOICES= [
+        ('Requested', 'Requested'),
+        ('Approved', 'Approved'),
+    ]
+    status = models.CharField(max_length=20,choices=STATUS_CHOICES,default='Requested')
     PERSON_ASSIGNED_CHOICES = [
         ('None', 'None'),
         ('Adam', 'Adam'),
