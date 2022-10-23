@@ -47,7 +47,7 @@ class TourFormEdit(ModelForm):
         #exclude = ('feedback',)
         widgets = {
           'comment': Textarea(attrs={'rows':1, 'cols':50}),
-          'feedback': Textarea(attrs={'rows':1, 'cols':50, 'readonly': 'readonly'}),
+          #'feedback': Textarea(attrs={'rows':1, 'cols':50, 'readonly': 'readonly'}),
           'id': TextInput(attrs={'readonly': 'readonly'}),
         }
 
