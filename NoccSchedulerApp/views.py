@@ -37,12 +37,19 @@ def main(request):
             msg.send()
         
         except:
-            form = TourForm()
-            context={
+            context = {
                 'tours': Tour.objects.all().order_by('date'),
                 'form': form
             }
-            return render (request, "main.html", context)
+            return render(request, "main.html", context)
+
+
+    form = TourForm()
+    context={
+        'tours': Tour.objects.all().order_by('date'),
+        'form': form
+    }
+    return render (request, "main.html", context)
 
 @login_required(login_url='/login/')
 def tour_details(request, pk):
