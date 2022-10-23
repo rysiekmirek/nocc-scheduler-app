@@ -43,8 +43,8 @@ class TourForm(ModelForm):
 class TourFormEdit(ModelForm):
     class Meta:
         model = Tour
-        #fields = '__all__'
-        exclude = ('feedback',)
+        fields = '__all__'
+        #exclude = ('feedback',)
         widgets = {
           'comment': Textarea(attrs={'rows':1, 'cols':50}),
           'feedback': Textarea(attrs={'rows':1, 'cols':50, 'readonly': 'readonly'}),
