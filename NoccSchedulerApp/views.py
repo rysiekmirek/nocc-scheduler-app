@@ -54,7 +54,7 @@ def tour_details(request, pk):
             if form.has_changed():
                 messages.success(request, 'Tour details updated')
                 form_hold = form.save(commit=False)
-                if form_hold.approved ==True and tour_data['approved'] ==False:
+                if form_hold.status =="Approved":
                     messages.success(request, 'Requestor will be informed via email that tour was approved')
                     subject = '[NOCC-Tour-Scheduler] - Your tour " ' + tour_data['tour_name'] + " \" was approved"
                     from_email = 'nocc-tour-scheduler@akamai.com'
@@ -63,7 +63,7 @@ def tour_details(request, pk):
                     msg = EmailMessage(subject, html_content, from_email, to)
                     msg.content_subtype = "html"
                     msg.send()
-                elif form_hold.approved ==False and tour_data['approved'] ==True:
+                elif form_hold.status =="Rejected":
                     messages.warning(request, 'Requestor will be informed via email that tour was rejected')
                     subject = '[NOCC-Tour-Scheduler] - Your tour " ' + tour_data['tour_name'] + " \" was rejected"
                     from_email = 'nocc-tour-scheduler@akamai.com'

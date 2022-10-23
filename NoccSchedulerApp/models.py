@@ -34,6 +34,7 @@ class Tour(models.Model):
     end_time = models.TimeField(help_text="use local time for location")
     STATUS_CHOICES= [
         ('Requested', 'Requested'),
+        ('Rejected', 'Rejected'),
         ('Approved', 'Approved'),
     ]
     status = models.CharField(max_length=20,choices=STATUS_CHOICES,default='Requested')
