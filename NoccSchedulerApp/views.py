@@ -37,8 +37,6 @@ def main(request):
             msg.send()
                  
         except:
-            print (form.errors)
-
             context = {
                 'tours': Tour.objects.all().order_by('date'),
                 'form': form
