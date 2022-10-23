@@ -37,8 +37,8 @@ def main(request):
             msg.send()
                  
         except:
-            for err, msg in form.errors.items():
-                print (err, msg)
+            for err in form.errors:
+                print (err.start_date)
 
             context = {
                 'tours': Tour.objects.all().order_by('date'),
