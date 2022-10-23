@@ -14,10 +14,16 @@
           </div>
         {% endfor %}
         {{ form.non_field_errors }}
+
+        <form action="/ask-feedback/" method="POST" id="ask_for_feedback">
+          {% csrf_token %}
+          <label for="ask_for_feedback"> Feedback </label>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="{{ form.feedback}}" aria-label="Feedback" aria-describedby="button-addon2">
-          <button class="btn btn-outline-secondary" type="button" id="button-addon2">Ask for feedback</button>
-        </div>        
+          <textarea class="form-control" rows="1" cols="50" placeholder="{{ form.feedback }}" aria-label="Feedback" aria-describedby="button-addon2">
+          <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Ask for feedback</button>
+        </div> 
+        </form>
+
       </div>
       <div class="px-4 py-3 my-3 text-center">
       <button type="submit" class="btn btn-primary btn-lg">Update</button>
