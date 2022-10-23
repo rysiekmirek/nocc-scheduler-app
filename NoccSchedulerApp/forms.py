@@ -34,9 +34,9 @@ class TourForm(ModelForm):
                     raise ValidationError(
                         {'end_time': _("End time colides with an exising tour")})
                 if start_time <= existing_tour.start_time and end_time >= existing_tour.end_time:
-                    raise ValidationError({'start_time': ValidationError(
-                        _('Tour ca\'t encompas existing tour')), 'end_time': ValidationError(
-                        _('Tour ca\'t encompas existing tour'))})
+                    raise ValidationError({
+                        'start_time': ValidationError(_('Tour ca\'t encompas existing tour')), 
+                        'end_time': ValidationError(_('Tour ca\'t encompas existing tour'))})
 
 
 
@@ -50,4 +50,24 @@ class TourFormEdit(ModelForm):
           'feedback': Textarea(attrs={'rows':1, 'cols':50, 'readonly': 'readonly'}),
           'id': TextInput(attrs={'readonly': 'readonly'}),
         }
-
+    def clean(self):
+        cleaned_data = super().clean()
+        date = cleaned_data.get('date')
+        start_time = cleaned_data.get('start_time')
+        end_time = cleaned_data.get('end_time')
+        location = cleaned_data.get('location')
+        if start_time >= end_time:
+            self.add_error('end_time', ValidationError(
+                _('End time has to be after start time')))
+        for existing_tour in Tour.objects.filter(location=location):
+            if date == existing_tour.date:
+                if existing_tour.start_time <= start_time <= existing_tour.end_time:
+                    raise ValidationError(
+                        {'start_time': _("Start time colides with an exising tour")})
+                if existing_tour.start_time <= end_time <= existing_tour.end_time:
+                    raise ValidationError(
+                        {'end_time': _("End time colides with an exising tour")})
+                if start_time <= existing_tour.start_time and end_time >= existing_tour.end_time:
+                    raise ValidationError({
+                        'start_time': ValidationError(_('Tour ca\'t encompas existing tour')), 
+                        'end_time': ValidationError(_('Tour ca\'t encompas existing tour'))})
