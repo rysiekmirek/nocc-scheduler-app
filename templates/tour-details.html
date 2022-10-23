@@ -10,14 +10,14 @@
         {% csrf_token %}
         {% for field in form %}
           <div class="col-sm">
-            {% if field.label_tag != "Feedback"%}
+            {% if field.label_tag != "Feedback" %}
              {{ field.label_tag }} {{ field }} <i><small style="color:#9e9e9e">{{ field.help_text }}</small></i> <i><small style="color:#e70a0a">{{ field.errors }}</small></i>
             {% endif %}
           </div>
         {% endfor %}
         {{ form.non_field_errors }}
 
-        <form action="/ask-feedback/" method="POST" id="ask_for_feedback">
+        <form action="/ask-for-feedback/" method="POST" id="ask_for_feedback">
           {% csrf_token %}
           <label for="ask_for_feedback"> Feedback </label>
         <div class="input-group mb-3">
