@@ -14,34 +14,35 @@ from django.contrib.auth.decorators import login_required
 def main(request):
     if request.method == 'POST':
         form = TourForm(request.POST)
-        if form.is_valid():
+        try:
+            form.is_valid()
             dbentry = form.save(commit=False)
             uuid_value = uuid.uuid4()
             dbentry.id = uuid_value
             dbentry.save()
-        messages.success(request, 'Your tour has been submited and confirmation email sent to You. Please wait for approval from local NOCC representative.')
-        tour_data = Tour.objects.filter(id=uuid_value).values()[0]
-        subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data['tour_name'] + " \" was requested, please wait for approval email"
-        from_email = 'nocc-tour-scheduler@akamai.com'
-        to = [tour_data['requestor_email'], 'rmirek@akamai.com']
-        if tour_data['nocc_required']:
-            to.append('nocc-tix@akamai.com')
-        html_content = '<h2>Hi '+ tour_data['requestor_name'] + ',</h2><br><h3>Tour details:</h3>'
-        for key, data in tour_data.items():
-            html_content += "<b>" + str(key) + "</b> : "
-            html_content += "<i>" + str(data) + "</i><br>"
-        html_content += "<br> To check status of the request see <br> <a href=\"http://194.233.175.38:8000/\">http://194.233.175.38:8000</a>"
-        msg = EmailMessage(subject, html_content, from_email, to)
-        msg.content_subtype = "html"
-        msg.send()
+            messages.success(request, 'Your tour has been submited and confirmation email sent to You. Please wait for approval from local NOCC representative.')
+            tour_data = Tour.objects.filter(id=uuid_value).values()[0]
+            subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data['tour_name'] + " \" was requested, please wait for approval email"
+            from_email = 'nocc-tour-scheduler@akamai.com'
+            to = [tour_data['requestor_email'], 'rmirek@akamai.com']
+            if tour_data['nocc_required']:
+                to.append('nocc-tix@akamai.com')
+            html_content = '<h2>Hi '+ tour_data['requestor_name'] + ',</h2><br><h3>Tour details:</h3>'
+            for key, data in tour_data.items():
+                html_content += "<b>" + str(key) + "</b> : "
+                html_content += "<i>" + str(data) + "</i><br>"
+            html_content += "<br> To check status of the request see <br> <a href=\"http://194.233.175.38:8000/\">http://194.233.175.38:8000</a>"
+            msg = EmailMessage(subject, html_content, from_email, to)
+            msg.content_subtype = "html"
+            msg.send()
         
-        
-    form = TourForm()
-    context={
-        'tours': Tour.objects.all().order_by('date'),
-        'form': form
-    }
-    return render (request, "main.html", context)
+        except:
+            form = TourForm()
+            context={
+                'tours': Tour.objects.all().order_by('date'),
+                'form': form
+            }
+            return render (request, "main.html", context)
 
 @login_required(login_url='/login/')
 def tour_details(request, pk):
