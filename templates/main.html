@@ -10,9 +10,10 @@
         {% csrf_token %}
         {% for field in form %}
           <div class="col-sm">
-             {{ field.label_tag }} {{ field }} <i><small style="color:#9e9e9e">{{ field.help_text }}</small></i>
+             {{ field.label_tag }} {{ field }} <i><small style="color:#e70a0a">{{ field.errors }}</small></i>
           </div>
         {% endfor %}
+        {{ form.non_field_errors }}
       </div>
       <div class="px-4 py-3 my-3 text-center">
       <button type="submit" class="btn btn-primary btn-lg">Submit</button>
@@ -40,8 +41,8 @@
                 <th>Nocc required</th>
                 <th>Location</th>
                 <th>Date</th>
-                <th>Start time</th>
-                <th>End time</th>
+                <th>Start time <i><small style="color:#9e9e9e">use local time</small></i></th>
+                <th>End time <i><small style="color:#9e9e9e">use local time</small></i></th>
                 <th>Status</th>
                 <th>Nocc Person Assigned</th>
                 <th></th>
