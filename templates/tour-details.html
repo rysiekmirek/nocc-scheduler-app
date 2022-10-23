@@ -10,19 +10,17 @@
         {% csrf_token %}
         {% for field in form %}
           <div class="col-sm">
-            {% if field.label_tag != "feedback" %}
              {{ field.label_tag }} {{ field }} <i><small style="color:#9e9e9e">{{ field.help_text }}</small></i> <i><small style="color:#e70a0a">{{ field.errors }}</small></i>
-            {% endif %}
           </div>
         {% endfor %}
         {{ form.non_field_errors }}
 
         <form action="/ask-for-feedback/" method="POST" id="ask_for_feedback">
           {% csrf_token %}
-          <label for="ask_for_feedback"> Feedback </label>
+        <label for="ask_for_feedback"> Feedback </label>
         <div class="input-group mb-3">
           <textarea readonly class="form-control" rows="1" cols="50" aria-label="Feedback" aria-describedby="button-addon2" id="ask_for_feedback" name="ask_for_feedback">
-            {{ form.feedback }}
+            {{ tour_data['Feedback'] }}
           </textarea>
           <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Ask for feedback</button>
         </div> 
