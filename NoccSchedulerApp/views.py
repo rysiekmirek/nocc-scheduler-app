@@ -38,7 +38,7 @@ def main(request):
                  
         except:
             for err in form.errors:
-                print (err.start_time)
+                print (err.end_time)
 
             context = {
                 'tours': Tour.objects.all().order_by('date'),
