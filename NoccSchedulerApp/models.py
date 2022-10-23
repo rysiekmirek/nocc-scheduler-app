@@ -26,9 +26,9 @@ class Tour(models.Model):
     )
     nocc_required = models.BooleanField()
     LOCATION_CHOICES = [
-        ('cambridge','Cambridge'), 
-        ('krakow','Kraków'), 
-        ('bangalore','Bangalore')
+        ('Cambridge','Cambridge'), 
+        ('Krakow','Kraków'), 
+        ('Bangalore','Bangalore')
         ]
     location = models.CharField(max_length=100,choices=LOCATION_CHOICES,default='Cambridge')
     date = models.DateField()
