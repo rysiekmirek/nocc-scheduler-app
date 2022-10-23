@@ -35,12 +35,10 @@ def main(request):
             msg = EmailMessage(subject, html_content, from_email, to)
             msg.content_subtype = "html"
             msg.send()
-            for err in form.errors:
-                print (err)
-        
+                 
         except:
-            for err in form.errors:
-                print (err)
+            for err, msg in form.errors.items():
+                print (err, msg)
 
             context = {
                 'tours': Tour.objects.all().order_by('date'),
