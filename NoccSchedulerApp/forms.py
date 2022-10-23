@@ -18,13 +18,15 @@ class TourForm(ModelForm):
 
     def clean(self):
         cleaned_data = super().clean()
+        date = cleaned_data.get('date')
         start_time = cleaned_data.get('start_time')
         end_time = cleaned_data.get('end_time')
+        location = cleaned_data.get('location')
         if start_time >= end_time:
             self.add_error('end_time', ValidationError(
                 _('End time has to be after start time')))
-        for existing_tour in Tour.objects.all():
-            if cleaned_data.get('date') == existing_tour.date:
+        for existing_tour in Tour.objects.filter(location=location):
+            if date == existing_tour.date:
                 if existing_tour.start_time <= start_time <= existing_tour.end_time:
                     raise ValidationError(
                         {'start_time': _("Start time colides with an exising tour")})
