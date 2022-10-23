@@ -19,9 +19,7 @@
           {% csrf_token %}
         <label for="ask_for_feedback"> Feedback </label>
         <div class="input-group mb-3">
-          <textarea readonly class="form-control" rows="1" cols="50" aria-label="Feedback" aria-describedby="button-addon2" id="ask_for_feedback" name="ask_for_feedback">
-            {{ tour_data.feedback }}
-          </textarea>
+          <textarea readonly class="form-control" rows="1" cols="50" aria-label="Feedback" aria-describedby="button-addon2" id="ask_for_feedback" name="ask_for_feedback">{{ tour_data.feedback }}</textarea>
           <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Ask for feedback</button>
         </div> 
         </form>
