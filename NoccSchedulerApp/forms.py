@@ -32,7 +32,7 @@ class TourForm(ModelForm):
                         {'start_time': _("Start time colides with an exising tour")})
                 if existing_tour.start_time <= end_time <= existing_tour.end_time:
                     raise ValidationError(
-                        {'end_time': _("Start time colides with an exising tour")})
+                        {'end_time': _("End time colides with an exising tour")})
                 if start_time <= existing_tour.start_time and end_time >= existing_tour.end_time:
                     raise ValidationError({'start_time': ValidationError(
                         _('Tour ca\'t encompas existing tour')), 'end_time': ValidationError(
