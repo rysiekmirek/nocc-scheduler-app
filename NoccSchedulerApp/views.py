@@ -67,7 +67,7 @@ def tour_details(request, pk):
                     subject = '[NOCC-Tour-Scheduler] - Your tour " ' + tour_data['tour_name'] + " \" was approved"
                     from_email = 'nocc-tour-scheduler@akamai.com'
                     to = [tour_data['requestor_email'], 'rmirek@akamai.com']
-                    html_content = "<h2>Hi " + tour_data['requestor_name'] + ", </h2><br> To check status of the request see <br> <a href=\"http://194.233.175.38:8000/\">http://194.233.175.38:8000</a>"
+                    html_content = "<h2>Hi " + tour_data['requestor_name'] + ", </h2><br> To check status of the request see <br> <a href=\"http://194.233.175.38:8000/\">Link</a>"
                     msg = EmailMessage(subject, html_content, from_email, to)
                     msg.content_subtype = "html"
                     msg.send()
@@ -76,7 +76,7 @@ def tour_details(request, pk):
                     subject = '[NOCC-Tour-Scheduler] - Your tour " ' + tour_data['tour_name'] + " \" was rejected"
                     from_email = 'nocc-tour-scheduler@akamai.com'
                     to = [tour_data['requestor_email'], 'rmirek@akamai.com']
-                    html_content = "<h2>Hi " + tour_data['requestor_name'] + ", </h2><br> To check status of the request see <br> <a href=\"http://194.233.175.38:8000/\">http://194.233.175.38:8000</a>"
+                    html_content = "<h2>Hi " + tour_data['requestor_name'] + ", </h2><br> To check status of the request see <br> <a href=\"http://194.233.175.38:8000/\">Link</a>"
                     msg = EmailMessage(subject, html_content, from_email, to)
                     msg.content_subtype = "html"
                     msg.send()
@@ -130,7 +130,7 @@ def ask_for_feedback(request, pk):
     subject = '[NOCC-Tour-Scheduler] - Please tell us more about " ' + tour_data['tour_name'] + " \" - survey invitation"
     from_email = 'nocc-tour-scheduler@akamai.com'
     to = [tour_data['requestor_email'], 'rmirek@akamai.com']
-    html_content = "<h2>Hi " + tour_data['requestor_name'] + ", </h2><br> Please visit <br> <a href=\"http://194.233.175.38:8000/feedback/"+pk+"\">http://194.233.175.38:8000</a>"
+    html_content = "<h2>Hi " + tour_data['requestor_name'] + ", </h2><br> Please visit <br> <a href=\"http://194.233.175.38:8000/feedback/"+pk+"\">Link</a>"
     msg = EmailMessage(subject, html_content, from_email, to)
     msg.content_subtype = "html"
     msg.send()
