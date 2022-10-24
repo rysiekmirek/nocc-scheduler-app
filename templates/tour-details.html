@@ -21,8 +21,8 @@
       </div>
       </form>
 
-      
-      <form action="/ask-for-feedback/" method="POST" id="ask_for_feedback">
+      <hr>
+      <form action="/ask-for-feedback/{{ tour_data.id }}" method="POST" id="ask_for_feedback">
         {% csrf_token %}
       <label for="ask_for_feedback"> Feedback </label>
       <div class="input-group mb-3">
