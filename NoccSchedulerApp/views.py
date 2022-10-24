@@ -124,6 +124,21 @@ def logout_user(request):
     logout(request)
     return redirect("/")
 
+@login_required(login_url='/login/')
 def ask_for_feedback(request, pk):
-    print("AKSKSKKSKSKKSKSKS")
+    tour_data = Tour.objects.filter(id=pk).values()[0]
+    subject = '[NOCC-Tour-Scheduler] - Please tell us more about " ' + tour_data['tour_name'] + " \" - survey invitation"
+    from_email = 'nocc-tour-scheduler@akamai.com'
+    to = [tour_data['requestor_email'], 'rmirek@akamai.com']
+    html_content = "<h2>Hi " + tour_data['requestor_name'] + ", </h2><br> Please visit <br> <a href=\"http://194.233.175.38:8000/feedback/"+pk+"\">http://194.233.175.38:8000</a>"
+    msg = EmailMessage(subject, html_content, from_email, to)
+    msg.content_subtype = "html"
+    msg.send()
+    messages.success(request, 'Invitation for after-tour survey sent to requestor')
+
     return redirect("/tour-details/"+pk)
+
+
+@login_required(login_url='/login/')
+def feedback(request,pk):
+    return render(request, "feedback.html" )

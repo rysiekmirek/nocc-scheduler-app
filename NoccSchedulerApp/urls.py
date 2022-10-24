@@ -26,5 +26,6 @@ urlpatterns = [
     path('login/', views.login_user, name = 'login' ),
     path('logout/', views.logout_user, name='logout'),
     path('ask-for-feedback/<str:pk>/', views.ask_for_feedback, name='ask_for_feedback'),
+    path('feedback/<str:pk>/', views.feedback, name='feedback'),
     path('', views.main, name = 'main' ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
