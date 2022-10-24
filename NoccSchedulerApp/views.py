@@ -141,4 +141,9 @@ def ask_for_feedback(request, pk):
 
 @login_required(login_url='/login/')
 def feedback(request,pk):
+    if request.method == 'POST':
+        feedback= request.POST['f_feedback']
+        Tour.objects.filter(id=pk).update(feedback=feedback)
+        messages.success(request, 'Thank you, Your feedback submitted successfully')
+
     return render(request, "feedback.html" )
