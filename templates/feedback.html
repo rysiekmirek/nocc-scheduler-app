@@ -2,6 +2,15 @@
 
 {% block content %}
 
-<h1 class="text-center">Feedback form here </h1>
+<h1 class="text-center">Survey - Tell us more about the tour </h1>
+
+<form action="" method="POST" id="f_feedback">
+    {% csrf_token %}
+  <label for="f_feedback"> Feedback </label>
+  <div class="input-group mb-3">
+    <textarea class="form-control" rows="20" cols="300" aria-label="Feedback" aria-describedby="button-addon2" id="ask_for_feedback" name="ask_for_feedback"> </textarea>
+    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Submit</button>
+  </div> 
+  </form>
 
 {% endblock %}
