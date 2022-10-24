@@ -123,3 +123,7 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return redirect("/")
+
+def ask_for_feedback(request, pk):
+    print("AKSKSKKSKSKKSKSKS")
+    return redirect("/tour-details/"+pk)
