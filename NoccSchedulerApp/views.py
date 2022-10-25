@@ -100,7 +100,6 @@ def archives(request):
     tour_data = Tour.objects.filter(date__lt = today)
     context = {
         'tour_data': tour_data,
-        'form': TourFormEdit(initial=tour_data)
     }
     return render (request, "archives.html", context )
 
