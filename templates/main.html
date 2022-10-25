@@ -8,6 +8,7 @@
       <div class="mb-2 px-4">
       <form class="row gx-4 gy-3" action="" method="post">
         {% csrf_token %}
+        <div class="col-auto">
         {{ form.as_table }}
        <!-- {% for field in form %}
           <div class="col-auto">
@@ -16,6 +17,7 @@
           </div>
         {% endfor %}
         {{ form.non_field_errors }} -->
+      </div>
       </div>
       <div class="px-4 py-3 my-3 text-center">
       <button type="submit" class="btn btn-primary btn-lg">Submit</button>
