@@ -97,7 +97,9 @@ def calendar(request):
 
 def archives(request):
     today = date.today()
+    print(today)
     tour_data = Tour.objects.filter(date__lt = today)
+    print (tour_data)
     context = {
         'tour_data': tour_data,
     }
