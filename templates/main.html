@@ -50,7 +50,7 @@
                 <th>Nocc Person<br>Assigned?</th>
                 <th></th>
             </tr>
-          
+            <tbody id="myTable"> 
       {%for tour in tours %}
             <tr {%if tour.status == "Approved" %} class="table-success" {% elif tour.status == "Rejected" %} class="table-danger" {% else %} class="table-warning" {% endif %}>
                 <td>{{tour.tour_name}}</td>
@@ -72,10 +72,21 @@
             </tr>
           
       {% endfor %}
-
+</tbody>
 </table>
 </div>
 </div>
 
+
+<script>
+  $(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+  </script>
 
 {% endblock %}
