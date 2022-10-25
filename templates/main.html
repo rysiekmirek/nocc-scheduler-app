@@ -9,8 +9,9 @@
       <form class="row gx-4 gy-3" action="" method="post">
         {% csrf_token %}
         {% for field in form %}
-          <div class="col-sm">
-             {{ field.label_tag }} {{ field }} <i><small style="color:#e70a0a">{{ field.errors }}</small></i>
+          <div class="col-auto>
+            <label class="visually-hidden" for="autoSizingInput">{{ field.label_tag }}</label> 
+            {{ field }} <i><small style="color:#e70a0a">{{ field.errors }}</small></i>
           </div>
         {% endfor %}
         {{ form.non_field_errors }}

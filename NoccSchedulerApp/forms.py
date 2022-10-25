@@ -15,6 +15,11 @@ class TourForm(ModelForm):
             'end_time': DateTimeInput(attrs={'type': 'time'}),
             'comment': Textarea(attrs={'rows':1, 'cols':50}),
         }
+    def __init__(self, *args, **kwargs):
+        super(TourForm, self).__init__(*args, **kwargs)
+
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'class': 'form-control'})
 
     def clean(self):
         cleaned_data = super().clean()
