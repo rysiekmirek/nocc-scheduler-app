@@ -40,7 +40,7 @@ def main(request):
                  
         except:
             context = {
-                'tours': Tour.objects.all().order_by('date'),
+                'tours': Tour.objects.filter(~Q(status = "Rejected") | Q(date__gte = date.today())).order_by('date'),
                 'form': form
             }
             return render(request, "main.html", context)
@@ -97,10 +97,7 @@ def calendar(request):
 
 
 def archives(request):
-    today = date.today()
-    print(today)
-    tours = Tour.objects.filter(Q(date__lt = today) | Q(status="Rejected"))
-    print (tours)
+    tours = Tour.objects.filter(Q(date__lt = date.today()) | Q(status="Rejected"))
     context = {
         'tours': tours,
     }
