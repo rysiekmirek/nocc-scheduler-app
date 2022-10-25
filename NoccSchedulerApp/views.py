@@ -98,7 +98,7 @@ def calendar(request):
 def archives(request):
     today = date.today()
     print(today)
-    tours = Tour.objects.filter(date__lt = today).filter(status = "Rejected")
+    tours = Tour.objects.filter(date__lt = today) + Tour.objects.filter(status="Rejected")
     print (tours)
     context = {
         'tours': tours,
