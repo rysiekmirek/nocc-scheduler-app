@@ -9,7 +9,7 @@
       <form class="row gx-4 gy-3" action="" method="post">
         {% csrf_token %}
         <div class="col-auto">
-        {{ form.as_p }}
+        {{ form.as_div}}
        <!-- {% for field in form %}
           <div class="col-auto">
             <label class="visually-hidden" for="{{ field.auto_id }}"> {{ field.label }} </label>
