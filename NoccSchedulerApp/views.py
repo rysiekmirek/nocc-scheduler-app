@@ -97,7 +97,7 @@ def calendar(request):
 
 def archives(request):
     today = date.today()
-    tour_data = Tour.objects.filter(date__lt = today).filter(status = 'Approved').filter(status = 'Requested')
+    tour_data = Tour.objects.filter(date__lt = today)
     context = {
         'tour_data': tour_data,
         'form': TourFormEdit(initial=tour_data)
