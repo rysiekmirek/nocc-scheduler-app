@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from datetime import date
+from django.db.models import Q
 
 
 
@@ -98,7 +99,7 @@ def calendar(request):
 def archives(request):
     today = date.today()
     print(today)
-    tours = Tour.objects.filter(date__lt = today) + Tour.objects.filter(status="Rejected")
+    tours = Tour.objects.filter(Q(date__lt = today) | Q(status="Rejected"))
     print (tours)
     context = {
         'tours': tours,
