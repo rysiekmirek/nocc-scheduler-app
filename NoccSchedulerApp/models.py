@@ -10,7 +10,15 @@ class Tour(models.Model):
     alternate_contact = models.CharField(max_length=300)
     attendees_akamai = models.IntegerField(default=0)
     attendees_guests = models.IntegerField(default=0)
-    current_customer = models.BooleanField()
+    CURRENT_CUSTOMER_CHOICES = [
+        ('No','No'), 
+        ('Yes','Yes'), 
+        ]
+    current_customer = models.CharField(
+        max_length=10,
+        choices= CURRENT_CUSTOMER_CHOICES,
+        default='No',
+    )
     CATEGORY_CHOICES = [
         ('existing customer', 'Existing Customer'),
         ('new prospect', 'New Prospect'),
@@ -24,7 +32,17 @@ class Tour(models.Model):
         choices=CATEGORY_CHOICES,
         default='existing customer',
     )
-    nocc_required = models.BooleanField()
+    NOCC_REQUIRED_CHOICES = [
+        ('No','No'), 
+        ('Yes','Yes'), 
+        ]
+    
+    nocc_required = models.CharField(
+        max_length=10,
+        choices=NOCC_REQUIRED_CHOICES,
+        default='no',
+    )
+
     LOCATION_CHOICES = [
         ('Cambridge','Cambridge'), 
         ('Krakow','Kraków'), 
