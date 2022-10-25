@@ -139,7 +139,6 @@ def ask_for_feedback(request, pk):
     return redirect("/tour-details/"+pk)
 
 
-@login_required(login_url='/login/')
 def feedback(request,pk):
     if request.method == 'POST':
         feedback= request.POST['f_feedback']
