@@ -6,7 +6,7 @@
       <h2>New tour</h2>
       <hr>
       <div class="mb-2 px-4">
-      <form class="row gx-4 gy-3" action="" method="post">
+      <form class="form-floating" action="" method="post">
         {% csrf_token %}
       {% for field in form %}
           <div class="col-auto">
