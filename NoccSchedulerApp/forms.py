@@ -33,11 +33,10 @@ class TourForm(ModelForm):
         end_time = cleaned_data.get('end_time')
         location = cleaned_data.get('location')
         created = cleaned_data.get('created')
-        attendees_guests = cleaned_data.get('attendees_guests')
+        print(date)
+        print(created)
         if start_time >= end_time:
             self.add_error('end_time', ValidationError(_('End time has to be after start time')))
-        if date <= created:
-            self.add_error('date', ValidationError(_('Tour cannot be scheduled in the past')))           
         if date <= created:
             self.add_error('date', ValidationError(_('Tour cannot be scheduled in the past')))
         for existing_tour in Tour.objects.filter(location=location):
@@ -50,8 +49,8 @@ class TourForm(ModelForm):
                         {'end_time': _("End time colides with an exising tour")})
                 if start_time <= existing_tour.start_time and end_time >= existing_tour.end_time:
                     raise ValidationError({
-                        'start_time': ValidationError(_('Tour ca\'t encompas existing tour')), 
-                        'end_time': ValidationError(_('Tour ca\'t encompas existing tour'))})
+                        'start_time': ValidationError(_('Tour can\'t overlap existing tour')), 
+                        'end_time': ValidationError(_('Tour can\'t overlap existing tour'))})
 
 
 
