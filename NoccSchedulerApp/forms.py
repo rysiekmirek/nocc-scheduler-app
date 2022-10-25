@@ -19,7 +19,6 @@ class TourForm(ModelForm):
         super(TourForm, self).__init__(*args, **kwargs)
 
         for name, field in self.fields.items():
-            name.widget.attrs.update({'class': 'visually-hidden'})
             field.widget.attrs.update({'class': 'form-control'})
 
     def clean(self):
