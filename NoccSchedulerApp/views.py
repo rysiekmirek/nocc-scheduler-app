@@ -8,6 +8,7 @@ import uuid
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+from datetime import date
 
 
 
@@ -92,6 +93,16 @@ def tour_details(request, pk):
 
 def calendar(request):
     return render (request, "calendar.html" )
+
+
+def archives(request):
+    today = date.today()
+    tour_data = Tour.objects.filter(date >= today).filter(status = 'Approved').filter(status = 'Requested')
+    context = {
+        'tour_data': tour_data,
+        'form': TourFormEdit(initial=tour_data)
+    }
+    return render (request, "archives.html", context )
 
 def login_user(request):
 
