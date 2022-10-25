@@ -2,6 +2,7 @@ from .models import Tour
 from django.forms import ModelForm, DateTimeInput, TextInput, Textarea
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from datetime import date
 
 
 class TourForm(ModelForm):
@@ -32,13 +33,13 @@ class TourForm(ModelForm):
         start_time = cleaned_data.get('start_time')
         end_time = cleaned_data.get('end_time')
         location = cleaned_data.get('location')
-        created = cleaned_data.get('created')
+        today = date.today()
         print(date)
-        print(created)
+        print(today)
         if start_time >= end_time:
             self.add_error('end_time', ValidationError(_('End time has to be after start time')))
-        if date <= created:
-            self.add_error('date', ValidationError(_('Tour cannot be scheduled in the past')))
+        if date <= today:
+            self.add_error('date', ValidationError(_('Tour cannot be scheduled for the same day or in the past')))
         for existing_tour in Tour.objects.filter(location=location):
             if date == existing_tour.date and existing_tour.status != "Rejected":
                 if existing_tour.start_time <= start_time <= existing_tour.end_time:
