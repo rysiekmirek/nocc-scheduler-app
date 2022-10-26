@@ -96,7 +96,7 @@ def tour_details(request, pk):
 def calendar(request):
     return render (request, "calendar.html" )
 
-
+@login_required(login_url='/login/')
 def archives(request):
     tours = Tour.objects.filter(Q(date__lt = date.today()) | Q(status="Rejected"))
     context = {
