@@ -152,13 +152,20 @@ def new_tour(request):
             msg = EmailMessage(subject, html_content, from_email, to)
             msg.content_subtype = "html"
             msg.send()
+            context = {
+                #'form': form
+                'success':'<h2> Success!! </2>'
+            }
+            return render(request, "new-tour.html", context)
                  
         except:
             context = {
-                'tours': Tour.objects.filter(date__gte = date.today()).exclude(status="Rejected").order_by('date', 'start_time'),
+                #'tours': Tour.objects.filter(date__gte = date.today()).exclude(status="Rejected").order_by('date', 'start_time'),
                 'form': form
+                #'submited':'<h2> Thank you </2>'
             }
             return render(request, "new-tour.html", context)
+        
 
     form = TourForm()
     context={
