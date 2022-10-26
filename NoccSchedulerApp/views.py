@@ -40,7 +40,7 @@ def main(request):
                  
         except:
             context = {
-                'tours': Tour.objects.filter(date__gte = date.today()).exclude(status="Rejected").order_by('date'),
+                'tours': Tour.objects.filter(date__gte = date.today()).exclude(status="Rejected").order_by('date', 'start_time'),
                 'form': form
             }
             return render(request, "main.html", context)
@@ -48,7 +48,7 @@ def main(request):
 
     form = TourForm()
     context={
-        'tours': Tour.objects.filter(date__gte = date.today()).exclude(status="Rejected").order_by('date'),
+        'tours': Tour.objects.filter(date__gte = date.today()).exclude(status="Rejected").order_by('date', 'start_time'),
         #'tours': Tour.objects.all().order_by('date'),
         'form': form
     }
@@ -98,7 +98,7 @@ def calendar(request):
 
 @login_required(login_url='/login/')
 def archives(request):
-    tours = Tour.objects.filter(Q(date__lt = date.today()) | Q(status="Rejected"))
+    tours = Tour.objects.filter(Q(date__lt = date.today()) | Q(status="Rejected")).order_by('date', 'start_time')
     context = {
         'tours': tours,
     }
