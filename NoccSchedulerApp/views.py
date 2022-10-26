@@ -154,6 +154,6 @@ def feedback(request,pk):
     if request.method == 'POST':
         feedback= request.POST['f_feedback']
         Tour.objects.filter(id=pk).update(feedback=feedback)
-        messages.success(request, 'Thank you, Your feedback submitted successfully')
+        messages.success(request, 'Thank You, feedback submitted successfully')
 
     return render(request, "feedback.html" )
