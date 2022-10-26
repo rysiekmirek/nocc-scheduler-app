@@ -154,7 +154,7 @@ def new_tour(request):
             msg.send()
             context = {
                 #'form': form
-                'success':'<h2> Success!! </2>'
+                'success':'<h2> Success!! </h2>'
             }
             return render(request, "new-tour.html", context)
                  
