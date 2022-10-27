@@ -10,7 +10,7 @@
       <form class="row gx-4 gy-3 justify-content-center" action="" method="post">
         {% csrf_token %}
       {% for field in form %}
-          <div class="form-floating">
+          <div class="form-floating justify-content-center">
             {{ field }}
             <label class="px-4" for="{{ field.auto_id }}"> {{ field.label }} </label>
             <i><small style="color:#9e9e9e">{{field.help_text}}</small></i></th>
