@@ -5,28 +5,29 @@ from .models import Tour
 from .forms import TourForm, TourFormEdit
 import requests
 import uuid
+import calendar
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
-from datetime import date
+from datetime import date, datetime
 from django.db.models import Q
 
 
-
 def main(request):
-    
+
     form = TourForm()
-    context={
-        'tours': Tour.objects.filter(date__gte = date.today()).exclude(status="Rejected").order_by('date', 'start_time'),
-        #'tours': Tour.objects.all().order_by('date'),
+    context = {
+        'tours': Tour.objects.filter(date__gte=date.today()).exclude(status="Rejected").order_by('date', 'start_time'),
+        # 'tours': Tour.objects.all().order_by('date'),
         'form': form
     }
-    return render (request, "main.html", context)
+    return render(request, "main.html", context)
+
 
 @login_required(login_url='/login/')
 def tour_details(request, pk):
     tour_data = Tour.objects.filter(id=pk).values()[0]
-    
+
     if request.method == 'POST':
         instance = Tour.objects.get(id=pk)
         form = TourFormEdit(request.POST, instance=instance)
@@ -34,21 +35,29 @@ def tour_details(request, pk):
             if form.has_changed():
                 messages.success(request, 'Tour details updated')
                 form_hold = form.save(commit=False)
-                if form_hold.status =="Approved":
-                    messages.success(request, 'Requestor will be informed via email that tour was approved')
-                    subject = '[NOCC-Tour-Scheduler] - Your tour " ' + tour_data['tour_name'] + " \" was approved"
+                if form_hold.status == "Approved":
+                    messages.success(
+                        request, 'Requestor will be informed via email that tour was approved')
+                    subject = '[NOCC-Tour-Scheduler] - Your tour " ' + \
+                        tour_data['tour_name'] + " \" was approved"
                     from_email = 'nocc-tour-scheduler@akamai.com'
                     to = [tour_data['requestor_email'], 'rmirek@akamai.com']
-                    html_content = "<h2>Hi " + tour_data['requestor_name'] + ", </h2><br> To check status of the request see <br> <a href=\"http://194.233.175.38:8000/\">Link</a>"
+                    html_content = "<h2>Hi " + \
+                        tour_data['requestor_name'] + \
+                        ", </h2><br> To check status of the request see <br> <a href=\"http://194.233.175.38:8000/\">Link</a>"
                     msg = EmailMessage(subject, html_content, from_email, to)
                     msg.content_subtype = "html"
                     msg.send()
-                elif form_hold.status =="Rejected":
-                    messages.warning(request, 'Requestor will be informed via email that tour was rejected')
-                    subject = '[NOCC-Tour-Scheduler] - Your tour " ' + tour_data['tour_name'] + " \" was rejected"
+                elif form_hold.status == "Rejected":
+                    messages.warning(
+                        request, 'Requestor will be informed via email that tour was rejected')
+                    subject = '[NOCC-Tour-Scheduler] - Your tour " ' + \
+                        tour_data['tour_name'] + " \" was rejected"
                     from_email = 'nocc-tour-scheduler@akamai.com'
                     to = [tour_data['requestor_email'], 'rmirek@akamai.com']
-                    html_content = "<h2>Hi " + tour_data['requestor_name'] + ", </h2><br> To check status of the request see <br> <a href=\"http://194.233.175.38:8000/\">Link</a>"
+                    html_content = "<h2>Hi " + \
+                        tour_data['requestor_name'] + \
+                        ", </h2><br> To check status of the request see <br> <a href=\"http://194.233.175.38:8000/\">Link</a>"
                     msg = EmailMessage(subject, html_content, from_email, to)
                     msg.content_subtype = "html"
                     msg.send()
@@ -59,24 +68,56 @@ def tour_details(request, pk):
         'tour_data': tour_data,
         'form': TourFormEdit(initial=tour_data)
     }
-    return render (request, "tour-details.html", context)
+    return render(request, "tour-details.html", context)
 
 
-def calendar(request):
-    return render (request, "calendar.html" )
+def view_calendar(request):
+    if request.method == 'POST':
+        try:
+            month = int(request.POST["month"])
+            year = int(request.POST["year"])
+            context = {
+                'tours': Tour.objects.filter(date__gte=date.today()).exclude(status="Rejected").order_by('date', 'start_time'),
+                'month': month,
+                'year': year,
+            }
+            return render(request, "calendar.html", context)
+        except:
+            month = datetime.now().month
+            year = datetime.now().year
+            context = {
+                'tours': Tour.objects.filter(date__gte=date.today()).exclude(status="Rejected").order_by('date', 'start_time'),
+                'month': month,
+                'year': year,
+            }
+            return render(request, "calendar.html", context)
+    else:
+        month = datetime.now().month
+        year = datetime.now().year
+        month_dates = calendar.Calendar().monthdatescalendar(year, month)
+        context = {
+            'tours': Tour.objects.filter(date__gte=month_dates[1][1]).exclude(date__gte=month_dates[-1][-1]).exclude(status="Rejected").order_by('date', 'start_time'),
+            'month': month,
+            'year': year,
+            'month_dates': month_dates,
+        }
+        return render(request, "calendar.html", context)
+
 
 @login_required(login_url='/login/')
 def archives(request):
-    tours = Tour.objects.filter(Q(date__lt = date.today()) | Q(status="Rejected")).order_by('date', 'start_time')
+    tours = Tour.objects.filter(Q(date__lt=date.today()) | Q(
+        status="Rejected")).order_by('date', 'start_time')
     context = {
         'tours': tours,
     }
-    return render (request, "archives.html", context )
+    return render(request, "archives.html", context)
+
 
 def login_user(request):
 
     if request.user.is_authenticated:
-        return redirect ('/')
+        return redirect('/')
 
     if request.method == 'POST':
         username = request.POST['f_username']
@@ -92,9 +133,10 @@ def login_user(request):
 
         if user is not None:
             login(request, user)
-            return redirect ('/')
+            return redirect('/')
         else:
-            messages.warning(request, 'Username or password incorrect, try again')
+            messages.warning(
+                request, 'Username or password incorrect, try again')
             return render(request, 'login.html')
 
     return render(request, "login.html")
@@ -104,24 +146,28 @@ def logout_user(request):
     logout(request)
     return redirect("/")
 
+
 @login_required(login_url='/login/')
 def ask_for_feedback(request, pk):
     tour_data = Tour.objects.filter(id=pk).values()[0]
-    subject = '[NOCC-Tour-Scheduler] - Please tell us more about " ' + tour_data['tour_name'] + " \" - survey invitation"
+    subject = '[NOCC-Tour-Scheduler] - Please tell us more about " ' + \
+        tour_data['tour_name'] + " \" - survey invitation"
     from_email = 'nocc-tour-scheduler@akamai.com'
     to = [tour_data['requestor_email'], 'rmirek@akamai.com']
-    html_content = "<h2>Hi " + tour_data['requestor_name'] + ", </h2><br> Please visit <br> <a href=\"http://194.233.175.38:8000/feedback/"+pk+"\">Link</a>"
+    html_content = "<h2>Hi " + tour_data['requestor_name'] + \
+        ", </h2><br> Please visit <br> <a href=\"http://194.233.175.38:8000/feedback/"+pk+"\">Link</a>"
     msg = EmailMessage(subject, html_content, from_email, to)
     msg.content_subtype = "html"
     msg.send()
-    messages.success(request, 'Invitation for after-tour survey sent to requestor')
+    messages.success(
+        request, 'Invitation for after-tour survey sent to requestor')
 
     return redirect("/tour-details/"+pk)
 
 
-def feedback(request,pk):
+def feedback(request, pk):
     if request.method == 'POST':
-        feedback= request.POST['f_feedback']
+        feedback = request.POST['f_feedback']
         Tour.objects.filter(id=pk).update(feedback=feedback)
         messages.success(request, 'Thank You, feedback submitted successfully')
 
@@ -153,13 +199,13 @@ def new_tour(request):
             msg.content_subtype = "html"
             msg.send()
             return redirect("/")
-                 
+
         except:
             context = {
                 'form': form
             }
             return render(request, "new-tour.html", context)
-        
+
 
     form = TourForm()
     context={

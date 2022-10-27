@@ -1,7 +1,176 @@
-{% extends 'base.html' %}
-
+{% extends "base.html" %}
 {% block content %}
-
-<h1 class="text-center">Calendar comming soon ... </h1>
-
-{% endblock %}
+    <div class="my-4 col-lg-11 mx-auto bg-light">
+        <h3>Calendar</h3>
+        <hr/>
+        <form class="row gx-4 gy-3" action="" method="post">
+            <div class="mb-2 px-auto">
+                {% csrf_token %}
+                <label for="month">Month:</label>
+                <select id="month" name="month" value="{{ month }}">
+                    <option value="01" {% if month == 1 %} selected{% endif %}>
+                        January
+                    </option>
+                    <option value="02" {% if month == 2 %} selected{% endif %}>
+                        February
+                    </option>
+                    <option value="03" {% if month == 3 %} selected{% endif %}>
+                        March
+                    </option>
+                    <option value="04" {% if month == 4 %} selected{% endif %}>
+                        April
+                    </option>
+                    <option value="05" {% if month == 5 %} selected{% endif %}>
+                        May
+                    </option>
+                    <option value="06" {% if month == 6 %} selected{% endif %}>
+                        June
+                    </option>
+                    <option value="07" {% if month == 7 %} selected{% endif %}>
+                        July
+                    </option>
+                    <option value="08" {% if month == 8 %} selected{% endif %}>
+                        August
+                    </option>
+                    <option value="09" {% if month == 9 %} selected{% endif %}>
+                        September
+                    </option>
+                    <option value="10" {% if month == 10 %} selected{% endif %}>
+                        October
+                    </option>
+                    <option value="11" {% if month == 11 %} selected{% endif %}>
+                        November
+                    </option>
+                    <option value="12" {% if month == 12 %} selected{% endif %}>
+                        December
+                    </option>
+                </select>
+                <label for="year">Year:</label>
+                <input type="text" id="year" name="year" value="{{ year }}"/>
+            </div>
+            <div class="px-4 py-3 my-3 text-center">
+                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover table-sm caption-top">
+            <tr>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thr</th>
+                <th>Fri</th>
+                <th>Sat</th>
+                <th>Sun</th>
+            </tr>
+            {% for week in month_dates %}
+                <tr>
+                    {% for day in week %}
+                        <td {% for tour in tours %} {% if tour.date == day %}class="table-success" onclick="f_show("{{ day|date:"Y-n-d" }}")"{% endif %} {% endfor %}>
+                            {% if day.month == month %}
+                                <b>{{ day.day }}</b>
+                            {% else %}
+                                {{ day.day }}
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <h3 id="date_head">NOCC Tours for {{ date }}</h3>
+    <hr/>
+    <div class="table-responsive">
+        <table class="table table-hover table-sm caption-top">
+            <tr>
+                <th>
+                    Tour
+                    name
+                </th>
+                <th>
+                    Requestor
+                    name
+                </th>
+                <th>
+                    Requestor
+                    email
+                </th>
+                <th>
+                    Alternate
+                    contact
+                </th>
+                <th>
+                    Attendees
+                    akamai
+                </th>
+                <th>
+                    Attendees
+                    guests
+                </th>
+                <th>
+                    Nocc
+                    required?
+                </th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>Start time</th>
+                <th>End time</th>
+                <th>Status</th>
+                <th>
+                    Nocc Person
+                    Assigned?
+                </th>
+                <th></th>
+            </tr>
+            {% for week in month_dates %}
+                {% for day in week %}
+                    <tbody id="{{ day|date:"Y-n-d" }}" display="none">
+                        {% for tour in tours %}
+                            {% if day == tour.date %}
+                                <tr {% if tour.status == "Approved" %} class="table-success" {% elif tour.status == "Rejected" %} class="table-danger" {% else %} class="table-warning" {% endif %}>
+                                    <td>{{ tour.tour_name }}</td>
+                                    <td>{{ tour.requestor_name }}</td>
+                                    <td>{{ tour.requestor_email }}</td>
+                                    <td>{{ tour.alternate_contact }}</td>
+                                    <td>{{ tour.attendees_akamai }}</td>
+                                    <td>{{ tour.attendees_guests }}</td>
+                                    <td>{{ tour.nocc_required }}</td>
+                                    <td>{{ tour.location }}</td>
+                                    <td>
+                                        {{ tour.date }}
+                                    </td>
+                                    <td>
+                                        {{ tour.start_time }}
+                                    </td>
+                                    <td>
+                                        {{ tour.end_time }}
+                                    </td>
+                                    <td>
+                                        {{ tour.status }}
+                                    </td>
+                                    <td>
+                                        {{ tour.nocc_person_assigned }}
+                                    </td>
+                                    {% if request.user.is_authenticated %}
+                                        <td>
+                                            <a href="/tour-details/{{ tour.id }}">Details</a>
+                                        </td>
+                                    {% endif %}
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                {% endfor %}
+            {% endfor %}
+        </table>
+    </div>
+    <script>
+    function f_show(date){
+    var head = document.getElementById("date_head");
+    head.innerHTML = "NOCC Tours for" + date;
+    var day_table = document.getElementById(date);
+    day_table.style.display = "block"
+}
+    </script>
+{% endblock content %}
