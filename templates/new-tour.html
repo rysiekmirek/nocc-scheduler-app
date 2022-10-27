@@ -2,12 +2,12 @@
 
 {% block content %}
 
-  <div class="my-4 col-lg-11 mx-auto bg-light">
+  <div class="my-4 col-lg-11 bg-light justify-content-center">
       <h3>New tour request form </h3>
       <hr>
       {{ success }}
-      <div class="mb-2 px-auto col-5 ">
-      <form class="row gx-4 gy-3 justify-content-center" action="" method="post">
+      <div class="mb-2 col-5 ">
+      <form class="row gy-3 justify-content-center" action="" method="post">
         {% csrf_token %}
       {% for field in form %}
           <div class="form-floating justify-content-center">
