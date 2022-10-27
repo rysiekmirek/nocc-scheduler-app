@@ -76,32 +76,20 @@ def view_calendar(request):
         try:
             month = int(request.POST["month"])
             year = int(request.POST["year"])
-            context = {
-                'tours': Tour.objects.filter(date__gte=date.today()).exclude(status="Rejected").order_by('date', 'start_time'),
-                'month': month,
-                'year': year,
-            }
-            return render(request, "calendar.html", context)
         except:
             month = datetime.now().month
             year = datetime.now().year
-            context = {
-                'tours': Tour.objects.filter(date__gte=date.today()).exclude(status="Rejected").order_by('date', 'start_time'),
-                'month': month,
-                'year': year,
-            }
-            return render(request, "calendar.html", context)
     else:
         month = datetime.now().month
         year = datetime.now().year
-        month_dates = calendar.Calendar().monthdatescalendar(year, month)
-        context = {
-            'tours': Tour.objects.filter(date__gte=month_dates[1][1]).exclude(date__gte=month_dates[-1][-1]).exclude(status="Rejected").order_by('date', 'start_time'),
-            'month': month,
-            'year': year,
-            'month_dates': month_dates,
-        }
-        return render(request, "calendar.html", context)
+    month_dates = calendar.Calendar().monthdatescalendar(year, month)
+    context = {
+        'tours': Tour.objects.filter(date__gte=month_dates[1][1]).exclude(date__gte=month_dates[-1][-1]).exclude(status="Rejected").order_by('date', 'start_time'),
+        'month': month,
+        'year': year,
+        'month_dates': month_dates,
+    }
+    return render(request, "calendar.html", context)
 
 
 @login_required(login_url='/login/')
