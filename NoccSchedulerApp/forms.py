@@ -64,7 +64,7 @@ class TourFormEdit(ModelForm):
           'id': TextInput(attrs={'readonly': 'readonly'}),
         }
     def __init__(self, *args, **kwargs):
-        super(TourForm, self).__init__(*args, **kwargs)
+        super(TourFormEdit, self).__init__(*args, **kwargs)
 
         for name, field in self.fields.items():
             field.widget.attrs.update({
