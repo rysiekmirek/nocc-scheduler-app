@@ -3,14 +3,17 @@
 {% block content %}
 
   <div class="col-lg-11 mx-auto bg-light">
-      <h2>Tour details</h2>
+      <h3>Tour details</h3>
       <hr>
-      <div class="mb-2 px-4">
-      <form class="row gx-4 gy-3" action="" method="post">
+      <div class="container-md mx-auto col-6">
+      <form action="" method="post">
         {% csrf_token %}
         {% for field in form %}
-          <div class="col-sm">
-             {{ field.label_tag }} {{ field }} <i><small style="color:#9e9e9e">{{ field.help_text }}</small></i> <i><small style="color:#e70a0a">{{ field.errors }}</small></i>
+          <div class="form-floating my-2">
+            {{ field }} 
+            <label class="px-4" for="{{ field.auto_id }}"> {{ field.label }} </label>
+           <i><small style="color:#9e9e9e">{{ field.help_text }}</small></i> 
+           <i><small style="color:#e70a0a">{{ field.errors }}</small></i>
           </div>
         {% endfor %}
         {{ form.non_field_errors }}
