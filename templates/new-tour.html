@@ -6,11 +6,11 @@
       <h3>New tour request form </h3>
       <hr>
       {{ success }}
-      <div class="mb-2 px-auto">
+      <div class="mb-2 px-auto col-4">
       <form class="row gx-4 gy-3" action="" method="post">
         {% csrf_token %}
       {% for field in form %}
-          <div class="form-floating mx-5">
+          <div class="form-floating">
             {{ field }}
             <label class="px-4" for="{{ field.auto_id }}"> {{ field.label }} </label>
             <i><small style="color:#9e9e9e">{{field.help_text}}</small></i></th>
