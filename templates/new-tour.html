@@ -4,12 +4,12 @@
 
   <div class="my-4 mx-4 col-lg-11 bg-light text-center">
       <h3>New tour request form </h3>
-      <hr>
       <div class="container-md mx-auto col-6">
+        <hr>
       <form action="" method="post">
         {% csrf_token %}
       {% for field in form %}
-          <div class="form-floating justify-content-center">
+          <div class="form-floating">
             {{ field }}
             <label class="px-4" for="{{ field.auto_id }}"> {{ field.label }} </label>
             <i><small style="color:#9e9e9e">{{field.help_text}}</small></i></th>
