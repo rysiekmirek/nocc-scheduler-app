@@ -23,7 +23,7 @@ class TourForm(ModelForm):
 
         for name, field in self.fields.items():
             field.widget.attrs.update({
-                'class': 'form-control',
+                'class': 'form-control form-control-sm',
                 'placeholder': field.label,
                 })
 
@@ -63,4 +63,11 @@ class TourFormEdit(ModelForm):
           #'feedback': Textarea(attrs={'rows':1, 'cols':50, 'readonly': 'readonly'}),
           'id': TextInput(attrs={'readonly': 'readonly'}),
         }
+    def __init__(self, *args, **kwargs):
+        super(TourFormEdit, self).__init__(*args, **kwargs)
 
+        for name, field in self.fields.items():
+            field.widget.attrs.update({
+                'class': 'form-control form-control-sm',
+                'placeholder': field.label,
+                })
