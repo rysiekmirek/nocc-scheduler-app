@@ -174,16 +174,16 @@
     <script>
         f_hide_all();
         let clickers = document.getElementsByClassName("day_with_tour");
-        for (const clicker in clickers) {
-            clickers[clicker].addEventListener('click', f_show);
+        for (const clicker of clickers) {
+            clicker.addEventListener('click', f_show);
         }
 
         function f_hide_all() {
             let tours_table = document.getElementById("tours_table");
             tours_table.hidden = true;
             let day_tours = document.getElementsByClassName("day_tours");
-            for (const day_tour in day_tours) {
-                day_tours[day_tour].hidden = true;
+            for (const day_tour of day_tours) {
+                day_tour.hidden = true;
             }
         }
 
