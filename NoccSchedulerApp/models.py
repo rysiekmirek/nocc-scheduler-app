@@ -1,5 +1,4 @@
 from django.db import models
-from django import forms
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
@@ -63,8 +62,8 @@ class Tour(models.Model):
         ('Rejected', 'Rejected'),
         ('Approved', 'Approved'),
     ]
-    status = forms.ChoiceField(widget=forms.RadioSelect,
-         choices=STATUS_CHOICES, default='Requested')
+    status = models.CharField(widget=forms.RadioSelect,
+        max_length=20, choices=STATUS_CHOICES, default='Requested')
         
     PERSON_ASSIGNED_CHOICES = [
         ('None', 'None'),

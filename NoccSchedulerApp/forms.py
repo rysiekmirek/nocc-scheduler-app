@@ -15,7 +15,6 @@ class TourForm(ModelForm):
             'start_time': DateTimeInput(attrs={'type': 'time'}),
             'end_time': DateTimeInput(attrs={'type': 'time'}),
             'comment': Textarea(attrs={'rows':1, 'cols':50}),
-            'status': RadioSelect(),
             'attendees_guests': TextInput(attrs={'min':0,'max': '50','type': 'number'}),
             'attendees_akamai': TextInput(attrs={'min':0,'max': '50','type': 'number'})
         }
@@ -63,6 +62,7 @@ class TourFormEdit(ModelForm):
           'comment': Textarea(attrs={'rows':1, 'cols':50}),
           #'feedback': Textarea(attrs={'rows':1, 'cols':50, 'readonly': 'readonly'}),
           'id': TextInput(attrs={'readonly': 'readonly'}),
+          'status': RadioSelect(),
         }
     def __init__(self, *args, **kwargs):
         super(TourFormEdit, self).__init__(*args, **kwargs)
