@@ -33,36 +33,9 @@ def tour_details(request, pk):
         form = TourFormEdit(request.POST, instance=instance)
         if form.is_valid():
             if form.has_changed():
-                messages.success(request, 'Tour details updated')
-                form_hold = form.save(commit=False)
-                if form_hold.status == "Approved":
-                    messages.success(
-                        request, 'Requestor will be informed via email that tour was approved')
-                    subject = '[NOCC-Tour-Scheduler] - Your tour " ' + \
-                        tour_data['tour_name'] + " \" was approved"
-                    from_email = 'nocc-tour-scheduler@akamai.com'
-                    to = [tour_data['requestor_email'], 'rmirek@akamai.com']
-                    html_content = "<h2>Hi " + \
-                        tour_data['requestor_name'] + \
-                        ", </h2><br> To check status of the request see <br> <a href=\"http://194.233.175.38:8000/\">Link</a>"
-                    msg = EmailMessage(subject, html_content, from_email, to)
-                    msg.content_subtype = "html"
-                    msg.send()
-                elif form_hold.status == "Rejected":
-                    messages.warning(
-                        request, 'Requestor will be informed via email that tour was rejected')
-                    subject = '[NOCC-Tour-Scheduler] - Your tour " ' + \
-                        tour_data['tour_name'] + " \" was rejected"
-                    from_email = 'nocc-tour-scheduler@akamai.com'
-                    to = [tour_data['requestor_email'], 'rmirek@akamai.com']
-                    html_content = "<h2>Hi " + \
-                        tour_data['requestor_name'] + \
-                        ", </h2><br> To check status of the request see <br> <a href=\"http://194.233.175.38:8000/\">Link</a>"
-                    msg = EmailMessage(subject, html_content, from_email, to)
-                    msg.content_subtype = "html"
-                    msg.send()
-            form.save()
-            return redirect('/tour-details/'+pk)
+                messages.success(request, 'Tour details updated')                
+                form.save()
+                return redirect('/tour-details/'+pk)
 
     context = {
         'tour_data': tour_data,
@@ -157,7 +130,33 @@ def status_change(request, pk):
     tour_data = Tour.objects.filter(id=pk).values()[0]
     if request.method == 'POST':
         status=request.POST['f_status']
-        print (status)
+        Tour.objects.filter(id=pk).update(status=status)
+        if status == "Approved":
+            messages.success(request, 'Requestor will be informed via email that tour was approved')
+            subject = '[NOCC-Tour-Scheduler] - Your tour " ' + \
+                tour_data['tour_name'] + " \" was approved"
+            from_email = 'nocc-tour-scheduler@akamai.com'
+            to = [tour_data['requestor_email'], 'rmirek@akamai.com']
+            html_content = "<h2>Hi " + \
+                tour_data['requestor_name'] + \
+                ", </h2><br> To check status of the request see <br> <a href=\"http://194.233.175.38:8000/\">Link</a>"
+            msg = EmailMessage(subject, html_content, from_email, to)
+            msg.content_subtype = "html"
+            msg.send()
+        elif status == "Rejected":
+            messages.warning(request, 'Requestor will be informed via email that tour was rejected')
+            subject = '[NOCC-Tour-Scheduler] - Your tour " ' + \
+                tour_data['tour_name'] + " \" was rejected"
+            from_email = 'nocc-tour-scheduler@akamai.com'
+            to = [tour_data['requestor_email'], 'rmirek@akamai.com']
+            html_content = "<h2>Hi " + \
+                tour_data['requestor_name'] + \
+                ", </h2><br> To check status of the request see <br> <a href=\"http://194.233.175.38:8000/\">Link</a>"
+            msg = EmailMessage(subject, html_content, from_email, to)
+            msg.content_subtype = "html"
+            msg.send()
+        else:
+            messages.warning(request, 'Tour status set to requested')
 
     return redirect("/tour-details/"+pk)
 
