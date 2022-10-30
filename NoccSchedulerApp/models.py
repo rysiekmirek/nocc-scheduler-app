@@ -64,7 +64,7 @@ class Tour(models.Model):
         ('Approved', 'Approved'),
     ]
     status = forms.ChoiceField(widget=forms.RadioSelect,
-        max_length=20, choices=STATUS_CHOICES, default='Requested')
+         choices=STATUS_CHOICES, default='Requested')
         
     PERSON_ASSIGNED_CHOICES = [
         ('None', 'None'),
