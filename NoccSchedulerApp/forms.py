@@ -68,7 +68,7 @@ class TourFormEdit(ModelForm):
         super(TourFormEdit, self).__init__(*args, **kwargs)
 
         for name, field in self.fields.items():
-            if field.label == "status":
+            if field.label == "Status":
                 field.widget.attrs.update({
                 'name': "options-outlined",
                 'autocomplete': "off",
