@@ -157,7 +157,7 @@ def status_change(request, pk):
     tour_data = Tour.objects.filter(id=pk).values()[0]
     if request.method == 'POST':
         status=request.POST['f_status']
-
+        print (status)
 
     return redirect("/tour-details/"+pk)
 
