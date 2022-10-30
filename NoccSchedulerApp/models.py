@@ -62,8 +62,7 @@ class Tour(models.Model):
         ('Rejected', 'Rejected'),
         ('Approved', 'Approved'),
     ]
-    status = models.CharField(widget=forms.RadioSelect,
-        max_length=20, choices=STATUS_CHOICES, default='Requested')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Requested')
         
     PERSON_ASSIGNED_CHOICES = [
         ('None', 'None'),

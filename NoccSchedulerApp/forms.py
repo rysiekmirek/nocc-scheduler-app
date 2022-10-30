@@ -62,7 +62,7 @@ class TourFormEdit(ModelForm):
           'comment': Textarea(attrs={'rows':1, 'cols':50}),
           #'feedback': Textarea(attrs={'rows':1, 'cols':50, 'readonly': 'readonly'}),
           'id': TextInput(attrs={'readonly': 'readonly'}),
-          'status': RadioSelect(),
+          #'status': RadioSelect(),
         }
     def __init__(self, *args, **kwargs):
         super(TourFormEdit, self).__init__(*args, **kwargs)
