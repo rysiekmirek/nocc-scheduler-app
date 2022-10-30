@@ -1,5 +1,5 @@
 from .models import Tour
-from django.forms import ModelForm, DateTimeInput, TextInput, Textarea
+from django.forms import ModelForm, DateTimeInput, TextInput, Textarea, RadioSelect
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from datetime import date
@@ -15,7 +15,8 @@ class TourForm(ModelForm):
             'start_time': DateTimeInput(attrs={'type': 'time'}),
             'end_time': DateTimeInput(attrs={'type': 'time'}),
             'comment': Textarea(attrs={'rows':1, 'cols':50}),
-            'attendees_guests': TextInput(attrs={'min':1,'max': '50','type': 'number'}),
+            'status': RadioSelect(),
+            'attendees_guests': TextInput(attrs={'min':0,'max': '50','type': 'number'}),
             'attendees_akamai': TextInput(attrs={'min':0,'max': '50','type': 'number'})
         }
     def __init__(self, *args, **kwargs):
