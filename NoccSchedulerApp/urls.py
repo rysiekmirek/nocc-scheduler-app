@@ -27,6 +27,7 @@ urlpatterns = [
     path('archives/', views.archives, name = 'archives' ),
     path('login/', views.login_user, name = 'login' ),
     path('logout/', views.logout_user, name='logout'),
+    path('status-change/<str:pk>/', views.status_change, name='status_change'),
     path('ask-for-feedback/<str:pk>/', views.ask_for_feedback, name='ask_for_feedback'),
     path('feedback/<str:pk>/', views.feedback, name='feedback'),
     path('', views.main, name = 'main' ),

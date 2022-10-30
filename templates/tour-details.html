@@ -25,6 +25,22 @@
       </form>
 
       <hr>
+
+      <form action="/status-change/{{ tour_data.id }}/" method="POST" id="status-change">
+        {% csrf_token %}
+      <label for="status-change"> Status </label>
+      <input type="radio" class="btn-check" name="f_status" id="success-outlined" autocomplete="off" checked>
+      <label class="btn btn-outline-success" for="success-outlined">Checked success radio</label>
+      
+      <input type="radio" class="btn-check" name="f_status" id="danger-outlined" autocomplete="off">
+      <label class="btn btn-outline-danger" for="danger-outlined">Danger radio</label>
+
+      </form>
+
+
+
+
+      <hr>
       <form action="/ask-for-feedback/{{ tour_data.id }}/" method="POST" id="ask_for_feedback">
         {% csrf_token %}
       <label for="ask_for_feedback"> Feedback </label>

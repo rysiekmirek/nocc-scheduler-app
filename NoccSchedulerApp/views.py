@@ -152,6 +152,15 @@ def ask_for_feedback(request, pk):
 
     return redirect("/tour-details/"+pk)
 
+@login_required(login_url='/login/')
+def status_change(request, pk):
+    tour_data = Tour.objects.filter(id=pk).values()[0]
+    if request.method == 'POST':
+        status=request.POST['f_status']
+
+
+    return redirect("/tour-details/"+pk)
+
 
 def feedback(request, pk):
     if request.method == 'POST':

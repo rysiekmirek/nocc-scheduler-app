@@ -57,7 +57,7 @@ class TourFormEdit(ModelForm):
     class Meta:
         model = Tour
         #fields = '__all__'
-        exclude = ('feedback',)
+        exclude = ('feedback','status')
         widgets = {
           'comment': Textarea(attrs={'rows':1, 'cols':50}),
           #'feedback': Textarea(attrs={'rows':1, 'cols':50, 'readonly': 'readonly'}),
@@ -67,15 +67,8 @@ class TourFormEdit(ModelForm):
     def __init__(self, *args, **kwargs):
         super(TourFormEdit, self).__init__(*args, **kwargs)
 
-        for name, field in self.fields.items():
-            if field.label == "Status":
-                field.widget.attrs.update({
-                'name': "options-outlined",
-                'autocomplete': "off",
-                'class': 'btn-check',
+        for name, field in self.fields.items():   
+            field.widget.attrs.update({
+                'class': 'form-control form-control-sm',
+                'placeholder': field.label,
                 })
-            else:    
-                field.widget.attrs.update({
-                    'class': 'form-control form-control-sm',
-                    'placeholder': field.label,
-                    })
