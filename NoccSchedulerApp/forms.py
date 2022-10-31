@@ -24,6 +24,7 @@ class TourForm(ModelForm):
         super(TourForm, self).__init__(*args, **kwargs)
 
         self.helper = FormHelper()
+        self.helper.form_show_labels = False
         self.helper.layout = Layout(
             Fieldset(
                 'Basic information',
