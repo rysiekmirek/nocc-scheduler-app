@@ -26,9 +26,16 @@ class TourForm(ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Fieldset(
-                'first arg is the legend of the fieldset',
+                'Basic information',
                 'requestor_name',
                 'requestor_email',
+            ),
+            Fieldset(
+                'Point of Contact',
+                'poc_name',
+                'poc_email',
+                'cc_this_request_to',
+                'division',
             ),
             Submit('submit', 'Submit', css_class='button white'),
         )
