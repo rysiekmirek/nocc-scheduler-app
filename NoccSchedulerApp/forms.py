@@ -37,6 +37,14 @@ class TourForm(ModelForm):
                 'cc_this_request_to',
                 'division',
             ),
+             Fieldset(
+                'Visit Details:',
+                'location',
+                'date',
+                'start_time',
+                'end_time',
+                'nocc_personnel_required',
+            ),
             Submit('submit', 'Submit', css_class='button white'),
         )
 
