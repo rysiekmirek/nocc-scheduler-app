@@ -33,11 +33,11 @@ class TourForm(ModelForm):
             Submit('submit', 'Submit', css_class='button white'),
         )
 
-        #for name, field in self.fields.items():
-            #field.widget.attrs.update({
-                #'class': 'form-control form-control-sm',
-                #'placeholder': field.label,
-                #})
+        for name, field in self.fields.items():
+            field.widget.attrs.update({
+                'class': 'form-control form-control-sm',
+                'placeholder': field.label,
+                })
 
     def clean(self):
         cleaned_data = super().clean()
