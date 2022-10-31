@@ -8,19 +8,54 @@ class Tour(models.Model):
     tour_name = models.CharField(max_length=300)
     requestor_name = models.CharField(max_length=300)
     requestor_email = models.EmailField()
-    alternate_contact = models.CharField(max_length=300)
-    attendees_akamai = models.IntegerField(
-        default=0, validators=[MinValueValidator(0), MaxValueValidator(50)])
-    attendees_guests = models.IntegerField(
-        default=0, validators=[MinValueValidator(1), MaxValueValidator(50)])
-    CURRENT_CUSTOMER_CHOICES = [
+    poc_name = models.CharField(max_length=300, help_text="The Point of Contact is the person who is responsible for this group from within Akamai and will escort them to the NOCC.")
+    poc_email = models.EmailField()
+    cc_this_request_to = models.EmailField(help_text="Ability to CC more people in order to receive feedback form + invitation to event once it has been approved.")
+    DIVISION_CHOICES = [
+        ('P & RE', 'P & RE'),
+        ('Customer & Industry', 'Customer & Industry'),
+        ('marketing', 'Marketing'),
+        ('Global Events', 'Global Events'),
+        ('Marketing Strategy', 'Marketing Strategy'),
+        ('Legal', 'Legal'),
+        ('CTO', 'CTO'),
+        ('CEO', 'CEO'),
+        ('Global Sales', 'Global Sales'),
+        ('Customer Success', 'Customer Success'),
+        ('Global Services', 'Global Services'),
+        ('Products & Enablement', 'Products & Enablement'),
+        ('Compute', 'Compute'),
+        ('Edge Delivery', 'Edge Delivery'),
+        ('Edge Business Operations', 'Edge Business Operations'),
+        ('Edge Experience', 'Edge Experience'),
+        ('Other', 'Other'),
+    ]
+    division = models.CharField(
+        max_length=50,
+        choices=DIVISION_CHOICES,
+        default='P & RE',
+    )
+
+    LOCATION_CHOICES = [
+        ('Cambridge', 'Cambridge'),
+        ('Krakow', 'Kraków'),
+        ('Bangalore', 'Bangalore')
+    ]
+    location = models.CharField(
+        max_length=100, choices=LOCATION_CHOICES, default='Cambridge')
+
+    date = models.DateField()
+    start_time = models.TimeField(help_text="use local time for location")
+    end_time = models.TimeField(help_text="use local time for location")
+    
+    NOCC_REQUIRED_CHOICES = [
         ('No', 'No'),
         ('Yes', 'Yes'),
     ]
-    current_customer = models.CharField(
+    nocc_personnel_required = models.CharField(
         max_length=10,
-        choices=CURRENT_CUSTOMER_CHOICES,
-        default='No',
+        choices=NOCC_REQUIRED_CHOICES,
+        default='no',
     )
     CATEGORY_CHOICES = [
         ('existing customer', 'Existing Customer'),
@@ -36,28 +71,22 @@ class Tour(models.Model):
         choices=CATEGORY_CHOICES,
         default='existing customer',
     )
-    NOCC_REQUIRED_CHOICES = [
+
+    attendees_akamai = models.IntegerField(
+        default=0, validators=[MinValueValidator(0), MaxValueValidator(50)])
+    attendees_guests = models.IntegerField(
+        default=0, validators=[MinValueValidator(0), MaxValueValidator(50)])
+    CURRENT_CUSTOMER_CHOICES = [
         ('No', 'No'),
         ('Yes', 'Yes'),
     ]
-
-    nocc_required = models.CharField(
+    current_customer = models.CharField(
         max_length=10,
-        choices=NOCC_REQUIRED_CHOICES,
-        default='no',
+        choices=CURRENT_CUSTOMER_CHOICES,
+        default='No',
     )
-
-    LOCATION_CHOICES = [
-        ('Cambridge', 'Cambridge'),
-        ('Krakow', 'Kraków'),
-        ('Bangalore', 'Bangalore')
-    ]
-    location = models.CharField(
-        max_length=100, choices=LOCATION_CHOICES, default='Cambridge')
-    date = models.DateField()
-    start_time = models.TimeField(help_text="use local time for location")
-    end_time = models.TimeField(help_text="use local time for location")
-        
+    customer_name = models.CharField(max_length=200, null=True, blank=True, help_text="If current customer, please put customer name")
+    
     PERSON_ASSIGNED_CHOICES = [
         ('None', 'None'),
         ('Adam', 'Adam'),
