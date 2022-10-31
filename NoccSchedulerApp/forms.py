@@ -38,12 +38,24 @@ class TourForm(ModelForm):
                 'division',
             ),
              Fieldset(
-                'Visit Details:',
+                'Visit Details',
                 'location',
                 'date',
                 'start_time',
                 'end_time',
                 'nocc_personnel_required',
+            ),
+            Fieldset(
+                'Visitors Details',
+                'category',
+                'attendees_akamai',
+                'attendees_guests',
+                'current_customer',
+                'customer_name',
+            ),
+            Fieldset(
+                ' ',
+                'comments',
             ),
             Submit('submit', 'Submit', css_class='button white'),
         )
