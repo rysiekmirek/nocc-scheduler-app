@@ -3,6 +3,8 @@ from django.forms import ModelForm, DateTimeInput, TextInput, Textarea, RadioSel
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from datetime import date
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Fieldset, Submit
 
 
 class TourForm(ModelForm):
@@ -21,11 +23,21 @@ class TourForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(TourForm, self).__init__(*args, **kwargs)
 
-        for name, field in self.fields.items():
-            field.widget.attrs.update({
-                'class': 'form-control form-control-sm',
-                'placeholder': field.label,
-                })
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Fieldset(
+                'first arg is the legend of the fieldset',
+                'requestor_name',
+                'requestor_email',
+            ),
+            Submit('submit', 'Submit', css_class='button white'),
+        )
+
+        #for name, field in self.fields.items():
+            #field.widget.attrs.update({
+                #'class': 'form-control form-control-sm',
+                #'placeholder': field.label,
+                #})
 
     def clean(self):
         cleaned_data = super().clean()
