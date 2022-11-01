@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from datetime import date
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, Submit
+from crispy_forms.layout import Layout, Fieldset, Submit, HTML
 
 
 class TourForm(ModelForm):
@@ -42,7 +42,7 @@ class TourForm(ModelForm):
                 'Visit Details',
                 'location',
                 'date',
-                 HTML('<span>Start time</span>'),
+                HTML('<span>Start time</span>'),
                 'start_time',
                 HTML('<span>End time</span>'),
                 'end_time',
