@@ -45,8 +45,8 @@ class Tour(models.Model):
         max_length=100, choices=LOCATION_CHOICES, default='Cambridge')
 
     date = models.DateField()
-    start_time = models.TimeField(help_text="use local time for location")
-    end_time = models.TimeField(help_text="use local time for location")
+    start_time = models.TimeField()
+    end_time = models.TimeField()
     
     NOCC_REQUIRED_CHOICES = [
         ('No', 'No'),
