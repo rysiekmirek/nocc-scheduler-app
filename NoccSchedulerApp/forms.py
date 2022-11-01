@@ -50,6 +50,7 @@ class TourForm(ModelForm):
                 'start_time',
                 HTML('<span>End time</span>'),
                 'end_time',
+                HTML('<span>NOCC personnel required?</span>'),
                 'nocc_personnel_required',
             ),
             Fieldset(
