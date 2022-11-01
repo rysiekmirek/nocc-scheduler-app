@@ -25,6 +25,7 @@ class TourForm(ModelForm):
 
         self.helper = FormHelper()
         self.helper.form_show_labels = False
+        self.helper.help_text_inline = True
         self.helper.layout = Layout(
             Fieldset(
                 'Basic information',
