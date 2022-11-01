@@ -8,7 +8,7 @@ class Tour(models.Model):
     tour_name = models.CharField(max_length=300)
     requestor_name = models.CharField(max_length=300)
     requestor_email = models.EmailField()
-    poc_name = models.CharField(max_length=300, help_text="The Point of Contact is the person who is responsible for this group from within Akamai and will escort them to the NOCC.")
+    poc_name = models.CharField(max_length=300)
     poc_email = models.EmailField()
     cc_this_request_to = models.EmailField(help_text="Ability to CC more people in order to receive feedback form + invitation to event once it has been approved.")
     DIVISION_CHOICES = [
