@@ -62,9 +62,7 @@ class TourForm(ModelForm):
                 'attendees_akamai',
                 HTML('<span>Attendees - Guest</span>'),
                 'attendees_guests',
-                HTML('<span>Current customer?</span>'),
-                'current_customer',
-                'customer_name',
+                'customer_or_group_name',
             ),
             Fieldset(
                 '',
