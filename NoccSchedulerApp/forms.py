@@ -91,7 +91,7 @@ class TourForm(ModelForm):
         if date <= today:
             self.add_error('date', ValidationError(_('Tour cannot be scheduled for the same day or in the past')))
         for existing_tour in Tour.objects.filter(location=location):
-            if date == existing_tour.date and location == existing_tour.location and existing_tour.status != "Rejected":
+            if date == existing_tour.date and existing_tour.status != "Rejected":
                 if existing_tour.start_time <= start_time <= existing_tour.end_time:
                     raise ValidationError(
                         {'start_time': _("Start time colides with an exising tour")})
