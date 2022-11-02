@@ -26,9 +26,10 @@
 
       <h4>Tour status</h4>
       <hr>
-      <div class=" btn-group px-4 py-3 my-3 text-center" role="group">
+      
       <form action="/status-change/{{ tour_data.id }}/" method="POST" id="status-change">
         {% csrf_token %}
+      <div class="btn-group px-4 py-3 my-3 text-center" role="group"></div>
       <input type="radio" class="btn-check" value="Rejected" name="f_status" id="danger-outlined" autocomplete="off" {% if tour_data.status == "Rejected" %} checked {% endif %} onclick="this.form.submit()">
       <label class="btn btn-outline-danger" for="danger-outlined">Rejected</label>
 
@@ -37,9 +38,9 @@
 
       <input type="radio" class="btn-check" value="Approved" name="f_status" id="success-outlined" autocomplete="off" {% if tour_data.status == "Approved" %} checked {% endif %} onclick="this.form.submit()">
       <label class="btn btn-outline-success" for="success-outlined">Approved</label>
-
-      </form>
     </div>
+      </form>
+    
 
 
       <h4>Ask for feedback</h4>
