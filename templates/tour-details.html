@@ -26,7 +26,7 @@
 
       <h4>Tour status</h4>
       <hr>
-      
+      <div class="text-center">
       <form action="/status-change/{{ tour_data.id }}/" method="POST" id="status-change">
         {% csrf_token %}
       <div class="btn-group px-4 py-3 my-3 text-center" role="group">
@@ -40,7 +40,7 @@
       <label class="btn btn-outline-success" for="success-outlined">Approved</label>
     </div>
       </form>
-    
+    </div>
 
 
       <h4>Ask for feedback</h4>
