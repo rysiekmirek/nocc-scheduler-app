@@ -77,7 +77,7 @@ class Tour(models.Model):
     attendees_guests = models.IntegerField(
         default=0, validators=[MinValueValidator(0), MaxValueValidator(50)])
 
-    customer_or_group_name = models.CharField(max_length=200, null=True, blank=True, help_text="If current customer, please put customer name")
+    customer_or_group_name = models.CharField(max_length=200)
     
     PERSON_ASSIGNED_CHOICES = [
         ('None', 'None'),
