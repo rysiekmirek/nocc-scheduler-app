@@ -26,7 +26,7 @@
 
       <h4>Tour status</h4>
       <hr>
-      <div class="px-4 py-3 my-3 text-center">
+      <div class=" btn-group px-4 py-3 my-3 text-center" role="group">
       <form action="/status-change/{{ tour_data.id }}/" method="POST" id="status-change">
         {% csrf_token %}
       <input type="radio" class="btn-check" value="Rejected" name="f_status" id="danger-outlined" autocomplete="off" {% if tour_data.status == "Rejected" %} checked {% endif %} onclick="this.form.submit()">
