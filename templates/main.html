@@ -22,17 +22,20 @@
             <tr>
                 <th>Tour<br/>name</th>
                 <th>Requestor<br/>name</th>
-                <th>Requestor<br/>email</th>
-                <th>Alternate<br/>contact</th>
-                <th>Attendees<br/>akamai</th>
-                <th>Attendees<br/>guests</th>
-                <th>Nocc<br/>required?</th>
+                <th>POC<br/>name</th>
+                <th>Division</th>
                 <th>Location</th>
                 <th>Date</th>
                 <th>Start time</th>
                 <th>End time </th>
+                <th>Nocc<br/>required?</th>
+                <th>Category</th>
+                <th>Attendees - <br/>akamai</th>
+                <th>Attendees - <br/>guests</th>
+                <th>Customer<br>name</th>
+                <th>Customer<br>name</th>
                 <th>Status</th>
-                <th>Nocc Person<br/>Assigned?</th>
+                <th></th>
             </tr>
 
             <tbody id="myTable">
@@ -40,17 +43,19 @@
             <tr {%if tour.status == "Approved" %} class="table-success" {% elif tour.status == "Rejected" %} class="table-danger" {% else %} class="table-warning" {% endif %}>
                 <td>{{tour.tour_name}}</td>
                 <td>{{tour.requestor_name}}</td>
-                <td>{{tour.requestor_email}}</td>
-                <td>{{tour.alternate_contact}}</td>
-                <td>{{tour.attendees_akamai}}</td>
-                <td>{{tour.attendees_guests}}</td>
-                <td>{{tour.nocc_required}}</td>
+                <td>{{tour.poc_name}}</td>
+                <td>{{tour.division}}</td>
                 <td>{{tour.location}}</td>
                 <td>{{tour.date}}</td>
                 <td>{{tour.start_time}}</td>
                 <td>{{tour.end_time}}</td>
-                <td>{{tour.status}}</td>
+                <td>{{tour.nocc_required}}</td>
+                <td>{{tour.category}}</td>
+                <td>{{tour.attendees_akamai}}</td>
+                <td>{{tour.attendees_guests}}</td>
+                <td>{{tour.customer_name}}</td>
                 <td>{{tour.nocc_person_assigned}}</td>
+                <td>{{tour.status}}</td>
                 {% if request.user.is_authenticated %}
                 <td><a href="/tour-details/{{tour.id}}">Details</a></td>
                 {% endif %}
