@@ -67,8 +67,8 @@ class TourForm(ModelForm):
                 'customer_name',
             ),
             Fieldset(
-                ' ',
-                'comments',
+                '',
+                'comment',
             ),
             Submit('submit', 'Submit', css_class='button white'),
         )
