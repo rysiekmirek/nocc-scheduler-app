@@ -38,7 +38,7 @@ class Tour(models.Model):
 
     LOCATION_CHOICES = [
         ('Cambridge', 'Cambridge'),
-        ('Krakow', 'Kraków'),
+        ('Krakow', 'Krakow'),
         ('Bangalore', 'Bangalore')
     ]
     location = models.CharField(
@@ -105,3 +105,19 @@ class Tour(models.Model):
 
     def __str__(self):
         return self.tour_name
+
+"""class Settings(models.Model):
+    LOCATION_CHOICES = [
+        ('Cambridge', 'Cambridge'),
+        ('Krakow', 'Kraków'),
+        ('Bangalore', 'Bangalore')
+    ]
+    location = models.CharField(
+        max_length=100, choices=LOCATION_CHOICES, default='Cambridge')
+    
+    avail_date_start = models.DateField()
+    avail_date_start = models.DateField()
+    avail_start_time = models.TimeField()
+    avail_end_time = models.TimeField()
+    time_slots = models.CharField(max_length=2000)
+    poc_list = models.CharField(max_length=2000)"""
