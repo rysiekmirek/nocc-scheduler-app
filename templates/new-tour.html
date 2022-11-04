@@ -41,7 +41,7 @@
     <script>
     $(document).ready(function(){
         $('#id_category').on('change', function() {
-          if ( this.value == 'existing customer')
+          if ( this.value == 'existing customer' || 'new prospect')
           {
             $("#opportunity_ID").show();
           }
