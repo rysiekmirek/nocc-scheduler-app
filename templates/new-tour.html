@@ -9,6 +9,12 @@
     <h3>New tour request form </h3>
         <hr>
     {% crispy form %}
+    <div style='display:none;' class="form-check" id="has_opportunity_id">
+      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+      <label class="form-check-label" for="flexCheckDefault">
+        Do you have a Salesforce Opportunity ID?
+      </label>
+    </div>
 
     <div style='display:none;' id='opportunity_ID'>Opportunity ID<br/>&nbsp;
       <br/>&nbsp;
@@ -42,6 +48,16 @@
     $(document).ready(function(){
         $('#id_category').on('change', function() {
           if ( this.value == 'existing customer' || this.value ==  'new prospect')
+          {
+            $("#has_opportunity_id").show();
+          }
+          else
+          {
+            $("#has_opportunity_id").hide();
+          }
+        });
+        $('#has_opportunity_id').on('change', function() {
+          if ( this.value == 'yes')
           {
             $("#opportunity_ID").show();
           }
