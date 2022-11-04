@@ -9,6 +9,8 @@
     <h3>New tour request form </h3>
         <hr>
     {% crispy form %}
+    <input type='text' class='text' name='opportunity_ID' value size='20' />
+    <br/>
     </div>
     <!--  <h3>New tour request form </h3>
         <hr>
@@ -29,5 +31,21 @@
       </div>
       </form> -->
       </div>
+
+
+    <script>
+    $(document).ready(function(){
+        $('#id_category').on('change', function() {
+          if ( this.value == 'existing customer' || this.value == 'new prospect')
+          {
+            $("#opportunity_ID").show();
+          }
+          else
+          {
+            $("#opportunity_ID").hide();
+          }
+        });
+    });
+    </script>
 
 {% endblock %}
