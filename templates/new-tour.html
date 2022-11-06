@@ -8,14 +8,17 @@
       
     <h3>New tour request form </h3>
         <hr>
+
+        <select class="form-select">
+          <option selected>Choose time slot</option>
+          {% for slot in avail %}
+          <option value="{{ slot[0] }}">{{ slot[1] }}</option>
+          {% endfor %}
+        </select>
+
     {% crispy form %}
 
-    <select class="form-select">
-      <option selected>Choose time slot</option>
-      {% for slot in avail %}
-      <option value="{{ slot }}">{{ slot }}</option>
-      {% endfor %}
-    </select>
+    
 
     <div style='display:none;' class="form-check" id="has_opportunity_id">
       <input class="form-check-input" type="checkbox" value="yes" id="oportunity_ID_checkbox">
