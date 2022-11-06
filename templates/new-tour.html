@@ -12,7 +12,7 @@
         <select class="form-select">
           <option selected>Choose time slot</option>
           {% for slot in avail %}
-          <option value="{{ slot.0 }}">{{ slot.1 }}</option>
+          <option value="{{ slot }}">{{ slot.0 - slot.1 }}</option>
           {% endfor %}
         </select>
 
