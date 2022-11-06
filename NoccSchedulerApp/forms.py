@@ -1,4 +1,4 @@
-from .models import Tour
+from .models import Tour, Location
 from django.forms import ModelForm, DateTimeInput, TextInput, Textarea, RadioSelect
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _

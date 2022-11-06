@@ -4,6 +4,23 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 
+
+class Location(models.Model):
+    LOCATION_CHOICES = [
+        ('Cambridge', 'Cambridge'),
+        ('Krakow', 'Krakow'),
+        ('Bangalore', 'Bangalore')
+    ]
+    location = models.CharField(max_length=100, choices=LOCATION_CHOICES, default='Cambridge')
+    
+    avail_date_start = models.DateField()
+    avail_date_start = models.DateField()
+    avail_start_time = models.TimeField()
+    avail_end_time = models.TimeField()
+    time_slots = models.TimeField()
+    nocc_representatives_list = models.CharField(max_length=2000)
+
+
 class Tour(models.Model):
     tour_name = models.CharField(max_length=300)
     requestor_name = models.CharField(max_length=300)
@@ -36,13 +53,7 @@ class Tour(models.Model):
         default='P & RE',
     )
 
-    LOCATION_CHOICES = [
-        ('Cambridge', 'Cambridge'),
-        ('Krakow', 'Krakow'),
-        ('Bangalore', 'Bangalore')
-    ]
-    location = models.CharField(
-        max_length=100, choices=LOCATION_CHOICES, default='Cambridge')
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
 
     date = models.DateField()
     start_time = models.TimeField()
@@ -105,19 +116,3 @@ class Tour(models.Model):
 
     def __str__(self):
         return self.tour_name
-
-"""class Settings(models.Model):
-    LOCATION_CHOICES = [
-        ('Cambridge', 'Cambridge'),
-        ('Krakow', 'Kraków'),
-        ('Bangalore', 'Bangalore')
-    ]
-    location = models.CharField(
-        max_length=100, choices=LOCATION_CHOICES, default='Cambridge')
-    
-    avail_date_start = models.DateField()
-    avail_date_start = models.DateField()
-    avail_start_time = models.TimeField()
-    avail_end_time = models.TimeField()
-    time_slots = models.CharField(max_length=2000)
-    poc_list = models.CharField(max_length=2000)"""
