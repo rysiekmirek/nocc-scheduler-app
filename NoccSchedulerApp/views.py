@@ -174,14 +174,13 @@ def new_tour(request):
 
     if request.method == 'POST':
         form = TourForm(request.POST)
-        try:
-            dbentry = form.save(commit=False)
-            uuid_value = uuid.uuid4()
-            dbentry.id = uuid_value
-            dbentry.start_time = form.time_slot_selection[0]
-            dbentry.end_time = form.time_slot_selection[1]
-            print (form, dbentry.start_time , dbentry.end_time )
-            form.is_valid()
+        dbentry = form.save(commit=False)
+        uuid_value = uuid.uuid4()
+        dbentry.id = uuid_value
+        dbentry.start_time = form.time_slot_selection[0]
+        dbentry.end_time = form.time_slot_selection[1]
+        print (dbentry, form, dbentry.start_time , dbentry.end_time )
+        if dbentry.is_valid():
             dbentry.save()
             messages.success(request, 'Your tour has been submited and confirmation email sent to You. Please wait for approval from local NOCC representative.')
             tour_data = Tour.objects.filter(id=uuid_value).values()[0]
@@ -200,11 +199,11 @@ def new_tour(request):
             msg.send()
             return redirect("/")
 
-        except:
-            context = {
-                'form': form
-            }
-            return render(request, "new-tour.html", context)
+    
+        context = {
+            'form': form
+        }
+        return render(request, "new-tour.html", context)
 
 
     form = TourForm()
