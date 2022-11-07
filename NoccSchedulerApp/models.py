@@ -20,8 +20,6 @@ class Location(models.Model):
     avail_end_time = models.TimeField()
     time_slots = models.TimeField()
     nocc_representatives_list = models.CharField(max_length=2000)
-    id = models.UUIDField(default=uuid.uuid4, unique=True,
-                            primary_key=True, editable=False)
 
 
 class Tour(models.Model):
