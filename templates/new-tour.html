@@ -1,43 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% load crispy_forms_tags %}
 
   <div class="my-4 mx-4 col-lg-11 bg-light text-left">
     <div class="container-md mx-auto col-7">
       
-    <h3>New tour request form </h3>
+      <h3>New tour request form </h3>
         <hr>
-        <label for="time_slot_selection">Choose time slot of the tour - test</label>
+       <form action="" method="post">
+        {% csrf_token %}
+        
+         <label for="time_slot_selection">Choose time slot of the tour - test</label>
         <select class="form-select" id="time_slot_selection" name="time_slot_selection">
           <option selected>Choose time slot</option>
           {% for slot in avail %}
           <option value="{{ slot }}">{{ slot.0 }} - {{ slot.1 }}</option>
           {% endfor %}
         </select>
-
-    {% crispy form %}
-
-    
-
-    <div style='display:none;' class="form-check" id="has_opportunity_id">
-      <input class="form-check-input" type="checkbox" value="yes" id="oportunity_ID_checkbox">
-      <label class="form-check-label" for="oportunity_ID_checkbox">
-        I already have my Salesforce Opportunity ID
-      </label>
-    </div>
-
-    <div style='display:none;' id='opportunity_ID'>Opportunity ID<br/>&nbsp;
-      <br/>&nbsp;
-          <input type='text' class='text' name='opportunity_ID' value size='20' />
-          <br/>
-      </div>
-    <br/>
-    </div>
-    <!--  <h3>New tour request form </h3>
-        <hr>
-       <form action="" method="post">
-        {% csrf_token %}
       {% for field in form %}
           <div class="form-floating my-2">
             {{ field }}
@@ -46,12 +25,26 @@
             <i><small style="color:#e70a0a"> {{ field.errors }} </small></i>
           </div>
         {% endfor %}
+        <div style='display:none;' class="form-check" id="has_opportunity_id">
+      <input class="form-check-input" type="checkbox" value="yes" id="oportunity_ID_checkbox">
+      <label class="form-check-label" for="oportunity_ID_checkbox">
+        I already have my Salesforce Opportunity ID
+      </label>
+    </div>
+
+        <div style='display:none;' id='opportunity_ID'>Opportunity ID<br/>&nbsp;
+      <br/>&nbsp;
+          <input type='text' class='text' name='opportunity_ID' value size='20' />
+          <br/>
+      </div>
+
+
         {{ form.non_field_errors }}
       </div>
       <div class="px-4 py-3 my-3 text-center">
       <button type="submit" class="btn btn-primary btn-lg">Submit</button>
       </div>
-      </form> -->
+      </form>
       </div>
 
 
