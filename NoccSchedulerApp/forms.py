@@ -3,8 +3,6 @@ from django.forms import ModelForm, DateTimeInput, TextInput, Textarea, RadioSel
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from datetime import date
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, Submit, HTML
 
 
 class TourForm(ModelForm):
@@ -22,54 +20,6 @@ class TourForm(ModelForm):
         }
     def __init__(self, *args, **kwargs):
         super(TourForm, self).__init__(*args, **kwargs)
-
-        self.helper = FormHelper()
-        self.helper.form_show_labels = False
-        self.helper.help_text_inline = True
-        self.helper.layout = Layout(
-            Fieldset(
-                'Basic information',
-                'requestor_name',
-                'requestor_email',
-            ),
-            Fieldset(
-                'Point of Contact',
-                HTML('<span> The Point of Contact is the person who is responsible for this group from within Akamai and will escort them to the NOCC </span>'),
-                'poc_name',
-                'poc_email',
-                'cc_this_request_to',
-                HTML('<span>Division</span>'),
-                'division',
-            ),
-             Fieldset(
-                'Visit Details',
-                HTML('<span>Location</span>'),
-                'location',
-                HTML('<span>Date</span>'),
-                'date',
-                HTML('<span>Start time</span>'),
-                'start_time',
-                HTML('<span>End time</span>'),
-                'end_time',
-                HTML('<span>NOCC personnel required?</span>'),
-                'nocc_personnel_required',
-            ),
-            Fieldset(
-                'Visitors Details',
-                HTML('<span>Category</span>'),
-                'category',
-                HTML('<span>Attendees - Akamai</span>'),
-                'attendees_akamai',
-                HTML('<span>Attendees - Guest</span>'),
-                'attendees_guests',
-                'customer_or_group_name',
-            ),
-            Fieldset(
-                '',
-                'comment',
-            ),
-            Submit('submit', 'Submit', css_class='button white'),
-        )
 
         for name, field in self.fields.items():
             field.widget.attrs.update({
