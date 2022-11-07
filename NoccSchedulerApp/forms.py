@@ -11,7 +11,7 @@ class TourForm(ModelForm):
     class Meta:
         model = Tour
         #fields = '__all__'
-        exclude = ('identifier','status','nocc_person_assigned','feedback', 'tour_name', 'start_time', 'end_time')
+        exclude = ('id','status','nocc_person_assigned','feedback', 'tour_name', 'start_time', 'end_time')
         widgets = {
             'date': DateTimeInput(attrs={'type': 'date'}),
             'start_time': DateTimeInput(attrs={'type': 'time', 'min':'7:00','max': '19:00', "step": "900"}),
