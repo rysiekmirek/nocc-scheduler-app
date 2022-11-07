@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
@@ -19,6 +20,8 @@ class Location(models.Model):
     avail_end_time = models.TimeField()
     time_slots = models.TimeField()
     nocc_representatives_list = models.CharField(max_length=2000)
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                            primary_key=True, editable=False)
 
 
 class Tour(models.Model):
@@ -105,7 +108,7 @@ class Tour(models.Model):
     feedback = models.TextField(
         max_length=2000, null=True, blank=True, default="No feedback yet")
     created = models.DateTimeField(auto_now_add=True)
-    id = models.UUIDField(unique=True, primary_key=True, editable=True)
+    id = models.UUIDField(unique=True, editable=True)
 
     STATUS_CHOICES = [
         ('Requested', 'Requested'),
