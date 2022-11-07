@@ -177,8 +177,8 @@ def new_tour(request):
         dbentry = form.save(commit=False)
         uuid_value = uuid.uuid4()
         dbentry.id = uuid_value
-        dbentry.start_time = form.time_slot_selection[0]
-        dbentry.end_time = form.time_slot_selection[1]
+        dbentry.start_time = datetime.strptime(form.time_slot_selection[0], '%H::%M').time()
+        dbentry.end_time = datetime.strptime(form.time_slot_selection[1], '%H::%M').time()
         print (dbentry, form, dbentry.start_time , dbentry.end_time )
         if dbentry.is_valid():
             dbentry.save()
