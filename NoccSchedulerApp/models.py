@@ -60,7 +60,6 @@ class Tour(models.Model):
         ('Bangalore', 'Bangalore')
     ]
     location = models.CharField(max_length=100, choices=LOCATION_CHOICES, default='Cambridge')
-    #location = models.ForeignKey(Location, on_delete=models.CASCADE)
 
     date = models.DateField()
     start_time = models.TimeField()
