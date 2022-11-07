@@ -108,7 +108,7 @@ class Tour(models.Model):
     feedback = models.TextField(
         max_length=2000, null=True, blank=True, default="No feedback yet")
     created = models.DateTimeField(auto_now_add=True)
-    idetifier = models.UUIDField(unique=True, editable=True)
+    id = models.UUIDField(unique=True, primary_key=True, editable=True)
 
     STATUS_CHOICES = [
         ('Requested', 'Requested'),
