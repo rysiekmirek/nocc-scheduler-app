@@ -9,7 +9,7 @@
     <h3>New tour request form </h3>
         <hr>
         <label for="time_slot_selection">Choose time slot of the tour - test</label>
-        <select class="form-select" id="time_slot_selection">
+        <select class="form-select" id="time_slot_selection" name="time_slot_selection">
           <option selected>Choose time slot</option>
           {% for slot in avail %}
           <option value="{{ slot }}">{{ slot.0 }} - {{ slot.1 }}</option>
