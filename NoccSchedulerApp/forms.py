@@ -1,11 +1,14 @@
 from .models import Tour, Location
-from django.forms import ModelForm, DateTimeInput, TextInput, Textarea, RadioSelect
+from django.forms import ModelForm, DateTimeInput, TextInput, Textarea, RadioSelect, CharField
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from datetime import date
 
 
 class TourForm(ModelForm):
+
+    time_slot_selection = CharField(label='Time slot selection')
+
     class Meta:
         model = Tour
         #fields = '__all__'
