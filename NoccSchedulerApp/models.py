@@ -56,7 +56,6 @@ class Tour(models.Model):
         default='P & RE',
     )
 
-    
     LOCATION_CHOICES = [
         ('Cambridge', 'Cambridge'),
         ('Krakow', 'Krakow'),
