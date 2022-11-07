@@ -178,7 +178,7 @@ def new_tour(request):
             form.is_valid()
             dbentry = form.save(commit=False)
             uuid_value = uuid.uuid4()
-            dbentry.id = uuid_value
+            dbentry.identifier = uuid_value
             dbentry.save()
             messages.success(request, 'Your tour has been submited and confirmation email sent to You. Please wait for approval from local NOCC representative.')
             tour_data = Tour.objects.filter(id=uuid_value).values()[0]
