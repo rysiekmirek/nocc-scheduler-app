@@ -1,5 +1,5 @@
 from .models import Tour, Location
-from django.forms import ModelForm, DateTimeInput, TextInput, Textarea, RadioSelect, CharField
+from django.forms import ModelForm, DateTimeInput, TextInput, Textarea, RadioSelect, CharField, ChoiceField
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from datetime import date
@@ -7,7 +7,14 @@ from datetime import date
 
 class TourForm(ModelForm):
 
-    time_slot_selection = CharField(label='Time slot selection')
+    TIME_SLOTS = (
+        (('7:00', '8:00'), '7:00 - 8:00'),
+        (('9:00', '10:00'), '9:00 - 10:00'),
+        (('11:00', '12:00'), '11:00 - 12:00'),
+        (('13:00', '14:00'), '13:00 - 14:00'),
+        )
+    
+    time_slot_selection = ChoiceField(label='Time slot selection', choices=TIME_SLOTS)
 
     class Meta:
         model = Tour
