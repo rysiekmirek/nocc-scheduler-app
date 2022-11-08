@@ -76,7 +76,7 @@ class Tour(models.Model):
     nocc_personnel_required = models.CharField(
         max_length=10,
         choices=NOCC_REQUIRED_CHOICES,
-        default='no',
+        default='No',
     )
     CATEGORY_CHOICES = [
         ('existing customer', 'Existing Customer'),
