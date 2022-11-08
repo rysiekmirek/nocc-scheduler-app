@@ -174,8 +174,8 @@ def new_tour(request):
 
     if request.method == 'POST':
         form = TourForm(request.POST)
-        time_slot_selection = request.POST['time_slot_selection']
-        print(time_slot_selection)
+        start_time, end_time = request.POST['time_slot_selection'].split("-")
+        print(start_time, end_time)
         dbentry = form.save(commit=False)
         print (dbentry)
         #print (datetime.strptime(dbentry.time_slot_selection, "%H:%M").time())
