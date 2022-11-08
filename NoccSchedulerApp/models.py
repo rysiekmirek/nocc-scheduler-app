@@ -14,18 +14,17 @@ class Location(models.Model):
         ('Bangalore', 'Bangalore')
     ]
     location = models.CharField(max_length=100, choices=LOCATION_CHOICES, default='Cambridge')
-    
-    avail_start_date = models.DateField()
-    avail_end_date = models.DateField()
-    avail_start_time = models.TimeField()
-    avail_end_time = models.TimeField()
-    time_interval= models.TimeField(default=datetime.strptime("01:00", "%H:%M").time())
-    time_slots = models.TextField(max_length=5000)
     nocc_representatives_list = models.CharField(max_length=2000)
 
     def __str__(self):
         return self.location
 
+class Availability(models.Model):
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    avail_date = models.DateField()
+    time_slots = models.TextField(max_length=5000)
+    def __str__(self):
+        return str(self.location) + "x" + str(self.avail_date)
 
 class Tour(models.Model):
     tour_name = models.CharField(max_length=300)
