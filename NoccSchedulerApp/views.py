@@ -181,7 +181,7 @@ def new_tour(request):
         dbentry.id = uuid_value
         dbentry.start_time = datetime.strptime("07:00", "%H:%M").time()
         dbentry.end_time = datetime.strptime("08:00", "%H:%M").time()
-        print (dbentry, form, dbentry.start_time , dbentry.end_time )
+        print (dbentry, dbentry.start_time , dbentry.end_time )
         
         dbentry.save()
         messages.success(request, 'Your tour has been submited and confirmation email sent to You. Please wait for approval from local NOCC representative.')
