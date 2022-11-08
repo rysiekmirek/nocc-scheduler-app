@@ -36,7 +36,7 @@ class TourForm(ModelForm):
                 'class': 'form-control form-control-sm',
                 'placeholder': field.label,
                 })
-
+"""
     def clean(self):
         cleaned_data = super().clean()
         date = cleaned_data.get('date')
@@ -61,7 +61,7 @@ class TourForm(ModelForm):
                         'start_time': ValidationError(_('Tour can\'t overlap existing tour')),
                         'end_time': ValidationError(_('Tour can\'t overlap existing tour'))})
 
-
+"""
 
 class TourFormEdit(ModelForm):
     class Meta:
