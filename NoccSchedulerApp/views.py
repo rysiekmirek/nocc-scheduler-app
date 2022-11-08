@@ -180,8 +180,8 @@ def new_tour(request):
         #print (datetime.strptime(dbentry.time_slot_selection, "%H:%M").time())
         uuid_value = uuid.uuid4()
         dbentry.id = uuid_value
-        dbentry.start_time = datetime.strptime(start_time, "%H:%M").time()
-        dbentry.end_time = datetime.strptime(end_time, "%H:%M").time()
+        dbentry.start_time = datetime.strptime(start_time, "%H:%M:S").time()
+        dbentry.end_time = datetime.strptime(end_time, "%H:%M:%S").time()
         print (dbentry, dbentry.start_time , dbentry.end_time )
         
         dbentry.save()
