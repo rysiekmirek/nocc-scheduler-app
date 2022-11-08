@@ -19,7 +19,7 @@ class Location(models.Model):
     avail_start_time = models.TimeField()
     avail_end_time = models.TimeField()
     time_interval= models.TimeField()
-    time_slots = models.CharField()
+    time_slots = models.CharField(max_length=5000)
     nocc_representatives_list = models.CharField(max_length=2000)
 
     def __str__(self):
