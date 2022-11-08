@@ -22,8 +22,8 @@ class TourForm(ModelForm):
         exclude = ('id','status','nocc_person_assigned','feedback', 'tour_name')
         widgets = {
             'date': DateTimeInput(attrs={'type': 'date'}),
-            'start_time': DateTimeInput(attrs={'type': 'time', 'min':'7:00','max': '19:00', "step": "900"}),
-            'end_time': DateTimeInput(attrs={'type': 'time'}),
+            'start_time': DateTimeInput(attrs={'type': 'time', 'min':'7:00','max': '19:00', "step": "900", 'type': 'hidden'}),
+            'end_time': DateTimeInput(attrs={'type': 'time', 'type': 'hidden'}),
             'comment': Textarea(attrs={'rows':1, 'cols':50}),
             'attendees_guests': TextInput(attrs={'min':0,'max': '50','type': 'number'}),
             'attendees_akamai': TextInput(attrs={'min':0,'max': '50','type': 'number'})
