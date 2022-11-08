@@ -18,7 +18,7 @@ class Location(models.Model):
     avail_end_date = models.DateField()
     avail_start_time = models.TimeField()
     avail_end_time = models.TimeField()
-    time_interval= models.TimeField()
+    time_interval= models.TimeField(default="01:00")
     time_slots = models.CharField(max_length=5000)
     nocc_representatives_list = models.CharField(max_length=2000)
 
