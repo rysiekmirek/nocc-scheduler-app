@@ -8,10 +8,10 @@ from datetime import date
 class TourForm(ModelForm):
 
     TIME_SLOTS = (
-        ('7:00 - 8:00', '7:00 - 8:00'),
-        ('9:00 - 10:00', '9:00 - 10:00'),
-        ('11:00 - 12:00', '11:00 - 12:00'),
-        ('13:00 - 14:00', '13:00 - 14:00'),
+        ('7:00-8:00', '7:00 - 8:00'),
+        ('9:00-10:00', '9:00 - 10:00'),
+        ('11:00-12:00', '11:00 - 12:00'),
+        ('13:00-14:00', '13:00 - 14:00'),
         )
     
     time_slot_selection = ChoiceField(label='Time slot selection', choices=TIME_SLOTS)
