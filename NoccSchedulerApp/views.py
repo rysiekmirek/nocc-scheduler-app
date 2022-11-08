@@ -175,7 +175,7 @@ def new_tour(request):
     if request.method == 'POST':
         form = TourForm(request.POST)
         dbentry = form.save(commit=False)
-        print (datetime.strptime(dbentry.time_slot_selection[0], "%H:%M").time())
+        print (datetime.strptime(dbentry.time_slot_selection, "%H:%M").time())
         uuid_value = uuid.uuid4()
         dbentry.id = uuid_value
         dbentry.start_time = datetime.strptime("07:00", "%H:%M").time()
