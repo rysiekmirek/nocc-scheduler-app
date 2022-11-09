@@ -23,18 +23,25 @@
       
         <fieldset>
           <legend>Basic Information</legend>
+          <div class="row">
+            <div class="col">
           <div class="form-floating my-2">
             {{ form.requestor_name }}
             <label class="px-4" for="{{ form.requestor_name.id_for_label}}"> {{ form.requestor_name.label }} </label>
             <i><small style="color:#9e9e9e">{{form.requestor_name.help_text}}</small></i></th>
             <i><small style="color:#e70a0a"> {{form.requestor_name.errors }} </small></i>
           </div>
+          </div>
+          <div class="col">
           <div class="form-floating my-2">
             {{ form.requestor_email }}
             <label class="px-4" for="{{ form.requestor_email.id_for_label }}"> {{ form.requestor_email.label }} </label>
             <i><small style="color:#9e9e9e">{{form.requestor_email.help_text}}</small></i></th>
             <i><small style="color:#e70a0a"> {{form.requestor_email.errors }} </small></i>
             </div>
+            </div>
+
+          </div>
         </fieldset>
 
         <fieldset>
