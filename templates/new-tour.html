@@ -175,6 +175,14 @@
            </div>
          </div>
 
+         <div class="row">
+          <div class="form-floating my-2">
+             {{ form.comment }}
+             <label class="px-4" for="{{ form.comment.id_for_label}}"> Comment </label>
+             <i><small style="color:#e70a0a"> {{form.comment.errors }} </small></i>
+           </div>
+         </div>
+
 
       </fieldset>
 
