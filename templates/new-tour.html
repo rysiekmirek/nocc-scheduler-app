@@ -78,6 +78,69 @@
       </fieldset>
 
 
+
+      <fieldset class="rounded border p-2 my-2">
+        <legend>Visit details</legend>
+        <div class="row">
+          <div class="col">
+        <div class="form-floating my-2">
+          {{ form.location }}
+          <label class="px-4" for="{{ form.location.id_for_label}}"> {{ form.location.label }} </label>
+          <i><small style="color:#e70a0a"> {{form.location.errors }} </small></i>
+        </div>
+        </div>
+        <div class="col">
+        <div class="form-floating my-2">
+          {{ form.nocc_personnel_required }}
+          <label class="px-4" for="{{ form.nocc_personnel_required.id_for_label }}"> {{ form.nocc_personnel_required.label }} </label>
+          <i><small style="color:#e70a0a"> {{form.nocc_personnel_required.errors }} </small></i>
+          </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+        <div class="form-floating my-2">
+          {{ form.date }}
+          <label class="px-4" for="{{ form.date.id_for_label}}"> {{ form.date.label }} </label>
+          <i><small style="color:#e70a0a"> {{form.date.errors }} </small></i>
+        </div>
+        </div>
+        <div class="col">
+        <div class="form-floating my-2">
+          {{ form.time_slot_selection }}
+          <label class="px-4" for="{{ form.time_slot_selection.id_for_label }}"> {{ form.time_slot_selection.label }} </label>
+          <i><small style="color:#e70a0a"> {{form.time_slot_selection.errors }} </small></i>
+          </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="rounded border p-2 my-2">
+        <legend>Visit details</legend>
+        <div class="row">
+          <div class="col">
+        <div class="form-floating my-2">
+          {{ form.attendees_akamai }}
+          <label class="px-4" for="{{ form.attendees_akamai .id_for_label}}"> Attendees - Akamai </label>
+          <i><small style="color:#e70a0a"> {{form.attendees_akamai .errors }} </small></i>
+        </div>
+        </div>
+        <div class="col">
+        <div class="form-floating my-2">
+          {{ form.attendees_guests }}
+          <label class="px-4" for="{{ form.attendees_guests.id_for_label }}"> Attendees - Guest </label>
+          <i><small style="color:#e70a0a"> {{form.attendees_guests.errors }} </small></i>
+          </div>
+          </div>
+        </div>
+
+
+
+      </fieldset>
+
+
+
       </div>
 
 

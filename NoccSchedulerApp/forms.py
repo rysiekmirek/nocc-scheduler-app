@@ -41,7 +41,7 @@ class TourForm(ModelForm):
 
         for name, field in self.fields.items():
             field.widget.attrs.update({
-                'class': 'form-control form-control-md',
+                'class': 'form-control form-control-sm',
                 'placeholder': field.label,
                 })
 
