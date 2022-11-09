@@ -111,7 +111,7 @@ class Tour(models.Model):
         ('Manufacturing', 'Manufacturing'),
     ]
 
-    type_of_customers = models.CharField(max_length=200, label='Type of Customers', choices=TYPE_OF_CUSTOMERS)
+    type_of_customers = models.CharField(max_length=200, choices=TYPE_OF_CUSTOMERS)
     
     PERSON_ASSIGNED_CHOICES = [
         ('None', 'None'),
