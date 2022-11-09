@@ -167,13 +167,13 @@
           </label>
         </div>
 
-        <div class="row">
-          <div class="form-floating my-2">
+        
+          <div class="form-floating my-2" style='display:none;' id="opportunity_ID">
              {{ form.opportunity_ID }}
-             <label class="px-4" style='display:none;' for="{{ form.opportunity_ID.id_for_label}}"> Opportunity ID </label>
+             <label class="px-4" for="{{ form.opportunity_ID.id_for_label}}"> Opportunity ID </label>
              <i><small style="color:#e70a0a"> {{form.opportunity_ID.errors }} </small></i>
            </div>
-         </div>
+
         </fieldset>
 
       <fieldset class="rounded border p-2 my-2">
