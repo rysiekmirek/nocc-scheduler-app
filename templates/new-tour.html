@@ -117,7 +117,7 @@
       </fieldset>
 
       <fieldset class="rounded border p-2 my-2">
-        <legend>Visit details</legend>
+        <legend>Visitor Details</legend>
         <div class="row">
           <div class="col">
         <div class="form-floating my-2">
@@ -131,6 +131,23 @@
           {{ form.attendees_guests }}
           <label class="px-4" for="{{ form.attendees_guests.id_for_label }}"> Attendees - Guest </label>
           <i><small style="color:#e70a0a"> {{form.attendees_guests.errors }} </small></i>
+          </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+        <div class="form-floating my-2">
+          {{ form.customer_or_group_name }}
+          <label class="px-4" for="{{ form.customer_or_group_name.id_for_label}}"> Customer or Group Name </label>
+          <i><small style="color:#e70a0a"> {{form.customer_or_group_name.errors }} </small></i>
+        </div>
+        </div>
+        <div class="col">
+        <div class="form-floating my-2">
+          {{ form.type_of_customers }}
+          <label class="px-4" for="{{ form.type_of_customers.id_for_label }}"> Type of Customers </label>
+          <i><small style="color:#e70a0a"> {{form.type_of_customers.errors }} </small></i>
           </div>
           </div>
         </div>

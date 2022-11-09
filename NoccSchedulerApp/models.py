@@ -109,6 +109,7 @@ class Tour(models.Model):
         ('Gaming/OTT', 'Gaming/OTT'),
         ('Healthcare/Life Science', 'Healthcare/Life Science'),
         ('Manufacturing', 'Manufacturing'),
+        ('Other', 'Other'),
     ]
 
     type_of_customers = models.CharField(max_length=200, choices=TYPE_OF_CUSTOMERS)
