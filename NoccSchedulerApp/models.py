@@ -24,7 +24,7 @@ class Availability(models.Model):
     avail_date = models.DateField()
     time_slots = models.TextField(max_length=5000)
     def __str__(self):
-        return str(self.location) + "x" + str(self.avail_date)
+        return str(self.location) + "-" + str(self.avail_date)
 
 class Tour(models.Model):
     tour_name = models.CharField(max_length=300)
