@@ -28,7 +28,6 @@
           <div class="form-floating my-2">
             {{ form.requestor_name }}
             <label class="px-4" for="{{ form.requestor_name.id_for_label}}"> {{ form.requestor_name.label }} </label>
-            <i><small style="color:#9e9e9e">{{form.requestor_name.help_text}}</small></i></th>
             <i><small style="color:#e70a0a"> {{form.requestor_name.errors }} </small></i>
           </div>
           </div>
@@ -36,7 +35,6 @@
           <div class="form-floating my-2">
             {{ form.requestor_email }}
             <label class="px-4" for="{{ form.requestor_email.id_for_label }}"> {{ form.requestor_email.label }} </label>
-            <i><small style="color:#9e9e9e">{{form.requestor_email.help_text}}</small></i></th>
             <i><small style="color:#e70a0a"> {{form.requestor_email.errors }} </small></i>
             </div>
             </div>
@@ -51,20 +49,32 @@
           <div class="col">
         <div class="form-floating my-2">
           {{ form.poc_name }}
-          <label class="px-4" for="{{ form.poc_name.id_for_label}}"> {{ form.poc_name.label }} </label>
-          <i><small style="color:#9e9e9e">{{form.poc_name.help_text}}</small></i></th>
+          <label class="px-4" for="{{ form.poc_name.id_for_label}}"> POC Name </label>
           <i><small style="color:#e70a0a"> {{form.poc_name.errors }} </small></i>
         </div>
         </div>
         <div class="col">
         <div class="form-floating my-2">
           {{ form.poc_email }}
-          <label class="px-4" for="{{ form.poc_email.id_for_label }}"> {{ form.poc_email.label }} </label>
-          <i><small style="color:#9e9e9e">{{form.poc_email.help_text}}</small></i></th>
+          <label class="px-4" for="{{ form.poc_email.id_for_label }}"> POC Akamai email </label>
           <i><small style="color:#e70a0a"> {{form.poc_email.errors }} </small></i>
           </div>
           </div>
-
+        </div>
+        <div class="row">
+          <small>CC more people in order to receive feedback form and invitation to event once it has been approved</small>
+          <div class="form-floating my-2">
+            {{ form.cc_this_request_to }}
+            <label class="px-4" for="{{ form.cc_this_request_to.id_for_label}}"> CC this request to:</label>
+            <i><small style="color:#e70a0a"> {{form.cc_this_request_to.errors }} </small></i>
+          </div>
+        </div>
+        <div class="row">
+         <div class="form-floating my-2">
+            {{ form.division }}
+            <label class="px-4" for="{{ form.division.id_for_label}}"> Division </label>
+            <i><small style="color:#e70a0a"> {{form.division.errors }} </small></i>
+          </div>
         </div>
       </fieldset>
 
