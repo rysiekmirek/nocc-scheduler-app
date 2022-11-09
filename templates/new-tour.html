@@ -152,28 +152,39 @@
           </div>
         </div>
 
+        <div class="row">
+          <div class="form-floating my-2">
+             {{ form.category }}
+             <label class="px-4" for="{{ form.category.id_for_label}}"> Category </label>
+             <i><small style="color:#e70a0a"> {{form.category.errors }} </small></i>
+           </div>
+         </div>
+         
+         <div style='display:none;' class="form-check" id="has_opportunity_id">
+          <input class="form-check-input" type="checkbox" value="yes" id="oportunity_ID_checkbox">
+          <label class="form-check-label" for="oportunity_ID_checkbox">
+            I already have my Salesforce Opportunity ID
+          </label>
+        </div>
 
+        <div class="row">
+          <div class="form-floating my-2">
+             {{ form.opportunity_ID }}
+             <label class="px-4" for="{{ form.opportunity_ID.id_for_label}}"> Opportunity ID </label>
+             <i><small style="color:#e70a0a"> {{form.opportunity_ID.errors }} </small></i>
+           </div>
+         </div>
 
 
       </fieldset>
 
-
-
       </div>
 
-
-        <div style='display:none;' class="form-check" id="has_opportunity_id">
-      <input class="form-check-input" type="checkbox" value="yes" id="oportunity_ID_checkbox">
-      <label class="form-check-label" for="oportunity_ID_checkbox">
-        I already have my Salesforce Opportunity ID
-      </label>
-    </div>
-
-        <div style='display:none;' id='opportunity_ID'>Opportunity ID<br/>&nbsp;
+      <!--  <div style='display:none;' id='opportunity_ID'>Opportunity ID<br/>&nbsp;
       <br/>&nbsp;
           <input type='text' class='text' name='opportunity_ID' value size='20' />
           <br/>
-      </div>
+      </div> -->
 
 
         {{ form.non_field_errors }}

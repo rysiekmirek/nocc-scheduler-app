@@ -35,7 +35,7 @@ class TourForm(ModelForm):
             'comment': Textarea(attrs={'rows':1, 'cols':50}),
             'attendees_guests': TextInput(attrs={'min':0,'max': '50','type': 'number'}),
             'attendees_akamai': TextInput(attrs={'min':0,'max': '50','type': 'number'}),
-            'opportunity_ID': TextInput(attrs={'style':'display:none;'}),
+            'opportunity_ID': TextInput(attrs={'style':'display:none;', 'id':'opportunity_ID'}),
         }
     def __init__(self, *args, **kwargs):
         super(TourForm, self).__init__(*args, **kwargs)

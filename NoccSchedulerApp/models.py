@@ -125,6 +125,7 @@ class Tour(models.Model):
         choices=PERSON_ASSIGNED_CHOICES,
         default='None',
     )
+    
     comment = models.TextField(max_length=2000, null=True, blank=True)
     feedback = models.TextField(
         max_length=2000, null=True, blank=True, default="No feedback yet")
