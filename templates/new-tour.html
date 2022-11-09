@@ -6,7 +6,7 @@
     <div class="container-md mx-auto col-7">
       
       <h3 class="text-center"> New tour request form </h3>
-        <hr>
+        
        <form action="" method="post">
         {% csrf_token %}
         
@@ -174,6 +174,11 @@
              <i><small style="color:#e70a0a"> {{form.opportunity_ID.errors }} </small></i>
            </div>
          </div>
+
+        </fieldset>
+
+      <fieldset class="rounded border p-2 my-2">
+        <legend>Comment</legend>
 
          <div class="row">
           <div class="form-floating my-2">
