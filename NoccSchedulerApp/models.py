@@ -93,6 +93,7 @@ class Tour(models.Model):
         choices=CATEGORY_CHOICES,
         default='existing customer',
     )
+    opportunity_ID = models.CharField(max_length=300, null=True, blank=True)
 
     attendees_akamai = models.IntegerField(
         default=0, validators=[MinValueValidator(0), MaxValueValidator(50)])
