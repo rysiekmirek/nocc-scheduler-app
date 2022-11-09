@@ -91,7 +91,6 @@ class Tour(models.Model):
     category = models.CharField(
         max_length=50,
         choices=CATEGORY_CHOICES,
-        default='existing customer',
     )
     opportunity_ID = models.CharField(max_length=300, null=True, blank=True)
 
@@ -101,6 +100,18 @@ class Tour(models.Model):
         default=0, validators=[MinValueValidator(0), MaxValueValidator(50)])
 
     customer_or_group_name = models.CharField(max_length=200)
+
+    TYPE_OF_CUSTOMERS=[
+        ('Financial Services', 'Financial Services'),
+        ('Media', 'Media'),
+        ('High Tech', 'High Tech'),
+        ('Retail + Commerce', 'Retail + Commerce'),
+        ('Gaming/OTT', 'Gaming/OTT'),
+        ('Healthcare/Life Science', 'Healthcare/Life Science'),
+        ('Manufacturing', 'Manufacturing'),
+    ]
+
+    type_of_customers = models.ChoiceField(label='Time of Customers', choices=TYPE_OF_CUSTOMERS)
     
     PERSON_ASSIGNED_CHOICES = [
         ('None', 'None'),
