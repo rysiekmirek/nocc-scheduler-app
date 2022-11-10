@@ -7,10 +7,6 @@ from datetime import date
 
 class TourForm(ModelForm):
 
-    TIME_SLOTS = ()
-    
-    time_slot_selection = ChoiceField(label='Time slot selection', choices=TIME_SLOTS)
-
     class Meta:
         model = Tour
         #fields = '__all__'
