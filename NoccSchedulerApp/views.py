@@ -213,7 +213,7 @@ def new_tour(request):
 
     form = TourForm()
     context={
-        'availability': Availability.objects.filter(location="Krakow", date="2022-11-13"),
+        'availability': Availability.objects.filter(location="Krakow", avail_date="2022-11-13"),
         'form': form,
     }
     return render (request, "new-tour.html", context)
