@@ -206,13 +206,11 @@
       </div>
       </form>
 
-      {{time_slots}}
 
-      {{availability}}
       
-      {% for avail in availability %}
+      {% for slot in time_slots %}
 
-      {{avail.time_slots}}
+      {{slot.0}} --- {{slot.1}}
 
       {% endfor %}
 
