@@ -108,6 +108,7 @@
         </div>
         <div class="col">
         <div class="form-floating my-2">
+                                                      <!-- time slot selection-->
           {{ form.time_slot_selection }}
           <label class="px-4" for="{{ form.time_slot_selection.id_for_label }}"> {{ form.time_slot_selection.label }} </label>
           <i><small style="color:#e70a0a"> {{form.time_slot_selection.errors }} </small></i>
@@ -204,6 +205,13 @@
       <button type="submit" class="btn btn-primary btn-lg">Submit</button>
       </div>
       </form>
+
+      {% for avail in availability %}
+
+      {{avail}}
+
+      {% endfor %}
+
     </div>
     
 

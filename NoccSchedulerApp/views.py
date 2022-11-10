@@ -213,6 +213,7 @@ def new_tour(request):
 
     form = TourForm()
     context={
+        'availability': Availability.objects.all(),
         'form': form,
     }
     return render (request, "new-tour.html", context)
