@@ -110,6 +110,11 @@
         <div class="form-floating my-2">
                                                       <!-- time slot selection-->
           {{ form.time_slot_selection }}
+
+          {% for slot in time_slots %}
+          <option value="{{slot}}">{{slot}}</option>{{slot}}
+          {% endfor %}
+
           <label class="px-4" for="{{ form.time_slot_selection.id_for_label }}"> {{ form.time_slot_selection.label }} </label>
           <i><small style="color:#e70a0a"> {{form.time_slot_selection.errors }} </small></i>
           </div>
@@ -206,13 +211,6 @@
       </div>
       </form>
 
-        {{time_slots}}
-      
-      {% for slot in time_slots %}
-
-      {{slot}}
-
-      {% endfor %}
 
     </div>
     
