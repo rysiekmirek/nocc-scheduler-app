@@ -207,11 +207,14 @@
       </form>
 
       {{location_id}}
+
+      {{availability}}
       
-      {{availability}}}
+      {{% for avail in availability %}}
 
       {{avail}}
 
+      {% endfor %}
 
     </div>
     
