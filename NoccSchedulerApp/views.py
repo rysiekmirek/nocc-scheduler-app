@@ -212,7 +212,7 @@ def new_tour(request):
 
 
     form = TourForm()
-    location_id = Location.objects.filter(location="Krakow").values()[0]
+    location_id = Location.objects.filter(location="Krakow").values()
     context={
         'location_id': location_id,
         'availability': Availability.objects.filter(avail_date="2022-11-13").values(),
