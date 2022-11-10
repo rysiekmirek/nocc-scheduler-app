@@ -109,12 +109,12 @@
         <div class="col">
         <div class="form-floating my-2">
                                                       <!-- time slot selection-->
-          <select id="{{ form.time_slot_selection.id_for_label }}" name="time_slot_selection" class="form-control form-control-sm" placeholder="Time slot selection">
+          <select id="id_time_slot_selection" name="time_slot_selection" class="form-control form-control-sm" placeholder="Time slot selection">
           {% for slot in time_slots %}
           <option value="{{slot}}">{{slot}}</option>{{slot}}
           {% endfor %}
           </select>
-          <label class="px-4" for="{{ form.time_slot_selection.id_for_label }}"> {{ form.time_slot_selection.label }} </label>
+          <label class="px-4" for="id_time_slot_selection"> Time slot selection </label>
           <i><small style="color:#e70a0a"> {{form.time_slot_selection.errors }} </small></i>
           </div>
           </div>
