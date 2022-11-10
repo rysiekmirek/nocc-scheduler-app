@@ -214,7 +214,7 @@ def new_tour(request):
     form = TourForm()
     location_id = Location.objects.filter(location="Krakow").values()[0]['id']
     context={
-        'time_slots': tuple(Availability.objects.filter(avail_date="2022-11-13",location_id=location_id).values()[0]['time_slots']),
+        'time_slots': Availability.objects.filter(avail_date="2022-11-13",location_id=location_id).values()[0]['time_slots'],
         'form': form,
     }
     return render (request, "new-tour.html", context)
