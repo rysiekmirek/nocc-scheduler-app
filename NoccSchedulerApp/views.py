@@ -186,10 +186,10 @@ def new_tour(request):
         dbentry.save()
         #date_of_tour = datetime.strptime(dbentry.date,"%Y-%M-%D").date
         print (dbentry.date)
-        #availability_update=Availability.objects.filter(avail_date=dbentry.date).filter(location=dbentry.location).values()[0]['time_slots']
-        availability_update=Availability.objects.get(avail_date=dbentry.date, location=dbentry.location)
+        availability_update_time_slots=Availability.objects.filter(avail_date=dbentry.date).filter(location=dbentry.location).values()[0]['time_slots']
+        availability_update_entry=Availability.objects.get(avail_date=dbentry.date, location=dbentry.location)
 
-        print(availability_update)
+        print(availability_update_time_slots)
 
         messages.success(request, 'Your tour has been submited and confirmation email sent to You. Please wait for approval from local NOCC representative.')
         tour_data = Tour.objects.filter(id=uuid_value).values()[0]
