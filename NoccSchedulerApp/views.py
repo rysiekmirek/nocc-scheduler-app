@@ -194,6 +194,8 @@ def new_tour(request):
         time_slots_updated = availability_entry.time_slots.replace(r['time_slot_selection'] + ",",'',1)
 
         print(time_slots_updated)
+        availability_entry.time_slots = time_slots_updated
+        availability_entry.save()
 
         messages.success(request, 'Your tour has been submited and confirmation email sent to You. Please wait for approval from local NOCC representative.')
         tour_data = Tour.objects.filter(id=uuid_value).values()[0]
