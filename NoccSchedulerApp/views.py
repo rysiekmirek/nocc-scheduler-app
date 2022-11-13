@@ -191,7 +191,7 @@ def new_tour(request):
 
         print(availability_entry.time_slots)
 
-        time_slots_updated = availability_entry.time_slots.replace(r['time_slot_selection'],'',1)
+        time_slots_updated = availability_entry.time_slots.replace(r['time_slot_selection'] + ",",'',1)
 
         print(time_slots_updated)
 
