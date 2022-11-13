@@ -175,19 +175,20 @@ def new_tour(request):
     if request.method == 'POST':
         form = TourForm(request.POST)
         r = request.POST
-        start_time, end_time = r['time_slot_selection'].split("-")
-        print(start_time, end_time)
+        start_time, end_time = r['time_slot_selection'].replace(' ','').split("-")
         dbentry = form.save(commit=False)
-        #print (datetime.strptime(dbentry.time_slot_selection, "%H:%M").time())
-        
         dbentry.tour_name = str(r['customer_or_group_name']) + "--" + str(r['category']) + "--" + str(r['date'])
         uuid_value = uuid.uuid4()
         dbentry.id = uuid_value
         dbentry.start_time = datetime.strptime(start_time, "%H:%M").time()
         dbentry.end_time = datetime.strptime(end_time, "%H:%M").time()
         print (dbentry, dbentry.start_time , dbentry.end_time )
-        
         dbentry.save()
+
+        availability_update=Availability.objects.filter(location=dbentry.location, avail_date=dbentry.avail_date)
+
+        print(availability_update)
+
         messages.success(request, 'Your tour has been submited and confirmation email sent to You. Please wait for approval from local NOCC representative.')
         tour_data = Tour.objects.filter(id=uuid_value).values()[0]
         subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data['tour_name'] + " \" was requested, please wait for approval email"
