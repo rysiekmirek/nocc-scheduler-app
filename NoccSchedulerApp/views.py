@@ -186,7 +186,7 @@ def new_tour(request):
         dbentry.save()
         #date_of_tour = datetime.strptime(dbentry.date,"%Y-%M-%D").date
         print (dbentry.date)
-        availability_update=Availability.objects.filter(avail_date=dbentry.date).filter(location=dbentry.location).values()[0]
+        availability_update=Availability.objects.filter(avail_date=dbentry.date).filter(location=dbentry.location).values()[0]['time_slots']
 
         print(availability_update)
 
