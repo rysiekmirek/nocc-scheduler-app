@@ -185,7 +185,7 @@ def new_tour(request):
         print (dbentry, dbentry.start_time , dbentry.end_time )
         dbentry.save()
 
-        availability_update=Availability.objects.filter(location=dbentry.location, avail_date=dbentry.avail_date)
+        availability_update=Availability.objects.filter(location=dbentry.location, avail_date=dbentry.date)
 
         print(availability_update)
 
