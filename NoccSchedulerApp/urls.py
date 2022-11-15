@@ -30,6 +30,6 @@ urlpatterns = [
     path('status-change/<str:pk>/', views.status_change, name='status_change'),
     path('ask-for-feedback/<str:pk>/', views.ask_for_feedback, name='ask_for_feedback'),
     path('feedback/<str:pk>/', views.feedback, name='feedback'),
-    path('location_date_change/', views.location_date_change, name='location_date_change'),
+    path('new-tour/<str:location>', views.location_date_change, name='location_date_change'),
     path('', views.main, name = 'main' ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
