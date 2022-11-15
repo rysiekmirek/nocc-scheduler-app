@@ -222,7 +222,22 @@ def new_tour(request):
     form = TourForm()
     location = Location.objects.get(location="Krakow")
     context={
+        'locations': Location.objects.all(),
         'time_slots': Availability.objects.filter(avail_date="2022-11-18", location=location.id).values()[0]['time_slots'].split(','),
         'form': form,
     }
     return render (request, "new-tour.html", context)
+
+
+def location_date_change(request):
+    if request.method == 'POST':
+        form = TourForm(request.POST)
+        r=request.POST
+        location = Location.objects.get(location="Krakow")
+        
+        context = {
+            'time_slot_selection': Availability.objects.filter(avail_date="2022-11-18", location=location.id).values()[0]['time_slots'].split(','),
+            'form': TourForm(initial=form)
+        }
+
+        return render(request, "new-tour.html", context)
