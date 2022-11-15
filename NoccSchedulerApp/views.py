@@ -184,9 +184,7 @@ def new_tour(request):
         dbentry.end_time = datetime.strptime(end_time, "%H:%M").time()
         print (dbentry, dbentry.start_time , dbentry.end_time )
         dbentry.save()
-        #date_of_tour = datetime.strptime(dbentry.date,"%Y-%M-%D").date
         print (dbentry.date)
-        #availability_update_time_slots=Availability.objects.filter(avail_date=dbentry.date).filter(location=dbentry.location).values()[0]['time_slots']
         availability_entry=Availability.objects.get(avail_date=dbentry.date, location=dbentry.location)
 
         print(availability_entry.time_slots)
@@ -222,9 +220,9 @@ def new_tour(request):
 
 
     form = TourForm()
-    location_id = Location.objects.filter(location="Krakow").values()[0]['id']
+    #location_id = Location.objects.filter(location="Krakow").values()[0]['id']
     context={
-        'time_slots': Availability.objects.filter(avail_date="2022-11-18",location_id=location_id).values()[0]['time_slots'].split(','),
+        'time_slots': Availability.objects.filter(avail_date="2022-11-18",location="Krakow").values()[0]['time_slots'].split(','),
         'form': form,
     }
     return render (request, "new-tour.html", context)
