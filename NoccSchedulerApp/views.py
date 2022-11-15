@@ -174,6 +174,16 @@ def new_tour(request):
 
     if request.method == 'POST':
         form = TourForm(request.POST)
+        if form.is_valid() == False:
+            r=request.POST
+            location = r['location']
+            date= r['date']
+            context = {
+            'time_slot_selection': Availability.objects.filter(avail_date=date, location=location).values()[0]['time_slots'].split(','),
+            'form': TourForm(initial=form)
+            }
+            return render(request, "new-tour.html", context)
+
         r = request.POST
         start_time, end_time = r['time_slot_selection'].replace(' ','').split("-")
         dbentry = form.save(commit=False)
