@@ -89,7 +89,7 @@
             {% for location in locations %}
             <option value="{{location.loacation}}">{{location.loacation}}</option>{{slot}}
             {% endfor %}
-
+          </select>
           <label class="px-4" for="{{ form.location.id_for_label}}"> {{ form.location.label }} </label>
           <i><small style="color:#e70a0a"> {{form.location.errors }} </small></i>
         </div>
