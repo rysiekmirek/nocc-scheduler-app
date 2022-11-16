@@ -174,12 +174,13 @@ def new_tour(request):
     if request.method == 'POST':
         form = TourForm(request.POST)
         if form.is_valid() == False:
+            form_data=form.save(commit=False)
             r=request.POST
             location = Location.objects.get(location=r['location'])
             date= r['date']
             context = {
             'time_slots': Availability.objects.filter(avail_date=date, location=location.id).values()[0]['time_slots'].split(','),
-            'form': TourForm()
+            'form': TourForm(initial=form_data)
             }
             print(context)
             return render(request, "new-tour.html", context)
