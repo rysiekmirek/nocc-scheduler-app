@@ -240,14 +240,3 @@ def new_tour(request):
     return render (request, "new-tour.html", context)
 
 
-def location_date_change(request, location):
-    if request.method == 'POST':
-        form = TourForm(request.POST)
-        r=request.POST
-        
-        context = {
-            'time_slot_selection': Availability.objects.filter(avail_date="2022-11-18", location=location).values()[0]['time_slots'].split(','),
-            'form': TourForm(initial=form)
-        }
-
-        return render(request, "new-tour.html", context)
