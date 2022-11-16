@@ -182,6 +182,7 @@ def new_tour(request):
             'time_slots': Availability.objects.filter(avail_date=date, location=location.id).values()[0]['time_slots'].split(','),
             'form': TourForm(initial=form)
             }
+            print(context)
             return render(request, "new-tour.html", context)
 
         r = request.POST
