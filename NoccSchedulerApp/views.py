@@ -180,6 +180,7 @@ def new_tour(request):
             date= r['date']
             context = {
             'locations': Location.objects.all(),
+            'selected_location': location,
             'time_slots': Availability.objects.filter(avail_date=date, location=location.id).values()[0]['time_slots'].split(','),
             'form': TourForm(initial=tour_data)
             }

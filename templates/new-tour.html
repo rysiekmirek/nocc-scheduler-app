@@ -86,9 +86,13 @@
         <div class="form-floating my-2">
           <select onchange="this.form.submit()" class="form-control form-control-sm" id="id_location" name="location" required >
             <option disabled selected value >Choose location</option>
-            {% for location in locations %}
-            <option value="{{location}}">{{location}}</option>{{slot}}
-            {% endfor %}
+            {%for location in locations %}
+            {% if location == selected_location %}
+            <option value="{{selected_location}}" selected value>{{selected_location}}</option>
+            {%else%}
+            <option value="{{location}}">{{location}}</option>
+            {%endif%}
+            {%endfor%}
           </select>
           <label class="px-4" for="{{ form.location.id_for_label}}"> {{ form.location.label }} </label>
           <i><small style="color:#e70a0a"> {{form.location.errors }} </small></i>
