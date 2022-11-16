@@ -39,24 +39,16 @@
         </div>
         </div>
         <div class="col">
-        <div class="form-floating my-2">
-          {{ form.nocc_personnel_required }}
-          <label class="px-4" for="{{ form.nocc_personnel_required.id_for_label }}"> {{ form.nocc_personnel_required.label }} </label>
-          <i><small style="color:#e70a0a"> {{form.nocc_personnel_required.errors }} </small></i>
+          <div class="form-floating my-2">
+            {{ form.date }}
+            <label class="px-4" for="{{ form.date.id_for_label}}"> {{ form.date.label }} </label>
+            <i><small style="color:#e70a0a"> {{form.date.errors }} </small></i>
           </div>
           </div>
         </div>
 
         <div class="row">
-          <div class="col">
-        <div class="form-floating my-2">
-          {{ form.date }}
-          <label class="px-4" for="{{ form.date.id_for_label}}"> {{ form.date.label }} </label>
-          <i><small style="color:#e70a0a"> {{form.date.errors }} </small></i>
-        </div>
-        </div>
-
-
+    
         <div class="col">
         <div class="form-floating my-2">
           <select id="id_time_slot_selection" name="time_slot_selection" class="form-control form-control-sm" placeholder="Time slot selection" required>
@@ -68,6 +60,16 @@
           <label class="px-4" for="id_time_slot_selection"> Time slot selection </label>
           </div>
           </div>
+
+          <div class="col">
+            <div class="form-floating my-2">
+              {{ form.nocc_personnel_required }}
+              <label class="px-4" for="{{ form.nocc_personnel_required.id_for_label }}"> {{ form.nocc_personnel_required.label }} </label>
+              <i><small style="color:#e70a0a"> {{form.nocc_personnel_required.errors }} </small></i>
+              </div>
+              </div>
+
+
         </div>        
       </fieldset>
       
