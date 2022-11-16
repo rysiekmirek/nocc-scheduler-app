@@ -176,6 +176,7 @@ def new_tour(request):
         if form.is_valid() == False:
             r=request.POST
             tour_data= r.dict()
+            print(tour_data)
             location = Location.objects.get(location=r['location'])
             date= r['date']
             context = {
@@ -186,6 +187,8 @@ def new_tour(request):
             }
             print(context)
             return render(request, "new-tour.html", context)
+        
+           
 
         r = request.POST
         start_time, end_time = r['time_slot_selection'].replace(' ','').split("-")
@@ -236,7 +239,7 @@ def new_tour(request):
     location = Location.objects.get(location="Krakow")
     context={
         'locations': Location.objects.all(),
-        'time_slots': Availability.objects.filter(avail_date="2022-11-18", location=location.id).values()[0]['time_slots'].split(','),
+        'time_slots': None, """Availability.objects.filter(avail_date="2022-11-18", location=location.id).values()[0]['time_slots'].split(','),"""
         'form': form,
     }
     return render (request, "new-tour.html", context)
