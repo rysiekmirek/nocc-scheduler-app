@@ -120,8 +120,7 @@ def ask_for_feedback(request, pk):
     msg = EmailMessage(subject, html_content, from_email, to)
     msg.content_subtype = "html"
     msg.send()
-    messages.success(
-        request, 'Invitation for after-tour survey sent to requestor')
+    messages.success(request, 'Invitation for after-tour survey sent to requestor')
 
     return redirect("/tour-details/"+pk)
 
@@ -180,7 +179,7 @@ def new_tour(request):
             date= r['date']
             context = {
             'time_slots': Availability.objects.filter(avail_date=date, location=location.id).values()[0]['time_slots'].split(','),
-            'form': TourForm(initial=form)
+            'form': TourForm()
             }
             print(context)
             return render(request, "new-tour.html", context)
