@@ -178,7 +178,7 @@ def new_tour(request):
             tour_data= r.dict()
             location = Location.objects.get(location=tour_data['location'])
             date = tour_data['date']
-            #print(tour_data)
+            print(tour_data)
             if tour_data['location'] != '' and tour_data['date'] != '':
                 context = {
                 'locations': Location.objects.all(),
