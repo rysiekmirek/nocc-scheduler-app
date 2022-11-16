@@ -176,20 +176,31 @@ def new_tour(request):
         if form.is_valid() == False:
             r=request.POST
             tour_data= r.dict()
-            print(tour_data)
-            location = Location.objects.get(location=r['location'])
-            date= r['date']
-            context = {
-            'locations': Location.objects.all(),
-            'selected_location': location,
-            'time_slots': Availability.objects.filter(avail_date=date, location=location.id).values()[0]['time_slots'].split(','),
-            'form': TourForm(initial=tour_data)
-            }
-            print(context)
-            return render(request, "new-tour.html", context)
+            location = Location.objects.get(location=tour_data['location'])
+            date = tour_data['date']
+            #print(tour_data)
+            if tour_data['location'] != '' and tour_data['date'] != '':
+                context = {
+                'locations': Location.objects.all(),
+                'selected_location': location,
+                'selected_date': tour_data['date'],
+                'time_slots': Availability.objects.filter(avail_date=date, location=location.id).values()[0]['time_slots'].split(','),
+                'form': TourForm(initial=tour_data)
+                }
+                print(context)
+                return render(request, "new-tour.html", context)
+            else:
+                 context = {
+                'locations': Location.objects.all(),
+                'selected_location': location,
+                'selected_date': tour_data['date'],
+                'time_slots': "------",
+                'form': TourForm(initial=tour_data)
+                }
+                 print(context)
+                 return render(request, "new-tour.html", context)
         
-           
-
+        
         r = request.POST
         start_time, end_time = r['time_slot_selection'].replace(' ','').split("-")
         dbentry = form.save(commit=False)
@@ -228,7 +239,6 @@ def new_tour(request):
         msg.send()
         return redirect("/")
 
-    
         context = {
             'form': form
         }
@@ -239,7 +249,7 @@ def new_tour(request):
     location = Location.objects.get(location="Krakow")
     context={
         'locations': Location.objects.all(),
-        'time_slots': Availability.objects.filter(avail_date="2022-11-18", location=location.id).values()[0]['time_slots'].split(','),
+        'time_slots': "------",
         'form': form,
     }
     return render (request, "new-tour.html", context)
