@@ -194,7 +194,7 @@ def new_tour(request):
                 'locations': Location.objects.all(),
                 'selected_location': location,
                 'selected_date': tour_data['date'],
-                'time_slots': "------",
+                'time_slots': "-",
                 'form': TourForm(initial=tour_data)
                 }
                  print(context)
@@ -249,7 +249,7 @@ def new_tour(request):
     location = Location.objects.get(location="Krakow")
     context={
         'locations': Location.objects.all(),
-        'time_slots': "------",
+        'time_slots': "-",
         'form': form,
     }
     return render (request, "new-tour.html", context)
