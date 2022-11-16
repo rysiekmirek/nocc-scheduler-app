@@ -174,7 +174,7 @@ def new_tour(request):
     if request.method == 'POST':
         form = TourForm(request.POST)
         if form.is_valid() == False:
-            form_data = form.values()[0]
+            form_data = form
             r=request.POST
             location = Location.objects.get(location=r['location'])
             date= r['date']
