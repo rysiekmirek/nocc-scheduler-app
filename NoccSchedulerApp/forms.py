@@ -12,14 +12,14 @@ class TourForm(ModelForm):
         #fields = '__all__'
         exclude = ('id','status','nocc_person_assigned','feedback', 'tour_name', 'start_time', 'end_time' )
         widgets = {
-            'date': DateTimeInput(attrs={'type': 'date'}),
+            'date': DateTimeInput(attrs={'type': 'date', 'min': str(date.today())}),
             #'start_time': DateTimeInput(attrs={'type': 'time', 'min':'7:00','max': '19:00', "step": "900", 'type': 'hidden'}),
             #'end_time': DateTimeInput(attrs={'type': 'time', 'type': 'hidden'}),
             'comment': Textarea(attrs={'rows':1, 'cols':50}),
             'attendees_guests': TextInput(attrs={'min':0,'max': '50','type': 'number'}),
             'attendees_akamai': TextInput(attrs={'min':0,'max': '50','type': 'number'}),
-
         }
+
     def __init__(self, *args, **kwargs):
         super(TourForm, self).__init__(*args, **kwargs)
 
@@ -50,8 +50,8 @@ class TourForm(ModelForm):
                         {'end_time': _("End time colides with an exising tour")})
                 if start_time <= existing_tour.start_time and end_time >= existing_tour.end_time:
                     raise ValidationError({
-                        'start_time': ValidationError(_('Tour can\'t overlap existing tour')),
-                        'end_time': ValidationError(_('Tour can\'t overlap existing tour'))})
+                        'start_time': ValidationError(_('Tour cant overlap existing tour')),
+                        'end_time': ValidationError(_('Tour cant overlap existing tour'))})
         """
 
 
