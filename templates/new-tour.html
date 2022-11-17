@@ -40,7 +40,8 @@
         </div>
         <div class="col">
           <div class="form-floating my-2">
-            <input type="date" id="id_date" class="form-control form-control-sm" name="date" onchange="this.form.submit()" required>
+           <!-- <input type="date" id="id_date" class="form-control form-control-sm" name="date" onchange="this.form.submit()" required> -->
+           {{ form.date }}
             <label class="px-4" for="id_date"> Date </label>
             <i><small style="color:#e70a0a"> {{form.date.errors }} </small></i>
           </div>
