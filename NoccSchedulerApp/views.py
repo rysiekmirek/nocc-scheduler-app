@@ -176,10 +176,9 @@ def new_tour(request):
         if form.is_valid() == False:
             r=request.POST
             tour_data= r.dict()
-            location = Location.objects.get(location=tour_data['location'])
-            date = tour_data['date']
             print(tour_data)
             if tour_data['location'] != '' and tour_data['date'] != '':
+                location = Location.objects.get(location=tour_data['location'])
                 context = {
                 'locations': Location.objects.all(),
                 'selected_location': location,
@@ -192,7 +191,7 @@ def new_tour(request):
             else:
                  context = {
                 'locations': Location.objects.all(),
-                'selected_location': location,
+                'selected_location': Location.objects.get(location=tour_data['location']),
                 'selected_date': tour_data['date'],
                 'time_slots': "-",
                 'form': TourForm(initial=tour_data)
