@@ -184,7 +184,7 @@ def new_tour(request):
                     'locations': Location.objects.all(),
                     'selected_location': location,
                     'selected_date': tour_data['date'],
-                    'time_slots': Availability.objects.filter(avail_date=date, location=location.id).values()[0]['time_slots'].split(','),
+                    'time_slots': Availability.objects.filter(avail_date=r['date'], location_id=location.id).values()[0]['time_slots'].split(','),
                     'form': TourForm(initial=tour_data)
                     }
                     print(context)
