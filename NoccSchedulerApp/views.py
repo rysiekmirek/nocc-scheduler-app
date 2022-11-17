@@ -183,7 +183,7 @@ def new_tour(request):
                     try:
                         time_slots = Availability.objects.filter(avail_date=r['date'], location_id=location.id).values()[0]['time_slots'].split(',')
                     except:
-                        time_slots = 'No available time slots for that day'
+                        time_slots = ""
                     context = {
                     'locations': Location.objects.all(),
                     'selected_location': location,
