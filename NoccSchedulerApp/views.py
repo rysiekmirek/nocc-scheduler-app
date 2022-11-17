@@ -174,11 +174,11 @@ def new_tour(request):
     if request.method == 'POST':
         form = TourForm(request.POST)
         r=request.POST
-        if form.is_valid() == False and 'date' in r and 'location' in r:
+        if form.is_valid() == False:
             tour_data= r.dict()
             print(tour_data)
             
-            if r['location'] != '' and r['date'] != '':
+            if 'date' in r and 'location' in r and r['location'] != '' and r['date'] != '':
                     location = Location.objects.get(location=r['location'])
                     context = {
                     'locations': Location.objects.all(),
@@ -189,16 +189,16 @@ def new_tour(request):
                     }
                     print(context)
                     return render(request, "new-tour.html", context)
-
-            context = {
-                'locations': Location.objects.all(),
-                'selected_location': Location.objects.get(location=tour_data['location']),
-                'selected_date': tour_data['date'],
-                'time_slots': "-",
-                'form': TourForm(initial=tour_data)
-                }
-            print(context)
-            return render(request, "new-tour.html", context)
+            else:
+                context = {
+                    'locations': Location.objects.all(),
+                    'selected_location': tour_data['location'],
+                    'selected_date': tour_data['date'],
+                    'time_slots': "-",
+                    'form': TourForm(initial=tour_data),
+                    }
+                print(context)
+                return render(request, "new-tour.html", context)
         
         else:
             r = request.POST
