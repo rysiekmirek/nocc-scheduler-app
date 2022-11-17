@@ -198,6 +198,10 @@ def new_tour(request):
                     selected_location = r['location']
                 except:
                     selected_location = ""
+                print('----------------------------------')    
+                print (selected_location)
+                print('----------------------------------')    
+
                 context = {
                     'locations': Location.objects.all(),
                     'selected_location': selected_location,
