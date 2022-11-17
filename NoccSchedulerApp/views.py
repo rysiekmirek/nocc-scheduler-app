@@ -195,7 +195,7 @@ def new_tour(request):
                     return render(request, "new-tour.html", context)
             else:
                 try:
-                    selected_location = tour_data['location']
+                    selected_location = r['location']
                 except:
                     selected_location = ""
                 context = {
