@@ -180,19 +180,27 @@ def new_tour(request):
             
             if 'date' in r and 'location' in r and r['location'] != '' and r['date'] != '':
                     location = Location.objects.get(location=r['location'])
+                    try:
+                        time_slots = Availability.objects.filter(avail_date=r['date'], location_id=location.id).values()[0]['time_slots'].split(',')
+                    except:
+                        time_slots = 'No available time slots for that day'
                     context = {
                     'locations': Location.objects.all(),
                     'selected_location': location,
                     'selected_date': tour_data['date'],
-                    'time_slots': Availability.objects.filter(avail_date=r['date'], location_id=location.id).values()[0]['time_slots'].split(','),
+                    'time_slots': time_slots,
                     'form': TourForm(initial=tour_data)
                     }
                     print(context)
                     return render(request, "new-tour.html", context)
             else:
+                try:
+                    selected_location = tour_data['location']
+                except:
+                    selected_location = ""
                 context = {
                     'locations': Location.objects.all(),
-                    'selected_location': tour_data['location'],
+                    'selected_location': selected_location,
                     'selected_date': tour_data['date'],
                     'time_slots': "-",
                     'form': TourForm(initial=tour_data),
