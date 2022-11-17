@@ -189,7 +189,7 @@ def new_tour(request):
                     }
                     print(context)
                     return render(request, "new-tour.html", context)
-            except:
+            finally:
                  context = {
                 'locations': Location.objects.all(),
                 'selected_location': Location.objects.get(location=tour_data['location']),
