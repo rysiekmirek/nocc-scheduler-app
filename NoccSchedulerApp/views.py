@@ -194,14 +194,7 @@ def new_tour(request):
                     print(context)
                     return render(request, "new-tour.html", context)
             else:
-                try:
-                    selected_location = r['location']
-                except:
-                    selected_location = ""
-                print('----------------------------------')    
-                print (selected_location)
-                print('----------------------------------')    
-
+                
                 context = {
                     'locations': Location.objects.all(),
                     'selected_location': Location.objects.get(location=r['location']),
