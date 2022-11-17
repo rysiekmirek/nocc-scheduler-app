@@ -12,7 +12,7 @@ class TourForm(ModelForm):
         #fields = '__all__'
         exclude = ('id','status','nocc_person_assigned','feedback', 'tour_name', 'start_time', 'end_time' )
         widgets = {
-            'date': DateTimeInput(attrs={'type': 'date', 'min': str(date.today())}),
+            'date': DateTimeInput(attrs={'type': 'date', 'min': date.today() }),
             #'start_time': DateTimeInput(attrs={'type': 'time', 'min':'7:00','max': '19:00', "step": "900", 'type': 'hidden'}),
             #'end_time': DateTimeInput(attrs={'type': 'time', 'type': 'hidden'}),
             'comment': Textarea(attrs={'rows':1, 'cols':50}),
