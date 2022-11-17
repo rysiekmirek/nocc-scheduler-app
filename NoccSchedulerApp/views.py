@@ -173,12 +173,12 @@ def new_tour(request):
 
     if request.method == 'POST':
         form = TourForm(request.POST)
-        if form.is_valid() == False:
-            r=request.POST
+        r=request.POST
+        if form.is_valid() == False and 'date' in r and 'location' in r:
             tour_data= r.dict()
             print(tour_data)
-            try:
-                if tour_data['location'] != '' and tour_data['date'] != '':
+            
+            if tour_data['location'] != '' and tour_data['date'] != '':
                     location = Location.objects.get(location=tour_data['location'])
                     context = {
                     'locations': Location.objects.all(),
@@ -189,64 +189,58 @@ def new_tour(request):
                     }
                     print(context)
                     return render(request, "new-tour.html", context)
-            except:
-                 context = {
+
+            context = {
                 'locations': Location.objects.all(),
                 'selected_location': Location.objects.get(location=tour_data['location']),
                 'selected_date': tour_data['date'],
                 'time_slots': "-",
                 'form': TourForm(initial=tour_data)
                 }
-                 print(context)
-                 return render(request, "new-tour.html", context)
+            print(context)
+            return render(request, "new-tour.html", context)
         
-        
-        r = request.POST
-        start_time, end_time = r['time_slot_selection'].replace(' ','').split("-")
-        dbentry = form.save(commit=False)
-        dbentry.tour_name = str(r['customer_or_group_name']) + "--" + str(r['category']) + "--" + str(r['date'])
-        uuid_value = uuid.uuid4()
-        dbentry.id = uuid_value
-        dbentry.start_time = datetime.strptime(start_time, "%H:%M").time()
-        dbentry.end_time = datetime.strptime(end_time, "%H:%M").time()
-        print (dbentry, dbentry.start_time , dbentry.end_time )
-        dbentry.save()
-        print (dbentry.date)
-        availability_entry=Availability.objects.get(avail_date=dbentry.date, location=dbentry.location)
+        else:
+            r = request.POST
+            start_time, end_time = r['time_slot_selection'].replace(' ','').split("-")
+            dbentry = form.save(commit=False)
+            dbentry.tour_name = str(r['customer_or_group_name']) + "--" + str(r['category']) + "--" + str(r['date'])
+            uuid_value = uuid.uuid4()
+            dbentry.id = uuid_value
+            dbentry.start_time = datetime.strptime(start_time, "%H:%M").time()
+            dbentry.end_time = datetime.strptime(end_time, "%H:%M").time()
+            print (dbentry, dbentry.start_time , dbentry.end_time )
+            dbentry.save()
+            print (dbentry.date)
+            availability_entry=Availability.objects.get(avail_date=dbentry.date, location=dbentry.location)
 
-        print(availability_entry.time_slots)
+            print(availability_entry.time_slots)
 
-        time_slots_updated = availability_entry.time_slots.replace(r['time_slot_selection'] + ",",'',1)
+            time_slots_updated = availability_entry.time_slots.replace(r['time_slot_selection'] + ",",'',1)
 
-        print(time_slots_updated)
-        availability_entry.time_slots = time_slots_updated
-        availability_entry.save()
+            print(time_slots_updated)
+            availability_entry.time_slots = time_slots_updated
+            availability_entry.save()
 
-        messages.success(request, 'Your tour has been submited and confirmation email sent to You. Please wait for approval from local NOCC representative.')
-        tour_data = Tour.objects.filter(id=uuid_value).values()[0]
-        subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data['tour_name'] + " \" was requested, please wait for approval email"
-        from_email = 'nocc-tour-scheduler@akamai.com'
-        to = [tour_data['requestor_email'], 'rmirek@akamai.com']
-        if tour_data['nocc_personnel_required'] == "Yes":
-            to.append('nocc-tix@akamai.com')
-        html_content = '<h2>Hi '+ tour_data['requestor_name'] + ',</h2><br><h3>Tour details:</h3>'
-        for key, data in tour_data.items():
-            html_content += "<b>" + str(key) + "</b> : "
-            html_content += "<i>" + str(data) + "</i><br>"
-        html_content += "<br> To check status of the request see <br> <a href=\"http://194.233.175.38:8000/\">http://194.233.175.38:8000</a>"
-        msg = EmailMessage(subject, html_content, from_email, to)
-        msg.content_subtype = "html"
-        msg.send()
-        return redirect("/")
-
-        context = {
-            'form': form
-        }
-        return render(request, "new-tour.html", context)
+            messages.success(request, 'Your tour has been submited and confirmation email sent to You. Please wait for approval from local NOCC representative.')
+            tour_data = Tour.objects.filter(id=uuid_value).values()[0]
+            subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data['tour_name'] + " \" was requested, please wait for approval email"
+            from_email = 'nocc-tour-scheduler@akamai.com'
+            to = [tour_data['requestor_email'], 'rmirek@akamai.com']
+            if tour_data['nocc_personnel_required'] == "Yes":
+                to.append('nocc-tix@akamai.com')
+            html_content = '<h2>Hi '+ tour_data['requestor_name'] + ',</h2><br><h3>Tour details:</h3>'
+            for key, data in tour_data.items():
+                html_content += "<b>" + str(key) + "</b> : "
+                html_content += "<i>" + str(data) + "</i><br>"
+            html_content += "<br> To check status of the request see <br> <a href=\"http://194.233.175.38:8000/\">http://194.233.175.38:8000</a>"
+            msg = EmailMessage(subject, html_content, from_email, to)
+            msg.content_subtype = "html"
+            msg.send()
+            return redirect("/")
 
 
     form = TourForm()
-    location = Location.objects.get(location="Krakow")
     context={
         'locations': Location.objects.all(),
         'time_slots': "-",
