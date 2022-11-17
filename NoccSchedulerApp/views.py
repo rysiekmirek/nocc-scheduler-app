@@ -178,8 +178,8 @@ def new_tour(request):
             tour_data= r.dict()
             print(tour_data)
             
-            if tour_data['location'] != '' and tour_data['date'] != '':
-                    location = Location.objects.get(location=tour_data['location'])
+            if r['location'] != '' and r['date'] != '':
+                    location = Location.objects.get(location=r['location'])
                     context = {
                     'locations': Location.objects.all(),
                     'selected_location': location,
