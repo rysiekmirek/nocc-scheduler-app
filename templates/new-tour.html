@@ -52,7 +52,7 @@
         <div class="col">
         <div class="form-floating my-2">
           <select id="id_time_slot_selection" name="time_slot_selection" class="form-control form-control-sm" placeholder="Time slot selection" required>
-          <option disabled selected value >Choose time slot</option>
+          <option disabled selected value >{%if time_slots == ""%}<small style="color:#e70a0a">No available time slots</small> {% else %}Choose time slot {% endif %}</option>
           {% for slot in time_slots %}
           <option value="{{slot}}">{{slot}}</option>{{slot}}
           {% endfor %}
