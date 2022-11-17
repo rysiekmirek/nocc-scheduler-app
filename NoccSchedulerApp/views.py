@@ -177,18 +177,19 @@ def new_tour(request):
             r=request.POST
             tour_data= r.dict()
             print(tour_data)
-            if tour_data['location'] != '' and tour_data['date'] != '':
-                location = Location.objects.get(location=tour_data['location'])
-                context = {
-                'locations': Location.objects.all(),
-                'selected_location': location,
-                'selected_date': tour_data['date'],
-                'time_slots': Availability.objects.filter(avail_date=date, location=location.id).values()[0]['time_slots'].split(','),
-                'form': TourForm(initial=tour_data)
-                }
-                print(context)
-                return render(request, "new-tour.html", context)
-            else:
+            try:
+                if tour_data['location'] != '' and tour_data['date'] != '':
+                    location = Location.objects.get(location=tour_data['location'])
+                    context = {
+                    'locations': Location.objects.all(),
+                    'selected_location': location,
+                    'selected_date': tour_data['date'],
+                    'time_slots': Availability.objects.filter(avail_date=date, location=location.id).values()[0]['time_slots'].split(','),
+                    'form': TourForm(initial=tour_data)
+                    }
+                    print(context)
+                    return render(request, "new-tour.html", context)
+            except:
                  context = {
                 'locations': Location.objects.all(),
                 'selected_location': Location.objects.get(location=tour_data['location']),
