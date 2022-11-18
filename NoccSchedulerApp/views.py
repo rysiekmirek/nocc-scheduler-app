@@ -176,7 +176,7 @@ def new_tour(request):
         r=request.POST
         if form.is_valid() == False:
             print("Form is not valid")
-            print(form)
+            print(r)
             tour_data= r.dict()
             if 'date' in r and 'location' in r and r['location'] != '' and r['date'] != '':
                     print("First if true")
