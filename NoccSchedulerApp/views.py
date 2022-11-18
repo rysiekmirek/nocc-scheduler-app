@@ -175,6 +175,7 @@ def new_tour(request):
         form = TourForm(request.POST)
         r=request.POST
         if form.is_valid() == False:
+            print("Form is not valid")
             tour_data= r.dict()
             if 'date' in r and 'location' in r and r['location'] != '' and r['date'] != '':
                     location = Location.objects.get(location=r['location'])
@@ -203,6 +204,7 @@ def new_tour(request):
                 return render(request, "new-tour.html", context)
         
         else:
+            print("Form is valid")
             r = request.POST
             start_time, end_time = r['time_slot_selection'].replace(' ','').split("-")
             dbentry = form.save(commit=False)
