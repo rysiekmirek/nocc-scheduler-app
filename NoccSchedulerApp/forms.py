@@ -28,10 +28,10 @@ class TourForm(ModelForm):
                 'class': 'form-control form-control-sm',
                 'placeholder': field.label,
                 })
-    
+    """
     def clean(self):
         cleaned_data = super().clean()
-        """date = cleaned_data.get('date')
+        date = cleaned_data.get('date')
         #start_time = cleaned_data.get('start_time')
         #end_time = cleaned_data.get('end_time')
         location = cleaned_data.get('location')
