@@ -174,7 +174,7 @@ def new_tour(request):
     if request.method == 'POST':
         form = TourForm(request.POST)
         r=request.POST
-        if form.is_valid() == False:
+        if r['time_slot_selection'] not in r:
             print("Form is not valid")
             print(r)
             tour_data= r.dict()
