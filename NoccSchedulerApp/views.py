@@ -192,7 +192,6 @@ def new_tour(request):
                     'time_slots': time_slots,
                     'form': TourForm(initial=tour_data)
                     }
-
                     return render(request, "new-tour.html", context)
             else:
                 print("First else true")
@@ -244,7 +243,6 @@ def new_tour(request):
             msg.content_subtype = "html"
             msg.send()
             return redirect("/")
-
 
     form = TourForm()
     context={
