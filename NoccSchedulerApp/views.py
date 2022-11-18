@@ -178,6 +178,7 @@ def new_tour(request):
             print("Form is not valid")
             tour_data= r.dict()
             if 'date' in r and 'location' in r and r['location'] != '' and r['date'] != '':
+                    print("First if true")
                     location = Location.objects.get(location=r['location'])
                     try:
                         time_slots = Availability.objects.filter(avail_date=r['date'], location_id=location.id).values()[0]['time_slots'].split(',')
@@ -193,7 +194,7 @@ def new_tour(request):
 
                     return render(request, "new-tour.html", context)
             else:
-
+                print("First else true")
                 context = {
                     'locations': Location.objects.all(),
                     'selected_location': Location.objects.get(location=r['location']),
