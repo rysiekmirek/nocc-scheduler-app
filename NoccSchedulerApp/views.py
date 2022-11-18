@@ -176,7 +176,6 @@ def new_tour(request):
         r=request.POST
         if form.is_valid() == False:
             tour_data= r.dict()
-            
             if 'date' in r and 'location' in r and r['location'] != '' and r['date'] != '':
                     location = Location.objects.get(location=r['location'])
                     try:
@@ -190,7 +189,7 @@ def new_tour(request):
                     'time_slots': time_slots,
                     'form': TourForm(initial=tour_data)
                     }
-                    print(context)
+
                     return render(request, "new-tour.html", context)
             else:
 
