@@ -38,7 +38,7 @@
 
             <tbody id="myTable">
       {%for tour in tours %}
-            <tr {%if tour.status == "Approved" %} class="table-success" {% elif tour.status == "Rejected" %} class="table-danger" {% else %} class="table-warning" {% endif %}>
+            <tr {%if tour.status == "Approved" %} class="table-success" {% else %} class="table-warning" {% endif %}>
                 <td>{{tour.tour_name}}</td>
                 <td>{{tour.requestor_name}}</td>
                 <td>{{tour.poc_name}}</td>
