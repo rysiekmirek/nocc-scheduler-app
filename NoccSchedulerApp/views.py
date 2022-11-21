@@ -249,6 +249,12 @@ def new_tour(request):
                     'time_slots': "",
                     'form': form,
                 }
+    form = TourForm()
+    context={
+        'locations': Location.objects.all(),
+        'time_slots': "",
+        'form': form,
+    }
     return render (request, "new-tour.html", context)
 
 
