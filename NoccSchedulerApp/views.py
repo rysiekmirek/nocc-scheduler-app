@@ -172,10 +172,10 @@ def new_tour(request):
     if request.method == 'POST':
         form = TourForm(request.POST)
         r=request.POST
+        tour_data= r.dict()
         if 'time_slot_selection' not in r:
             print("Form has changed")
             #print(r)
-            tour_data= r.dict()
             if 'date' in r and 'location' in r:
                     print("First if true")
                     location = Location.objects.get(location=r['location'])
@@ -243,17 +243,16 @@ def new_tour(request):
                 msg.send()
                 return redirect("/")
             except:
-                form = TourForm()
                 context={
                     'locations': Location.objects.all(),
                     'time_slots': "",
-                    'form': form,
+                    'form': TourForm(initial=tour_data),
                 }
-    form = TourForm()
+
     context={
         'locations': Location.objects.all(),
         'time_slots': "",
-        'form': form,
+        'form': TourForm(),
     }
     return render (request, "new-tour.html", context)
 
