@@ -169,11 +169,10 @@ def feedback(request, pk):
     return render(request, "feedback.html" )
 
 def new_tour(request):
-
     if request.method == 'POST':
         form = TourForm(request.POST)
         r=request.POST
-        if form.has_changed():
+        if 'time_slot_selection' not in r:
             print("Form has changed")
             #print(r)
             tour_data= r.dict()
@@ -252,3 +251,14 @@ def new_tour(request):
     return render (request, "new-tour.html", context)
 
 
+# def get_time_slots(request, f_location, f_date):
+#     if request.method == 'POST':
+#         form = TourForm(request.POST)
+#         try:
+#             location = Location.objects.get(location=f_location)
+#             time_slots = Availability.objects.filter(avail_date=f_date, location_id=location.id).values()[0]['time_slots'].split(',')
+#         except:
+#             time_slots =""
+        
+
+#     return render(request, "feedback.html" )
