@@ -203,7 +203,7 @@ def new_tour(request):
                 return render(request, "new-tour.html", context)
         
         else:
-            try:
+            if form.is_valid():
                 print("Form is valid")
                 r = request.POST
                 start_time, end_time = r['time_slot_selection'].replace(' ','').split("-")
@@ -243,7 +243,7 @@ def new_tour(request):
                 msg.content_subtype = "html"
                 msg.send()
                 return redirect("/")
-            except:
+            else:
                 context={
                     'locations': Location.objects.all(),
                     'time_slots': "",
