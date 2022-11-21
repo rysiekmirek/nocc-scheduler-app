@@ -214,9 +214,8 @@ def new_tour(request):
                 dbentry.start_time = datetime.strptime(start_time, "%H:%M").time()
                 dbentry.end_time = datetime.strptime(end_time, "%H:%M").time()
                 print (dbentry, dbentry.start_time , dbentry.end_time )
-                form.is_valid()
-                dbentry.is_valid()
-                dbentry.save()
+                if dbentry.is_valid():
+                    dbentry.save()
                 print (dbentry.date)
                 availability_entry=Availability.objects.get(avail_date=dbentry.date, location=dbentry.location)
 
