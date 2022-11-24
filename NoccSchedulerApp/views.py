@@ -175,86 +175,52 @@ def new_tour(request):
         form = TourForm(request.POST)
         r=request.POST
         tour_data= r.dict()
-        if 'time_slot_selection' not in r:
-            print("Form has changed")
-            #print(r)
-            if 'date' in r and 'location' in r:
-                    print("First if true")
-                    location = Location.objects.get(location=r['location'])
-                    try:
-                        time_slots = Availability.objects.filter(avail_date=r['date'], location_id=location.id).values()[0]['time_slots'].split(',')
-                    except:
-                        time_slots =""
-                    context = {
-                    'locations': Location.objects.all(),
-                    'selected_location': location,
-                    'selected_date': tour_data['date'],
-                    'time_slots': time_slots,
-                    'form': TourForm(initial=tour_data)
-                    }
-                    return render(request, "new-tour.html", context)
-            else:
-                print("Form has changed - else part")
-                context = {
-                    'locations': Location.objects.all(),
-                    'selected_location': Location.objects.get(location=r['location']),
-                    'selected_date': tour_data['date'],
-                    'time_slots': "",
-                    'form': TourForm(initial=tour_data),
-                    }
-                return render(request, "new-tour.html", context)
-        
-        else:
-            if form.is_valid():
-                print("Form is valid")
-                r = request.POST
-                start_time, end_time = r['time_slot_selection'].replace(' ','').split("-")
-                dbentry = form.save(commit=False)
-                dbentry.tour_name = str(r['customer_or_group_name']) + "--" + str(r['category']) + "--" + str(r['date'])
-                uuid_value = uuid.uuid4()
-                dbentry.id = uuid_value
-                dbentry.start_time = datetime.strptime(start_time, "%H:%M").time()
-                dbentry.end_time = datetime.strptime(end_time, "%H:%M").time()
-                print (dbentry, dbentry.start_time , dbentry.end_time )
-                if dbentry.is_valid():
-                    dbentry.save()
-                print (dbentry.date)
-                availability_entry=Availability.objects.get(avail_date=dbentry.date, location=dbentry.location)
+        print("Form is valid")
+        start_time, end_time = r['time_slot_selection'].replace(' ','').split("-")
+        dbentry = form.save(commit=False)
+        dbentry.tour_name = str(r['customer_or_group_name']) + "--" + str(r['category']) + "--" + str(r['date'])
+        uuid_value = uuid.uuid4()
+        dbentry.id = uuid_value
+        dbentry.start_time = datetime.strptime(start_time, "%H:%M").time()
+        dbentry.end_time = datetime.strptime(end_time, "%H:%M").time()
+        print (dbentry, dbentry.start_time , dbentry.end_time )
+        if dbentry.is_valid():
+            dbentry.save()
+        print (dbentry.date)
+        availability_entry=Availability.objects.get(avail_date=dbentry.date, location=dbentry.location)
 
-                print(availability_entry.time_slots)
+        print(availability_entry.time_slots)
 
-                time_slots_updated = availability_entry.time_slots.replace(r['time_slot_selection'] + ",",'',1)
+        time_slots_updated = availability_entry.time_slots.replace(r['time_slot_selection'] + ",",'',1)
 
-                print(time_slots_updated)
-                availability_entry.time_slots = time_slots_updated
-                availability_entry.save()
+        print(time_slots_updated)
+        availability_entry.time_slots = time_slots_updated
+        availability_entry.save()
 
-                messages.success(request, 'Your tour has been submited and confirmation email sent to You. Please wait for approval from local NOCC representative.')
-                tour_data = Tour.objects.filter(id=uuid_value).values()[0]
-                subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data['tour_name'] + " \" was requested, please wait for approval email"
-                from_email = 'nocc-tour-scheduler@akamai.com'
-                to = [tour_data['requestor_email'], 'rmirek@akamai.com']
-                if tour_data['nocc_personnel_required'] == "Yes":
-                    to.append('nocc-tix@akamai.com')
-                html_content = '<h2>Hi '+ tour_data['requestor_name'] + ',</h2><br><h3>Tour details:</h3>'
-                for key, data in tour_data.items():
-                    html_content += "<b>" + str(key) + "</b> : "
-                    html_content += "<i>" + str(data) + "</i><br>"
-                html_content += "<br> To check status of the request see <br> <a href=\"http://194.233.175.38:8000/\">http://194.233.175.38:8000</a>"
-                msg = EmailMessage(subject, html_content, from_email, to)
-                msg.content_subtype = "html"
-                msg.send()
-                return redirect("/")
-            else:
-                context={
-                    'locations': Location.objects.all(),
-                    'time_slots': "",
-                    'form': TourForm(initial=tour_data),
-                }
+        messages.success(request, 'Your tour has been submited and confirmation email sent to You. Please wait for approval from local NOCC representative.')
+        tour_data = Tour.objects.filter(id=uuid_value).values()[0]
+        subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data['tour_name'] + " \" was requested, please wait for approval email"
+        from_email = 'nocc-tour-scheduler@akamai.com'
+        to = [tour_data['requestor_email'], 'rmirek@akamai.com']
+        if tour_data['nocc_personnel_required'] == "Yes":
+            to.append('nocc-tix@akamai.com')
+        html_content = '<h2>Hi '+ tour_data['requestor_name'] + ',</h2><br><h3>Tour details:</h3>'
+        for key, data in tour_data.items():
+            html_content += "<b>" + str(key) + "</b> : "
+            html_content += "<i>" + str(data) + "</i><br>"
+        html_content += "<br> To check status of the request see <br> <a href=\"http://194.233.175.38:8000/\">http://194.233.175.38:8000</a>"
+        msg = EmailMessage(subject, html_content, from_email, to)
+        msg.content_subtype = "html"
+        msg.send()
+        return redirect("/")
+    else:
+        context={
+            'locations': Location.objects.all(),
+            'form': TourForm(initial=tour_data),
+        }
 
     context={
         'locations': Location.objects.all(),
-        'time_slots': "",
         'form': TourForm(),
     }
     return render (request, "new-tour.html", context)
@@ -271,6 +237,6 @@ def get_time_slots(request):
         except:
             time_slots=""
     else:          
-        time_slots ="No data"
+        time_slots =""
         
     return JsonResponse({"time_slots": time_slots})
