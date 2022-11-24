@@ -264,6 +264,7 @@
               $('#id_time_slot_selection').empty().append('<option selected="selected" value="">No available time slots</option>');
               console.log("No time slots");
             } else {
+            $('#id_time_slot_selection').empty().append('<option selected="selected" value="">Choose time slot</option>');
             for(var i = 0; i < options.length; i++) {
                 var opt = options[i];
                 var el = document.createElement("option");
@@ -298,6 +299,7 @@
               console.log("No time slots");
               $('#id_time_slot_selection').empty().append('<option selected="selected" value="">No available time slots</option>');
             } else {
+            $('#id_time_slot_selection').empty().append('<option selected="selected" value="">Choose time slot</option>');
             for(var i = 0; i < options.length; i++) {
                 var opt = options[i];
                 var el = document.createElement("option");
