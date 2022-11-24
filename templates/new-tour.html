@@ -245,11 +245,11 @@
     $('#id_date').on('change', function() {
     var date;
     var location;
-    date = $(this).value;
+    date = document.getElementById('id_date').value;
     location = document.getElementById('id_location').value;
     $.ajax(
     {
-        type:"POST",
+        type:"GET",
         url: "/time-slots/",
         data:{
               'date': date,
@@ -266,11 +266,11 @@
     $('#id_location').on('change', function() {
     var date;
     var location;
-    location = $(this).value;
     date = document.getElementById('id_date').value;
+    location = document.getElementById('id_location').value;
     $.ajax(
     {
-        type:"POST",
+        type:"GET",
         url: "/time-slots/",
         data:{
               'date': date,

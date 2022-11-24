@@ -261,10 +261,10 @@ def new_tour(request):
 
 
 def get_time_slots(request):
-    r=request.POST
-    if request.method == 'POST' and 'location' in r and 'date' in r:
-        f_location=request.POST['location']
-        f_date= request.POST['date']
+    r=request.GET
+    if request.method == 'GET' and 'location' in r and 'date' in r:
+        f_location=request.GET['location']
+        f_date= request.GET['date']
         location = Location.objects.get(location=f_location)
         time_slots = Availability.objects.filter(avail_date=f_date, location_id=location.id).values()[0]['time_slots'].split(',')
     else:          
