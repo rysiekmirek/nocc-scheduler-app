@@ -261,7 +261,8 @@ def new_tour(request):
 
 
 def get_time_slots(request):
-    if request.method == 'GET':
+    r=request.GET
+    if request.method == 'GET' and 'location' in r and 'date' in r:
         f_location=request.GET['location']
         f_date= request.GET['date']
         try:
