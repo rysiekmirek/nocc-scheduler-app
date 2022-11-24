@@ -9,21 +9,22 @@
        <form action="" method="post">
         {% csrf_token %}
         
-     <!-- {% for field in form %}
-          <div class="form-floating my-2">
-            {{ field }}
-            <label class="px-4" for="{{ field.auto_id }}"> {{ field.label }} </label>
-            <i><small style="color:#9e9e9e">{{field.help_text}}</small></i></th>
-            <i><small style="color:#e70a0a"> {{ field.errors }} </small></i>
-          </div>
-        {% endfor %}
-      -->
+      <!-- {% for field in form %}
+            <div class="form-floating my-2">
+              {{ field }}
+              <label class="px-4" for="{{ field.auto_id }}"> {{ field.label }} </label>
+              <i><small style="color:#9e9e9e">{{field.help_text}}</small></i></th>
+              <i><small style="color:#e70a0a"> {{ field.errors }} </small></i>
+            </div>
+          {% endfor %}
+        -->
+
       <fieldset class="rounded border p-2 my-2">
         <legend>Visit details</legend>
         <div class="row">
         <div class="col">
         <div class="form-floating my-2">
-          <select onchange="this.form.submit()" class="form-control form-control-sm" id="id_location" name="location" required >
+          <select class="form-control form-control-sm" id="id_location" name="location" required >
             <option disabled selected value >Choose location</option>
             {%for location in locations %}
             {% if location == selected_location %}
@@ -33,7 +34,7 @@
             {%endif%}
             {%endfor%}
           </select>
-          <label class="px-4" for="{{ form.location.id_for_label}}"> {{ form.location.label }} </label>
+          <label class="px-4" for="{{ form.location.id_for_label }}"> {{ form.location.label }} </label>
           <i><small style="color:#e70a0a"> {{form.location.errors }} </small></i>
         </div>
         </div>
@@ -68,10 +69,8 @@
               </div>
               </div>
 
-
         </div>        
       </fieldset>
-      
 
         <fieldset class="rounded border p-2 my-2">
           <legend>Basic Information</legend>
@@ -242,6 +241,50 @@
           }
         });
     });
-    </script>
+
+    $('#id_date').on('change', function() {
+    var date;
+    var location;
+    date = $(this).value;
+    location = document.getElementById('id_location').value;
+    $.ajax(
+    {
+        type:"GET",
+        url: "/time-slots/",
+        data:{
+              'date': date,
+              'location': location,
+        },
+        success: function( data ) 
+        {
+            console.log(data);
+            alert(data)
+        }
+     })
+    });
+
+    $('#id_location').on('change', function() {
+    var date;
+    var location;
+    location = $(this).value;
+    date = document.getElementById('id_date').value;
+    $.ajax(
+    {
+        type:"GET",
+        url: "/time-slots/",
+        data:{
+              'date': date,
+              'location': location,
+        },
+        success: function( data ) 
+        {
+            console.log(data);
+            alert(data)
+        }
+     })
+    });
+
+</script>
+
 
 {% endblock %}

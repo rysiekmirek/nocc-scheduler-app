@@ -11,6 +11,8 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from datetime import date, datetime
 from django.db.models import Q
+from django.http import JsonResponse
+
 
 
 def main(request):
@@ -258,14 +260,14 @@ def new_tour(request):
     return render (request, "new-tour.html", context)
 
 
-# def get_time_slots(request, f_location, f_date):
-#     if request.method == 'POST':
-#         form = TourForm(request.POST)
-#         try:
-#             location = Location.objects.get(location=f_location)
-#             time_slots = Availability.objects.filter(avail_date=f_date, location_id=location.id).values()[0]['time_slots'].split(',')
-#         except:
-#             time_slots =""
-        
+def get_time_slots(request):
+    if request.method == 'GET':
+        f_location=request.GET['location']
+        f_date= request.GET['date']
+        try:
+            location = Location.objects.get(location=f_location)
+            time_slots = Availability.objects.filter(avail_date=f_date, location_id=location.id).values()[0]['time_slots'].split(',')
+        except:           
+            time_slots =""
 
-#     return render(request, "feedback.html" )
+    return JsonResponse({"error": "error occurred"}, status=400)
