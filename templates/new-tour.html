@@ -53,9 +53,9 @@
         <div class="form-floating my-2">
           <select id="id_time_slot_selection" name="time_slot_selection" class="form-control form-control-sm" placeholder="Time slot selection" required>
           <option disabled selected value >{%if time_slots == ""%} No available time slots {% else %} Choose time slot {% endif %}</option>
-          {% for slot in time_slots %}
+          <!-- {% for slot in time_slots %}
           <option value="{{slot}}">{{slot}}</option>{{slot}}
-          {% endfor %}
+          {% endfor %} -->
           </select>
           <label class="px-4" for="id_time_slot_selection"> Time slot selection </label>
           </div>
@@ -258,6 +258,11 @@
         success: function(response) 
         {
             console.log(response['time_slots']);
+            var time_slots = response['time_slots'];
+            $('#id_time_slot_selection').empty();
+            $.each(time_slots, function(i, p) {
+                $('#id_time_slot_selection').append($('<option></option>').time_slots(p).html(p));
+            });
         }
      })
     });
@@ -278,6 +283,11 @@
         success: function(response) 
         {
             console.log(response['time_slots']);
+            var time_slots = response['time_slots'];
+            $('#id_time_slot_selection').empty();
+            $.each(time_slots, function(i, p) {
+                $('#id_time_slot_selection').append($('<option></option>').time_slots(p).html(p));
+            });
         }
      })
     });
