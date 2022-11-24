@@ -215,14 +215,9 @@ def new_tour(request):
     else:
         context={
             'locations': Location.objects.all(),
-            'form': TourForm(initial=tour_data),
+            'form': TourForm(),
         }
-
-    context={
-        'locations': Location.objects.all(),
-        'form': TourForm(),
-    }
-    return render (request, "new-tour.html", context)
+        return render (request, "new-tour.html", context)
 
 
 def get_time_slots(request):
