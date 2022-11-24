@@ -258,11 +258,17 @@
         success: function(response) 
         {
             console.log(response['time_slots']);
-            var time_slots = response['time_slots'];
-            $('#id_time_slot_selection').empty();
-            $.each(time_slots, function(i, p) {
-                $('#id_time_slot_selection').append($('<option></option>').time_slots(p).html(p));
-            });
+            
+            var select = document.getElementById("id_time_slot_selection");
+            var options = ["1", "2", "3", "4", "5"];
+
+            for(var i = 0; i < options.length; i++) {
+                var opt = options[i];
+                var el = document.createElement("option");
+                el.textContent = opt;
+                el.value = opt;
+                select.appendChild(el);
+            }
         }
      })
     });
@@ -283,11 +289,16 @@
         success: function(response) 
         {
             console.log(response['time_slots']);
-            var time_slots = response['time_slots'];
-            $('#id_time_slot_selection').empty();
-            $.each(time_slots, function(i, p) {
-                $('#id_time_slot_selection').append($('<option></option>').time_slots(p).html(p));
-            });
+            var select = document.getElementById("id_time_slot_selection");
+            var options = ["1", "2", "3", "4", "5"];
+
+            for(var i = 0; i < options.length; i++) {
+                var opt = options[i];
+                var el = document.createElement("option");
+                el.textContent = opt;
+                el.value = opt;
+                select.appendChild(el);
+            }
         }
      })
     });
