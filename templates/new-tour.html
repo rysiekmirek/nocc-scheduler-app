@@ -249,7 +249,7 @@
     location = document.getElementById('id_location').value;
     $.ajax(
     {
-        type:"GET",
+        type:"POST",
         url: "/time-slots/",
         data:{
               'date': date,
@@ -270,7 +270,7 @@
     date = document.getElementById('id_date').value;
     $.ajax(
     {
-        type:"GET",
+        type:"POST",
         url: "/time-slots/",
         data:{
               'date': date,
