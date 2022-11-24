@@ -258,9 +258,9 @@
         success: function(response) 
         {
             console.log(response['time_slots']);
-            
+
             var select = document.getElementById("id_time_slot_selection");
-            var options = ["1", "2", "3", "4", "5"];
+            var options = response['time_slots'];
 
             for(var i = 0; i < options.length; i++) {
                 var opt = options[i];
@@ -290,7 +290,7 @@
         {
             console.log(response['time_slots']);
             var select = document.getElementById("id_time_slot_selection");
-            var options = ["1", "2", "3", "4", "5"];
+            var options = response['time_slots'];
 
             for(var i = 0; i < options.length; i++) {
                 var opt = options[i];
