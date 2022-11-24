@@ -290,8 +290,7 @@
               'date': date,
               'location': location,
         },
-        success: function(response) 
-        {
+        success: function(response) {
             console.log(response['time_slots']);
             var select = document.getElementById("id_time_slot_selection");
             var options = response['time_slots'];
