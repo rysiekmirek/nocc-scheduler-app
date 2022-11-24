@@ -270,4 +270,4 @@ def get_time_slots(request):
         except:           
             time_slots =""
 
-    return JsonResponse({"time_slots": time_slots}, status=200)
+    return JsonResponse({"time_slots": time_slots}, status=200, safe=False,)
