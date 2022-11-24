@@ -52,7 +52,7 @@
         <div class="col">
         <div class="form-floating my-2">
           <select id="id_time_slot_selection" name="time_slot_selection" class="form-control form-control-sm" placeholder="Time slot selection" required>
-          <option disabled selected value > Choose time slot </option>
+          <!-- <option disabled selected value > Choose time slot </option> -->
           <!-- {% for slot in time_slots %}
           <option value="{{slot}}">{{slot}}</option>{{slot}}
           {% endfor %} -->
@@ -255,17 +255,14 @@
               'date': date,
               'location': location,
         },
-        success: function(response) 
-        {
+        success: function(response) {
             console.log(response['time_slots']);
 
             var select = document.getElementById("id_time_slot_selection");
             var options = response['time_slots'];
             if (options = ""){
-              $('#id_time_slot_selection')
-              .empty()
-              .append('<option selected="selected" value="">No available time slots</option>')
-              ;
+              $('#id_time_slot_selection').empty().append('<option selected="selected" value="">No available time slots</option>');
+              console.log("No time slots");
             } else {
             for(var i = 0; i < options.length; i++) {
                 var opt = options[i];
@@ -273,7 +270,9 @@
                 el.textContent = opt;
                 el.value = opt;
                 select.appendChild(el);
-            }}
+            }
+            console.log("Should be time slots");
+          }
         }
      })
     });
@@ -297,10 +296,8 @@
             var select = document.getElementById("id_time_slot_selection");
             var options = response['time_slots'];
             if (options = ""){
-              $('#id_time_slot_selection')
-              .empty()
-              .append('<option selected="selected" value="">No available time slots</option>')
-              ;
+              console.log("No time slots");
+              $('#id_time_slot_selection').empty().append('<option selected="selected" value="">No available time slots</option>');
             } else {
             for(var i = 0; i < options.length; i++) {
                 var opt = options[i];
@@ -308,7 +305,9 @@
                 el.textContent = opt;
                 el.value = opt;
                 select.appendChild(el);
-            }}
+            }
+            console.log("Time slots");
+          }
         }
      })
     });
