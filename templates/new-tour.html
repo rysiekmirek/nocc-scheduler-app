@@ -260,7 +260,7 @@
 
             var select = document.getElementById("id_time_slot_selection");
             var options = response['time_slots'];
-            if (options = ""){
+            if (options === ""){
               $('#id_time_slot_selection').empty().append('<option selected="selected" value="">No available time slots</option>');
               console.log("No time slots");
             } else {
@@ -294,7 +294,7 @@
             console.log(response['time_slots']);
             var select = document.getElementById("id_time_slot_selection");
             var options = response['time_slots'];
-            if (options = ""){
+            if (options === ""){
               console.log("No time slots");
               $('#id_time_slot_selection').empty().append('<option selected="selected" value="">No available time slots</option>');
             } else {
