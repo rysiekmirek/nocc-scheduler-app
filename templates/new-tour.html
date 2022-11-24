@@ -27,11 +27,7 @@
           <select class="form-control form-control-sm" id="id_location" name="location" required >
             <option disabled selected value >Choose location</option>
             {%for location in locations %}
-            {% if location == selected_location %}
-            <option value="{{selected_location}}" selected value>{{selected_location}}</option>
-            {%else%}
             <option value="{{location}}">{{location}}</option>
-            {%endif%}
             {%endfor%}
           </select>
           <label class="px-4" for="{{ form.location.id_for_label }}"> {{ form.location.label }} </label>
