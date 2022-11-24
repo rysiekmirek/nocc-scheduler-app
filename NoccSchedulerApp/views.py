@@ -176,6 +176,7 @@ def new_tour(request):
         r=request.POST
         tour_data= r.dict()
         print("Form is valid")
+        print(form.errors)
         start_time, end_time = r['time_slot_selection'].replace(' ','').split("-")
         dbentry = form.save(commit=False)
         dbentry.tour_name = str(r['customer_or_group_name']) + "--" + str(r['category']) + "--" + str(r['date'])
