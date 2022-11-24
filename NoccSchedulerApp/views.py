@@ -268,6 +268,6 @@ def get_time_slots(request):
         location = Location.objects.get(location=f_location)
         time_slots = Availability.objects.filter(avail_date=f_date, location_id=location.id).values()[0]['time_slots'].split(',')
     else:          
-        time_slots =""
+        time_slots ="No data"
         
     return JsonResponse({"time_slots": time_slots}, status=200, safe=False,)
