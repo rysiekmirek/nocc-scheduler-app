@@ -24,12 +24,7 @@
         <div class="row">
         <div class="col">
         <div class="form-floating my-2">
-          <select class="form-control form-control-sm" id="id_location" name="location" required >
-            <option disabled selected value >Choose location</option>
-            {%for location in locations %}
-            <option value="{{location}}">{{location}}</option>
-            {%endfor%}
-          </select>
+          {{ form.location }}
           <label class="px-4" for="{{ form.location.id_for_label }}"> {{ form.location.label }} </label>
           <i><small style="color:#e70a0a"> {{form.location.errors }} </small></i>
         </div>
