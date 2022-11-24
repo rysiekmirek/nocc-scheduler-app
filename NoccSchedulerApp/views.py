@@ -227,8 +227,8 @@ def get_time_slots(request):
         f_location=request.GET['location']
         f_date= request.GET['date']
         try:
-            location = Location.objects.get(location=f_location)
-            time_slots = Availability.objects.filter(avail_date=f_date, location_id=location.id).values()[0]['time_slots'].split(',')
+            #location = Location.objects.get(location_id=f_location)
+            time_slots = Availability.objects.filter(avail_date=f_date, location_id=f_location).values()[0]['time_slots'].split(',')
         except:
             time_slots=""
     else:          
