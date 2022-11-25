@@ -40,6 +40,7 @@ def tour_details(request, pk):
                 
     print(tour_data)
     location = Location.objects.get(id=tour_data['location_id'])
+    print(location.location)
     context = {
         'selected_location': location.location,
         'tour_data': tour_data,
