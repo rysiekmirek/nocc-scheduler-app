@@ -52,7 +52,7 @@ class TourForm(ModelForm):
                     raise ValidationError({
                         'start_time': ValidationError(_('Tour cant overlap existing tour')),
                         'end_time': ValidationError(_('Tour cant overlap existing tour'))})
-        """
+    """
 
 
 
