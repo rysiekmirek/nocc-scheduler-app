@@ -65,7 +65,6 @@ class TourFormEdit(ModelForm):
             'start_time': DateTimeInput(attrs={'readonly': 'readonly'}),
             'end_time': DateTimeInput(attrs={'readonly': 'readonly'}),
             'comment': Textarea(attrs={'rows':1, 'cols':50}),
-            'location': CharField(attrs={'value': 2 }),
             'id': TextInput(attrs={'readonly': 'readonly'}),
             'status': RadioSelect(),
         }
