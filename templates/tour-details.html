@@ -11,7 +11,7 @@
         {% for field in form %}
           <div class="form-floating my-2">
             {% if field.label == "Location" %}
-            <input id="id_location" name="location" class="form-control form-control-sm" placeholder="Location" disabled>{{selected_location}}</input>
+            <input id="id_location" name="location" class="form-control form-control-sm" placeholder="Location">{{selected_location}}</input>
             <label class="px-4" for="id_location"> {{ field.label }} </label>
             {%else%}
             {{ field }}
