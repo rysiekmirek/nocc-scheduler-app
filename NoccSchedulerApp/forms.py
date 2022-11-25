@@ -62,9 +62,12 @@ class TourFormEdit(ModelForm):
         #fields = '__all__'
         exclude = ('feedback','status')
         widgets = {
-          'comment': Textarea(attrs={'rows':1, 'cols':50}),
-          'id': TextInput(attrs={'readonly': 'readonly'}),
-          'status': RadioSelect(),
+            'start_time': DateTimeInput(attrs={'readonly': 'readonly'}),
+            'end_time': DateTimeInput(attrs={'readonly': 'readonly'}),
+            'comment': Textarea(attrs={'rows':1, 'cols':50}),
+            'location': CharField(attrs={'value': 2 }),
+            'id': TextInput(attrs={'readonly': 'readonly'}),
+            'status': RadioSelect(),
         }
     def __init__(self, *args, **kwargs):
         super(TourFormEdit, self).__init__(*args, **kwargs)
