@@ -39,8 +39,9 @@ def tour_details(request, pk):
                 return redirect('/tour-details/'+pk)
                 
     print(tour_data)
+    location = Location.objects.get(id=tour_data['location_id'])
     context = {
-        'selected_location': Location.objects.get(id=tour_data['location_id']),
+        'selected_location': location.location,
         'tour_data': tour_data,
         'form': TourFormEdit(initial=tour_data)
     }
