@@ -63,6 +63,7 @@ class TourFormEdit(ModelForm):
         widgets = {
             'start_time': TextInput(attrs={'readonly': 'readonly'}),
             'end_time': TextInput(attrs={'readonly': 'readonly'}),
+            'location': TextInput(attrs={'readonly': 'readonly'}),
             'comment': Textarea(attrs={'rows':1, 'cols':50}),
             'id': TextInput(attrs={'readonly': 'readonly'}),
             'status': RadioSelect(),
