@@ -37,7 +37,8 @@ def tour_details(request, pk):
                 messages.success(request, 'Tour details updated')                
                 form.save()
                 return redirect('/tour-details/'+pk)
-
+                
+    print(tour_data)
     context = {
         'tour_data': tour_data,
         'form': TourFormEdit(initial=tour_data)
