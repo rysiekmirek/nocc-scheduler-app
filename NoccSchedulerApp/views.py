@@ -150,7 +150,7 @@ def status_change(request, pk):
             elif status == "Rejected":
                 availability_entry=Availability.objects.get(avail_date=tour_data['date'], location_id=tour_data['location_id'])
                 time_slots_updated = (availability_entry.time_slots + "," + str(tour_data['start_time']) + "-" + str(tour_data['end_time'])).split(',')
-                availability_entry.time_slots = str(sorted(time_slots_updated))
+                availability_entry.time_slots = ','.join(sorted(time_slots_updated))
                 availability_entry.save()
                 messages.warning(request, 'Requestor will be informed via email that tour was rejected')
                 subject = '[NOCC-Tour-Scheduler] - Your tour " ' + \
