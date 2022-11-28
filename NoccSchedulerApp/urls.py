@@ -30,6 +30,7 @@ urlpatterns = [
     path('status-change/<str:pk>/', views.status_change, name='status_change'),
     path('ask-for-feedback/<str:pk>/', views.ask_for_feedback, name='ask_for_feedback'),
     path('feedback/<str:pk>/', views.feedback, name='feedback'),
+    path('settings/', views.settings, name='settings'),
     path('time-slots/', views.get_time_slots, name='get_time_slots'),
     path('', views.main, name = 'main' ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

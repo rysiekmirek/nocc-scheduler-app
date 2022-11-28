@@ -241,3 +241,7 @@ def get_time_slots(request):
         time_slots =""
         
     return JsonResponse({"time_slots": time_slots})
+
+def settings(request):
+
+    return render(request, "settings.html" )
