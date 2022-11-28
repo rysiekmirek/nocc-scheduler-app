@@ -150,7 +150,9 @@ def status_change(request, pk):
             elif status == "Rejected":
                 availability_entry=Availability.objects.get(avail_date=tour_data['date'], location_id=tour_data['location_id'])
                 availability_entry_list=availability_entry.time_slots.split(',')
-                time_slots_updated = availability_entry_list.append(str(tour_data['start_time']) + "-" + str(tour_data['end_time']))
+                start_time_string = datetime.strftime(tour_data['start_time'], "%H:%M")
+                end_time_string = datetime.strftime(tour_data['end_time'], "%H:%M")
+                time_slots_updated = availability_entry_list.append(start_time_string + "-" + end_time_string)
                 time_slots_sorted = sorted(time_slots_updated)
                 availability_entry.time_slots = ','.join(time_slots_sorted)
                 availability_entry.save()
