@@ -79,7 +79,7 @@ class TourFormEdit(ModelForm):
 
 class AvailabilityForm(ModelForm):
 
-    nocc_representatives_list = TextInput(max_length=2000)
+    nocc_representatives_list = CharField(label='NOCC representatives list', initial="", max_length=2000)
 
     class Meta:
         model = Availability
