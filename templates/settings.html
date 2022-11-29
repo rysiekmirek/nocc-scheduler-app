@@ -4,26 +4,26 @@
 <h3>Settings</h3> 
   <hr>
 
-  <form action="" method="POST">
-    {% csrf_token %}
+<div class="container-md mx-auto col-6">
+    <form action="" method="post">
+      {% csrf_token %}
+      {% for field in form %}
+        <div class="form-floating my-2">
+          {{ field }}
+          <label class="px-4" for="{{ field.auto_id }}"> {{ field.label }} </label>
+         <i><small style="color:#9e9e9e">{{ field.help_text }}</small></i> 
+         <i><small style="color:#e70a0a">{{ field.errors }}</small></i>
+        </div>
+      {% endfor %}
+      {{ form.non_field_errors }}
 
-  <div class="container-md mx-auto">
-  <div class="form-floating">
-  <input class="form-control" type="text" name="f_username" id="f_username">
-  <label for="f_username">Username</label>
-  </div>
-  <br>
-  <div class="form-floating">
-  <input class="form-control" type="password" name="f_password" id="f_password">
-  <label for="f_password">Password</label>
-  </div>
-  <br>
-  <div class="d-grid gap-2 col-6 mx-auto">
-  <button id="submit" type="submit" class="btn btn-secondary btn-lg btn-block"> Log in </button>
-  </div>
-  </div>
+    </div>
+    <div class="px-4 py-3 my-3 text-center">
+    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+    </div>
+    </form>
 
-</form>
+
 
 <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
