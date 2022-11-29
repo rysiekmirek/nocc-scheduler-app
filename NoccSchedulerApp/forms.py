@@ -82,3 +82,15 @@ class AvailabilityForm(ModelForm):
     class Meta:
         model = Availability
         fields = '__all__'
+        widgets = {
+            'time_slots': Textarea(attrs={'rows':1, 'cols':50}),
+        }
+    
+    def __init__(self, *args, **kwargs):
+        super(AvailabilityForm, self).__init__(*args, **kwargs)
+
+        for name, field in self.fields.items():
+            field.widget.attrs.update({
+                'class': 'form-control form-control-sm',
+                'placeholder': field.label,
+                })
