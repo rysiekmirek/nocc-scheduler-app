@@ -19,14 +19,26 @@
       {% endfor %}
       <i><small style="color:#9e9e9e">Comma separated list of available time slots i.e. 8:00-9:00,12:00-13:00 </small></i>
       {{ form.non_field_errors }}
-      
-</fieldset>
+    </fieldset>
     </div>
     <div class="px-4 py-3 my-3 text-center">
     <button type="submit" class="btn btn-primary btn-lg">Submit</button>
     </div>
     </form>
 
+    <fieldset class="rounded border p-2 my-2">
+        <legend>Edit NOCC representatives list</legend>
+        <form action="" method="post">
+          {% csrf_token %}
+
+          <div class="input-group mb-3">
+            <textarea readonly class="form-control" rows="1" cols="50" aria-label="Feedback" aria-describedby="button-addon2" id="nocc_representatives_list" name="nocc_representatives_list"></textarea>
+            <button class="btn btn-primary" type="submit" id="button-addon2">Update</button>
+          </div> 
+          </form>
+
+
+    </fieldset>
 
 
 <nav>
