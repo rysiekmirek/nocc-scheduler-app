@@ -76,3 +76,9 @@ class TourFormEdit(ModelForm):
                 'class': 'form-control form-control-sm',
                 'placeholder': field.label,
                 })
+
+class AvailabilityForm(ModelForm):
+
+    class Meta:
+        model = Availability
+        fields = '__all__'

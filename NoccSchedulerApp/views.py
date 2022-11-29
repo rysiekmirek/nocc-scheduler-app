@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.core.mail import send_mail, EmailMessage, EmailMultiAlternatives
 from django.contrib import messages
 from .models import Tour, Location, Availability
-from .forms import TourForm, TourFormEdit
+from .forms import TourForm, TourFormEdit, AvailabilityForm
 import requests
 import uuid
 import calendar
@@ -244,4 +244,9 @@ def get_time_slots(request):
 
 def settings(request):
 
-    return render(request, "settings.html" )
+    context = {
+        'form': AvailabilityForm(),
+        'availability_data': Availability.objects.all()
+    }
+
+    return render(request, "settings.html", context )
