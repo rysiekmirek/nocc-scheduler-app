@@ -5,7 +5,8 @@
   <hr>
 
 <div class="container-md mx-auto col-6">
-    <h4>Set availabilities for a single day</h4>
+<fieldset class="rounded border p-2 my-2">
+    <legend>Set availabilities for a single day</legend>
     <form action="" method="post">
       {% csrf_token %}
       {% for field in form %}
@@ -17,7 +18,7 @@
         </div>
       {% endfor %}
       {{ form.non_field_errors }}
-
+</fieldset>
     </div>
     <div class="px-4 py-3 my-3 text-center">
     <button type="submit" class="btn btn-primary btn-lg">Submit</button>
