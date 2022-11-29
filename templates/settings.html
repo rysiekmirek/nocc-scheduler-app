@@ -7,6 +7,7 @@
 <div class="container-md mx-auto col-6">
     <form action="" method="post">
       {% csrf_token %}
+      <div class="row">
       {% for field in form %}
         <div class="form-floating my-2">
           {{ field }}
@@ -15,6 +16,7 @@
          <i><small style="color:#e70a0a">{{ field.errors }}</small></i>
         </div>
       {% endfor %}
+      </div>
       {{ form.non_field_errors }}
 
     </div>
