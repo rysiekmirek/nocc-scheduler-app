@@ -7,7 +7,7 @@
 <div class="container-md mx-auto col-6">
 <fieldset class="rounded border p-2 my-2">
     <legend>Set availabilities for a single day</legend>
-    <form action="" method="post">
+    <form class="row row-cols-lg-auto g-3 align-items-center" action="" method="post">
       {% csrf_token %}
       {% for field in form %}
         <div class="form-floating my-2">
