@@ -32,7 +32,7 @@ class Tour(models.Model):
     requestor_email = models.EmailField()
     poc_name = models.CharField(max_length=300)
     poc_email = models.EmailField()
-    cc_this_request_to = models.EmailField(help_text="Ability to CC more people in order to receive feedback form + invitation to event once it has been approved.")
+    cc_this_request_to = models.EmailField()
     DIVISION_CHOICES = [
         ('P & RE', 'P & RE'),
         ('Customer & Industry', 'Customer & Industry'),
@@ -63,7 +63,6 @@ class Tour(models.Model):
         ('Krakow', 'Krakow'),
         ('Bangalore', 'Bangalore')
     ]
-    #location = models.CharField(max_length=100, choices=LOCATION_CHOICES, default='Cambridge')
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
 
     date = models.DateField()
