@@ -252,7 +252,8 @@ def settings(request):
             pass
 
     context = {
-        'availability_data': Availability.objects.all()
-    }
+        'availability_data_cambridge': Availability.objects.get(location='Cambridge'),
+        'nocc_representatives_list_cambridge' : Location.objects.get(Location='Cambridge').nocc_representatives_list,
+     }
 
     return render(request, "settings.html", context )
