@@ -244,6 +244,13 @@ def get_time_slots(request):
 
 def settings(request):
 
+    if request.method == 'POST':
+        r= request.POST
+        if 'nocc_representatives_list' in r:
+            pass
+        else:
+            pass
+
     context = {
         'form': AvailabilityForm(),
         'availability_data': Availability.objects.all()
