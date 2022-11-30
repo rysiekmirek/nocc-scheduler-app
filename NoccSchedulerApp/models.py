@@ -136,6 +136,7 @@ class Tour(models.Model):
         ('Requested', 'Requested'),
         ('Rejected', 'Rejected'),
         ('Approved', 'Approved'),
+        ('Canceled', 'Canceled'),
     ]
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Requested')
 
