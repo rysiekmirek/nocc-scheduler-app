@@ -14,7 +14,7 @@
   <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-cambridge" role="tabpanel" aria-labelledby="nav-cambridge-tab" tabindex="0">
 
-        <div class="container-md mx-auto col-7">
+        <div class="container-md mx-auto col-8">
           <fieldset class="rounded border p-2 my-2">
               <legend>Set availabilities for following dates</legend>
 
@@ -69,13 +69,13 @@
                         </tr>
 
                         <tbody id="myTable">
-                  {%for item in availability_data_cambridge %}
+                        {%for item in availability_data_cambridge %}
                         <tr>
                             <td>{{item.avail_date}}</td>
                             <td>{{item.time_slots}}</td>
 
                         </tr>
-                      {% endfor %}
+                        {% endfor %}
                     </tbody>
                   </table>
                 </div>
