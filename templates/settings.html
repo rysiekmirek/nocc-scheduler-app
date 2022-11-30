@@ -33,20 +33,20 @@
                   <label class="px-4" for="id_to_date"> To </label>
                  </div>
 
+                 <div class="input-group mb-3">
                  <div class="form-floating my-2">
                  <textarea class="form-control" rows="1" cols="60" aria-label="time_slots" aria-describedby="button-addon2" id="id_time_slots" name="time_slots" 
                  placeholder="Comma separated list of available time slots i.e. 8:00-9:00,12:00-13:00,13:00-14:00"></textarea>
-                 <label class="px-4" for="id_time_slots"> Time slots <i><small style="color:#9e9e9e"> (example: 8:00-9:00,12:00-13:00,13:00-14:00)</small></i> </label>
+                 <label class="px-4" for="id_time_slots"> Time slots <i><small style="color:#9e9e9e"> (example: 8:00-9:00,12:00-13:00,13:00-14:00)</small></i></label>
+                 <button type="submit" class="btn btn-primary btn-lg">Submit</button>
                 </div>
-
-                  <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+              </div>
               </form>
             </fieldset>
               
                   <h4>Edit NOCC representatives list</h4> 
                   <form action="" method="post">
                     {% csrf_token %}
-          
                     <div class="input-group mb-3">
                       <textarea class="form-control" rows="1" cols="50" aria-label="Feedback" aria-describedby="button-addon2" id="nocc_representatives_list" name="nocc_representatives_list"></textarea>
                       <button class="btn btn-primary" type="submit" id="button-addon2">Update</button>
