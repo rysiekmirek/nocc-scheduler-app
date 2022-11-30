@@ -9,7 +9,7 @@ import calendar
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from django.db.models import Q
 from django.http import JsonResponse
 
@@ -255,7 +255,20 @@ def settings(request):
             Location.objects.filter(location=location).update(nocc_representatives_list=nocc_representatives_list)
             return redirect('/settings/' )
         else:
-            for 
+            from_date = r['from_date']
+            to_date = r['to_date']
+            time_slots = r['time_slots']
+            delta = to_date - from_date
+            for i in range(delta.days + 1):
+                day = from_date + timedelta(days=i)
+                Availability.objects.update_or_create(
+                    avail_date=day,
+                    defaults={
+                        'time_slots': time_slots,
+                        'avail_date': day,                  },
+                    )
+ 
+
 
     context = {
         'availability_data_cambridge': Availability.objects.filter(location__location='Cambridge').order_by('avail_date'),
