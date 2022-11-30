@@ -255,7 +255,7 @@ def settings(request):
             pass
 
     context = {
-        'availability_data_cambridge': Availability.objects.get(location='Cambridge'),
+        'availability_data_cambridge': Availability.objects.get(location=Location.objects.get(Location='Cambridge').location_id),
         'nocc_representatives_list_cambridge' : Location.objects.get(Location='Cambridge').nocc_representatives_list,
      }
 
