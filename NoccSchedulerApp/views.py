@@ -17,13 +17,10 @@ from django.http import JsonResponse
 
 def main(request):
 
-    form = TourForm()
     context = {
         'tours': Tour.objects.filter(date__gte=date.today()).exclude(status="Rejected").order_by('date', 'start_time'),
-        'form': form
     }
     return render(request, "main.html", context)
-
 
 @login_required(login_url='/login/')
 def tour_details(request, pk):
@@ -147,7 +144,9 @@ def status_change(request, pk):
                 msg = EmailMessage(subject, html_content, from_email, to)
                 msg.content_subtype = "html"
                 msg.send()
-            elif status == "Rejected":
+            elif status == "Requested":
+                messages.warning(request, 'Tour status set to requested')
+            else:
                 availability_entry=Availability.objects.get(avail_date=tour_data['date'], location_id=tour_data['location_id'])
                 availability_entry_list=availability_entry.time_slots.split(',')
                 start_time_string = tour_data['start_time'].strftime("%H:%M")
@@ -167,8 +166,7 @@ def status_change(request, pk):
                 msg = EmailMessage(subject, html_content, from_email, to)
                 msg.content_subtype = "html"
                 msg.send()
-            else:
-                messages.warning(request, 'Tour status set to requested')
+                
 
     return redirect("/tour-details/"+pk)
 
@@ -245,7 +243,7 @@ def get_time_slots(request):
 def settings(request):
 
     if request.method == 'POST':
-        r= request.POST
+        r=request.POST
         if 'nocc_representatives_list' in r:
             location=r['location']
             nocc_representatives_list = r['nocc_representatives_list'].strip()
