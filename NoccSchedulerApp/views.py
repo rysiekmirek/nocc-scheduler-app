@@ -255,7 +255,7 @@ def settings(request):
             Location.objects.filter(location=location).update(nocc_representatives_list=nocc_representatives_list)
             return redirect('/settings/' )
         else:
-            pass
+            for 
 
     context = {
         'availability_data_cambridge': Availability.objects.filter(location__location='Cambridge').order_by('avail_date'),
