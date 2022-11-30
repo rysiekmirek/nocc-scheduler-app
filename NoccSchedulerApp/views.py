@@ -252,7 +252,6 @@ def settings(request):
             pass
 
     context = {
-        'form': AvailabilityForm(),
         'availability_data': Availability.objects.all()
     }
 
