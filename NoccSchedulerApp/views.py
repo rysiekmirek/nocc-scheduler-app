@@ -249,8 +249,8 @@ def settings(request):
 
     if request.method == 'POST':
         r=request.POST
+        location=r['location']
         if 'nocc_representatives_list' in r:
-            location=r['location']
             nocc_representatives_list = r['nocc_representatives_list'].strip()
             Location.objects.filter(location=location).update(nocc_representatives_list=nocc_representatives_list)
             return redirect('/settings/' )
@@ -262,7 +262,7 @@ def settings(request):
             for i in range(delta.days + 1):
                 day = from_date + timedelta(days=i)
                 Availability.objects.update_or_create(
-                    avail_date=day,
+                    location__location=location, avail_date=day,
                     defaults={
                         'time_slots': time_slots,
                         'avail_date': day,                  },
