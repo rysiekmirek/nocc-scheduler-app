@@ -21,8 +21,8 @@ class Location(models.Model):
 
 class Availability(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
-    avail_date = models.DateField()
-    time_slots = models.TextField(max_length=5000)
+    avail_date = models.DateField(null=True)
+    time_slots = models.TextField(max_length=5000, null=True)
     def __str__(self):
         return str(self.location) + "-" + str(self.avail_date)
 
