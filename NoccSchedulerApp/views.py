@@ -155,9 +155,15 @@ def status_change(request, pk):
                 availability_entry_list.sort()
                 availability_entry.time_slots = ','.join(availability_entry_list)
                 availability_entry.save()
-                messages.warning(request, 'Requestor will be informed via email that tour was rejected')
-                subject = '[NOCC-Tour-Scheduler] - Your tour " ' + \
-                    tour_data['tour_name'] + " \" was rejected"
+                if status == "Rejected":
+                    messages.warning(request, 'Requestor will be informed via email that tour was rejected')
+                    subject = '[NOCC-Tour-Scheduler] - Your tour " ' + \
+                        tour_data['tour_name'] + " \" was rejected"
+                else:
+                    messages.warning(request, 'Requestor will be informed via email that tour was canceled')
+                    subject = '[NOCC-Tour-Scheduler] - Your tour " ' + \
+                        tour_data['tour_name'] + " \" was canceled"
+                    
                 from_email = 'nocc-tour-scheduler@akamai.com'
                 to = [tour_data['requestor_email'], 'rmirek@akamai.com']
                 html_content = "<h2>Hi " + \
@@ -167,7 +173,6 @@ def status_change(request, pk):
                 msg.content_subtype = "html"
                 msg.send()
                 
-
     return redirect("/tour-details/"+pk)
 
 
