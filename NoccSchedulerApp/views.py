@@ -255,8 +255,8 @@ def settings(request):
             Location.objects.filter(location=location).update(nocc_representatives_list=nocc_representatives_list)
             return redirect('/settings/' )
         else:
-            from_date = datetime.strptime(r['from_date'], "%Y-%m-%d")
-            to_date = datetime.strptime(r['to_date'], "%Y-%m-%d")
+            from_date = datetime.strptime(r['from_date'], "%Y-%m-%d").date()
+            to_date = datetime.strptime(r['to_date'], "%Y-%m-%d").date()
             time_slots = r['time_slots']
             delta = to_date - from_date
             for i in range(delta.days + 1):
