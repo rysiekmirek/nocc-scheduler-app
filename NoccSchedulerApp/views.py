@@ -267,6 +267,7 @@ def settings(request):
                         'time_slots': time_slots,
                         'avail_date': day,                  },
                     )
+            messages.success(request, 'Time slots updated successfully')
  
 
 
