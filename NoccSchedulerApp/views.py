@@ -263,7 +263,7 @@ def settings(request):
                 day = from_date + timedelta(days=i)
                 Availability.objects.update_or_create(location__location='Cambridge', avail_date=day, 
                 defaults={
-                        'location__location': 'Cambridge',
+                        'location': Location.objects.get(location=location).location,
                         'time_slots': time_slots,
                         'avail_date': day
                         })
