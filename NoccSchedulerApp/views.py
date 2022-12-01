@@ -261,12 +261,12 @@ def settings(request):
             delta = to_date - from_date
             for i in range(delta.days + 1):
                 day = from_date + timedelta(days=i)
-                Availability.objects.update_or_create(
-                    location__location='Cambridge', avail_date=day,
-                    defaults={
+                Availability.objects.update_or_create(location__location='Cambridge', avail_date=day, 
+                defaults={
+                        'location': 'Cambridge',
                         'time_slots': time_slots,
-                        'avail_date': day,                  },
-                    )
+                        'avail_date': day
+                        })
             messages.success(request, 'Time slots updated successfully')
  
 
