@@ -250,7 +250,7 @@ def settings(request):
     if request.method == 'POST':
         r=request.POST
         location=r['location']
-        location_instance=Location.objects.get(location=r['location']).location
+        location_instance=Location.objects.get(location=r['location']).location_id
         if 'nocc_representatives_list' in r:
             nocc_representatives_list = r['nocc_representatives_list'].strip()
             Location.objects.filter(location=location).update(nocc_representatives_list=nocc_representatives_list)
