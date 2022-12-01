@@ -68,7 +68,7 @@ class Tour(models.Model):
     date = models.DateField()
     start_time = models.TimeField(null=True, blank=True)
     end_time = models.TimeField(null=True, blank=True)
-    
+
     NOCC_REQUIRED_CHOICES = [
         ('No', 'No'),
         ('Yes', 'Yes'),
@@ -111,9 +111,19 @@ class Tour(models.Model):
         ('Other', 'Other'),
     ]
 
-    type_of_customers = models.CharField(max_length=200, choices=TYPE_OF_CUSTOMERS)
-    
-    nocc_person_assigned = models.CharField(max_length=500, default=None, null=True, blank=True)
+    type_of_customers = models.CharField(max_length=200, choices=TYPE_OF_CUSTOMERS, default='Other')
+
+    PERSON_ASSIGNED_CHOICES = [
+        ('None', 'None'),
+        ('Adam', 'Adam'),
+        ('Brian', 'Brian'),
+        ('Charlie', 'Charlie'),
+    ]
+    nocc_person_assigned = models.CharField(
+        max_length=50,
+        choices=PERSON_ASSIGNED_CHOICES,
+        default='None',
+    )
 
     comment = models.TextField(max_length=2000, null=True, blank=True)
     feedback = models.TextField(
