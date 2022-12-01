@@ -31,10 +31,10 @@ def tour_details(request, pk):
         form = TourFormEdit(request.POST, instance=instance)
         if form.is_valid():
             if form.has_changed():
-                messages.success(request, 'Tour details updated')                
+                messages.success(request, 'Tour details updated')
                 form.save()
                 return redirect('/tour-details/'+pk)
-                
+
     print(tour_data)
     location = Location.objects.get(id=tour_data['location_id'])
     context = {
@@ -58,7 +58,7 @@ def view_calendar(request):
         year = datetime.now().year
     month_dates = calendar.Calendar().monthdatescalendar(year, month)
     context = {
-        'tours': Tour.objects.filter(date__gte=month_dates[1][1]).exclude(date__gte=month_dates[-1][-1]).exclude(status="Rejected").order_by('date', 'start_time'),
+        'tours': Tour.objects.filter(date__gte=month_dates[0][0]).exclude(date__gte=month_dates[-1][-1]).exclude(status="Rejected").order_by('date', 'start_time'),
         'month': month,
         'year': year,
         'month_dates': month_dates,
@@ -163,7 +163,7 @@ def status_change(request, pk):
                     messages.warning(request, 'Requestor will be informed via email that tour was canceled')
                     subject = '[NOCC-Tour-Scheduler] - Your tour " ' + \
                         tour_data['tour_name'] + " \" was canceled"
-                    
+
                 from_email = 'nocc-tour-scheduler@akamai.com'
                 to = [tour_data['requestor_email'], 'rmirek@akamai.com']
                 html_content = "<h2>Hi " + \
@@ -172,7 +172,7 @@ def status_change(request, pk):
                 msg = EmailMessage(subject, html_content, from_email, to)
                 msg.content_subtype = "html"
                 msg.send()
-                
+
     return redirect("/tour-details/"+pk)
 
 
@@ -240,9 +240,9 @@ def get_time_slots(request):
             time_slots = Availability.objects.filter(avail_date=f_date, location_id=f_location).values()[0]['time_slots'].split(',')
         except:
             time_slots=""
-    else:          
+    else:
         time_slots =""
-        
+
     return JsonResponse({"time_slots": time_slots})
 
 def settings(request):
@@ -262,14 +262,14 @@ def settings(request):
             delta = to_date - from_date
             for i in range(delta.days + 1):
                 day = from_date + timedelta(days=i)
-                Availability.objects.update_or_create(location=location_instance, avail_date=day, 
+                Availability.objects.update_or_create(location=location_instance, avail_date=day,
                 defaults={
                         'location': location_instance,
                         'time_slots': time_slots,
                         'avail_date': day
                         })
             messages.success(request, 'Time slots updated successfully')
- 
+
 
 
     context = {
