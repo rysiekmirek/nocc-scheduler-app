@@ -250,6 +250,7 @@ def settings(request):
     if request.method == 'POST':
         r=request.POST
         location=r['location']
+        location_instance=Location.objects.get(location=r['location']).location
         if 'nocc_representatives_list' in r:
             nocc_representatives_list = r['nocc_representatives_list'].strip()
             Location.objects.filter(location=location).update(nocc_representatives_list=nocc_representatives_list)
@@ -261,9 +262,9 @@ def settings(request):
             delta = to_date - from_date
             for i in range(delta.days + 1):
                 day = from_date + timedelta(days=i)
-                Availability.objects.update_or_create(location__location='Cambridge', avail_date=day, 
+                Availability.objects.update_or_create(location=location_instance, avail_date=day, 
                 defaults={
-                        'location': Location.objects.get(location=location).location,
+                        'location': location_instance,
                         'time_slots': time_slots,
                         'avail_date': day
                         })
