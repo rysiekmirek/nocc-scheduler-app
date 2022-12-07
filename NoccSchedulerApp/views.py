@@ -67,8 +67,7 @@ def view_calendar(request):
 
 @login_required(login_url='/login/')
 def archives(request):
-    tours = Tour.objects.filter(Q(date__lt=date.today()) | Q(
-        status="Rejected")).order_by('date', 'start_time')
+    tours = Tour.objects.filter(Q(date__lt=date.today()) | Q(status="Rejected") | Q(status="Canceled")).order_by('date', 'start_time')
     context = {
         'tours': tours,
     }
