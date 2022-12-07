@@ -24,7 +24,7 @@ def main(request):
 
 @login_required(login_url='/login/')
 def tour_details(request, pk):
-    tour_data = Tour.objects.get(id=pk).values()
+    tour_data = Tour.objects.get(id=pk)[0]
 
     if request.method == 'POST':
         instance = Tour.objects.get(id=pk)
