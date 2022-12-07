@@ -18,7 +18,7 @@ from django.http import JsonResponse
 def main(request):
 
     context = {
-        'tours': Tour.objects.filter(date__gte=date.today()).exclude(status="Rejected").order_by('date', 'start_time'),
+        'tours': Tour.objects.filter(date__gte=date.today()).exclude(status="Rejected").exclude(status="Canceled").order_by('date', 'start_time'),
     }
     return render(request, "main.html", context)
 
@@ -35,7 +35,6 @@ def tour_details(request, pk):
                 form.save()
                 return redirect('/tour-details/'+pk)
 
-    print(tour_data)
     location = Location.objects.get(id=tour_data['location_id'])
     context = {
         'selected_location': location.location,
