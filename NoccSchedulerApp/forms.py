@@ -76,7 +76,7 @@ class TourFormEdit(ModelForm):
                 'class': 'form-control form-control-sm',
                 'placeholder': field.label,
                 })
-            if name != 'tour_name':
+            if name != 'tour_name' or 'nocc_personnel_required':
                 field.disabled = True
 
 class AvailabilityForm(ModelForm):
