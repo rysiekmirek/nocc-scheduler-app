@@ -73,7 +73,7 @@ class TourFormEdit(ModelForm):
 
         for name, field in self.fields.items():   
             field.widget.attrs.update({
-                'class': 'form-control form-control-sm',
+                'class': 'form-control form-control-sm disabled',
                 'placeholder': field.label,
                 })
 
