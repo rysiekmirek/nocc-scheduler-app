@@ -250,7 +250,7 @@ def settings(request):
     if request.method == 'POST':
         r=request.POST
         location=r['location']
-        location_instance=Location.objects.get(location=r['location'])
+        location_instance=Location.objects.get(location=location)
         if 'nocc_representatives_list' in r:
             nocc_representatives_list = r['nocc_representatives_list'].strip()
             Location.objects.filter(location=location).update(nocc_representatives_list=nocc_representatives_list)
@@ -273,7 +273,7 @@ def settings(request):
 
 
     context = {
-        'availability_data_cambridge': Availability.objects.filter(location__location='Cambridge').order_by('avail_date'),
+        'availability_data_cambridge': Availability.objects.filter(location__location='Cambridge', avail_date__gte=date.today()).order_by('avail_date'),
         'nocc_representatives_list_cambridge' : Location.objects.get(location='Cambridge').nocc_representatives_list,
      }
 
