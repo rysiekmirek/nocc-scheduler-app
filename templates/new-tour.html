@@ -308,13 +308,16 @@
             console.log(response['start_times']);
             console.log(response['end_times']);
             var select = document.getElementById("id_start_time");
-            var options = response['start_times'];
-            if (options === ""){
+            var options_start = response['start_times'];
+            if (options_start === ""){
               console.log("No start times");
               $('#id_start_time').empty().append('<option selected="selected" value="">No start time</option>');
             } else {
+            $('#id_start_time').empty().append('<option selected="selected" value="">Choose starting time</option>');
+            for(var i = 0; i < options_start.length; i++) {
+                var opt = options_start[i];
             $('#id_start_time').empty().append('<option selected="selected" disabled value="">Choose starting time</option>');
-            for(var i = 0; i < options.length; i++) {
+            for(var i = 0; i < options_start.length; i++) {
                 var opt = options[i];
                 var el = document.createElement("option");
                 el.textContent = opt;
