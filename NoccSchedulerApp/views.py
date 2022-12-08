@@ -232,7 +232,7 @@ def new_tour(request):
         return render (request, "new-tour.html", context)
 
 
-def get_time_slots(request):
+def get_avail_times(request):
     r=request.GET
     if request.method == 'GET' and 'location' in r and 'date' in r:
         f_location=request.GET['location']
@@ -240,12 +240,17 @@ def get_time_slots(request):
         try:
             #location = Location.objects.get(location_id=f_location)
             time_slots = Availability.objects.filter(avail_date=f_date, location_id=f_location).values()[0]['time_slots'].split(',')
+            start_times=['8:00','8:15','8:30','8:45','9:00','9:15','9:30','9:45','10:00']
+            end_times=['8:00','8:15','8:30','8:45','9:00','9:15','9:30','9:45','10:00']
         except:
             time_slots=""
     else:
         time_slots =""
 
-    return JsonResponse({"time_slots": time_slots})
+    return JsonResponse({
+        "start_times": start_times,
+        "end_times": end_times,
+     })
 
 def settings(request):
 

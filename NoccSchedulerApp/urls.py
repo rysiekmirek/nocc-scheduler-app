@@ -31,6 +31,6 @@ urlpatterns = [
     path('ask-for-feedback/<str:pk>/', views.ask_for_feedback, name='ask_for_feedback'),
     path('feedback/<str:pk>/', views.feedback, name='feedback'),
     path('settings/', views.settings, name='settings'),
-    path('time-slots/', views.get_time_slots, name='get_time_slots'),
+    path('avail-times/', views.get_avail_times, name='get_avail_times'),
     path('', views.main, name = 'main' ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
