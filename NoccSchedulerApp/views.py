@@ -39,7 +39,7 @@ def tour_details(request, pk):
 
     context = {
         'nocc_representatives_list': location.nocc_representatives_list.strip().split(','),
-        'selected_nocc_representative': tour_data['nocc_person_assigned'],
+        'selected_nocc_representative': tour_data['nocc_person_assigned'].strip(),
         'selected_location': location.location,
         'tour_data': tour_data,
         'form': TourFormEdit(initial=tour_data)
