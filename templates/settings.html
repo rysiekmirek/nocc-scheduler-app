@@ -66,14 +66,14 @@
                 <table class="table table-sm">
                         <tr>
                             <th>Date</th>
-                            <th>Time slots</th>
+                            <th>Time frame</th>
                         </tr>
 
                         <tbody class="table-group-divider" id="myTable">
                         {%for item in availability_data_cambridge %}
                         <tr>
                             <td>{{item.avail_date}}</td>
-                            <td>{{item.time_slots}}</td>
+                            <td>{{item.avail_time}}</td>
 
                         </tr>
                         {% endfor %}
