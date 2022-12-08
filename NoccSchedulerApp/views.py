@@ -243,9 +243,11 @@ def get_avail_times(request):
             start_times=['8:00','8:15','8:30','8:45','9:00','9:15','9:30','9:45','10:00']
             end_times=['8:00','8:15','8:30','8:45','9:00','9:15','9:30','9:45','10:00']
         except:
-            time_slots=""
+            start_times=""
+            end_times=""
     else:
-        time_slots =""
+        start_times=""
+        end_times=""
 
     return JsonResponse({
         "start_times": start_times,
