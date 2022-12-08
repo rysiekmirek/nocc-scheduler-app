@@ -305,14 +305,14 @@
               'location': location,
         },
         success: function(response) {
-            console.log(response['time_slots']);
-            var select = document.getElementById("id_time_slot_selection");
-            var options = response['time_slots'];
+            console.log(response['start_times']);
+            var select = document.getElementById("id_start_time");
+            var options = response['start_times'];
             if (options === ""){
-              console.log("No time slots");
-              $('#id_time_slot_selection').empty().append('<option selected="selected" value="">No available time slots</option>');
+              console.log("No start times");
+              $('#id_start_time').empty().append('<option selected="selected" value="">No start time</option>');
             } else {
-            $('#id_time_slot_selection').empty().append('<option selected="selected" value="">Choose time slot</option>');
+            $('#id_start_time').empty().append('<option selected="selected" value="">Choose starting time</option>');
             for(var i = 0; i < options.length; i++) {
                 var opt = options[i];
                 var el = document.createElement("option");
@@ -320,7 +320,7 @@
                 el.value = opt;
                 select.appendChild(el);
             }
-            console.log("Should be time slots");
+            console.log("Should be start time");
           }
         }
      })
