@@ -36,6 +36,8 @@ def tour_details(request, pk):
                 return redirect('/tour-details/'+pk)
 
     location = Location.objects.get(id=tour_data['location_id'])
+    if tour_data['nocc_personnel_required'] == 'No':
+        pass
     context = {
         'selected_location': location.location,
         'tour_data': tour_data,
