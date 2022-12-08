@@ -234,7 +234,7 @@ def new_tour(request):
 
 def get_avail_times(request):
     r=request.GET
-    if request.method == 'GET' and 'location' in r and 'date' in r:
+    if request.method == 'GET' and r['location'] != '' and r['date'] != '':
         f_location=request.GET['location']
         f_date= request.GET['date']
         try:
