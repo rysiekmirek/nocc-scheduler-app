@@ -306,6 +306,7 @@
         },
         success: function(response) {
             console.log(response['start_times']);
+            console.log(response['end_times']);
             var select = document.getElementById("id_start_time");
             var options = response['start_times'];
             if (options === ""){
