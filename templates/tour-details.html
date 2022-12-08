@@ -12,15 +12,13 @@
           <div class="form-floating my-2">
             {% if field.name == "location" %}
             <input id="id_location" name="location" class="form-control form-control-sm" placeholder="Location" value="{{ selected_location }}" disabled></input>
-            <label class="px-4" for="id_location"> {{ field.label }} </label>
-            {%elif field.name == "nocc_person_assigned"%}
 
+            {%elif field.name == "nocc_person_assigned"%}
               <select id="id_nocc_person_assigned" name="nocc_person_assigned" class="form-control form-control-sm" placeholder="NOCC person assigned">
                 {% for person in nocc_representatives_list %}
                 <option value="{{person}}">{{person}}</option>
                 {%endfor%}
               </select>
-              <label class="px-4" for="id_nocc_person_assigned">NOCC person assigned</label>
 
             {%else%}
             {{ field }}
