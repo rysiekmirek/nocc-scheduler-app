@@ -254,7 +254,7 @@ def settings(request):
         location=r['location']
         location_instance=Location.objects.get(location=location)
         if 'nocc_representatives_list' in r:
-            nocc_representatives_list = r['nocc_representatives_list'].strip(' ')
+            nocc_representatives_list = r['nocc_representatives_list'].strip('')
             Location.objects.filter(location=location).update(nocc_representatives_list=nocc_representatives_list)
             return redirect('/settings/' )
         else:
