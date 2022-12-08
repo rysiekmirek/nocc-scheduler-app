@@ -260,14 +260,14 @@ def settings(request):
         else:
             from_date = datetime.strptime(r['from_date'], "%Y-%m-%d").date()
             to_date = datetime.strptime(r['to_date'], "%Y-%m-%d").date()
-            time_slots = r['time_slots']
+            avail_time = r['avail_time']
             delta = to_date - from_date
             for i in range(delta.days + 1):
                 day = from_date + timedelta(days=i)
                 Availability.objects.update_or_create(location=location_instance, avail_date=day,
                 defaults={
                         'location': location_instance,
-                        'time_slots': time_slots,
+                        'avail_time': avail_time,
                         'avail_date': day
                         })
             messages.success(request, 'Time slots updated successfully')
