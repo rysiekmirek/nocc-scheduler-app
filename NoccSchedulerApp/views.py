@@ -43,6 +43,7 @@ def tour_details(request, pk):
         'tour_data': tour_data,
         'form': TourFormEdit(initial=tour_data)
     }
+    print (context)
     return render(request, "tour-details.html", context)
 
 
