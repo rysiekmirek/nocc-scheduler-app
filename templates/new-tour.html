@@ -255,7 +255,7 @@
         });
     });
 
-    $('#id_date').on('change', function() {
+    $('#id_location').on('change', function() {
     var date;
     var location;
     date = document.getElementById('id_date').value;
@@ -263,35 +263,53 @@
     $.ajax(
     {
         type:"GET",
-        url: "/time-slots/",
+        url: "/avail-times/",
         data:{
               'date': date,
               'location': location,
         },
         success: function(response) {
-            console.log(response['time_slots']);
-
-            var select = document.getElementById("id_time_slot_selection");
-            var options = response['time_slots'];
-            if (options === ""){
-              $('#id_time_slot_selection').empty().append('<option selected="selected" value="">No available time slots</option>');
-              console.log("No time slots");
-            } else {
-            $('#id_time_slot_selection').empty().append('<option selected="selected" value="">Choose time slot</option>');
-            for(var i = 0; i < options.length; i++) {
-                var opt = options[i];
+            console.log(response['start_times']);
+            console.log(response['end_times']);
+            var select_start = document.getElementById("id_start_time");
+            var select_end = document.getElementById("id_end_time");
+            var options_start = response['start_times'];
+            if (options_start === ""){
+              console.log("No start times");
+              $('#id_start_time').empty().append('<option selected="selected" value="">No start time</option>');
+            } 
+            else {
+            $('#id_start_time').empty().append('<option selected="selected" disabled value="">Choose start time</option>');
+            for(var i = 0; i < options_start.length; i++) {
+                var opt = options_start[i];
                 var el = document.createElement("option");
                 el.textContent = opt;
                 el.value = opt;
-                select.appendChild(el);
+                select_start.appendChild(el);
             }
-            console.log("Should be time slots");
+            var options_end = response['end_times'];
+            if (options_end === ""){
+              console.log("No end times");
+              $('#id_end_time').empty().append('<option selected="selected" value="">No end time</option>');
+            } 
+            else {
+            $('#id_end_time').empty().append('<option selected="selected" disabled value="">Choose end time</option>');
+            for(var i = 0; i < options_end.length; i++) {
+                var opt = options_end[i];
+                var el = document.createElement("option");
+                el.textContent = opt;
+                el.value = opt;
+                select_end.appendChild(el);
+            }
+          }
+            console.log("Should be start and end time time");
           }
         }
      })
     });
 
-    $('#id_location').on('change', function() {
+
+    $('#id_date').on('change', function() {
     var date;
     var location;
     date = document.getElementById('id_date').value;
