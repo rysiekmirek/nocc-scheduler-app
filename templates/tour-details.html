@@ -16,15 +16,15 @@
               <select id="id_nocc_person_assigned" name="nocc_person_assigned" class="form-control form-control-sm" placeholder="NOCC person assigned">
                 <option value="None">None</option>
                 {% for person in nocc_representatives_list %}
-                {%if person == selected_nocc_representative%}
-                <option value="{{person}}" selected>{{person}}</option>
-                {%else%}
-                <option value="{{person}}">{{person}}</option>
-                {%endif%}
+                  {%if person == selected_nocc_representative %}
+                  <option value="{{person}}" selected>{{person}}</option>
+                  {%else%}
+                  <option value="{{person}}">{{person}}</option>
+                  {%endif%}
                 {%endfor%}
               </select>
             {%else%}
-            {{ field }}
+              {{ field }}
             {% endif %}
             <label class="px-4" for="{{ field.auto_id }}"> {{ field.label }} </label>
            <i><small style="color:#e70a0a">{{ field.errors }}</small></i>
