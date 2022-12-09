@@ -342,6 +342,7 @@
                 select_start.appendChild(el);
             }
             var options_end = response['end_times'];
+            console.log("options_end assigned");
             if (options_end == ""){
               console.log("No end times");
               $('#id_end_time').empty().append('<option selected="selected" value="">No end time</option>');
