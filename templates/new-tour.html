@@ -46,7 +46,8 @@
     
           <div class="col">
           <div class="form-floating my-2">
-            <select id="id_start_time" name="start_time" class="form-control form-control-sm" placeholder="Start time" required>
+            <select id="id_start_time" name="start_time" class="form-control form-control-sm" placeholder="Start time" required 
+            onmousedown="if(this.options.length>8){this.size=8;}"  onchange='this.size=0;' onblur="this.size=0;">
             </select>
             <label class="px-4" for="id_start_time"> Start time </label>
             </div>
