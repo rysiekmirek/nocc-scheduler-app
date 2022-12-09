@@ -274,7 +274,7 @@
             var select_start = document.getElementById("id_start_time");
             var select_end = document.getElementById("id_end_time");
             var options_start = response['start_times'];
-            if (options_start === ""){
+            if (options_start == ""){
               console.log("No start times");
               $('#id_start_time').empty().append('<option selected="selected" value="">No start time</option>');
             } 
@@ -288,7 +288,7 @@
                 select_start.appendChild(el);
             }
             var options_end = response['end_times'];
-            if (options_end === ""){
+            if (options_end == ""){
               console.log("No end times");
               $('#id_end_time').empty().append('<option selected="selected" value="">No end time</option>');
             } 
@@ -328,7 +328,7 @@
             var select_start = document.getElementById("id_start_time");
             var select_end = document.getElementById("id_end_time");
             var options_start = response['start_times'];
-            if (options_start === ""){
+            if (options_start == ""){
               console.log("No start times");
               $('#id_start_time').empty().append('<option selected="selected" value="">No start time</option>');
             } 
@@ -342,7 +342,7 @@
                 select_start.appendChild(el);
             }
             var options_end = response['end_times'];
-            if (options_end === ""){
+            if (options_end == ""){
               console.log("No end times");
               $('#id_end_time').empty().append('<option selected="selected" value="">No end time</option>');
             } 
