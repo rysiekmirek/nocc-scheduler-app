@@ -48,18 +48,18 @@
 
             <label class="px-4" for="id_start_time"> Start time </label>
             <select id="id_start_time" name="start_time" class="form-control form-control-sm" placeholder="Start time" required 
-            onmousedown="if(this.options.length>2){this.size=2;}"  onchange='this.size=0;' onblur="this.size=0;">
+            onmousedown="if(this.options.length>3){this.size=3;}"  onchange='this.size=0;' onblur="this.size=0;">
             </select>
             
            
             </div>
   
             <div class="col">
-              <div class="form-floating my-2">
-                <select id="id_end_time" name="end_time" class="form-control form-control-sm" placeholder="End time" required>
-                </select>
+              
                 <label class="px-4" for="id_end_time"> End time </label>
-                </div>
+                <select id="id_end_time" name="end_time" class="form-control form-control-sm" placeholder="End time" required
+                onmousedown="if(this.options.length>3){this.size=3;}"  onchange='this.size=0;' onblur="this.size=0;">
+                </select>
 
                 </div>
   
