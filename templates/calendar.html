@@ -176,7 +176,7 @@
         </table>
     </div>
     <script>
-        f_hide_all();
+        //f_hide_all();
         let clickers = document.getElementsByClassName("day_with_tour");
         for (const clicker of clickers) {
             clicker.addEventListener('click', f_show);
@@ -192,7 +192,7 @@
         }
 
         function f_show() {
-            //f_hide_all();
+            f_hide_all();
             let tours_table = document.getElementById("tours_table");
             tours_table.hidden = false;
             const date = this.attributes.id.value;
