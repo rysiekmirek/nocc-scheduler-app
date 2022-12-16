@@ -2,7 +2,7 @@
 {% block content %}
     <h3>Calendar</h3>
     <hr/>
-    <form class="row justify-content-center" action="" method="post">
+    <form class="row justify-content-center pb-4" action="" method="post">
         {% csrf_token %}
         <div class="col-1">
             <label for="month">Month:</label>
@@ -47,17 +47,18 @@
         </div>
         <div class="col-1">
             <label for="year">Year:</label>
-            <input class="input-group"
+            <input class="input-group input-group-lg"
                    type="text"
                    id="year"
                    name="year"
                    value="{{ year }}"/>
         </div>
-        <div class="col-1">
+        <div class="col-1 align-self-center">
             <button type="submit" class="btn btn-primary btn-lg">Submit</button>
         </div>
     </form>
-    <div class="table-responsive col-8 justify-content-center container">
+
+    <div class="table-responsive col-8 justify-content-center container pb-5">
         <table class="table table-bordered center-block">
             <thead class="table-dark">
                 <tr>
@@ -88,6 +89,7 @@
             </tbody>
         </table>
     </div>
+
     <div id="tours_table" class="table-responsive">
         <h3 id="date_head">NOCC Tours for {{ date }}</h3>
         <hr/>
