@@ -33,6 +33,6 @@ urlpatterns = [
     path('feedback/<str:pk>/', views.feedback, name='feedback'),
     path('settings/', views.settings, name='settings'),
     path('avail-times/', views.get_avail_times, name='get_avail_times'),
-    path(".well-known/acme-challenge/kLYGW62Q-00swf8Bl0sJGVXVe4A6_Go6j9ZLX1PcABM",TemplateView.as_view(template_name="kLYGW62Q-00swf8Bl0sJGVXVe4A6_Go6j9ZLX1PcABM", content_type="text/plain")),
+    path('.well-known/acme-challenge/kLYGW62Q-00swf8Bl0sJGVXVe4A6_Go6j9ZLX1PcABM',TemplateView.as_view(template_name="kLYGW62Q-00swf8Bl0sJGVXVe4A6_Go6j9ZLX1PcABM", content_type="text/plain")),
     path('', views.main, name = 'main' ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
