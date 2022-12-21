@@ -249,7 +249,7 @@ def get_avail_times(request):
         end_times =[]
         while entry < avail_end_time:
             start_times.append(entry)
-            entry = datetime.combine(date.today(), entry) + timedelta(minutes=15).time()
+            entry = (datetime.combine(date.today(), entry) + timedelta(minutes=15)).time()
             #entry = entry + timedelta(minutes=15)
             end_times.append(entry)
         print (start_times)
