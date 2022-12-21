@@ -28,14 +28,14 @@
         <div class="col">
         <div class="form-floating my-2">
           {{ form.location }}
-          <label class="px-4" for="{{ form.location.id_for_label }}"> {{ form.location.label }} </label>
+          <label class="px-4" for="{{form.location.id_for_label}}"> {{ form.location.label }} </label>
           <i><small style="color:#e70a0a"> {{form.location.errors }} </small></i>
         </div>
         </div>
         <div class="col">
           <div class="form-floating my-2">
            {{ form.date }}
-            <label class="px-4" for="{{ form.date.id_for_label}}"> Date </label>
+            <label class="px-4" for="{{form.date.id_for_label}}"> Date </label>
             <i><small style="color:#e70a0a"> {{form.date.errors }} </small></i>
           </div>
           </div>

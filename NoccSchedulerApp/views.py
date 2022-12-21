@@ -193,7 +193,8 @@ def new_tour(request):
         tour_data= r.dict()
         print("Form is valid")
         print(form.errors)
-        start_time, end_time = r['time_slot_selection'].replace(' ','').split("-")
+        start_time= r['start_time']
+        end_time = r['end_time']
         dbentry = form.save(commit=False)
         dbentry.tour_name = str(r['customer_or_group_name']) + "--" + str(r['category']) + "--" + str(r['date'])
         uuid_value = uuid.uuid4()
