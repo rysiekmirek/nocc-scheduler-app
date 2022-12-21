@@ -237,6 +237,7 @@ def get_avail_times(request):
     if request.method == 'GET' and r['location'] != '' and r['date'] != '':
         f_location=request.GET['location']
         f_date= request.GET['date']
+        print (f_location)
         try:
             location = Location.objects.get(location_id=f_location)
             avail_start_time, avail_end_time = Availability.objects.filter(avail_date=f_date, location_id=f_location).values()[0]['avail_time'].split('-')
