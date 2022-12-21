@@ -29,7 +29,6 @@ def tour_details(request, pk):
     if request.method == 'POST':
         instance = Tour.objects.get(id=pk)
         form = TourFormEdit(request.POST, instance=instance)
-        print (form)
         if form.is_valid():
             if form.has_changed():
                 messages.success(request, 'Tour details updated')
@@ -45,7 +44,6 @@ def tour_details(request, pk):
         'tour_data': tour_data,
         'form': TourFormEdit(initial=tour_data)
     }
-    print (context)
     return render(request, "tour-details.html", context)
 
 
