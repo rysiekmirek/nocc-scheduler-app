@@ -29,6 +29,7 @@ def tour_details(request, pk):
     if request.method == 'POST':
         instance = Tour.objects.get(id=pk)
         form = TourFormEdit(request.POST, instance=instance)
+        print (form)
         if form.is_valid():
             if form.has_changed():
                 messages.success(request, 'Tour details updated')
@@ -119,7 +120,7 @@ def ask_for_feedback(request, pk):
     from_email = 'nocc-tour-scheduler@akamai.com'
     to = [tour_data['requestor_email'], 'rmirek@akamai.com']
     html_content = "<h2>Hi " + tour_data['requestor_name'] + \
-        ", </h2><br> Please visit <br> <a href=\"http://194.233.175.38:8000/feedback/"+pk+"\">Link</a>"
+        ", </h2><br> Please visit <br> <a href=\"http://nvs.akamai.com/feedback/"+pk+"\">Link</a>"
     msg = EmailMessage(subject, html_content, from_email, to)
     msg.content_subtype = "html"
     msg.send()
