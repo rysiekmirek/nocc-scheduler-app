@@ -238,27 +238,27 @@ def get_avail_times(request):
         f_location=request.GET['location']
         f_date= request.GET['date']
         print (f_location)
-        try:
-            location = Location.objects.get(location_id=f_location)
-            avail_start_time, avail_end_time = Availability.objects.filter(avail_date=f_date, location_id=f_location).values()[0]['avail_time'].split('-')
-            print (avail_start_time, avail_end_time)
-            avail_start_time = datetime.strptime(avail_start_time, "%H:%M").time()
-            avail_end_time = datetime.strptime(avail_end_time, "%H:%M").time()
-            entry = avail_start_time
-            start_times = []
-            end_times =[]
-            while entry < avail_end_time:
-                start_times.append(entry)
-                entry += timedelta(minutes=15)
-                end_times.append(entry)
-            print (start_times)
-            print (end_times)
-            #time_slots = Availability.objects.filter(avail_date=f_date, location_id=f_location).values()[0]['time_slots'].split(',')
-            #start_times=['8:00','8:15','8:30','8:45','9:00','9:15','9:30','9:45','10:00']
-            #end_times=['8:15','8:30','8:45','9:00','9:15','9:30','9:45','10:00']
-        except:
-            start_times=""
-            end_times=""
+        #try:
+        location = Location.objects.get(location_id=f_location)
+        avail_start_time, avail_end_time = Availability.objects.filter(avail_date=f_date, location_id=f_location).values()[0]['avail_time'].split('-')
+        print (avail_start_time, avail_end_time)
+        avail_start_time = datetime.strptime(avail_start_time, "%H:%M").time()
+        avail_end_time = datetime.strptime(avail_end_time, "%H:%M").time()
+        entry = avail_start_time
+        start_times = []
+        end_times =[]
+        while entry < avail_end_time:
+            start_times.append(entry)
+            entry += timedelta(minutes=15)
+            end_times.append(entry)
+        print (start_times)
+        print (end_times)
+        #time_slots = Availability.objects.filter(avail_date=f_date, location_id=f_location).values()[0]['time_slots'].split(',')
+        #start_times=['8:00','8:15','8:30','8:45','9:00','9:15','9:30','9:45','10:00']
+        #end_times=['8:15','8:30','8:45','9:00','9:15','9:30','9:45','10:00']
+        #except:
+            #start_times=""
+            #end_times=""
     else:
         start_times=""
         end_times=""
