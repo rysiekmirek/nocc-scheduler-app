@@ -249,7 +249,8 @@ def get_avail_times(request):
                 start_times.append(entry)
                 entry += timedelta(minutes=15)
                 end_times.append(entry)
-
+            print (start_times)
+            print (end_times)
             #time_slots = Availability.objects.filter(avail_date=f_date, location_id=f_location).values()[0]['time_slots'].split(',')
             #start_times=['8:00','8:15','8:30','8:45','9:00','9:15','9:30','9:45','10:00']
             #end_times=['8:15','8:30','8:45','9:00','9:15','9:30','9:45','10:00']
