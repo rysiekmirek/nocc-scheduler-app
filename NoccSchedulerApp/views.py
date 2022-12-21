@@ -9,7 +9,7 @@ import calendar
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, time
 from django.db.models import Q
 from django.http import JsonResponse
 
@@ -249,7 +249,8 @@ def get_avail_times(request):
         end_times =[]
         while entry < avail_end_time:
             start_times.append(entry)
-            entry = (entry + timedelta(minutes=15)).time()
+            entry = datetime.combine(date.today(), entry) + timedelta(minutes=15).time()
+            #entry = entry + timedelta(minutes=15)
             end_times.append(entry)
         print (start_times)
         print (end_times)
