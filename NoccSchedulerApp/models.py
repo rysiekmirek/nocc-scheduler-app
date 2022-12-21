@@ -113,21 +113,10 @@ class Tour(models.Model):
 
     type_of_customers = models.CharField(max_length=200, choices=TYPE_OF_CUSTOMERS, default='Other')
 
-    PERSON_ASSIGNED_CHOICES = [
-        ('None', 'None'),
-        ('Adam', 'Adam'),
-        ('Brian', 'Brian'),
-        ('Charlie', 'Charlie'),
-    ]
-    nocc_person_assigned = models.CharField(
-        max_length=50,
-        choices=PERSON_ASSIGNED_CHOICES,
-        default='None',
-    )
+    nocc_person_assigned = models.CharField(max_length=200,null=True, blank=True)
 
     comment = models.TextField(max_length=2000, null=True, blank=True)
-    feedback = models.TextField(
-        max_length=2000, null=True, blank=True, default="No feedback yet")
+    feedback = models.TextField(max_length=2000, null=True, blank=True, default="No feedback yet")
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(unique=True, primary_key=True, editable=True)
 
