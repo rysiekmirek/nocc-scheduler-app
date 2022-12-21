@@ -240,6 +240,7 @@ def get_avail_times(request):
         try:
             location = Location.objects.get(location_id=f_location)
             avail_start_time, avail_end_time = Availability.objects.filter(avail_date=f_date, location_id=f_location).values()[0]['avail_time'].split('-')
+            print (avail_start_time, avail_end_time)
             avail_start_time = datetime.strptime(avail_start_time, "%H:%M").time()
             avail_end_time = datetime.strptime(avail_end_time, "%H:%M").time()
             entry = avail_start_time
