@@ -182,7 +182,7 @@ def feedback(request, pk):
 
     if request.method == 'POST':
         instance = Tour.objects.get(id=pk)
-        form = TourFormEdit(request.POST, instance=instance)
+        form = TourForm(request.POST, instance=instance)
         if form.is_valid():
             form.save()
             messages.success(request, 'Thank You, feedback submitted successfully')
