@@ -255,7 +255,8 @@ def get_avail_times(request):
             while i <= tour_end_time:
                 existing_tours_times.append(i.strftime("%H:%M"))
                 i = (datetime.combine(date.today(), i) + timedelta(minutes=15)).time()
-            
+            start_times = list(set(start_times) - set(existing_tours_times[:-1]))
+            end_times = list(set(end_times) - set(existing_tours_times[1:]))
             print (existing_tours_times)
 
 
