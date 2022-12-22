@@ -141,7 +141,7 @@ def status_change(request, pk):
                 to = [tour_data['requestor_email'], 'rmirek@akamai.com']
                 html_content = "<h2>Hi " + \
                     tour_data['requestor_name'] + \
-                    ", </h2><br> To check status of the request see <br> <a href=\"http://194.233.175.38:8000/\">Link</a>"
+                    ", </h2><br> To check status of the request see <br> <a href=\"http://nvs.akamai.com\">Link</a>"
                 msg = EmailMessage(subject, html_content, from_email, to)
                 msg.content_subtype = "html"
                 msg.send()
@@ -169,7 +169,7 @@ def status_change(request, pk):
                 to = [tour_data['requestor_email'], 'rmirek@akamai.com']
                 html_content = "<h2>Hi " + \
                     tour_data['requestor_name'] + \
-                    ", </h2><br> To check status of the request see <br> <a href=\"http://194.233.175.38:8000/\">Link</a>"
+                    ", </h2><br> To check status of the request see <br> <a href=\"http://nvs.akamai.com\">Link</a>"
                 msg = EmailMessage(subject, html_content, from_email, to)
                 msg.content_subtype = "html"
                 msg.send()
@@ -214,7 +214,7 @@ def new_tour(request):
         for key, data in tour_data.items():
             html_content += "<b>" + str(key) + "</b> : "
             html_content += "<i>" + str(data) + "</i><br>"
-        html_content += "<br> To check status of the request see <br> <a href=\"http://194.233.175.38:8000/\">http://194.233.175.38:8000</a>"
+        html_content += "<br> To check status of the request see <br> <a href=\"http://nvs.akamai.com\">http://nvs.akamai.com</a>"
         msg = EmailMessage(subject, html_content, from_email, to)
         msg.content_subtype = "html"
         msg.send()
