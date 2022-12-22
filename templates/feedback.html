@@ -40,6 +40,8 @@
 <br>
 
 <div class="text-center container-md mx-auto col-6">
+  <form action="" method="POST" id="f_feedback">
+    {% csrf_token %}
 
   <fieldset class="rounded border p-2 my-2">
     <legend>How satisfied were you with the NOCC Tour?</legend>
@@ -65,22 +67,11 @@
     <label class="form-check-label" for="inlineRadio5">5</label>
   </div>
   Excellent
-  
-
-
-
   </fieldset>
 
 
 
 
-
-
-
-
-  
-<form action="" method="POST" id="f_feedback">
-    {% csrf_token %}
     <textarea class="form-control" rows="20" cols="300" aria-label="Feedback" aria-describedby="button-addon2" id="f_feedback" name="f_feedback"> </textarea>
     <br>
     <div class="d-grid gap-2 col-6 mx-auto"><button class="btn btn-primary" type="submit" id="button-addon2">Submit</button></div>
