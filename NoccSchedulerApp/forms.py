@@ -59,6 +59,35 @@ class TourForm(ModelForm):
     """
 
 
+class TourFormFeedback(ModelForm):
+
+    class Meta:
+        model = Tour
+        #fields = '__all__'
+        exclude = ('id','status','nocc_person_assigned','feedback', 'tour_name', 'start_time', 'end_time' )
+        widgets = {
+            'date': DateTimeInput(attrs={'type': 'date', 'min': (date.today() + timedelta(days=1)) }),
+            #'start_time': DateTimeInput(attrs={'type': 'time', 'min':'7:00','max': '19:00', "step": "900", 'type': 'hidden'}),
+            #'end_time': DateTimeInput(attrs={'type': 'time', 'type': 'hidden'}),
+            'comment': Textarea(attrs={'rows':1, 'cols':50}),
+            'attendees_guests': TextInput(attrs={'min':0,'max': '50','type': 'number'}),
+            'attendees_akamai': TextInput(attrs={'min':0,'max': '50','type': 'number'}),
+            'key_take_aways': TextInput,
+            'overall_feedback' : TextInput,
+            'internal_or_external_audience': TextInput,
+            'feedback_name' : TextInput,
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(TourForm, self).__init__(*args, **kwargs)
+
+        for name, field in self.fields.items():
+            field.widget.attrs.update({
+                'class': 'form-control form-control-sm',
+                'placeholder': field.label,
+                })
+
+
 class TourFormEdit(ModelForm):
     class Meta:
         model = Tour
@@ -83,8 +112,10 @@ class TourFormEdit(ModelForm):
             if name not in ['tour_name', 'customer_or_group_name', 'nocc_person_assigned']:
                 field.disabled = True
 
-class AvailabilityForm(ModelForm):
 
+
+
+class AvailabilityForm(ModelForm):
     class Meta:
         model = Availability
         fields = '__all__'

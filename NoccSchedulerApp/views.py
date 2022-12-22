@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.core.mail import send_mail, EmailMessage, EmailMultiAlternatives
 from django.contrib import messages
 from .models import Tour, Location, Availability
-from .forms import TourForm, TourFormEdit, AvailabilityForm
+from .forms import TourForm, TourFormEdit, AvailabilityForm, TourFormFeedback
 import requests
 import uuid
 import calendar
@@ -189,7 +189,7 @@ def feedback(request, pk):
             return redirect('/')
 
     context={
-            'form': TourForm(initial=tour_data),
+            'form': TourFormFeedback(initial=tour_data),
         }
 
     return render(request, "feedback.html", context )
