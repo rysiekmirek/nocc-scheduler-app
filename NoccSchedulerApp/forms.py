@@ -86,7 +86,7 @@ class AvailabilityForm(ModelForm):
         fields = '__all__'
         widgets = {
             'avail_date': DateTimeInput(attrs={'type': 'date', 'min': (date.today() + timedelta(days=1)) }),
-            'time_slots': Textarea(attrs={'rows':1, 'cols':50}),
+            'avail_time': Textarea(attrs={'rows':1, 'cols':50}),
         }
     
     def __init__(self, *args, **kwargs):
