@@ -232,19 +232,17 @@ def get_avail_times(request):
     if request.method == 'GET' and r['location'] != '' and r['date'] != '':
         f_location=request.GET['location']
         f_date= request.GET['date']
-        print (f_location)
         #try:
         #location = Location.objects.get(location_id=f_location)
         avail_start_time, avail_end_time = Availability.objects.filter(avail_date=f_date, location=f_location).values()[0]['avail_time'].split('-')
-        print (avail_start_time, avail_end_time)
         avail_start_time = datetime.strptime(avail_start_time, "%H:%M").time()
         avail_end_time = datetime.strptime(avail_end_time, "%H:%M").time()
         entry = avail_start_time
         start_times = []
         end_times =[]
         other_tours_that_day = Tour.objects.filter(date=f_date,location=f_location).exclude(status="Rejected").exclude(status="Canceled").values()
-        for tour in other_tours_that_day:
-            print (tour)
+        for item in other_tours_that_day:
+            print (item.start_time, item.end_time)
         while entry < avail_end_time:
             start_times.append(entry.strftime("%H:%M"))
             entry = (datetime.combine(date.today(), entry) + timedelta(minutes=15)).time()
