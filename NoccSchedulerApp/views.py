@@ -178,12 +178,21 @@ def status_change(request, pk):
 
 
 def feedback(request, pk):
-    if request.method == 'POST':
-        feedback = request.POST['f_feedback']
-        Tour.objects.filter(id=pk).update(feedback=feedback)
-        messages.success(request, 'Thank You, feedback submitted successfully')
+    tour_data = Tour.objects.filter(id=pk).values()[0]
 
-    return render(request, "feedback.html" )
+    if request.method == 'POST':
+        instance = Tour.objects.get(id=pk)
+        form = TourFormEdit(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Thank You, feedback submitted successfully')
+            return redirect('/')
+
+    context={
+            'form': TourForm(initial=tour_data),
+        }
+
+    return render(request, "feedback.html", context )
 
 def new_tour(request):
     if request.method == 'POST':

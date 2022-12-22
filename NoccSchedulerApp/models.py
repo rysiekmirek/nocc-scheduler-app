@@ -128,5 +128,37 @@ class Tour(models.Model):
     ]
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Requested')
 
+    SATISFACTION_CHOICES = [
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+    ]
+    satisfaction = models.CharField(max_length=5, choices=SATISFACTION_CHOICES, default='5', blank=True, null=True)
+
+    key_take_aways = models.TextField(max_length=2000, null=True, blank=True)
+
+    SESSIONS_CHOICES = [
+        ('Not relevant', 'Not relevant'),
+        ('Relevant', 'Relevant'),
+        ('Very relevant', 'Very relevant'),
+        ('Did not attend', 'Did not attend'),
+    ]
+
+    sessions_welcoming = models.CharField(max_length=5, choices=SESSIONS_CHOICES, blank=True, null=True)
+    sessions_speaker = models.CharField(max_length=5, choices=SESSIONS_CHOICES, blank=True, null=True)
+    sessions_walls_displays = models.CharField(max_length=5, choices=SESSIONS_CHOICES, blank=True, null=True)
+    sessions_daily_work = models.CharField(max_length=5, choices=SESSIONS_CHOICES, blank=True, null=True)
+    sessions_scheduling_arrangement = models.CharField(max_length=5, choices=SESSIONS_CHOICES, blank=True, null=True)
+
+
+    overall_feedback = models.TextField(max_length=2000, null=True, blank=True)
+
+    internal_or_external_audience = models.TextField(max_length=2000, null=True, blank=True)
+
+    feedback_name = models.TextField(max_length=1000, null=True, blank=True)
+    
+
     def __str__(self):
         return self.tour_name
