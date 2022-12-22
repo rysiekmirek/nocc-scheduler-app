@@ -241,15 +241,16 @@ def get_avail_times(request):
         start_times = []
         end_times =[]
         other_tours_that_day = Tour.objects.filter(date=f_date,location=f_location).exclude(status="Rejected").exclude(status="Canceled").values()
-        tour_start_time = datetime.strptime(tour['start_time'], "%H:%M").time()
-        tour_end_time = datetime.strptime(tour['end_time'], "%H:%M").time()
         for tour in other_tours_that_day:
             existing_tours_times = []
+            tour_start_time = datetime.strptime(tour['start_time'], "%H:%M").time()
+            tour_end_time = datetime.strptime(tour['end_time'], "%H:%M").time()
             i= tour_start_time
             while i <= tour_end_time:
                 existing_tours_times.append(i.strftime("%H:%M"))
                 i = (datetime.combine(date.today(), i) + timedelta(minutes=15)).time()
             print (existing_tours_times)
+            
         while entry < avail_end_time:
             start_times.append(entry.strftime("%H:%M"))
             entry = (datetime.combine(date.today(), entry) + timedelta(minutes=15)).time()
