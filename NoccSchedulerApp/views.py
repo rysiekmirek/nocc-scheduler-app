@@ -191,7 +191,7 @@ def feedback(request, pk):
             return redirect('/')
 
     context={
-            'form': TourFormFeedback(initial=tour_data),
+            'form': TourFormFeedback(),
         }
 
     return render(request, "feedback.html", context )
