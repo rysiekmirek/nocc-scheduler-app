@@ -232,43 +232,43 @@ def get_avail_times(request):
     if request.method == 'GET' and r['location'] != '' and r['date'] != '':
         f_location=request.GET['location']
         f_date= request.GET['date']
-        #try:
-        #location = Location.objects.get(location_id=f_location)
-        avail_start_time, avail_end_time = Availability.objects.filter(avail_date=f_date, location=f_location).values()[0]['avail_time'].split('-')
-        avail_start_time = datetime.strptime(avail_start_time, "%H:%M").time()
-        avail_end_time = datetime.strptime(avail_end_time, "%H:%M").time()
-        entry = avail_start_time
-        start_times = []
-        end_times =[]
-        while entry < avail_end_time:
-            start_times.append(entry.strftime("%H:%M"))
-            entry = (datetime.combine(date.today(), entry) + timedelta(minutes=15)).time()
-            #entry = entry + timedelta(minutes=15)
-            end_times.append(entry.strftime("%H:%M"))
+        try:
+            #location = Location.objects.get(location_id=f_location)
+            avail_start_time, avail_end_time = Availability.objects.filter(avail_date=f_date, location=f_location).values()[0]['avail_time'].split('-')
+            avail_start_time = datetime.strptime(avail_start_time, "%H:%M").time()
+            avail_end_time = datetime.strptime(avail_end_time, "%H:%M").time()
+            entry = avail_start_time
+            start_times = []
+            end_times =[]
+            while entry < avail_end_time:
+                start_times.append(entry.strftime("%H:%M"))
+                entry = (datetime.combine(date.today(), entry) + timedelta(minutes=15)).time()
+                #entry = entry + timedelta(minutes=15)
+                end_times.append(entry.strftime("%H:%M"))
 
-        other_tours_that_day = Tour.objects.filter(date=f_date,location=f_location).exclude(status="Rejected").exclude(status="Canceled").values()
-        for tour in other_tours_that_day:
-            existing_tours_times = []
-            tour_start_time = tour['start_time']
-            tour_end_time = tour['end_time']
-            i= tour_start_time
-            while i <= tour_end_time:
-                existing_tours_times.append(i.strftime("%H:%M"))
-                i = (datetime.combine(date.today(), i) + timedelta(minutes=15)).time()
-            start_times = list(set(start_times) - set(existing_tours_times[:-1]))
-            end_times = list(set(end_times) - set(existing_tours_times[1:]))
-            print (existing_tours_times)
+            other_tours_that_day = Tour.objects.filter(date=f_date,location=f_location).exclude(status="Rejected").exclude(status="Canceled").values()
+            for tour in other_tours_that_day:
+                existing_tours_times = []
+                tour_start_time = tour['start_time']
+                tour_end_time = tour['end_time']
+                i= tour_start_time
+                while i <= tour_end_time:
+                    existing_tours_times.append(i.strftime("%H:%M"))
+                    i = (datetime.combine(date.today(), i) + timedelta(minutes=15)).time()
+                start_times = list(set(start_times) - set(existing_tours_times[:-1]))
+                end_times = list(set(end_times) - set(existing_tours_times[1:]))
+                print (existing_tours_times)
 
-        end_times = sorted(end_times)
-        start_times = sorted(start_times)
-        print (start_times)
-        print (end_times)
-        #time_slots = Availability.objects.filter(avail_date=f_date, location_id=f_location).values()[0]['time_slots'].split(',')
-        #start_times=['8:00','8:15','8:30','8:45','9:00','9:15','9:30','9:45','10:00']
-        #end_times=['8:15','8:30','8:45','9:00','9:15','9:30','9:45','10:00']
-        #except:
-            #start_times=""
-            #end_times=""
+            end_times = sorted(end_times)
+            start_times = sorted(start_times)
+            print (start_times)
+            print (end_times)
+            #time_slots = Availability.objects.filter(avail_date=f_date, location_id=f_location).values()[0]['time_slots'].split(',')
+            #start_times=['8:00','8:15','8:30','8:45','9:00','9:15','9:30','9:45','10:00']
+            #end_times=['8:15','8:30','8:45','9:00','9:15','9:30','9:45','10:00']
+        except:
+            start_times=""
+            end_times=""
     else:
         start_times=""
         end_times=""
