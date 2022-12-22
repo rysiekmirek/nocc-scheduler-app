@@ -240,22 +240,25 @@ def get_avail_times(request):
         entry = avail_start_time
         start_times = []
         end_times =[]
+        while entry < avail_end_time:
+            start_times.append(entry.strftime("%H:%M"))
+            entry = (datetime.combine(date.today(), entry) + timedelta(minutes=15)).time()
+            #entry = entry + timedelta(minutes=15)
+            end_times.append(entry.strftime("%H:%M"))
+
         other_tours_that_day = Tour.objects.filter(date=f_date,location=f_location).exclude(status="Rejected").exclude(status="Canceled").values()
-        existing_tours_times = []
         for tour in other_tours_that_day:
+            existing_tours_times = []
             tour_start_time = tour['start_time']
             tour_end_time = tour['end_time']
             i= tour_start_time
             while i <= tour_end_time:
                 existing_tours_times.append(i.strftime("%H:%M"))
                 i = (datetime.combine(date.today(), i) + timedelta(minutes=15)).time()
+            
             print (existing_tours_times)
 
-        while entry < avail_end_time:
-            start_times.append(entry.strftime("%H:%M"))
-            entry = (datetime.combine(date.today(), entry) + timedelta(minutes=15)).time()
-            #entry = entry + timedelta(minutes=15)
-            end_times.append(entry.strftime("%H:%M"))
+
         print (start_times)
         print (end_times)
         #time_slots = Availability.objects.filter(avail_date=f_date, location_id=f_location).values()[0]['time_slots'].split(',')
