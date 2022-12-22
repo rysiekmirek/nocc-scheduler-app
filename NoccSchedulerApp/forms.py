@@ -79,7 +79,7 @@ class TourFormFeedback(ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super(TourForm, self).__init__(*args, **kwargs)
+        super(TourFormFeedback, self).__init__(*args, **kwargs)
 
         for name, field in self.fields.items():
             field.widget.attrs.update({
