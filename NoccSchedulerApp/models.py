@@ -146,11 +146,11 @@ class Tour(models.Model):
         ('Did not attend', 'Did not attend'),
     ]
 
-    sessions_welcoming = models.CharField(max_length=5, choices=SESSIONS_CHOICES, blank=True, null=True)
-    sessions_speaker = models.CharField(max_length=5, choices=SESSIONS_CHOICES, blank=True, null=True)
-    sessions_walls_displays = models.CharField(max_length=5, choices=SESSIONS_CHOICES, blank=True, null=True)
-    sessions_daily_work = models.CharField(max_length=5, choices=SESSIONS_CHOICES, blank=True, null=True)
-    sessions_scheduling_arrangement = models.CharField(max_length=5, choices=SESSIONS_CHOICES, blank=True, null=True)
+    sessions_welcoming = models.CharField(max_length=20, choices=SESSIONS_CHOICES, blank=True, null=True)
+    sessions_speaker = models.CharField(max_length=20, choices=SESSIONS_CHOICES, blank=True, null=True)
+    sessions_walls_displays = models.CharField(max_length=20, choices=SESSIONS_CHOICES, blank=True, null=True)
+    sessions_daily_work = models.CharField(max_length=20, choices=SESSIONS_CHOICES, blank=True, null=True)
+    sessions_scheduling_arrangement = models.CharField(max_length=20, choices=SESSIONS_CHOICES, blank=True, null=True)
 
 
     overall_feedback = models.TextField(max_length=2000, null=True, blank=True)
