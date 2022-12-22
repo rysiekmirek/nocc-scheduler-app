@@ -19,6 +19,9 @@ class TourForm(ModelForm):
             'attendees_guests': TextInput(attrs={'min':0,'max': '50','type': 'number'}),
             'attendees_akamai': TextInput(attrs={'min':0,'max': '50','type': 'number'}),
             'key_take_aways': TextInput,
+            'overall_feedback' : TextInput,
+            'internal_or_external_audience': TextInput,
+            'feedback_name' : TextInput,
         }
 
     def __init__(self, *args, **kwargs):

@@ -180,6 +180,31 @@
 
   </fieldset>
 
+  <fieldset class="rounded border p-2 my-2">
+
+    <legend>Any overall feedback for the NOCC Tour?</legend>
+  
+    <div>
+      {{ form.overall_feedback }}
+    </div>
+  </fieldset>
+
+  <fieldset class="rounded border p-2 my-2">
+
+    <legend>Internal or External Audience (Who)</legend>
+    <div>
+      {{ form.internal_or_external_audience }}
+    </div>
+  </fieldset>
+
+  <fieldset class="rounded border p-2 my-2">
+
+    <legend>Name (optional)</legend>
+    <div>
+      {{ form.feedback_name }}
+    </div>
+  </fieldset>
+
 
     <textarea class="form-control" rows="20" cols="300" aria-label="Feedback" aria-describedby="button-addon2" id="f_feedback" name="f_feedback"> </textarea>
     <br>
