@@ -199,7 +199,6 @@ def new_tour(request):
         form = TourForm(request.POST)
         r=request.POST
         tour_data= r.dict()
-        print("Form is valid")
         print(form.errors)
         start_time= r['start_time']
         end_time = r['end_time']
