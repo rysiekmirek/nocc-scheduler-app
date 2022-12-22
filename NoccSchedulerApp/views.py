@@ -231,8 +231,8 @@ def new_tour(request):
             context={
             'locations': Location.objects.all(),
             'form': TourForm(initial=tour_data),
-        }
-        return render (request, "new-tour.html", context)
+            }
+            return render (request, "new-tour.html", context)
 
     else:
         context={
