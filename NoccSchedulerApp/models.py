@@ -116,7 +116,8 @@ class Tour(models.Model):
     nocc_person_assigned = models.CharField(max_length=200,null=True, blank=True)
 
     comment = models.TextField(max_length=2000, null=True, blank=True)
-    feedback = models.TextField(max_length=2000, null=True, blank=True, default="No feedback yet")
+
+
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(unique=True, primary_key=True, editable=True)
 
@@ -135,7 +136,7 @@ class Tour(models.Model):
         ('4', '4'),
         ('5', '5'),
     ]
-    satisfaction = models.CharField(max_length=5, choices=SATISFACTION_CHOICES, default='5', blank=True, null=True)
+    satisfaction = models.CharField(max_length=5, choices=SATISFACTION_CHOICES, blank=True, null=True)
 
     key_take_aways = models.TextField(max_length=200, null=True, blank=True)
 
