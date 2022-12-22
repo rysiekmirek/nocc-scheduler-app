@@ -137,7 +137,7 @@ class Tour(models.Model):
     ]
     satisfaction = models.CharField(max_length=5, choices=SATISFACTION_CHOICES, default='5', blank=True, null=True)
 
-    key_take_aways = models.TextField(max_length=2000, null=True, blank=True)
+    key_take_aways = models.TextField(max_length=200, null=True, blank=True)
 
     SESSIONS_CHOICES = [
         ('Not relevant', 'Not relevant'),
