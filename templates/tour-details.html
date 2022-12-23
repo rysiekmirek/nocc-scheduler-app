@@ -34,9 +34,9 @@
             <label class="px-4" for="{{ field.auto_id }}"> {{ field.label }} </label>
            <i><small style="color:#e70a0a">{{ field.errors }}</small></i>
           </div>
-        {% endfor %}
-        {{ form.non_field_errors }}
-      </fieldset>
+          {% endfor %}
+          {{ form.non_field_errors }}
+        </fieldset>
       </div>
       <div class="px-4 py-3 my-3 text-center">
       <button type="submit" class="btn btn-primary btn-lg">Update</button>
@@ -45,7 +45,7 @@
 
       <h4>Tour status</h4>
       <hr>
-      <div class="text-center">
+      <div class="text-center container-md mx-auto col-6">
       <form action="/status-change/{{ tour_data.id }}/" method="POST" id="status-change">
         {% csrf_token %}
       <div class="btn-group px-4 py-3 my-3 text-center" role="group">
@@ -67,7 +67,7 @@
 
       <h4>Ask for feedback</h4>
       <hr>
-      <div class="px-4 py-3 my-3 text-center">
+      <div class="px-4 py-3 my-3 text-center container-md mx-auto col-6">
       <form action="/ask-for-feedback/{{ tour_data.id }}/" method="POST" id="ask_for_feedback">
         {% csrf_token %}
       <div class="input-group mb-3">
