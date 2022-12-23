@@ -57,7 +57,7 @@
                 <select id="id_end_time" name="end_time" class="form-control form-control-sm" placeholder="End time" required
                 onmousedown="if(this.options.length>5){this.size=5;}"  onchange='this.size=0;' onblur="this.size=0;">
                 </select>
-                <i><small style="color:#e70a0a"> {{form.end_time.errors }} </small></i>
+                <i><small style="color:#e70a0a"> {{form.end_time.errors}} {{ form.errors }}</small></i>
                 </div>
   
           </div>   
