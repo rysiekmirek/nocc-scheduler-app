@@ -7,7 +7,7 @@
       <form action="" method="post">
         {% csrf_token %}
         <fieldset class="rounded border p-2 my-2">
-          <legend>Tour details</legend>
+          <legend>Tour details </legend>
         {% for field in form %}
           <div class="form-floating my-2">
             {% if field.name == "location" %}
@@ -25,14 +25,15 @@
               </select>
             {%elif field.name == "satisfaction" %}
             </fieldset>
+
             <fieldset class="rounded border p-2 my-2">
-              <legend>Feedback form results</legend>
+              <legend>Feedback form results </legend>
               {{ field }}
             {%else%}
               {{ field }}
+              <label class="px-4" for="{{ field.auto_id }}"> {{ field.label }} </label>
+              <i><small style="color:#e70a0a">{{ field.errors }}</small></i>
             {% endif %}
-            <label class="px-4" for="{{ field.auto_id }}"> {{ field.label }} </label>
-           <i><small style="color:#e70a0a">{{ field.errors }}</small></i>
           </div>
           {% endfor %}
           {{ form.non_field_errors }}
