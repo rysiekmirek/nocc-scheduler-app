@@ -230,7 +230,7 @@ def new_tour(request):
         except:
             context={
             'locations': Location.objects.all(),
-            'form': TourForm(initial=r),
+            'form': TourForm(initial=tour_data),
             }
             return render (request, "new-tour.html", context)
 
