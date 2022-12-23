@@ -37,7 +37,9 @@ class TourForm(ModelForm):
         #location = cleaned_data.get('location')
         today = date.today()
         if start_time >= end_time:
-            self.add_error('end_time', ValidationError(_('End time has to be after start time')))
+            raise ValidationError(
+                {'end_time': _("End time has to be after start time")}
+                )
         # if date <= today:
         #     self.add_error('date', ValidationError(_('Tour cannot be scheduled for the same day or in the past')))
         # for existing_tour in Tour.objects.filter(location=location):
