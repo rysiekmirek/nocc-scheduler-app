@@ -196,8 +196,8 @@ def feedback(request, pk):
 
 def new_tour(request):
     if request.method == 'POST':
+        form = TourForm(request.POST)
         try:
-            form = TourForm(request.POST)
             r=request.POST
             tour_data= r.dict()
             print(form.errors)
@@ -230,7 +230,7 @@ def new_tour(request):
         except:
             context={
             'locations': Location.objects.all(),
-            'form': TourForm(initial=tour_data),
+            'form': form,
             }
             return render (request, "new-tour.html", context)
 
