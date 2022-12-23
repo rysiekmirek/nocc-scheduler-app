@@ -3,11 +3,11 @@
 {% block content %}
 
 
-      <h3>Tour details</h3>
-      <hr>
       <div class="container-md mx-auto col-6">
-      <fieldset action="" method="post">
+      <form action="" method="post">
         {% csrf_token %}
+        <fieldset class="rounded border p-2 my-2">
+          <legend>Tour details</legend>
         {% for field in form %}
           <div class="form-floating my-2">
             {% if field.name == "location" %}
@@ -24,6 +24,7 @@
                 {%endfor%}
               </select>
             {%elif field.name == "satisfaction" %}
+            </form>
             <fieldset class="rounded border p-2 my-2">
               <legend>Feedback form results</legend>
               {{ field }}
