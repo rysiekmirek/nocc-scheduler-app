@@ -321,7 +321,7 @@ def settings(request):
 
 
     context = {
-        'current_location': location,
+        'current_location': 'Cambridge',
         'availability_data_cambridge': Availability.objects.filter(location__location='Cambridge', avail_date__gte=date.today()).order_by('avail_date'),
         'nocc_representatives_list_cambridge' : Location.objects.get(location='Cambridge').nocc_representatives_list,
      }
