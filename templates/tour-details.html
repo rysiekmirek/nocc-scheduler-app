@@ -24,10 +24,13 @@
                 {%endfor%}
               </select>
             {% elif field.name == "satisfaction" %}
+          </div>
 
-            <h4>Feedback for results</h4>
+            <h4>Feedback results</h4>
             <hr>
+            <div class="form-floating my-2">
               {{ field }}
+                </div>
                 
             {% else %}
 
