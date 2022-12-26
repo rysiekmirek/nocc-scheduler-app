@@ -47,7 +47,7 @@
 
       
       <div class="text-center container-md mx-auto col-6">
-        <h4>Tour status</h4>
+        <h4 class="text-start">Tour status</h4>
       <hr>
       <form action="/status-change/{{ tour_data.id }}/" method="POST" id="status-change">
         {% csrf_token %}
