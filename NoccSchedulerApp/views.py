@@ -42,7 +42,8 @@ def tour_details(request, pk):
         'selected_nocc_representative': tour_data['nocc_person_assigned'],
         'selected_location': location.location,
         'tour_data': tour_data,
-        'form': TourFormEdit(initial=tour_data)
+        'form_edit': TourFormEdit(initial=tour_data),
+        'form_feedback': TourFormFeedback(initial=tour_data),
     }
     return render(request, "tour-details.html", context)
 

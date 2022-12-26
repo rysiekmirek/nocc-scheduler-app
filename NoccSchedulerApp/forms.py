@@ -82,7 +82,8 @@ class TourFormEdit(ModelForm):
     class Meta:
         model = Tour
         #fields = '__all__'
-        exclude = ('feedback','status')
+        exclude = ('feedback','status', 'satisfaction', 'key_take_aways', 'overall_feedback', 'internal_or_external_audience', 'feedback_name', 'sessions_welcoming', 
+        'sessions_speaker', 'sessions_walls_displays', 'sessions_daily_work', 'sessions_scheduling_arrangement')
         widgets = {
             'start_time': TextInput(attrs={'readonly': 'readonly'}),
             'end_time': TextInput(attrs={'readonly': 'readonly'}),

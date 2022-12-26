@@ -2,13 +2,13 @@
 
 {% block content %}
 
-<h4>Tour details</h4>
+<h3>Tour details</h3>
     <hr>
 
     <div class="container-md mx-auto col-6">
       <form action="" method="post">
         {% csrf_token %}
-        {% for field in form %}
+        {% for field in form_edit %}
           <div class="form-floating my-2">
             {% if field.name == "location" %}
             <input id="id_location" name="location" class="form-control form-control-sm" placeholder="Location" value="{{ selected_location }}" disabled></input>
