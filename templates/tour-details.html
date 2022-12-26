@@ -2,12 +2,12 @@
 
 {% block content %}
 
+<h4>Tour details</h4>
+    <hr>
 
     <div class="container-md mx-auto col-6">
       <form action="" method="post">
         {% csrf_token %}
-        <fieldset class="rounded border p-2 my-2">
-          <legend>Tour details </legend>
         {% for field in form %}
           <div class="form-floating my-2">
             {% if field.name == "location" %}
@@ -24,10 +24,9 @@
                 {%endfor%}
               </select>
             {% elif field.name == "satisfaction" %}
-            <!--</fieldset> -->
 
-             <fieldset class="rounded border p-2 my-2">
-              <legend>Feedback form results </legend> 
+            <h4>Feedback for results</h4>
+            <hr>
               {{ field }}
                 
             {% else %}
