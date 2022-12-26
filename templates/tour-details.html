@@ -73,7 +73,8 @@
       {% for field in form_feedback %}
       <div class="form-floating my-2">
         {{ field }}
-
+        <label class="px-4" for="{{ field.auto_id }}"> {{ field.label }} </label>
+        <i><small style="color:#e70a0a">{{ field.errors }}</small></i>
         </div>
       {%  endfor  %}
         
