@@ -76,6 +76,7 @@ class TourFormFeedback(ModelForm):
                 'class': 'form-control form-control-sm',
                 'placeholder': field.label,
                 })
+            field.disabled = True
 
 
 class TourFormEdit(ModelForm):

@@ -23,14 +23,6 @@
                   {%endif%}
                 {%endfor%}
               </select>
-            {% elif field.name == "satisfaction" %}
-          </div>
-
-            <h4>Feedback results</h4>
-            <hr>
-            <div class="form-floating my-2">
-              {{ field }}
-              
 
             {% else %}
 
@@ -77,6 +69,13 @@
 
       <h4>Ask for feedback</h4>
       <hr>
+      {% for field in form_feedback %}
+      <div class="form-floating my-2">
+        {{ field }}
+
+        </div>
+      {%  endfor  %}
+
       <div class="px-4 py-3 my-3 text-center container-md mx-auto col-6">
       <form action="/ask-for-feedback/{{ tour_data.id }}/" method="POST" id="ask_for_feedback">
         {% csrf_token %}
