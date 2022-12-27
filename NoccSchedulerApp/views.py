@@ -192,6 +192,7 @@ def feedback(request, pk):
 
     context={
             'form': TourFormFeedback(),
+            'tour_data': tour_data,
         }
 
     return render(request, "feedback.html", context )

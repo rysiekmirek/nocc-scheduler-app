@@ -39,6 +39,8 @@
 <h1 class="text-center mt-5">Feedback form</h1>
 <br>
 
+{% if tour_data.satisfaction == None %}
+
 <div class="text-center container-md mx-auto col-6">
   <form action="" method="POST" id="f_feedback">
     {% csrf_token %}
@@ -159,7 +161,18 @@
     <br>
     <div class="d-grid gap-2 col-6 mx-auto mb-5"><button class="btn btn-primary" type="submit" id="button-addon2">Submit</button></div>
   </form>
-</div> 
+</div>
+
+
+{% else %}
+
+<div class="text-center container-md mx-auto col-6">
+
+<h5> Feedback for that tour has been submitted already. It can be done only once </h5>
+
+
+</div>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 
