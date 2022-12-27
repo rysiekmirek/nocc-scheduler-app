@@ -85,10 +85,13 @@
       <form action="/ask-for-feedback/{{ tour_data.id }}/" method="POST" id="ask_for_feedback">
         {% csrf_token %}
       <div class="px-4 py-3 my-3 text-center">
+
+        <h5> No feedback yet, You can send email request for that by pressing below button</h5>
+
         <button class="btn btn-primary" type="submit" id="button-addon2">Ask for feedback</button>
       </div> 
       </form>
-      
+
       {% endif %}
       </div>
 
