@@ -305,7 +305,11 @@ def settings(request):
         if 'nocc_representatives_list' in r:
             nocc_representatives_list = r['nocc_representatives_list'].strip()
             Location.objects.filter(location=location).update(nocc_representatives_list=nocc_representatives_list)
-            return redirect('/settings/' )
+            messages.success(request, 'NOCC representatives list updated successfully')
+            context = {
+                'current_location': location_instance,
+            }
+            render(request, "settings.html", context )
         else:
             from_date = datetime.strptime(r['from_date'], "%Y-%m-%d").date()
             to_date = datetime.strptime(r['to_date'], "%Y-%m-%d").date()
@@ -331,7 +335,7 @@ def settings(request):
                 'nocc_representatives_list_bangalore' : Location.objects.get(location='Bangalore').nocc_representatives_list,
             }
             print('post',location_instance)
-            return redirect('/settings/')
+            render(request, "settings.html", context )
 
     else:
         location_instance='Cambridge'
