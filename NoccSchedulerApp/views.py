@@ -331,7 +331,8 @@ def settings(request):
                 'nocc_representatives_list_bangalore' : Location.objects.get(location='Bangalore').nocc_representatives_list,
             }
             
-            return render(request, "settings.html", context )
+            #return render(request, "settings.html", context )
+            return redirect('/settings/' )
     else:
         location_instance='Cambridge'
 
