@@ -6,9 +6,9 @@
 
 <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <button class="nav-link {% if current_location == "Cambridge" %} active {% endif %}" id="nav-cambridge-tab" data-bs-toggle="tab" data-bs-target="#nav-cambridge" type="button" role="tab" aria-controls="nav-cambridge" aria-selected="true">Cambridge</button>
-      <button class="nav-link {% if current_location == "Krakow" %} active {% endif %}" id="nav-krakow-tab" data-bs-toggle="tab" data-bs-target="#nav-krakow" type="button" role="tab" aria-controls="nav-krakow" aria-selected="false">Krakow</button>
-      <button class="nav-link {% if current_location == "Bangalore" %} active {% endif %} " id="nav-bangalore-tab" data-bs-toggle="tab" data-bs-target="#nav-bangalore" type="button" role="tab" aria-controls="nav-bangalore" aria-selected="false">Bangalore</button>
+      <button class="nav-link {% if current_location == "Cambridge" %} active {% endif %}" id="nav-cambridge-tab" data-bs-toggle="tab" data-bs-target="#nav-cambridge" type="button" role="tab" aria-controls="nav-cambridge" aria-selected="{% if current_location == "Cambridge" %} true {% endif %}">Cambridge</button>
+      <button class="nav-link {% if current_location == "Krakow" %} active {% endif %}" id="nav-krakow-tab" data-bs-toggle="tab" data-bs-target="#nav-krakow" type="button" role="tab" aria-controls="nav-krakow" aria-selected="{% if current_location == "Krakow" %} true {% endif %}">Krakow</button>
+      <button class="nav-link {% if current_location == "Bangalore" %} active {% endif %} " id="nav-bangalore-tab" data-bs-toggle="tab" data-bs-target="#nav-bangalore" type="button" role="tab" aria-controls="nav-bangalore" aria-selected="{% if current_location == "Bangalore" %} true {% endif %}">Bangalore</button>
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
