@@ -11,7 +11,9 @@ current_location = {{current_location}}
       <button {% if current_location == "Krakow" %} class="nav-link active" {% else %} class="nav-link" {% endif %} id="nav-krakow-tab" data-bs-toggle="tab" data-bs-target="#nav-krakow" type="button" role="tab" aria-controls="nav-krakow" {% if current_location == "Krakow" %} aria-selected="true" {% else %} aria-selected="false" {% endif %} >Krakow</button>
       <button {% if current_location == "Bangalore" %} class="nav-link active" {% else %} class="nav-link" {% endif %} id="nav-bangalore-tab" data-bs-toggle="tab" data-bs-target="#nav-bangalore" type="button" role="tab" aria-controls="nav-bangalore" {% if current_location == "Bangalore" %} aria-selected="true" {% else %} aria-selected="false" {% endif %}>Bangalore</button>
     </div>
-  </nav>
+</nav>
+
+
   <div class="tab-content" id="nav-tabContent">
     <div {% if current_location == "Cambridge" %} class="tab-pane fade show active" {% else %} class="tab-pane fade" {% endif %} id="nav-cambridge" role="tabpanel" aria-labelledby="nav-cambridge-tab" tabindex="0">
 
