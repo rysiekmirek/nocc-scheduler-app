@@ -298,11 +298,11 @@ def get_avail_times(request):
 
 def settings(request):
 
-    r=request.POST
-    location=r['location']
-    location_instance=Location.objects.get(location=location)
-
+    
     if request.method == 'POST':
+        r=request.POST
+        location=r['location']
+        location_instance=Location.objects.get(location=location)
         if 'nocc_representatives_list' in r:
             nocc_representatives_list = r['nocc_representatives_list'].strip()
             Location.objects.filter(location=location).update(nocc_representatives_list=nocc_representatives_list)
@@ -321,7 +321,8 @@ def settings(request):
                         'avail_date': day
                         })
             messages.success(request, 'Time slots updated successfully')
-
+    else:
+        location_instance='Cambridge'
 
 
     context = {
