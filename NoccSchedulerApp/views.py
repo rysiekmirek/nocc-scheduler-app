@@ -298,7 +298,6 @@ def get_avail_times(request):
 
 def settings(request):
 
-    
     if request.method == 'POST':
         r=request.POST
         location=r['location']
