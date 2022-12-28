@@ -330,9 +330,9 @@ def settings(request):
                 'availability_data_bangalore': Availability.objects.filter(location__location='Bangalore', avail_date__gte=date.today()).order_by('avail_date'),
                 'nocc_representatives_list_bangalore' : Location.objects.get(location='Bangalore').nocc_representatives_list,
             }
-            
-            #return render(request, "settings.html", context )
-            return redirect('/settings/' )
+            print(location_instance)
+            return render(request, "settings.html", context )
+
     else:
         location_instance='Cambridge'
 
