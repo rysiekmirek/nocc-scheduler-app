@@ -331,7 +331,7 @@ def settings(request):
                 'nocc_representatives_list_bangalore' : Location.objects.get(location='Bangalore').nocc_representatives_list,
             }
             print('post',location_instance)
-            return redirect('/settings/'+'#nav-'+str(location_instance.lower())+"-tab")
+            return redirect('/settings/'+'#nav-'+str(location_instance).lower()+"-tab")
 
     else:
         location_instance='Cambridge'
