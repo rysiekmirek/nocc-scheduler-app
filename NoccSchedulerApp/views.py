@@ -309,6 +309,7 @@ def settings(request):
             context = {
                 'current_location': location_instance,
             }
+            print('post',location_instance)
             render(request, "settings.html", context )
         else:
             from_date = datetime.strptime(r['from_date'], "%Y-%m-%d").date()
