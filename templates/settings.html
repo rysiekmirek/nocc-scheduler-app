@@ -5,7 +5,7 @@
 <!-- current_location = {{current_location}} -->
   <hr>
 
-<nav>
+<nav class="container-md mx-auto col-7 mt-5">
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
       <button {% if current_location == "Cambridge" %} class="nav-link active" {% else %} class="nav-link" {% endif %} id="nav-cambridge-tab" data-bs-toggle="tab" data-bs-target="#nav-cambridge" type="button" role="tab" aria-controls="nav-cambridge" {% if current_location == "Cambridge" %} aria-selected="true" {% else %} aria-selected="false" {% endif %} >Cambridge</button>
       <button {% if current_location == "Krakow" %} class="nav-link active" {% else %} class="nav-link" {% endif %} id="nav-krakow-tab" data-bs-toggle="tab" data-bs-target="#nav-krakow" type="button" role="tab" aria-controls="nav-krakow" {% if current_location == "Krakow" %} aria-selected="true" {% else %} aria-selected="false" {% endif %} >Krakow</button>
