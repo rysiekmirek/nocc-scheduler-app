@@ -95,8 +95,9 @@ current_location = {{current_location}}
 
 
     </div>
+    
     <div {% if current_location == "Krakow" %} class="tab-pane fade show active" {% else %} class="tab-pane fade" {% endif %} id="nav-krakow" role="tabpanel" aria-labelledby="nav-krakow-tab" tabindex="0">
-
+      <a name="krakow"></a>
 
       <div class="container-md mx-auto col-10 mt-5">
 
@@ -250,7 +251,6 @@ current_location = {{current_location}}
 
 <script>
   $(document).ready(function(){
-    $('#tabs').tab();
     $("#myInput").on("keyup", function() {
       var value = $(this).val().toLowerCase();
       $("#myTable tr").filter(function() {
