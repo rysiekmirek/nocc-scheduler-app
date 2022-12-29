@@ -310,7 +310,7 @@ def settings(request):
                 'current_location': location_instance,
             }
             print('post',location_instance)
-            render(request, "settings.html", context )
+            return render(request, "settings.html", context )
         else:
             from_date = datetime.strptime(r['from_date'], "%Y-%m-%d").date()
             to_date = datetime.strptime(r['to_date'], "%Y-%m-%d").date()
@@ -336,7 +336,7 @@ def settings(request):
                 'nocc_representatives_list_bangalore' : Location.objects.get(location='Bangalore').nocc_representatives_list,
             }
             print('post',location_instance)
-            render(request, "settings.html", context )
+            return render(request, "settings.html", context )
 
     else:
         location_instance='Cambridge'
