@@ -250,6 +250,7 @@ current_location = {{current_location}}
 
 <script>
   $(document).ready(function(){
+    $('#tabs').tab();
     $("#myInput").on("keyup", function() {
       var value = $(this).val().toLowerCase();
       $("#myTable tr").filter(function() {
