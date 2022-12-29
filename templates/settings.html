@@ -67,14 +67,14 @@ current_location = {{current_location}}
               <div class="table-responsive container-md mx-auto mt-5">
               <h4>See upcomming availabilities</h4> 
               <hr>
-              <input class="form-control" id="myInput" type="text" placeholder="Search..">
+              <input class="form-control" id="myInput1" type="text" placeholder="Search..">
                 <table class="table table-sm">
                         <tr>
                             <th>Date</th>
                             <th>Time frame</th>
                         </tr>
 
-                        <tbody class="table-group-divider" id="myTable">
+                        <tbody class="table-group-divider" id="myTable1">
                         {%for item in availability_data_cambridge %}
                         <tr>
                             <td>{{item.avail_date}}</td>
@@ -143,14 +143,14 @@ current_location = {{current_location}}
         <div class="table-responsive container-md mx-auto mt-5">
         <h4>See upcomming availabilities</h4> 
         <hr>
-        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        <input class="form-control" id="myInput2" type="text" placeholder="Search..">
           <table class="table table-sm">
                   <tr>
                       <th>Date</th>
                       <th>Time frame</th>
                   </tr>
 
-                  <tbody class="table-group-divider" id="myTable">
+                  <tbody class="table-group-divider" id="myTable2">
                   {% for item in availability_data_krakow %}
                   <tr>
                       <td>{{item.avail_date}}</td>
@@ -218,14 +218,14 @@ current_location = {{current_location}}
         <div class="table-responsive container-md mx-auto mt-5">
         <h4>See upcomming availabilities</h4> 
         <hr>
-        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        <input class="form-control" id="myInput3" type="text" placeholder="Search..">
           <table class="table table-sm">
                   <tr>
                       <th>Date</th>
                       <th>Time frame</th>
                   </tr>
 
-                  <tbody class="table-group-divider" id="myTable">
+                  <tbody class="table-group-divider" id="myTable3">
                   {%for item in availability_data_bangalore %}
                   <tr>
                       <td>{{item.avail_date}}</td>
@@ -246,12 +246,27 @@ current_location = {{current_location}}
 
 <script>
   $(document).ready(function(){
-    $("#myInput").on("keyup", function() {
+    $("#myInput1").on("keyup", function() {
       var value = $(this).val().toLowerCase();
-      $("#myTable tr").filter(function() {
+      $("#myTable1 tr").filter(function() {
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
       });
     });
+
+    $("#myInput2").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#myTable2 tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+
+    $("#myInput3").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#myTable3 tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+
   });
   </script>
 
