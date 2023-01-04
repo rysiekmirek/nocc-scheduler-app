@@ -158,7 +158,7 @@
         </div>
 
         <div class="row">
-          <div class="col">
+        <div class="col">
         <div class="form-floating my-2">
           {{ form.customer_or_group_name }}
           <label class="px-4" for="{{ form.customer_or_group_name.id_for_label}}"> Customer or Group Name </label>
@@ -167,9 +167,12 @@
         </div>
         <div class="col">
         <div class="form-floating my-2">
-          {{ form.type_of_customers }}
-          <label class="px-4" for="{{ form.type_of_customers.id_for_label }}"> Type of Customers </label>
-          <i><small style="color:#e70a0a"> {{form.type_of_customers.errors }} </small></i>
+
+          {{ form.customers_website }}
+            <label class="px-4" for="{{ form.customers_website.id_for_label}}"> Customer's website </label>
+            <i><small style="color:#e70a0a"> {{form.customers_website.errors }} </small></i>
+
+          
           </div>
           </div>
         </div>
@@ -177,16 +180,21 @@
         <div class="row">
           <div class="col">
           <div class="form-floating my-2">
-             {{ form.category }}
-             <label class="px-4" for="{{ form.category.id_for_label}}"> Category </label>
-             <i><small style="color:#e70a0a"> {{form.category.errors }} </small></i>
+
+          {{ form.type_of_customers }}
+          <label class="px-4" for="{{ form.type_of_customers.id_for_label }}"> Type of Customers </label>
+          <i><small style="color:#e70a0a"> {{form.type_of_customers.errors }} </small></i>
+             
            </div></div>
 
            <div class="col">
            <div class="form-floating my-2">
-            {{ form.customers_website }}
-            <label class="px-4" for="{{ form.customers_website.id_for_label}}"> Customer's website </label>
-            <i><small style="color:#e70a0a"> {{form.customers_website.errors }} </small></i>
+            
+            {{ form.category }}
+            <label class="px-4" for="{{ form.category.id_for_label}}"> Category </label>
+            <i><small style="color:#e70a0a"> {{form.category.errors }} </small></i>
+
+
           </div></div>
          </div>
          
