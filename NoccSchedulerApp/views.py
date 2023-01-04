@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.core.mail import send_mail, EmailMessage, EmailMultiAlternatives
 from django.contrib import messages
 from .models import Tour, Location, Availability
-from .forms import TourForm, TourFormEdit, AvailabilityForm, TourFormFeedback
+from .forms import TourForm, TourFormDetails, AvailabilityForm, TourFormFeedback, TourFormFeedbackDetails
 import requests
 import uuid
 import calendar
@@ -28,7 +28,7 @@ def tour_details(request, pk):
 
     if request.method == 'POST':
         instance = Tour.objects.get(id=pk)
-        form = TourFormEdit(request.POST, instance=instance)
+        form = TourFormDetails(request.POST, instance=instance)
         if form.is_valid():
             if form.has_changed():
                 messages.success(request, 'Tour details updated')
@@ -42,8 +42,8 @@ def tour_details(request, pk):
         'selected_nocc_representative': tour_data['nocc_person_assigned'],
         'selected_location': location.location,
         'tour_data': tour_data,
-        'form_edit': TourFormEdit(initial=tour_data),
-        'form_feedback': TourFormFeedback(initial=tour_data),
+        'form_edit': TourFormDetails(initial=tour_data),
+        'form_feedback': TourFormFeedbackDetails(initial=tour_data),
     }
     return render(request, "tour-details.html", context)
 

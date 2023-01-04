@@ -76,10 +76,33 @@ class TourFormFeedback(ModelForm):
                 'class': 'form-control form-control-sm',
                 'placeholder': field.label,
                 })
+
+
+class TourFormFeedbackDetails(ModelForm):
+    class Meta:
+        model = Tour
+        fields = ['satisfaction', 'key_take_aways', 'overall_feedback', 'internal_or_external_audience', 'feedback_name', 'sessions_welcoming', 
+        'sessions_speaker', 'sessions_walls_displays', 'sessions_daily_work', 'sessions_scheduling_arrangement']
+        #exclude = ('id','status','nocc_person_assigned','feedback', 'tour_name', 'start_time', 'end_time', 'requestor_name' )
+        widgets = {
+            'key_take_aways': TextInput,
+            'overall_feedback' : TextInput,
+            'internal_or_external_audience': TextInput,
+            'feedback_name' : TextInput,
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(TourFormFeedbackDetails, self).__init__(*args, **kwargs)
+
+        for name, field in self.fields.items():
+            field.widget.attrs.update({
+                'class': 'form-control form-control-sm',
+                'placeholder': field.label,
+                })
             field.disabled = True
 
 
-class TourFormEdit(ModelForm):
+class TourFormDetails(ModelForm):
     class Meta:
         model = Tour
         #fields = '__all__'
@@ -94,7 +117,7 @@ class TourFormEdit(ModelForm):
             'status': RadioSelect(),
         }
     def __init__(self, *args, **kwargs):
-        super(TourFormEdit, self).__init__(*args, **kwargs)
+        super(TourFormDetails, self).__init__(*args, **kwargs)
 
         for name, field in self.fields.items():   
             field.widget.attrs.update({
