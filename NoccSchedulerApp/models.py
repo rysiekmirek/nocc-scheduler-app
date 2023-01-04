@@ -32,7 +32,7 @@ class Tour(models.Model):
     requestor_email = models.EmailField()
     poc_name = models.CharField(max_length=300)
     poc_email = models.EmailField()
-    cc_this_request_to = models.EmailField()
+    cc_this_request_to = models.EmailField(null=True, blank=True)
     DIVISION_CHOICES = [
         ('P & RE', 'P & RE'),
         ('Customer & Industry', 'Customer & Industry'),
