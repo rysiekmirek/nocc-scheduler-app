@@ -93,7 +93,7 @@ class Tour(models.Model):
     attendees_akamai = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(50)])
     attendees_guests = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(50)])
     customer_or_group_name = models.CharField(max_length=200)
-    customers_website = models.CharField(max_length=500,null=True,blank=True, default=0)
+    customers_website = models.CharField(max_length=500,null=True,blank=True)
 
     TYPE_OF_CUSTOMERS=[
         ('Financial Services', 'Financial Services'),
