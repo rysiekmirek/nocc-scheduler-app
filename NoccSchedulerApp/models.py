@@ -87,18 +87,13 @@ class Tour(models.Model):
         ('akamai employees (internal tour)', 'Akamai Employees (Internal Tour)'),
         ('students / informal guests', 'Students / Informal Guests'),
     ]
-    category = models.CharField(
-        max_length=50,
-        choices=CATEGORY_CHOICES,
-    )
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES,)
     opportunity_ID = models.CharField(max_length=300, null=True, blank=True, default=0)
 
-    attendees_akamai = models.IntegerField(
-        default=0, validators=[MinValueValidator(0), MaxValueValidator(50)])
-    attendees_guests = models.IntegerField(
-        default=0, validators=[MinValueValidator(0), MaxValueValidator(50)])
-
+    attendees_akamai = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(50)])
+    attendees_guests = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(50)])
     customer_or_group_name = models.CharField(max_length=200)
+    customers_website = models.CharField(max_length=500,null=True,blank=True, default=0)
 
     TYPE_OF_CUSTOMERS=[
         ('Financial Services', 'Financial Services'),
