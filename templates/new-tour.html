@@ -180,6 +180,12 @@
              <label class="px-4" for="{{ form.category.id_for_label}}"> Category </label>
              <i><small style="color:#e70a0a"> {{form.category.errors }} </small></i>
            </div>
+
+           <div class="form-floating my-2">
+            {{ form.customers_website }}
+            <label class="px-4" for="{{ form.customers_website.id_for_label}}"> Customer's website </label>
+            <i><small style="color:#e70a0a"> {{form.customers_website.errors }} </small></i>
+          </div>
          </div>
          
          <div style='display:none;' class="form-check" id="has_opportunity_id">
