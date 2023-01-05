@@ -115,8 +115,7 @@ def logout_user(request):
 @login_required(login_url='/login/')
 def ask_for_feedback(request, pk):
     tour_data = Tour.objects.filter(id=pk).values()[0]
-    subject = '[NOCC-Tour-Scheduler] - Please tell us more about " ' + \
-        tour_data['tour_name'] + " \" - survey invitation"
+    subject = '[NOCC-Tour-Scheduler] - Please tell us more about Your visit at Akamai NOCC '
     from_email = 'nocc-tour-scheduler@akamai.com'
     to = [tour_data['requestor_email'], 'rmirek@akamai.com']
     html_content = "<h2>Hi " + tour_data['requestor_name'] + \
