@@ -61,7 +61,7 @@ def view_calendar(request):
         year = datetime.now().year
     month_dates = calendar.Calendar().monthdatescalendar(year, month)
     context = {
-        'tours': Tour.objects.filter(date__gte=month_dates[0][0]).exclude(date__gt=month_dates[-1][-1]).exclude(status="Rejected").order_by('date', 'start_time'),
+        'tours': Tour.objects.filter(date__gte=month_dates[0][0]).exclude(date__gte=month_dates[-1][-1]).exclude(status="Rejected").order_by('date', 'start_time'),
         'month': month,
         'year': year,
         'month_dates': month_dates,
