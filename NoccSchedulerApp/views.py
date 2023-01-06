@@ -227,7 +227,7 @@ def new_tour(request):
             msg = EmailMessage(subject, html_content, from_email, to)
             msg.content_subtype = "html"
             msg.send()
-            messages.success(request, 'Your tour has been submited and confirmation email sent to You. Please wait for approval from local NOCC representative.')
+            messages.success(request, 'Your tour has been submited and confirmation email sent to You. Please wait for approval from local representative.')
             return redirect("/")
         except:
             context={
