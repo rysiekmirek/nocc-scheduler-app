@@ -267,33 +267,6 @@
         });
     });
 
-
-    $('#id_start_time').on('change', function() {
-
-          while(options_end[0] != this.value) {
-                    option_end.shift();
-                }
-          
-          console.log("End times after filtration");
-          console.log(option_end);
-
-          var select_end = document.getElementById("id_end_time");
-
-          if (options_end == ""){
-              console.log("No end times");
-              $('#id_end_time').empty().append('<option selected="selected" value="">No end time</option>');
-            } else {
-            $('#id_end_time').empty().append('<option selected="selected" disabled value="">Choose end time</option>');
-            for(var i = 0; i < options_end.length; i++) {
-                var opt = options_end[i];
-                var el = document.createElement("option");
-                el.textContent = opt;
-                el.value = opt;
-                select_end.appendChild(el);
-            }}
-        }).change();
-
-
     $('#id_location').on('change', function() {
     var date;
     var location;
@@ -393,6 +366,32 @@
           }
      })
     }).change();
+
+
+    $('#id_start_time').on('change', function() {
+
+        while(options_end[0] != this.value) {
+                  option_end.shift();
+              }
+
+        console.log("End times after filtration");
+        console.log(option_end);
+
+        var select_end = document.getElementById("id_end_time");
+
+        if (options_end == ""){
+            console.log("No end times");
+            $('#id_end_time').empty().append('<option selected="selected" value="">No end time</option>');
+          } else {
+          $('#id_end_time').empty().append('<option selected="selected" disabled value="">Choose end time</option>');
+          for(var i = 0; i < options_end.length; i++) {
+              var opt = options_end[i];
+              var el = document.createElement("option");
+              el.textContent = opt;
+              el.value = opt;
+              select_end.appendChild(el);
+          }}
+        });
 
 </script>
 
