@@ -377,7 +377,7 @@
         while(options_end[0] != this.value) {
                   options_end.shift();
               }
-
+        options_end.shift(); // we need to get rid of this.value too
         console.log("End times after filtration");
         console.log(options_end);
 
