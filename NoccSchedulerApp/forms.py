@@ -28,6 +28,10 @@ class TourForm(ModelForm):
                 'class': 'form-control form-control-sm',
                 'placeholder': field.label,
                 })
+
+            if field.field.required:
+                field.label = field.label + "*"
+                
     
     def clean(self):
         cleaned_data = super().clean()
