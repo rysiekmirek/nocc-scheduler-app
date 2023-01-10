@@ -247,9 +247,7 @@
 
     <script type="text/javascript">
 
-      let options_end = [];
 
-      
       $("#oportunity_ID_checkbox").click(function() {
         if($(this).is(":checked")) {
             $("#opportunity_ID").show();
@@ -259,6 +257,9 @@
     });
 
     $(document).ready(function(){
+
+      let options_end = [];
+      
         $('#id_category').on('change', function() {
           if ( this.value == 'existing customer' || this.value ==  'new prospect')
           {
