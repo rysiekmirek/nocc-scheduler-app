@@ -374,7 +374,7 @@
 
     $('#id_start_time').on('change', function() {
 
-        var options_end_filter = options_end
+        var options_end_filter = options_end.slice(0)
         console.log("End times before filtration");
         console.log(options_end_filter);
 
