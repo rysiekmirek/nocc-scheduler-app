@@ -28,8 +28,7 @@ class TourForm(ModelForm):
                 'class': 'form-control form-control-sm',
                 'placeholder': field.label,
                 })
-
-            if field.field.required:
+            if field.required:
                 field.label = field.label + "*"
                 
     
