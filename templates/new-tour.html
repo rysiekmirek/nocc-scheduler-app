@@ -247,7 +247,7 @@
 
     <script type="text/javascript">
 
-      options_end = new Array();
+      options_end = [];
 
       $("#oportunity_ID_checkbox").click(function() {
         if($(this).is(":checked")) {
@@ -375,11 +375,11 @@
     $('#id_start_time').on('change', function() {
 
         while(options_end[0] != this.value) {
-                  option_end.shift();
+                  options_end.shift();
               }
 
         console.log("End times after filtration");
-        console.log(option_end);
+        console.log(options_end);
 
         var select_end = document.getElementById("id_end_time");
 
