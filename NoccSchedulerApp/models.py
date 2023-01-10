@@ -55,7 +55,6 @@ class Tour(models.Model):
     division = models.CharField(
         max_length=50,
         choices=DIVISION_CHOICES,
-        default='P & RE',
     )
 
     LOCATION_CHOICES = [
