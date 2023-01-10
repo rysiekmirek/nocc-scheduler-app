@@ -28,7 +28,7 @@
         <div class="col">
         <div class="form-floating my-2">
           {{ form.location }}
-          <label class="px-4" for="{{form.location.id_for_label}}"> {{ form.location.label }} </label>
+          <label class="px-4" for="{{form.location.id_for_label}}"> {{ form.location.label }} {% if form.field.required %}<span class="required">*</span>{% endif %}</label>
           <i><small style="color:#e70a0a"> {{form.location.errors }} </small></i>
         </div>
         </div>
