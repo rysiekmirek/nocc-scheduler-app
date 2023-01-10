@@ -28,14 +28,14 @@
         <div class="col">
         <div class="form-floating my-2">
           {{ form.location }}
-          <label class="px-4" for="{{form.location.id_for_label}}"> {{ form.location.label }} {% if form.location.field.required %}<span style="color:#e70a0a">*</span>{% endif %}</label>
+          <label class="px-4" for="{{form.location.id_for_label}}"> {{ form.location.label }} <span style="color:#e70a0a">*</span>/label>
           <i><small style="color:#e70a0a"> {{form.location.errors }} </small></i>
         </div>
         </div>
         <div class="col">
           <div class="form-floating my-2">
            {{ form.date }}
-            <label class="px-4" for="{{form.date.id_for_label}}"> Date </label>
+            <label class="px-4" for="{{form.date.id_for_label}}"> Date <span style="color:#e70a0a">*</span></label>
             <i><small style="color:#e70a0a"> {{form.date.errors }} </small></i>
           </div>
           </div>
@@ -45,7 +45,7 @@
         <div class="row">
     
           <div class="col">
-            <label class="px-4" for="id_start_time"> Start time <i><small style="color:#9e9e9e">local for selected location </small></i></label>
+            <label class="px-4" for="id_start_time"> Start time <span style="color:#e70a0a">*</span> <i><small style="color:#9e9e9e">local for selected location </small></i></label>
             <select id="id_start_time" name="start_time" class="form-control form-control-sm" placeholder="Start time" required 
             onmousedown="if(this.options.length>5){this.size=5;}"  onchange='this.size=0;' onblur="this.size=0;">
             </select>
@@ -53,7 +53,7 @@
             </div>
   
             <div class="col">
-              <label class="px-4" for="id_end_time"> End time <i><small style="color:#9e9e9e">local for selected location </small></i> </label>
+              <label class="px-4" for="id_end_time"> End time <span style="color:#e70a0a">*</span><i><small style="color:#9e9e9e">local for selected location </small></i> </label>
                 <select id="id_end_time" name="end_time" class="form-control form-control-sm" placeholder="End time" required
                 onmousedown="if(this.options.length>5){this.size=5;}"  onchange='this.size=0;' onblur="this.size=0;">
                 </select>
@@ -88,14 +88,14 @@
             <div class="col">
           <div class="form-floating my-2">
             {{ form.requestor_name }}
-            <label class="px-4" for="{{ form.requestor_name.id_for_label}}"> {{ form.requestor_name.label }} </label>
+            <label class="px-4" for="{{ form.requestor_name.id_for_label}}"> {{ form.requestor_name.label }} <span style="color:#e70a0a">*</span> </label>
             <i><small style="color:#e70a0a"> {{form.requestor_name.errors }} </small></i>
           </div>
           </div>
           <div class="col">
           <div class="form-floating my-2">
             {{ form.requestor_email }}
-            <label class="px-4" for="{{ form.requestor_email.id_for_label }}"> {{ form.requestor_email.label }} </label>
+            <label class="px-4" for="{{ form.requestor_email.id_for_label }}"> {{ form.requestor_email.label }} <span style="color:#e70a0a">*</span></label>
             <i><small style="color:#e70a0a"> {{form.requestor_email.errors }} </small></i>
             </div>
             </div>
@@ -109,14 +109,14 @@
           <div class="col">
         <div class="form-floating my-2">
           {{ form.poc_name }}
-          <label class="px-4" for="{{ form.poc_name.id_for_label}}"> POC Name </label>
+          <label class="px-4" for="{{ form.poc_name.id_for_label}}"> POC Name <span style="color:#e70a0a">*</span></label>
           <i><small style="color:#e70a0a"> {{form.poc_name.errors }} </small></i>
         </div>
         </div>
         <div class="col">
         <div class="form-floating my-2">
           {{ form.poc_email }}
-          <label class="px-4" for="{{ form.poc_email.id_for_label }}"> POC Akamai email </label>
+          <label class="px-4" for="{{ form.poc_email.id_for_label }}"> POC Akamai email <span style="color:#e70a0a">*</span></label>
           <i><small style="color:#e70a0a"> {{form.poc_email.errors }} </small></i>
           </div>
           </div>
@@ -132,7 +132,7 @@
         <div class="row">
          <div class="form-floating my-2">
             {{ form.division }}
-            <label class="px-4" for="{{ form.division.id_for_label}}"> Division </label>
+            <label class="px-4" for="{{ form.division.id_for_label}}"> Division <span style="color:#e70a0a">*</span></label>
             <i><small style="color:#e70a0a"> {{form.division.errors }} </small></i>
           </div>
         </div>
@@ -161,7 +161,7 @@
         <div class="col">
         <div class="form-floating my-2">
           {{ form.customer_or_group_name }}
-          <label class="px-4" for="{{ form.customer_or_group_name.id_for_label}}"> Customer or Group Name </label>
+          <label class="px-4" for="{{ form.customer_or_group_name.id_for_label}}"> Customer or Group Name <span style="color:#e70a0a">*</span></label>
           <i><small style="color:#e70a0a"> {{form.customer_or_group_name.errors }} </small></i>
         </div>
         </div>
@@ -182,7 +182,7 @@
           <div class="form-floating my-2">
 
           {{ form.type_of_customers }}
-          <label class="px-4" for="{{ form.type_of_customers.id_for_label }}"> Type of Customers </label>
+          <label class="px-4" for="{{ form.type_of_customers.id_for_label }}"> Type of Customers <span style="color:#e70a0a">*</span></label>
           <i><small style="color:#e70a0a"> {{form.type_of_customers.errors }} </small></i>
              
            </div></div>
@@ -191,7 +191,7 @@
            <div class="form-floating my-2">
             
             {{ form.category }}
-            <label class="px-4" for="{{ form.category.id_for_label}}"> Category </label>
+            <label class="px-4" for="{{ form.category.id_for_label}}"> Category <span style="color:#e70a0a">*</span> </label>
             <i><small style="color:#e70a0a"> {{form.category.errors }} </small></i>
 
 

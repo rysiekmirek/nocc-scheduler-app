@@ -106,7 +106,7 @@ class Tour(models.Model):
         ('Other', 'Other'),
     ]
 
-    type_of_customers = models.CharField(max_length=200, choices=TYPE_OF_CUSTOMERS, default='Other')
+    type_of_customers = models.CharField(max_length=200, choices=TYPE_OF_CUSTOMERS)
 
     nocc_person_assigned = models.CharField(max_length=200,null=True, blank=True)
 
