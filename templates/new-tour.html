@@ -402,7 +402,7 @@
 
         while (n < len) {
           console.log(options_end_filter[n]);
-          if (options_end_filter[n] === this.value) n=len;
+          if (options_end_filter[n] === this.value) break;
           options_end_filter.shift();
           n++;
         }
