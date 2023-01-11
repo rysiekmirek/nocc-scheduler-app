@@ -263,7 +263,7 @@ def get_avail_times(request):
                 entry = (datetime.combine(date.today(), entry) + timedelta(minutes=15)).time()
                 #entry = entry + timedelta(minutes=15)
 
-            end_times.append(entry.strftime("%H:%M")) # we need to add more time entry to have end_time to be later by 15 mins
+            #end_times.append(entry.strftime("%H:%M")) # we need to add more time entry to have end_time to be later by 15 mins
 
             other_tours_that_day = Tour.objects.filter(date=f_date,location=f_location).exclude(status="Rejected").exclude(status="Canceled").values()
             for tour in other_tours_that_day:
