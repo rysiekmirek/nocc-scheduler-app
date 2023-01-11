@@ -382,14 +382,14 @@
         //       options_end_filter.shift();
         //       }
 
-        for (i=0; i <= options_end_filter.length; i++ ){
+        for (i=0; i < options_end_filter.length; i++ ){
 
           console.log(options_end_filter[i]);
 
           if (options_end_filter[i] != this.value){
             options_end_filter.shift();
-          }
-          else{
+          }else{
+            console.log("Break");
             break;
           }
         }
