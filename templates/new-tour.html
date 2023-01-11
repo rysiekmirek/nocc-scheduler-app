@@ -382,16 +382,26 @@
         //       options_end_filter.shift();
         //       }
 
-        for (i=0; i < options_end_filter.length; i++ ){
+        // for (i=0; i < options_end_filter.length; i++ ){
 
-          console.log(options_end_filter[i]);
+        //   console.log(options_end_filter[i]);
 
-          if (options_end_filter[i] != this.value){
-            options_end_filter.shift();
-          }else{
-            console.log("Break");
+        //   if (options_end_filter[i] != this.value){
+        //     options_end_filter.shift();
+        //   }else{
+        //     console.log("Break");
+        //     break;
+        //   }
+        // }
+
+
+        let n = 0;
+        while (n < options_end_filter.length) {
+          if (options_end_filter[n] === this.value) {
             break;
           }
+          options_end_filter.shift();
+          n++;
         }
 
 
