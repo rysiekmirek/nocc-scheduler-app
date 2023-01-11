@@ -378,9 +378,20 @@
         console.log("End times before filtration");
         console.log(options_end_filter);
 
-        while(options_end_filter[0] != this.value) {
-              options_end_filter.shift();
-              }
+        // while(options_end_filter[0] != this.value) {
+        //       options_end_filter.shift();
+        //       }
+
+        for (i=0; i < options_end_filter.length; i++ ){
+          if (options_end_filter[i] != this.value){
+            options_end_filter.shift();
+          }
+          else{
+            break;
+          }
+        }
+
+
         options_end_filter.shift(); // we need to get rid of this.value too, loop deletes all untill this.value
         console.log("End times after filtration");
         console.log(options_end_filter);
