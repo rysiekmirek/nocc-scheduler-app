@@ -398,13 +398,13 @@
         let n = 0;
         while (n < options_end_filter.length) {
           console.log(options_end_filter[n]);
-          if (options_end_filter[n] === this.value) n = options_end_filter.length;
+          if (options_end_filter[n] === this.value) break;
           options_end_filter.shift();
           n++;
         }
 
 
-        options_end_filter.shift(); // we need to get rid of this.value too, loop deletes all untill this.value
+        //options_end_filter.shift(); // we need to get rid of this.value too, loop deletes all untill this.value
         console.log("End times after filtration");
         console.log(options_end_filter);
 
