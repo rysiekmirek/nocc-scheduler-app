@@ -396,9 +396,12 @@
 
 
         let n = 0;
+        console.log(this.value);
+        console.log(options_end_filter.length);
+
         while (n < options_end_filter.length) {
           console.log(options_end_filter[n]);
-          if (options_end_filter[n] === this.value) break;
+          if (options_end_filter[n] === this.value) n=options_end_filter.length;
           options_end_filter.shift();
           n++;
         }
