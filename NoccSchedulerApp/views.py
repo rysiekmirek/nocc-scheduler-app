@@ -259,8 +259,8 @@ def get_avail_times(request):
             end_times =[]
             while entry < avail_end_time:
                 start_times.append(entry.strftime("%H:%M"))
-                end_times.append(entry.strftime("%H:%M"))
                 entry = (datetime.combine(date.today(), entry) + timedelta(minutes=15)).time()
+                end_times.append(entry.strftime("%H:%M"))
                 #entry = entry + timedelta(minutes=15)
 
             #end_times.append(entry.strftime("%H:%M")) # we need to add more time entry to have end_time to be later by 15 mins
