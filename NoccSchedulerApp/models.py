@@ -65,8 +65,8 @@ class Tour(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
 
     date = models.DateField()
-    start_time = models.TimeField()
-    end_time = models.TimeField()
+    start_time = models.TimeField(null=True)
+    end_time = models.TimeField(null=True)
 
     NOCC_REQUIRED_CHOICES = [
         ('No', 'No'),
