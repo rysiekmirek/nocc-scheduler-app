@@ -375,8 +375,11 @@ def send_email_ics(request,tour_id):
 
     print(timezone)
 
-    combined_date_time_start = datetime.combine(tour_data.date,tour_data.start_time).replace(tzinfo=timezone)
-    combined_date_time_end = datetime.combine(tour_data.date,tour_data.end_time).replace(tzinfo=timezone)
+    combined_date_time_start = timezone.normalize(datetime.combine(tour_data.date,tour_data.start_time))
+    combined_date_time_end = timezone.normalize(datetime.combine(tour_data.date,tour_data.end_time))
+
+    # combined_date_time_start = datetime.combine(tour_data.date,tour_data.start_time).replace(tzinfo=timezone)
+    # combined_date_time_end = datetime.combine(tour_data.date,tour_data.end_time).replace(tzinfo=timezone)
     
     event = Event()
     event.add('name', 'Akamai NOCC tour in '+ str(tour_data.location))
