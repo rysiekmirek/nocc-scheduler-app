@@ -388,7 +388,7 @@ def send_icalendar(request):
     subject = 'Test email with ICS attachment'
     message = 'This is a test email with an ICS attachment.'
     from_email = 'from@example.com'
-    to_email = ['to@example.com']
+    to_email = 'to@example.com'
 
     # Create a new calendar
     cal = Calendar()
