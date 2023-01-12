@@ -420,3 +420,5 @@ def send_icalendar(request):
 
     # Send the email
     msg.send()
+    return redirect('/')
+
