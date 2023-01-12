@@ -415,8 +415,9 @@ def send_icalendar(request):
     html_content = '<p>This is a <strong>test</strong> email with an <em>ICS</em> attachment.</p>'
 
     # Create the email message
-    msg = EmailMultiAlternatives(subject, message, from_email, [to_email], [], attachments=[(ics_file.get_filename(), ics_file.get_payload(), 'application/ics')])
+    msg = EmailMultiAlternatives(subject, message, from_email, [to_email])
     msg.attach_alternative(html_content, "text/html")
+    msg.attach_file('example.ics', 'text/calendar')
 
     # Send the email
     msg.send()
