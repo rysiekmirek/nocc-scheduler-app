@@ -365,7 +365,7 @@ def send_email_ics(request,tour_id):
     cal.add('attendee', 'MAILTO:'+ tour_data.poc_email)
 
     event = Event()
-    event.add('name', 'Akamai NOCC tour in '+ tour_data.location)
+    event.add('name', 'Akamai NOCC tour in '+ str(tour_data.location))
     event.add('description', 'Visit NOCC office to see how we work')
     event.add('dtstart', datetime.combine(tour_data.date,tour_data.start_time))
     event.add('dtend', datetime.combine(tour_data.date,tour_data.end_time))
