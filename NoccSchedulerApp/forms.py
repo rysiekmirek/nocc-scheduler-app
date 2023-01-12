@@ -32,27 +32,27 @@ class TourForm(ModelForm):
     
     def clean(self):
         cleaned_data = super().clean()
-        #date = cleaned_data.get('date')
+        date = cleaned_data.get('date')
         start_time = cleaned_data.get('start_time')
         end_time = cleaned_data.get('end_time')
-        #location = cleaned_data.get('location')
+        location = cleaned_data.get('location')
         today = date.today()
         if start_time >= end_time:
             self.add_error('end_time', ValidationError(_('End time has to be after start time')))
-        # if date <= today:
-        #     self.add_error('date', ValidationError(_('Tour cannot be scheduled for the same day or in the past')))
-        # for existing_tour in Tour.objects.filter(location=location):
-        #     if date == existing_tour.date and existing_tour.status != "Rejected":
-        #         if existing_tour.start_time <= start_time <= existing_tour.end_time:
-        #             raise ValidationError(
-        #                 {'start_time': _("Start time colides with an exising tour")})
-        #         if existing_tour.start_time <= end_time <= existing_tour.end_time:
-        #             raise ValidationError(
-        #                 {'end_time': _("End time colides with an exising tour")})
-        #         if start_time <= existing_tour.start_time and end_time >= existing_tour.end_time:
-        #             raise ValidationError({
-        #                 'start_time': ValidationError(_('Tour cant overlap existing tour')),
-        #                 'end_time': ValidationError(_('Tour cant overlap existing tour'))})
+        if date <= today:
+            self.add_error('date', ValidationError(_('Tour cannot be scheduled for the same day or in the past')))
+        for existing_tour in Tour.objects.filter(location=location):
+            if date == existing_tour.date and existing_tour.status != "Rejected":
+                if existing_tour.start_time <= start_time <= existing_tour.end_time:
+                    raise ValidationError(
+                        {'start_time': _("Start time colides with an exising tour")})
+                if existing_tour.start_time <= end_time <= existing_tour.end_time:
+                    raise ValidationError(
+                        {'end_time': _("End time colides with an exising tour")})
+                if start_time <= existing_tour.start_time and end_time >= existing_tour.end_time:
+                    raise ValidationError({
+                        'start_time': ValidationError(_('Tour cant overlap existing tour')),
+                        'end_time': ValidationError(_('Tour cant overlap existing tour'))})
     
 
 
