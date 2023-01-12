@@ -358,7 +358,10 @@ def settings(request):
     print('get', location_instance)
     return render(request, "settings.html", context )
 
-def send_email_ics(request):
+def send_email_ics(request,tour_id):
+
+    tour_data = Tour.objects.get(id=tour_id)
+    print(tour_data.requestor_name)
     cal = Calendar()
     cal.add('attendee', 'MAILTO:abc@example.com')
     cal.add('attendee', 'MAILTO:xyz@example.com')
