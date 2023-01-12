@@ -358,7 +358,7 @@ def settings(request):
     print('get', location_instance)
     return render(request, "settings.html", context )
 
-def send_icalendar(request):
+def send_email_ics(request):
     cal = Calendar()
     cal.add('attendee', 'MAILTO:abc@example.com')
     cal.add('attendee', 'MAILTO:xyz@example.com')
@@ -402,5 +402,8 @@ def send_icalendar(request):
 
     # Send the email
     msg.send()
+
+
+
     return redirect('/')
 
