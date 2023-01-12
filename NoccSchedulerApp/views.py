@@ -362,6 +362,7 @@ def send_email_ics(request,tour_id):
 
     tour_data = Tour.objects.get(id=tour_id)
     print(tour_data.requestor_name)
+    
     cal = Calendar()
     cal.add('attendee', 'MAILTO:abc@example.com')
     cal.add('attendee', 'MAILTO:xyz@example.com')
@@ -406,8 +407,9 @@ def send_email_ics(request,tour_id):
     # Send the email
     msg.send()
     try:
-        os.remove('ics_files/example.ics')
+        os.remove('ics_files/invitation.ics')
     except:
         print ('File not removed')
+
     return redirect('/')
 
