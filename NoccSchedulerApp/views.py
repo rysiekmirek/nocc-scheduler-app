@@ -391,7 +391,7 @@ def send_email_ics(request,tour_id):
 
 
     # Create the HTML message
-    html_content = 'Hi' + tour_data.requestor_name + '<br> we would like to invite You to visit us in' + str(tour_data.location) + '\'s NOCC office <br> Date: ' + str(tour_data.date) + '<br>Time: ' + str(tour_data.start_time)
+    html_content = '<p>Hi ' + tour_data.requestor_name + ', <br> we would like to invite You to visit us in ' + str(tour_data.location) + '\'s NOCC office <br> Date: ' + str(tour_data.date) + '<br>Time: ' + str(tour_data.start_time) +'</p>'
 
     # Create the email message
     msg = EmailMultiAlternatives(subject, message, from_email, [to_email])
