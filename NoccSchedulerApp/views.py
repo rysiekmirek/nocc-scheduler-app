@@ -9,16 +9,13 @@ import calendar
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
-from datetime import date, datetime, timedelta, time
+from datetime import date, datetime, timedelta, time, timezone
 from django.db.models import Q
 from django.http import JsonResponse
 from icalendar import Calendar, Event, vCalAddress, vText
 import pytz
 import os
 from pathlib import Path
-
-from email import encoders
-from email.mime.base import MIMEBase
 
 
 def main(request):
@@ -220,8 +217,8 @@ def new_tour(request):
             print (dbentry, dbentry.start_time , dbentry.end_time )
             dbentry.save()
             tour_data = Tour.objects.filter(id=uuid_value).values()[0]
-            subject = '[NOCC-Tour-Scheduler] - New Tour " ' + tour_data['tour_name'] + " \" was requested, please wait for approval email"
-            from_email = 'nocc-tour-scheduler@akamai.com'
+            subject = '[NOCC-Visit-Scheduler] - New Tour " ' + tour_data['tour_name'] + " \" was requested, please wait for approval email"
+            from_email = 'nvs@akamai.com'
             to = [tour_data['requestor_email'], 'rmirek@akamai.com']
             if tour_data['nocc_personnel_required'] == "Yes":
                 to.append('nocc-tix@akamai.com')
@@ -364,20 +361,17 @@ def send_email_ics(request,tour_id):
     print(tour_data.requestor_name)
     
     cal = Calendar()
-    cal.add('attendee', 'MAILTO:abc@example.com')
-    cal.add('attendee', 'MAILTO:xyz@example.com')
+    cal.add('attendee', 'MAILTO:' + tour_data.requestor_email)
+    cal.add('attendee', 'MAILTO:'+ tour_data.poc_email)
 
     event = Event()
-    event.add('summary', 'Python meeting about calendaring')
-    event.add('dtstart', datetime(2022, 10, 24, 8, 0, 0, tzinfo=pytz.utc))
-    event.add('dtend', datetime(2022, 10, 24, 10, 0, 0, tzinfo=pytz.utc))
-    event.add('dtstamp', datetime(2022, 10, 24, 0, 10, 0, tzinfo=pytz.utc))
+    event.add('name', 'Akamai NOCC tour in '+ tour_data.location)
+    event.add('description', 'Visit NOCC office to see how we work')
+    event.add('dtstart', datetime.combine(tour_data.date,tour_data.start_time))
+    event.add('dtend', datetime.combine(tour_data.date,tour_data.end_time))
+    event.add('dtstamp', datetime.now())
 
-    organizer = vCalAddress('MAILTO:hello@example.com')
-    organizer.params['cn'] = vText('Sir Jon')
-    organizer.params['role'] = vText('CEO')
-    event['organizer'] = organizer
-    event['location'] = vText('London, UK')
+    event['location'] = vText(tour_data.location)
 
     # Adding events to calendar
     cal.add_component(event)
