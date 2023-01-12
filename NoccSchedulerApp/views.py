@@ -391,9 +391,15 @@ def send_icalendar(request):
     to_email = 'to@example.com'
 
     # Create a new calendar
+
     cal = Calendar()
     cal.add('prodid', '-//My calendar application//mxm.dk//')
     cal.add('version', '2.0')
+    cal.add('calscale', 'GREGORIAN')
+    cal.add('method', 'REQUEST')
+    cal.add('x-wr-calname', 'Test Calendar')
+    cal.add('x-wr-timezone', 'UTC')
+    cal.add('x-wr-caldesc', 'Test Calendar')
 
     # Create a new event
     event = Event()
@@ -401,23 +407,27 @@ def send_icalendar(request):
     event.add('dtstart', datetime(2022, 12, 31, 0, 0, 0))
     event.add('dtend', datetime(2023, 1, 1, 0, 0, 0))
     event.add('dtstamp', datetime.now())
+    event.add('uid', 'event-{}@example.com'.format(datetime.now().strftime('%Y%m%d%H%M%S')))
 
     # Add the event to the calendar
     cal.add_component(event)
 
     # Write the ICS file
+
     ics_file = MIMEBase('text', "calendar")
-    ics_file.set_payload((cal.to_ical()))
+    ics_file.set_payload((cal.to_ical()).replace(b'\n', b'\r\n'))
     encoders.encode_base64(ics_file)
     ics_file.add_header('Content-Disposition', 'attachment', filename='example.ics')
+
+    
 
     # Create the HTML message
     html_content = '<p>This is a <strong>test</strong> email with an <em>ICS</em> attachment.</p>'
 
     # Create the email message
-    msg = EmailMultiAlternatives(subject, message, from_email, [to_email])
+    msg = EmailMultiAlternatives(subject, message, from_email, [to_email], [], attachments=[(ics_file.get_filename(), ics_file.get_payload(), 'application/ics')])
     msg.attach_alternative(html_content, "text/html")
-    msg.attach_file('example.ics', 'text/calendar')
+
 
     # Send the email
     msg.send()
