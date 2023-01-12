@@ -359,74 +359,45 @@ def settings(request):
     return render(request, "settings.html", context )
 
 def send_icalendar(request):
-    # cal = Calendar()
-    # cal.add('attendee', 'MAILTO:abc@example.com')
-    # cal.add('attendee', 'MAILTO:xyz@example.com')
+    cal = Calendar()
+    cal.add('attendee', 'MAILTO:abc@example.com')
+    cal.add('attendee', 'MAILTO:xyz@example.com')
 
-    # event = Event()
-    # event.add('summary', 'Python meeting about calendaring')
-    # event.add('dtstart', datetime(2022, 10, 24, 8, 0, 0, tzinfo=pytz.utc))
-    # event.add('dtend', datetime(2022, 10, 24, 10, 0, 0, tzinfo=pytz.utc))
-    # event.add('dtstamp', datetime(2022, 10, 24, 0, 10, 0, tzinfo=pytz.utc))
+    event = Event()
+    event.add('summary', 'Python meeting about calendaring')
+    event.add('dtstart', datetime(2022, 10, 24, 8, 0, 0, tzinfo=pytz.utc))
+    event.add('dtend', datetime(2022, 10, 24, 10, 0, 0, tzinfo=pytz.utc))
+    event.add('dtstamp', datetime(2022, 10, 24, 0, 10, 0, tzinfo=pytz.utc))
 
-    # organizer = vCalAddress('MAILTO:hello@example.com')
-    # organizer.params['cn'] = vText('Sir Jon')
-    # organizer.params['role'] = vText('CEO')
-    # event['organizer'] = organizer
-    # event['location'] = vText('London, UK')
+    organizer = vCalAddress('MAILTO:hello@example.com')
+    organizer.params['cn'] = vText('Sir Jon')
+    organizer.params['role'] = vText('CEO')
+    event['organizer'] = organizer
+    event['location'] = vText('London, UK')
 
-    # # Adding events to calendar
-    # cal.add_component(event)
+    # Adding events to calendar
+    cal.add_component(event)
 
-    # directory = str(Path(__file__).parent.parent) + "/"
-    # print("ics file will be generated at ", directory)
-    # f = open(os.path.join(directory, 'example.ics'), 'wb')
-    # f.write(cal.to_ical())
-    # f.close()
-    # return redirect('/')
+    directory = str(Path(__file__).parent.parent) + "/"
+    print("ics file will be generated at ", directory)
+    f = open(os.path.join(directory, 'example.ics'), 'wb')
+    f.write(cal.to_ical())
+    f.close()
+
 
     subject = 'Test email with ICS attachment'
     message = 'This is a test email with an ICS attachment.'
     from_email = 'from@example.com'
     to_email = 'to@example.com'
 
-    # Create a new calendar
-
-    cal = Calendar()
-    cal.add('prodid', '-//My calendar application//mxm.dk//')
-    cal.add('version', '2.0')
-    cal.add('calscale', 'GREGORIAN')
-    cal.add('method', 'REQUEST')
-    cal.add('x-wr-calname', 'Test Calendar')
-    cal.add('x-wr-timezone', 'UTC')
-    cal.add('x-wr-caldesc', 'Test Calendar')
-
-    # Create a new event
-    event = Event()
-    event.add('summary', 'New Year\'s Eve')
-    event.add('dtstart', datetime(2022, 12, 31, 0, 0, 0))
-    event.add('dtend', datetime(2023, 1, 1, 0, 0, 0))
-    event.add('dtstamp', datetime.now())
-    event.add('uid', 'event-{}@example.com'.format(datetime.now().strftime('%Y%m%d%H%M%S')))
-
-    # Add the event to the calendar
-    cal.add_component(event)
-
-    # Write the ICS file
-
-    ics_file = MIMEBase('text', "calendar")
-    ics_file.set_payload((cal.to_ical()).replace(b'\n', b'\r\n'))
-    encoders.encode_base64(ics_file)
-    ics_file.add_header('Content-Disposition', 'attachment', filename='example.ics')
-
-    
 
     # Create the HTML message
     html_content = '<p>This is a <strong>test</strong> email with an <em>ICS</em> attachment.</p>'
 
     # Create the email message
-    msg = EmailMultiAlternatives(subject, message, from_email, [to_email], [], attachments=[(ics_file.get_filename(), ics_file.get_payload(), 'application/ics')])
+    msg = EmailMultiAlternatives(subject, message, from_email, [to_email])
     msg.attach_alternative(html_content, "text/html")
+    msg.attach_file('example.ics', 'text/calendar')
 
 
     # Send the email
