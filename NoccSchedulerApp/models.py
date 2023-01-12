@@ -67,6 +67,7 @@ class Tour(models.Model):
     date = models.DateField()
     start_time = models.TimeField(null=True)
     end_time = models.TimeField(null=True)
+    date_time_combined = models.DateTimeField(null=True)
 
     NOCC_REQUIRED_CHOICES = [
         ('No', 'No'),
