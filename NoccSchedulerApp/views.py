@@ -381,7 +381,7 @@ def send_email_ics(request,tour_id):
     # Adding events to calendar
     cal.add_component(event)
 
-    directory = str(Path(__file__).parent.parent) + "/"
+    directory = str(Path(__file__).parent.parent) + "/ics_files/"
     print("ics file will be generated at ", directory)
     f = open(os.path.join(directory, 'example.ics'), 'wb')
     f.write(cal.to_ical())
@@ -400,7 +400,7 @@ def send_email_ics(request,tour_id):
     # Create the email message
     msg = EmailMultiAlternatives(subject, message, from_email, [to_email])
     msg.attach_alternative(html_content, "text/html")
-    msg.attach_file('example.ics', 'text/calendar')
+    msg.attach_file('ics_files/example.ics', 'text/calendar')
 
 
     # Send the email
