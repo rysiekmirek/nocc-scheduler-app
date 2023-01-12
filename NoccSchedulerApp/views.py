@@ -364,12 +364,25 @@ def send_email_ics(request,tour_id):
     cal.add('attendee', 'MAILTO:' + tour_data.requestor_email)
     cal.add('attendee', 'MAILTO:'+ tour_data.poc_email)
 
+    # Let's set time zones
+
+    if tour_data.location == 'Krakow':
+        timezone = pytz.timezone('Europe/Warsaw')
+    elif tour_data.location == 'Bangalore':
+        timezone = pytz.timezone('Asia/Calcutta')
+    else:
+        timezone = pytz.timezone('America/New_York')
+
+    print(timezone)
+    combined_date_time_start = timezone.localize(datetime.combine(tour_data.date,tour_data.start_time))
+    combined_date_time_end = timezone.localize(datetime.combine(tour_data.date,tour_data.end_time))
+
     event = Event()
     event.add('name', 'Akamai NOCC tour in '+ str(tour_data.location))
     event.add('summary', 'Akamai NOCC tour in '+ str(tour_data.location))
     event.add('description', 'Visit NOCC office to see how we work')
-    event.add('dtstart', datetime.combine(tour_data.date,tour_data.start_time))
-    event.add('dtend', datetime.combine(tour_data.date,tour_data.end_time))
+    event.add('dtstart', combined_date_time_start)
+    event.add('dtend', combined_date_time_end)
     event.add('dtstamp', datetime.now())
 
     event['location'] = vText(tour_data.location)
