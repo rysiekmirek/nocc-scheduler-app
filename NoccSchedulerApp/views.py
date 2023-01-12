@@ -139,9 +139,9 @@ def status_change(request, pk):
             Tour.objects.filter(id=pk).update(status=status)
             if status == "Approved":
                 messages.success(request, 'Requestor will be informed via email that tour was approved')
-                subject = '[NOCC-Tour-Scheduler] - Your tour " ' + \
+                subject = '[NOCC-Visit-Scheduler] - Your tour " ' + \
                     tour_data['tour_name'] + " \" was approved"
-                from_email = 'nocc-tour-scheduler@akamai.com'
+                from_email = 'nvs@akamai.com'
                 to = [tour_data['requestor_email'], 'rmirek@akamai.com']
                 html_content = "<h2>Hi " + \
                     tour_data['requestor_name'] + \
@@ -162,14 +162,14 @@ def status_change(request, pk):
                 # availability_entry.save()
                 if status == "Rejected":
                     messages.warning(request, 'Requestor will be informed via email that tour was rejected')
-                    subject = '[NOCC-Tour-Scheduler] - Your tour " ' + \
+                    subject = '[NOCC-Visit-Scheduler] - Your tour " ' + \
                         tour_data['tour_name'] + " \" was rejected"
                 else:
                     messages.warning(request, 'Requestor will be informed via email that tour was canceled')
-                    subject = '[NOCC-Tour-Scheduler] - Your tour " ' + \
+                    subject = '[NOCC-Visit-Scheduler] - Your tour " ' + \
                         tour_data['tour_name'] + " \" was canceled"
 
-                from_email = 'nocc-tour-scheduler@akamai.com'
+                from_email = 'nvs@akamai.com'
                 to = [tour_data['requestor_email'], 'rmirek@akamai.com']
                 html_content = "<h2>Hi " + \
                     tour_data['requestor_name'] + \
@@ -366,6 +366,7 @@ def send_email_ics(request,tour_id):
 
     event = Event()
     event.add('name', 'Akamai NOCC tour in '+ str(tour_data.location))
+    event.add('summary', 'Akamai NOCC tour in '+ str(tour_data.location))
     event.add('description', 'Visit NOCC office to see how we work')
     event.add('dtstart', datetime.combine(tour_data.date,tour_data.start_time))
     event.add('dtend', datetime.combine(tour_data.date,tour_data.end_time))
@@ -383,14 +384,14 @@ def send_email_ics(request,tour_id):
     f.close()
 
 
-    subject = 'Test email with ICS attachment'
-    message = 'This is a test email with an ICS attachment.'
-    from_email = 'from@example.com'
-    to_email = 'to@example.com'
+    subject = '[NOCC-Visit-Scheduler] Your NOCC visit has been approved'
+    message = 'Some message here'
+    from_email = 'nvs@akamai.com'
+    to_email = tour_data.requestor_email
 
 
     # Create the HTML message
-    html_content = '<p>This is a <strong>test</strong> email with an <em>ICS</em> attachment.</p>'
+    html_content = 'Hi' + tour_data.requestor_name + '<br> we would like to invite You to visit us in' + tour_data.location + '\'s NOCC office <br> Date: ' + tour_data.date + '<br>Time: ' + tour_data.start_time
 
     # Create the email message
     msg = EmailMultiAlternatives(subject, message, from_email, [to_email])
