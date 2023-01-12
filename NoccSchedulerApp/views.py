@@ -366,15 +366,15 @@ def send_email_ics(request,tour_id):
 
     # Let's set time zones
 
-    if tour_data.location == 'Krakow':
+    if str(tour_data.location) == 'Krakow':
         timezone = pytz.timezone('Europe/Warsaw')
-    elif tour_data.location == 'Bangalore':
+    elif str(tour_data.location) == 'Bangalore':
         timezone = pytz.timezone('Asia/Calcutta')
     else:
         timezone = pytz.timezone('America/New_York')
 
     print(timezone)
-    
+
     combined_date_time_start = datetime.combine(tour_data.date,tour_data.start_time).replace(tzinfo=timezone)
     combined_date_time_end = datetime.combine(tour_data.date,tour_data.end_time).replace(tzinfo=timezone)
     
