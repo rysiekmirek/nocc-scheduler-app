@@ -376,7 +376,7 @@ def send_email_ics(request,tour_id):
     print(timezone)
 
     combined_date_time_start = datetime.combine(tour_data.date,tour_data.start_time)
-    combined_date_time_end = datetime.combine(tour_data.date,tour_data.start_time)
+    combined_date_time_end = datetime.combine(tour_data.date,tour_data.end_time)
     timezone1 = pytz.timezone("UTC")
 
     aware_combined_date_time_start = timezone1.localize(combined_date_time_start)
