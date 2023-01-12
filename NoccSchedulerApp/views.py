@@ -375,17 +375,15 @@ def send_email_ics(request,tour_id):
 
     print(timezone)
 
-    combined_date_time_start = datetime.combine(tour_data.date,tour_data.start_time)
-    combined_date_time_end = datetime.combine(tour_data.date,tour_data.end_time)
-    new_combined_date_time_start = combined_date_time_start.replace(tzinfo=timezone)
-    new_combined_date_time_end = combined_date_time_end.replace(tzinfo=timezone)
+    combined_date_time_start = datetime.combine(tour_data.date,tour_data.start_time).replace(tzinfo=timezone)
+    combined_date_time_end = datetime.combine(tour_data.date,tour_data.end_time).replace(tzinfo=timezone)
     
     event = Event()
     event.add('name', 'Akamai NOCC tour in '+ str(tour_data.location))
     event.add('summary', 'Akamai NOCC tour in '+ str(tour_data.location))
     event.add('description', 'Visit NOCC office to see how we work')
-    event.add('dtstart', new_combined_date_time_start)
-    event.add('dtend', new_combined_date_time_end)
+    event.add('dtstart', combined_date_time_start)
+    event.add('dtend', combined_date_time_end)
     event.add('dtstamp', datetime.now())
 
     event['location'] = vText(tour_data.location)
