@@ -380,4 +380,4 @@ def send_icalendar(request):
     f = open(os.path.join(directory, 'example.ics'), 'wb')
     f.write(cal.to_ical())
     f.close()
-    return ("ical created")
+    return redirect('/')
