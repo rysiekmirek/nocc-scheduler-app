@@ -388,7 +388,7 @@ def send_email_ics(request,tour_id):
     aware_combined_date_time_start = combined_date_time_start.replace(tzinfo=zoneinfo.ZoneInfo("America/New_York"))
     aware_combined_date_time_end = combined_date_time_end.replace(tzinfo=zoneinfo.ZoneInfo("America/New_York"))
 
-    print(aware_combined_date_time_end.tzinfo)
+    print(aware_combined_date_time_end, aware_combined_date_time_end.tzinfo)
 
 
     # combined_date_time_start = datetime.combine(tour_data.date,tour_data.start_time).replace(tzinfo=timezone)
