@@ -384,8 +384,8 @@ def send_email_ics(request,tour_id):
 
     print(combined_date_time_end.tzinfo)
 
-    aware_combined_date_time_start = timezone.localize(combined_date_time_start)
-    aware_combined_date_time_end = timezone.localize(combined_date_time_end)
+    aware_combined_date_time_start = combined_date_time_start.replace(tzinfo=timezone)
+    aware_combined_date_time_end = combined_date_time_end.replace(tzinfo=timezone)
 
 
     # combined_date_time_start = datetime.combine(tour_data.date,tour_data.start_time).replace(tzinfo=timezone)
