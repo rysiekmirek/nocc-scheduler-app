@@ -208,12 +208,16 @@ def new_tour(request):
             print(form.errors)
             start_time= r['start_time']
             end_time = r['end_time']
+            date = r['date']
             dbentry = form.save(commit=False)
             dbentry.tour_name = str(r['customer_or_group_name']) + "--" + str(r['category']) + "--" + str(r['date'])
             uuid_value = uuid.uuid4()
             dbentry.id = uuid_value
+            dbentry.date = datetime.strptime(date, "%Y-%d-%m").date()
             dbentry.start_time = datetime.strptime(start_time, "%H:%M").time()
             dbentry.end_time = datetime.strptime(end_time, "%H:%M").time()
+            dbentry.date_time_combined_start=datetime.combine(dbentry.date, dbentry.start_time)
+            dbentry.date_time_combined_end=datetime.combine(dbentry.date, dbentry.end_time)
             print (dbentry, dbentry.start_time , dbentry.end_time )
             dbentry.save()
             tour_data = Tour.objects.filter(id=uuid_value).values()[0]
@@ -377,13 +381,10 @@ def send_email_ics(request,tour_id):
 
     combined_date_time_start = datetime.combine(tour_data.date,tour_data.start_time)
     combined_date_time_end = datetime.combine(tour_data.date,tour_data.end_time)
-    timezone1 = pytz.timezone("UTC")
 
-    aware_combined_date_time_start = timezone1.localize(combined_date_time_start)
-    aware_combined_date_time_end = timezone1.localize(combined_date_time_end)
+    aware_combined_date_time_start = timezone.localize(combined_date_time_start)
+    aware_combined_date_time_end = timezone.localize(combined_date_time_end)
 
-    combined_date_time_start = timezone.normalize(aware_combined_date_time_start)
-    combined_date_time_end = timezone.normalize(aware_combined_date_time_end)
 
     # combined_date_time_start = datetime.combine(tour_data.date,tour_data.start_time).replace(tzinfo=timezone)
     # combined_date_time_end = datetime.combine(tour_data.date,tour_data.end_time).replace(tzinfo=timezone)
@@ -392,8 +393,8 @@ def send_email_ics(request,tour_id):
     event.add('name', 'Akamai NOCC tour in '+ str(tour_data.location))
     event.add('summary', 'Akamai NOCC tour in '+ str(tour_data.location))
     event.add('description', 'Visit NOCC office to see how we work')
-    event.add('dtstart', combined_date_time_start)
-    event.add('dtend', combined_date_time_end)
+    event.add('dtstart', aware_combined_date_time_start)
+    event.add('dtend', aware_combined_date_time_end)
     event.add('dtstamp', datetime.now())
 
     event['location'] = vText(tour_data.location)
