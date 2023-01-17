@@ -217,8 +217,6 @@ def new_tour(request):
             dbentry.date = datetime.strptime(date, "%Y-%d-%m").date()
             dbentry.start_time = datetime.strptime(start_time, "%H:%M").time()
             dbentry.end_time = datetime.strptime(end_time, "%H:%M").time()
-            dbentry.date_time_combined_start=datetime.combine(dbentry.date, dbentry.start_time)
-            dbentry.date_time_combined_end=datetime.combine(dbentry.date, dbentry.end_time)
             print (dbentry, dbentry.start_time , dbentry.end_time )
             dbentry.save()
             tour_data = Tour.objects.filter(id=uuid_value).values()[0]
