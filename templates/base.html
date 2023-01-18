@@ -41,12 +41,15 @@
         {{message.tags}}
         <p {% if message.tags %} 
                 {% if message.tags == "error" %} 
-                    class="alert alert-danger text-center"
+                    class="alert alert-danger text-center alert-dismissible"
                 {% else %} 
-                    class="alert alert-{{message.tags}} text-center"
+                    class="alert alert-{{message.tags}} text-center alert-dismissible"
                 {%endif%}
                 
             {%endif%}>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="True">&times;</span>
+            </button>
                 {{ message }}</p>
         {% endfor %}
     </ul>
