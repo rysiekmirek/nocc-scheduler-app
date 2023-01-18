@@ -139,30 +139,15 @@ def status_change(request, pk):
         if tour_data['status'] != status:
             Tour.objects.filter(id=pk).update(status=status)
             if status == "Approved":
-                # messages.success(request, 'Requestor will be informed via email that tour was approved')
-                # subject = '[NOCC-Visit-Scheduler] - Your tour " ' + \
-                #     tour_data['tour_name'] + " \" was approved"
-                # from_email = 'nvs@akamai.com'
-                # to = [tour_data['requestor_email'], 'rmirek@akamai.com']
-                # html_content = "<h2>Hi " + \
-                #     tour_data['requestor_name'] + \
-                #     ", </h2><br> To check status of the request see <br> <a href=\"http://nvs.akamai.com\">Link</a>"
-                # msg = EmailMessage(subject, html_content, from_email, to)
-                # msg.content_subtype = "html"
-                # msg.send()
-                send_email_ics(pk)
-                messages.success(request, 'Requestor will be informed via email that tour was approved')
+                if tour_data['nocc_person_assigned'] == None:
+                    messages.success(request, 'You can\'t approve tour without NOCC person being assigned to it, please do that first')
+                    return redirect("/tour-details/"+pk)
+                else:
+                    send_email_ics(pk)
+                    messages.success(request, 'Requestor will be informed via email that tour was approved')
             elif status == "Requested":
                 messages.warning(request, 'Tour status set to requested')
             else:
-                # availability_entry=Availability.objects.get(avail_date=tour_data['date'], location_id=tour_data['location_id'])
-                # availability_entry_list=availability_entry.time_slots.split(',')
-                # start_time_string = tour_data['start_time'].strftime("%H:%M")
-                # end_time_string = tour_data['end_time'].strftime("%H:%M")
-                # availability_entry_list.append(start_time_string + "-" + end_time_string)
-                # availability_entry_list.sort()
-                # availability_entry.time_slots = ','.join(availability_entry_list)
-                # availability_entry.save()
                 if status == "Rejected":
                     messages.warning(request, 'Requestor will be informed via email that tour was rejected')
                     subject = '[NOCC-Visit-Scheduler] - Your tour " ' + \
