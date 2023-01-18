@@ -194,6 +194,7 @@ def feedback(request, pk):
 def new_tour(request):
     if request.method == 'POST':
         form = TourForm(request.POST)
+        print (form.cleaned_data)
         try:
             r=request.POST
             tour_data= r.dict()
