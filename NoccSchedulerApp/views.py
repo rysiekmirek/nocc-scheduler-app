@@ -136,35 +136,40 @@ def status_change(request, pk):
     tour_data = Tour.objects.filter(id=pk).values()[0]
     if request.method == 'POST':
         status=request.POST['f_status']
-        if tour_data['status'] != status:
-            Tour.objects.filter(id=pk).update(status=status)
-            if status == "Approved":
-                if tour_data['nocc_person_assigned'] == None:
-                    messages.success(request, 'You can\'t approve tour without NOCC person being assigned to it, please do that first')
-                    return redirect("/tour-details/"+pk)
+        if tour_data['nocc_person_assigned'] == None and status == "Approved":
+            messages.warning(request, 'You can\'t approve tour without NOCC person being assigned to it, please do that first')
+            return redirect("/tour-details/"+pk)
+        else:
+            status=request.POST['f_status']
+            if tour_data['status'] != status:
+                Tour.objects.filter(id=pk).update(status=status)
+                if status == "Approved":
+                    if tour_data['nocc_person_assigned'] == None:
+                        messages.warning(request, 'You can\'t approve tour without NOCC person being assigned to it, please do that first')
+                        return redirect("/tour-details/"+pk)
+                    else:
+                        send_email_ics(pk)
+                        messages.success(request, 'Requestor will be informed via email that tour was approved')
+                elif status == "Requested":
+                    messages.warning(request, 'Tour status set to requested')
                 else:
-                    send_email_ics(pk)
-                    messages.success(request, 'Requestor will be informed via email that tour was approved')
-            elif status == "Requested":
-                messages.warning(request, 'Tour status set to requested')
-            else:
-                if status == "Rejected":
-                    messages.warning(request, 'Requestor will be informed via email that tour was rejected')
-                    subject = '[NOCC-Visit-Scheduler] - Your tour " ' + \
-                        tour_data['tour_name'] + " \" was rejected"
-                else:
-                    messages.warning(request, 'Requestor will be informed via email that tour was canceled')
-                    subject = '[NOCC-Visit-Scheduler] - Your tour " ' + \
-                        tour_data['tour_name'] + " \" was canceled"
+                    if status == "Rejected":
+                        messages.warning(request, 'Requestor will be informed via email that tour was rejected')
+                        subject = '[NOCC-Visit-Scheduler] - Your tour " ' + \
+                            tour_data['tour_name'] + " \" was rejected"
+                    else:
+                        messages.warning(request, 'Requestor will be informed via email that tour was canceled')
+                        subject = '[NOCC-Visit-Scheduler] - Your tour " ' + \
+                            tour_data['tour_name'] + " \" was canceled"
 
-                from_email = 'nvs@akamai.com'
-                to = [tour_data['requestor_email'], 'rmirek@akamai.com']
-                html_content = "<h2>Hi " + \
-                    tour_data['requestor_name'] + \
-                    ", </h2><br> To check status of the request see <br> <a href=\"http://nvs.akamai.com\">Link</a>"
-                msg = EmailMessage(subject, html_content, from_email, to)
-                msg.content_subtype = "html"
-                msg.send()
+                    from_email = 'nvs@akamai.com'
+                    to = [tour_data['requestor_email'], 'rmirek@akamai.com']
+                    html_content = "<h2>Hi " + \
+                        tour_data['requestor_name'] + \
+                        ", </h2><br> To check status of the request see <br> <a href=\"http://nvs.akamai.com\">Link</a>"
+                    msg = EmailMessage(subject, html_content, from_email, to)
+                    msg.content_subtype = "html"
+                    msg.send()
 
     return redirect("/tour-details/"+pk)
 
