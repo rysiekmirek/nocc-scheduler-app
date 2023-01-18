@@ -247,7 +247,6 @@ def get_avail_times(request):
         f_location=request.GET['location']
         f_date= request.GET['date']
         try:
-            #location = Location.objects.get(location_id=f_location)
             avail_start_time, avail_end_time = Availability.objects.filter(avail_date=f_date, location=f_location).values()[0]['avail_time'].split('-')
             avail_start_time = datetime.strptime(avail_start_time, "%H:%M").time()
             avail_end_time = datetime.strptime(avail_end_time, "%H:%M").time()
@@ -258,9 +257,6 @@ def get_avail_times(request):
                 start_times.append(entry.strftime("%H:%M"))
                 entry = (datetime.combine(date.today(), entry) + timedelta(minutes=15)).time()
                 end_times.append(entry.strftime("%H:%M"))
-                #entry = entry + timedelta(minutes=15)
-
-            #end_times.append(entry.strftime("%H:%M")) # we need to add more time entry to have end_time to be later by 15 mins
 
             other_tours_that_day = Tour.objects.filter(date=f_date,location=f_location).exclude(status="Rejected").exclude(status="Canceled").values()
             for tour in other_tours_that_day:
@@ -279,9 +275,7 @@ def get_avail_times(request):
             start_times = sorted(start_times)
             print (start_times)
             print (end_times)
-            #time_slots = Availability.objects.filter(avail_date=f_date, location_id=f_location).values()[0]['time_slots'].split(',')
-            #start_times=['8:00','8:15','8:30','8:45','9:00','9:15','9:30','9:45','10:00']
-            #end_times=['8:15','8:30','8:45','9:00','9:15','9:30','9:45','10:00']
+
         except:
             start_times=""
             end_times=""
@@ -330,7 +324,6 @@ def settings(request):
             'nocc_representatives_list_bangalore' : Location.objects.get(location='Bangalore').nocc_representatives_list,
         }
         print('post',location_instance)
-        # return render(request, "settings.html", context )
         return redirect('/settings/')
 
     else:
@@ -377,14 +370,8 @@ def send_email_ics(pk):
     aware_combined_date_time_start = timezone.localize(combined_date_time_start)
     aware_combined_date_time_end = timezone.localize(combined_date_time_end)
 
-    # aware_combined_date_time_start = combined_date_time_start.replace(tzinfo=zoneinfo.ZoneInfo("America/New_York"))
-    # aware_combined_date_time_end = combined_date_time_end.replace(tzinfo=zoneinfo.ZoneInfo("America/New_York"))
-
     print(aware_combined_date_time_start, aware_combined_date_time_start.tzinfo)
 
-
-    # combined_date_time_start = datetime.combine(tour_data.date,tour_data.start_time).replace(tzinfo=timezone)
-    # combined_date_time_end = datetime.combine(tour_data.date,tour_data.end_time).replace(tzinfo=timezone)
     
     event = Event()
     event.add('name', 'Akamai NOCC tour in '+ str(tour_data.location))
@@ -410,14 +397,6 @@ def send_email_ics(pk):
     message = 'Some message here'
     from_email = 'nvs@akamai.com'
     to_email = tour_data.requestor_email
-
-
-    # Create the HTML message
-    # html_content = '<p>Hi ' + tour_data.requestor_name + ', <br> we would like to invite You to visit us in ' 
-    # + str(tour_data.location) + '\'s NOCC office <br> Date: ' + str(tour_data.date) + '<br>Time: ' + str(tour_data.start_time) 
-    # + ' - ' + str(tour_data.end_time) + '<br>Time zone: ' + str(aware_combined_date_time_start.tzinfo) + '</p>'
-
-    #html_content = f'<p>Hi {tour_data.requestor_name} <br> we would like to invite You to visit us in {tour_data.location} office <br> Date: {tour_data.date} <br> Time: {tour_data.start_time} - {tour_data.end_time} <br>Time zone: {aware_combined_date_time_start.tzinfo} </p>'
 
     html_content = f'<p>Hi {tour_data.requestor_name}, <br>' +\
                 f'we would like to invite You to visit us in {tour_data.location}\'s NOCC office <br>' +\
