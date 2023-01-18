@@ -205,7 +205,7 @@ def new_tour(request):
         dbentry.tour_name = str(r['customer_or_group_name']) + "--" + str(r['category']) + "--" + str(r['date'])
         uuid_value = uuid.uuid4()
         dbentry.id = uuid_value
-        dbentry.date = datetime.strptime(date, "%Y-%d-%m").date()
+        dbentry.date = datetime.strptime(date, '%Y-%m-%d').date()
         dbentry.start_time = datetime.strptime(start_time, "%H:%M").time()
         dbentry.end_time = datetime.strptime(end_time, "%H:%M").time()
         print (dbentry, dbentry.start_time , dbentry.end_time )

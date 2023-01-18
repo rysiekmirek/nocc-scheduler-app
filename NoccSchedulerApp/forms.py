@@ -1,5 +1,5 @@
 from .models import Tour, Location, Availability
-from django.forms import ModelForm, DateTimeInput, TextInput, Textarea, RadioSelect, CharField, ChoiceField, TimeField, DateTimeField
+from django.forms import ModelForm, DateTimeInput, TextInput, Textarea, RadioSelect, CharField, ChoiceField, TimeField, DateTimeField, DateInput
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from datetime import date, timedelta
@@ -12,9 +12,7 @@ class TourForm(ModelForm):
         #fields = '__all__'
         exclude = ('id','status','nocc_person_assigned','feedback', 'tour_name')
         widgets = {
-            'date': DateTimeInput(attrs={'type': 'date', 'min': (date.today() + timedelta(days=1)) }),
-            #'start_time': DateTimeInput(attrs={'type': 'time', 'min':'7:00','max': '19:00', "step": "900", 'type': 'hidden'}),
-            #'end_time': DateTimeInput(attrs={'type': 'time', 'type': 'hidden'}),
+            'date': DateInput(format=('%Y-%m-%d'),attrs={'type': 'date', 'min': (date.today() + timedelta(days=1))}),
             'comment': Textarea(attrs={'rows':1, 'cols':50}),
             'attendees_guests': TextInput(attrs={'min':0,'max': '50','type': 'number'}),
             'attendees_akamai': TextInput(attrs={'min':0,'max': '50','type': 'number'}),
