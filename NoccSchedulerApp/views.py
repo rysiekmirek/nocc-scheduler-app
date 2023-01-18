@@ -144,7 +144,7 @@ def status_change(request, pk):
                 Tour.objects.filter(id=pk).update(status=status)
                 if status == "Approved":
                     if tour_data['nocc_person_assigned'] == None:
-                        messages.warning(request, 'You can\'t approve tour without NOCC person being assigned to it, please do that first')
+                        messages.danger(request, 'You can\'t approve tour without NOCC person being assigned to it, please do that first')
                         return redirect("/tour-details/"+pk)
                     else:
                         send_email_ics(pk)
