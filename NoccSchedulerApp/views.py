@@ -140,7 +140,6 @@ def status_change(request, pk):
             messages.warning(request, 'You can\'t approve tour without NOCC person being assigned to it, please do that first')
             return redirect("/tour-details/"+pk)
         else:
-            status=request.POST['f_status']
             if tour_data['status'] != status:
                 Tour.objects.filter(id=pk).update(status=status)
                 if status == "Approved":
