@@ -424,9 +424,11 @@ def send_email_ics(pk):
 
 
     # Create the HTML message
-    html_content = '<p>Hi ' + tour_data.requestor_name + ', <br> we would like to invite You to visit us in ' 
-    + str(tour_data.location) + '\'s NOCC office <br> Date: ' + str(tour_data.date) + '<br>Time: ' + str(tour_data.start_time) 
-    + ' - ' + str(tour_data.end_time) + '<br>Time zone: ' + str(aware_combined_date_time_start.tzinfo) + '</p>'
+    # html_content = '<p>Hi ' + tour_data.requestor_name + ', <br> we would like to invite You to visit us in ' 
+    # + str(tour_data.location) + '\'s NOCC office <br> Date: ' + str(tour_data.date) + '<br>Time: ' + str(tour_data.start_time) 
+    # + ' - ' + str(tour_data.end_time) + '<br>Time zone: ' + str(aware_combined_date_time_start.tzinfo) + '</p>'
+
+    html_content = f'<p>Hi {tour_data.requestor_name} <br> we would like to invite You to visit us in {tour_data.location} office <br> Date: {tour_data.date} <br> Time: {tour_data.start_time} - {tour_data.end_time} <br>Time zone: {aware_combined_date_time_start.tzinfo} </p>'
 
     # Create the email message
     msg = EmailMultiAlternatives(subject, message, from_email, [to_email])
