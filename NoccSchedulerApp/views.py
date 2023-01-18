@@ -139,17 +139,19 @@ def status_change(request, pk):
         if tour_data['status'] != status:
             Tour.objects.filter(id=pk).update(status=status)
             if status == "Approved":
+                # messages.success(request, 'Requestor will be informed via email that tour was approved')
+                # subject = '[NOCC-Visit-Scheduler] - Your tour " ' + \
+                #     tour_data['tour_name'] + " \" was approved"
+                # from_email = 'nvs@akamai.com'
+                # to = [tour_data['requestor_email'], 'rmirek@akamai.com']
+                # html_content = "<h2>Hi " + \
+                #     tour_data['requestor_name'] + \
+                #     ", </h2><br> To check status of the request see <br> <a href=\"http://nvs.akamai.com\">Link</a>"
+                # msg = EmailMessage(subject, html_content, from_email, to)
+                # msg.content_subtype = "html"
+                # msg.send()
+                send_email_ics(pk)
                 messages.success(request, 'Requestor will be informed via email that tour was approved')
-                subject = '[NOCC-Visit-Scheduler] - Your tour " ' + \
-                    tour_data['tour_name'] + " \" was approved"
-                from_email = 'nvs@akamai.com'
-                to = [tour_data['requestor_email'], 'rmirek@akamai.com']
-                html_content = "<h2>Hi " + \
-                    tour_data['requestor_name'] + \
-                    ", </h2><br> To check status of the request see <br> <a href=\"http://nvs.akamai.com\">Link</a>"
-                msg = EmailMessage(subject, html_content, from_email, to)
-                msg.content_subtype = "html"
-                msg.send()
             elif status == "Requested":
                 messages.warning(request, 'Tour status set to requested')
             else:
@@ -358,9 +360,9 @@ def settings(request):
     print('get', location_instance)
     return render(request, "settings.html", context )
 
-def send_email_ics(request,tour_id):
+def send_email_ics(pk):
 
-    tour_data = Tour.objects.get(id=tour_id)
+    tour_data = Tour.objects.get(id=pk)
     print(tour_data.requestor_name)
     
     cal = Calendar()
@@ -436,6 +438,4 @@ def send_email_ics(request,tour_id):
         os.remove('ics_files/invitation.ics')
     except:
         print ('File not removed')
-
-    return redirect('/')
 
