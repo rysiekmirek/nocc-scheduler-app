@@ -1,5 +1,6 @@
 import pytest
 from django.urls import reverse
+from datetime import datetime
 from django.test import RequestFactory, TestCase
 from django.contrib.auth.models import User, AnonymousUser
 from django.contrib.sessions.middleware import SessionMiddleware
@@ -27,7 +28,11 @@ def test_main_view(rf):
 def test_tour_details(request):
     # create test data
     location = Location.objects.create(location='Test Location')
-    tour = Tour.objects.create(location=location, nocc_person_assigned='Test Person', tour_name='Test tour', )
+    tour = Tour.objects.create(location=location, nocc_person_assigned='Test Person', tour_name='Test tour', date= datetime.now().date(), start_time="15:30", end_time='16:00',
+    nocc_personnel_required='Yes', requestor_name='Thomas', requestor_email='thomas@mail.com', poc_name= 'John', poc_email= 'john@akamai.com', cc_this_request_to= 'john2@akamai.com',
+    division= 'Compute', attendees_akamai= '2', attendees_guests= '2', customer_or_group_name= 'test', customers_website='website.com', type_of_customers= 'Manufacturing', 
+    category= 'investors', opportunity_ID= '0', comment= 'aaaa')
+
     form_data = {'location': location.id, 'nocc_person_assigned': 'Test Person'}
 
     # test GET request
