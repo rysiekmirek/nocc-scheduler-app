@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.test import RequestFactory, TestCase
 from django.contrib.auth.models import User, AnonymousUser
 from django.contrib.sessions.middleware import SessionMiddleware
+from django.contrib import messages
 from NoccSchedulerApp.models import Tour, Location
 from NoccSchedulerApp.forms import TourFormDetails, TourFormFeedbackDetails
 from NoccSchedulerApp.views import main, tour_details, view_calendar, archives, login_user, logout_user, ask_for_feedback
@@ -23,7 +24,7 @@ def test_main_view(rf):
 
 # Test tour_details view
 
-def test_tour_details(request, pk):
+def test_tour_details(request):
     # create test data
     location = Location.objects.create(location='Test Location')
     tour = Tour.objects.create(location=location, nocc_person_assigned='Test Person')
