@@ -50,7 +50,7 @@ def test_tour_details(request, rf):
     request.POST = form_data
     response = tour_details(request, tour.id)
     assert response.status_code == 200
-    assert 'Tour details updated' in messages.get_messages(response.wsgi_request)
+    assert 'Tour details updated' in messages.get_messages(response)
     assert Tour.objects.get(id=tour.id).nocc_person_assigned == 'Test Person'
 
     # test POST request with invalid form data
