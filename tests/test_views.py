@@ -3,9 +3,9 @@ from django.urls import reverse
 from django.test import RequestFactory
 from django.contrib.auth.models import User, AnonymousUser
 from django.contrib.sessions.middleware import SessionMiddleware
-from models import Tour, Location
-from forms import TourFormDetails, TourFormFeedbackDetails
-from views import main, tour_details, view_calendar, archives, login_user, logout_user, ask_for_feedback
+from NoccSchedulerApp.models import Tour, Location
+from NoccSchedulerApp.forms import TourFormDetails, TourFormFeedbackDetails
+from NoccSchedulerApp.views import main, tour_details, view_calendar, archives, login_user, logout_user, ask_for_feedback
 
 # Helper function to add the middleware to a request
 def add_middleware_to_request(request):
