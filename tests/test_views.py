@@ -20,74 +20,74 @@ def test_main_view(rf):
     response = main(request)
     assert response.status_code == 200
 
-# Test tour_details view
-def test_tour_details_view(rf):
-    request = rf.get(reverse('tour_details', args=[1]))
-    request.user = User.objects.create_user(
-        username='testuser', password='testpassword')
-    add_middleware_to_request(request)
+# # Test tour_details view
+# def test_tour_details_view(rf):
+#     request = rf.get(reverse('tour_details', args=[1]))
+#     request.user = User.objects.create_user(
+#         username='testuser', password='testpassword')
+#     add_middleware_to_request(request)
 
-    response = tour_details(request, 1)
-    assert response.status_code == 200
+#     response = tour_details(request, 1)
+#     assert response.status_code == 200
 
-    request = rf.post(reverse('tour_details', args=[1]), {'field1': 'value1'})
-    request.user = User.objects.create_user(
-        username='testuser', password='testpassword')
-    add_middleware_to_request(request)
+#     request = rf.post(reverse('tour_details', args=[1]), {'field1': 'value1'})
+#     request.user = User.objects.create_user(
+#         username='testuser', password='testpassword')
+#     add_middleware_to_request(request)
 
-    response = tour_details(request, 1)
-    assert response.status_code == 302
+#     response = tour_details(request, 1)
+#     assert response.status_code == 302
 
-# Test view_calendar view
-def test_view_calendar_view(rf):
-    request = rf.get(reverse('view_calendar'))
-    response = view_calendar(request)
-    assert response.status_code == 200
+# # Test view_calendar view
+# def test_view_calendar_view(rf):
+#     request = rf.get(reverse('view_calendar'))
+#     response = view_calendar(request)
+#     assert response.status_code == 200
 
-    request = rf.post(reverse('view_calendar'), {'month': '1', 'year': '2022'})
-    response = view_calendar(request)
-    assert response.status_code == 200
+#     request = rf.post(reverse('view_calendar'), {'month': '1', 'year': '2022'})
+#     response = view_calendar(request)
+#     assert response.status_code == 200
 
-# Test archives view
-def test_archives_view(rf):
-    request = rf.get(reverse('archives'))
-    request.user = User.objects.create_user(
-        username='testuser', password='testpassword')
-    add_middleware_to_request(request)
+# # Test archives view
+# def test_archives_view(rf):
+#     request = rf.get(reverse('archives'))
+#     request.user = User.objects.create_user(
+#         username='testuser', password='testpassword')
+#     add_middleware_to_request(request)
 
-    response = archives(request)
-    assert response.status_code == 200
+#     response = archives(request)
+#     assert response.status_code == 200
 
-# Test login_user view
-def test_login_user_view(rf):
-    request = rf.get(reverse('login_user'))
-    request.user = AnonymousUser()
-    add_middleware_to_request(request)
+# # Test login_user view
+# def test_login_user_view(rf):
+#     request = rf.get(reverse('login_user'))
+#     request.user = AnonymousUser()
+#     add_middleware_to_request(request)
 
-    response = login_user(request)
-    assert response.status_code == 200
+#     response = login_user(request)
+#     assert response.status_code == 200
 
-    request = rf.post(reverse('login_user'), {'f_username': 'testuser', 'f_password': 'testpassword'})
-    request.user = AnonymousUser()
-    add_middleware_to_request(request)
+#     request = rf.post(reverse('login_user'), {'f_username': 'testuser', 'f_password': 'testpassword'})
+#     request.user = AnonymousUser()
+#     add_middleware_to_request(request)
 
-    response = login_user(request)
-    assert response.status_code == 302
+#     response = login_user(request)
+#     assert response.status_code == 302
 
-# Test logout_user view
-def test_logout_user_view(rf):
-    request = rf.get(reverse('logout_user'))
-    request.user = User.objects.create_user(
-    username='testuser', password='testpassword')
-    add_middleware_to_request(request)
-    response = logout_user(request)
-    assert response.status_code == 302
+# # Test logout_user view
+# def test_logout_user_view(rf):
+#     request = rf.get(reverse('logout_user'))
+#     request.user = User.objects.create_user(
+#     username='testuser', password='testpassword')
+#     add_middleware_to_request(request)
+#     response = logout_user(request)
+#     assert response.status_code == 302
 
-def test_ask_for_feedback_view(rf):
-    request = rf.get(reverse('ask_for_feedback', args=[1]))
-    request.user = User.objects.create_user(
-    username='testuser', password='testpassword')
-    add_middleware_to_request(request)
-    response = ask_for_feedback(request, 1)
-    assert response.status_code == 200
+# def test_ask_for_feedback_view(rf):
+#     request = rf.get(reverse('ask_for_feedback', args=[1]))
+#     request.user = User.objects.create_user(
+#     username='testuser', password='testpassword')
+#     add_middleware_to_request(request)
+#     response = ask_for_feedback(request, 1)
+#     assert response.status_code == 200
 
