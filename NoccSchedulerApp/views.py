@@ -144,7 +144,7 @@ def status_change(request, pk):
                 Tour.objects.filter(id=pk).update(status=status)
                 if status == "Approved":
                     if tour_data['nocc_person_assigned'] == None:
-                        messages.error(request, 'You can\'t approve tour without NOCC person being assigned to it, please do that first')
+                        #messages.error(request, 'You can\'t approve tour without NOCC person being assigned to it, please do that first')
                         messages.add_message(request, messages.WARNING, ' SQL statements were executed.' )
                         messages.add_message(request, messages.ERROR, 'Three credits remain in your account.')
                         messages.add_message(request, messages.SUCCESS, 'Profile details updated.')
