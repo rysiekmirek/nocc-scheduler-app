@@ -26,7 +26,7 @@ def test_tour_details_view(rf):
     request = rf.get(reverse('tour_details', args=[1]))
     request.user = User.objects.create_user(
         username='testuser', password='testpassword')
-    add_middleware_to_request(request, 1)
+    add_middleware_to_request(request)
 
     response = tour_details(request, 1)
     assert response.status_code == 200
