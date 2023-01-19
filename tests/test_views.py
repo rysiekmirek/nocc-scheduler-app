@@ -21,23 +21,23 @@ def test_main_view(rf):
     response = main(request)
     assert response.status_code == 200
 
-# # Test tour_details view
-# def test_tour_details_view(rf):
-#     request = rf.get(reverse('tour_details', args=[1]))
-#     request.user = User.objects.create_user(
-#         username='testuser', password='testpassword')
-#     add_middleware_to_request(request)
+# Test tour_details view
+def test_tour_details_view(rf):
+    request = rf.get(reverse('tour_details', args=[1]))
+    request.user = User.objects.create_user(
+        username='testuser', password='testpassword')
+    add_middleware_to_request(request)
 
-#     response = tour_details(request, 1)
-#     assert response.status_code == 200
+    response = tour_details(request, 1)
+    assert response.status_code == 200
 
-#     request = rf.post(reverse('tour_details', args=[1]), {'field1': 'value1'})
-#     request.user = User.objects.create_user(
-#         username='testuser', password='testpassword')
-#     add_middleware_to_request(request)
+    request = rf.post(reverse('tour_details', args=[1]), {'field1': 'value1'})
+    request.user = User.objects.create_user(
+        username='testuser', password='testpassword')
+    add_middleware_to_request(request)
 
-#     response = tour_details(request, 1)
-#     assert response.status_code == 302
+    response = tour_details(request, 1)
+    assert response.status_code == 302
 
 # # Test view_calendar view
 # def test_view_calendar_view(rf):
