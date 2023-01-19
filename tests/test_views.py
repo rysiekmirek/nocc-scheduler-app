@@ -17,6 +17,7 @@ class TestViews(TestCase):
         request.session.save()
 
     # Test main view
+    @pytest.mark.django_db
     def test_main_view(rf):
         request = rf.get(reverse('main'))
         response = main(request)
