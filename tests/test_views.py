@@ -25,7 +25,6 @@ def test_main_view(rf):
 
 # Test tour_details view
 def test_tour_details(request, rf):
-    request = rf.get(reverse('tour_details'))
     request.user = User.objects.create_user(
         username='testuser', password='testpassword')
     add_middleware_to_request(request)
