@@ -5,6 +5,7 @@ from django.test import RequestFactory, TestCase
 from django.contrib.auth.models import User, AnonymousUser
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.contrib import messages
+from django.contrib.messages import get_messages
 from NoccSchedulerApp.models import Tour, Location
 from NoccSchedulerApp.forms import TourFormDetails, TourFormFeedbackDetails
 from NoccSchedulerApp.views import main, tour_details, view_calendar, archives, login_user, logout_user, ask_for_feedback
@@ -51,7 +52,7 @@ def test_tour_details(request, rf):
     request.POST = form_data
     response = tour_details(request, tour.id)
     assert response.status_code == 200
-    messages = list(response.context['messages'])
+    messages = list(get_messages(response.wsgi_request))
     assert 'Tour details updated' in messages
     assert Tour.objects.get(id=tour.id).tour_name == 'new tour name'
 
