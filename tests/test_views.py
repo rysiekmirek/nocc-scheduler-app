@@ -23,7 +23,7 @@ def test_main_view(rf):
 
 # Test tour_details view
 
-def test_tour_details(request):
+def test_tour_details(request, pk):
     # create test data
     location = Location.objects.create(location='Test Location')
     tour = Tour.objects.create(location=location, nocc_person_assigned='Test Person')
