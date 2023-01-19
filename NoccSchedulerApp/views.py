@@ -138,7 +138,6 @@ def status_change(request, pk):
         status=request.POST['f_status']
         if tour_data['nocc_person_assigned'] == None and status == "Approved":
             messages.warning(request, 'You can\'t approve tour without NOCC person being assigned to it, please do that first')
-            messages.add_message(request, messages.WARNING, ' SQL statements were executed.' )
             messages.add_message(request, messages.ERROR, 'Three credits remain in your account.')
             messages.add_message(request, messages.SUCCESS, 'Profile details updated.')
             return redirect("/tour-details/"+pk)
