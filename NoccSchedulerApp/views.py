@@ -190,9 +190,11 @@ def feedback(request, pk):
 def new_tour(request):
     if request.method == 'POST':
         form = TourForm(request.POST)
+        print(form)
         try:
             r=request.POST
             tour_data= r.dict()
+            print(tour_data)
             print(form.errors)
             start_time= r['start_time']
             end_time = r['end_time']
