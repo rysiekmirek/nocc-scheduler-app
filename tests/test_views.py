@@ -25,9 +25,6 @@ def test_main_view(rf):
 
 # Test tour_details view
 def test_tour_details(request, rf):
-    request.user = User.objects.create_user(
-        username='testuser', password='testpassword')
-    add_middleware_to_request(request)
     
     # create test data
     location = Location.objects.create(location='Test Location')
@@ -37,6 +34,11 @@ def test_tour_details(request, rf):
     category= 'investors', opportunity_ID= '0', comment= 'aaaa', id='9b31ede7-36ba-44cb-b492-c493fd99daaa')
 
     form_data = {'location': location.id, 'nocc_person_assigned': 'Test Person'}
+
+    request = rf.get(reverse('tour_details'), args=['9b31ede7-36ba-44cb-b492-c493fd99daaa'] )
+    request.user = User.objects.create_user(
+        username='testuser', password='testpassword')
+    add_middleware_to_request(request)
 
     # test GET request
     request.method = 'GET'
