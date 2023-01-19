@@ -33,7 +33,7 @@ def test_tour_details(request, rf):
     division= 'Compute', attendees_akamai= '2', attendees_guests= '2', customer_or_group_name= 'test', customers_website='website.com', type_of_customers= 'Manufacturing', 
     category= 'investors', opportunity_ID= '0', comment= 'aaaa', id='9b31ede7-36ba-44cb-b492-c493fd99daaa')
 
-    form_data = {'location': location.id, 'nocc_person_assigned': 'Test Person'}
+    form_data = {'location': location.id, 'tour_name': 'new tour name'}
 
     request = rf.get(reverse('tour_details', args=['9b31ede7-36ba-44cb-b492-c493fd99daaa']) )
 
@@ -44,7 +44,7 @@ def test_tour_details(request, rf):
     assert tour.location.location in str(response.content)
     print (tour.location.location)
     print (str(response.content))
-    #assert tour.nocc_person_assigned in str(response.content)
+    assert tour.tour_name in str(response.content)
 
     # test POST request with valid form data
     request.method = 'POST'
