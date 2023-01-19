@@ -27,7 +27,7 @@ def test_main_view(rf):
 def test_tour_details(request):
     # create test data
     location = Location.objects.create(location='Test Location')
-    tour = Tour.objects.create(location=location, nocc_person_assigned='Test Person')
+    tour = Tour.objects.create(location=location, nocc_person_assigned='Test Person', tour_name='Test tour', )
     form_data = {'location': location.id, 'nocc_person_assigned': 'Test Person'}
 
     # test GET request
@@ -58,7 +58,7 @@ def test_tour_details(request):
 #     response = view_calendar(request)
 #     assert response.status_code == 200
 
-#     request = rf.post(reverse('view_calendar'), {'month': '1', 'year': '2022'})
+#     request = rf.post(reverse('view_calendar'), {'month': '1', 'year': '2023'})
 #     response = view_calendar(request)
 #     assert response.status_code == 200
 
