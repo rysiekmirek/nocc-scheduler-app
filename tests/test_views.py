@@ -11,12 +11,14 @@ from NoccSchedulerApp.views import main, tour_details, view_calendar, archives, 
 
 
 # Helper function to add the middleware to a request
+@pytest.mark.django_db(True)
 def add_middleware_to_request(request):
     middleware = SessionMiddleware()
     middleware.process_request(request)
     request.session.save()
 
 # Test main view
+@pytest.mark.django_db(True)
 def test_main_view(rf):
     request = rf.get(reverse('main'))
     response = main(request)
