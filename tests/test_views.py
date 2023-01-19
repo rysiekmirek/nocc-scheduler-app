@@ -1,7 +1,6 @@
 import pytest
-from django.test import TestCase
 from django.urls import reverse
-from django.test import RequestFactory
+from django.test import RequestFactory, TestCase
 from django.contrib.auth.models import User, AnonymousUser
 from django.contrib.sessions.middleware import SessionMiddleware
 from NoccSchedulerApp.models import Tour, Location
@@ -10,7 +9,7 @@ from NoccSchedulerApp.views import main, tour_details, view_calendar, archives, 
 
 
 @pytest.mark.django_db
-class TestViews:
+class TestViews(TestCase):
 # Helper function to add the middleware to a request
     def add_middleware_to_request(request):
         middleware = SessionMiddleware()
