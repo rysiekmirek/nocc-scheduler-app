@@ -1,7 +1,7 @@
 import pytest
 from django.test import TestCase
 from django.urls import reverse
-from django.test import RequestFactory
+from django.test import RequestFactory as rf
 from django.contrib.auth.models import User, AnonymousUser
 from django.contrib.sessions.middleware import SessionMiddleware
 from NoccSchedulerApp.models import Tour, Location
