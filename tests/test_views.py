@@ -11,7 +11,7 @@ from NoccSchedulerApp.views import main, tour_details, view_calendar, archives, 
 
 
 @pytest.mark.django_db
-class TestExample(TestCase):
+class TestExample:
     # Helper function to add the middleware to a request
     def add_middleware_to_request(request):
         middleware = SessionMiddleware()
