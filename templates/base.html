@@ -37,28 +37,12 @@
 
     {% if messages %}
     {% for message in messages %}
-    {{message.tags}}
+
     <div class="alert {% if message.tags == "error" %} alert-danger {% else %} alert-{{message.tags}} {%endif%} text-center alert-dismissible fade show text-center" role="alert">
       {{ message }}
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     {% endfor %}
-
-    <!-- <ul class="messages">
-        {% for message in messages %}
-        {{message.tags}}
-        <p {% if message.tags %} 
-                {% if message.tags == "error" %} 
-                    class="alert alert-danger text-center alert-dismissible"
-                {% else %} 
-                    class="alert alert-{{message.tags}} text-center alert-dismissible"
-                {%endif%}
-                
-            {%endif%}>
-                {{ message }}</p>
-        {% endfor %}
-    </ul> -->
-    {% endif %}
 
 <div class="col-lg-12 mx-auto px-5 pt-5 pb-2">
 {% block content %}
