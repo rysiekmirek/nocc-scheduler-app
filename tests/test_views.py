@@ -22,6 +22,7 @@ def test_main_view(rf):
     assert response.status_code == 200
 
 # Test tour_details view
+pk="681b5abf-4df8-40f5-b3a1-b4469e66b11b"
 def test_tour_details(request, pk):
     # create test data
     location = Location.objects.create(location='Test Location')
