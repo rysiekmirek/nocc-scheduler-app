@@ -138,21 +138,16 @@ def status_change(request, pk):
         status=request.POST['f_status']
         if tour_data['nocc_person_assigned'] == None and status == "Approved":
             messages.warning(request, 'You can\'t approve tour without NOCC person being assigned to it, please do that first')
+            messages.add_message(request, messages.WARNING, ' SQL statements were executed.' )
+            messages.add_message(request, messages.ERROR, 'Three credits remain in your account.')
+            messages.add_message(request, messages.SUCCESS, 'Profile details updated.')
             return redirect("/tour-details/"+pk)
         else:
             if tour_data['status'] != status:
                 Tour.objects.filter(id=pk).update(status=status)
                 if status == "Approved":
-                    if tour_data['nocc_person_assigned'] == None:
-                        #messages.error(request, 'You can\'t approve tour without NOCC person being assigned to it, please do that first')
-                        
-                        messages.add_message(request, messages.WARNING, ' SQL statements were executed.' )
-                        messages.add_message(request, messages.ERROR, 'Three credits remain in your account.')
-                        messages.add_message(request, messages.SUCCESS, 'Profile details updated.')
-                        return redirect("/tour-details/"+pk)
-                    else:
-                        send_email_ics(pk)
-                        messages.success(request, 'Requestor will be informed via email that tour was approved')
+                    send_email_ics(pk)
+                    messages.success(request, 'Requestor will be informed via email that tour was approved')
                 elif status == "Requested":
                     messages.warning(request, 'Tour status set to requested')
                 else:
