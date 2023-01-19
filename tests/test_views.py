@@ -43,6 +43,7 @@ def test_tour_details(request, rf):
     assert response.status_code == 200
     assert tour.location.location in str(response.content)
     print (tour.location.location)
+    print (str(response.content))
     #assert tour.nocc_person_assigned in str(response.content)
 
     # test POST request with valid form data
