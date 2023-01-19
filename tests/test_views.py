@@ -7,21 +7,21 @@ from NoccSchedulerApp.models import Tour, Location
 from NoccSchedulerApp.forms import TourFormDetails, TourFormFeedbackDetails
 from NoccSchedulerApp.views import main, tour_details, view_calendar, archives, login_user, logout_user, ask_for_feedback
 
-
+pytestmark = pytest.mark.django_db
 @pytest.mark.django_db
-class TestViews(TestCase):
-# Helper function to add the middleware to a request
-    def add_middleware_to_request(request):
-        middleware = SessionMiddleware()
-        middleware.process_request(request)
-        request.session.save()
 
-    # Test main view
-    @pytest.mark.django_db
-    def test_main_view(rf):
-        request = rf.get(reverse('main'))
-        response = main(request)
-        assert response.status_code == 200
+# Helper function to add the middleware to a request
+def add_middleware_to_request(request):
+    middleware = SessionMiddleware()
+    middleware.process_request(request)
+    request.session.save()
+
+# Test main view
+@pytest.mark.django_db
+def test_main_view(rf):
+    request = rf.get(reverse('main'))
+    response = main(request)
+    assert response.status_code == 200
 
 # # Test tour_details view
 # def test_tour_details_view(rf):
