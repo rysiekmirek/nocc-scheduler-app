@@ -22,22 +22,33 @@ def test_main_view(rf):
     assert response.status_code == 200
 
 # Test tour_details view
-def test_tour_details_view(rf):
-    request = rf.get(reverse('tour_details', args=[1]))
-    request.user = User.objects.create_user(
-        username='testuser', password='testpassword')
-    add_middleware_to_request(request)
+def test_tour_details(request, pk):
+    # create test data
+    location = Location.objects.create(location='Test Location')
+    tour = Tour.objects.create(location=location, nocc_person_assigned='Test Person')
+    form_data = {'location': location.id, 'nocc_person_assigned': 'Test Person'}
 
-    response = tour_details(request, 1)
+    # test GET request
+    request.method = 'GET'
+    response = tour_details(request, tour.id)
     assert response.status_code == 200
+    assert tour.location.location in str(response.content)
+    assert tour.nocc_person_assigned in str(response.content)
 
-    request = rf.post(reverse('tour_details', args=[1]), {'field1': 'value1'})
-    request.user = User.objects.create_user(
-        username='testuser', password='testpassword')
-    add_middleware_to_request(request)
-
-    response = tour_details(request, 1)
+    # test POST request with valid form data
+    request.method = 'POST'
+    request.POST = form_data
+    response = tour_details(request, tour.id)
     assert response.status_code == 302
+    assert 'Tour details updated' in messages.get_messages(response.wsgi_request)
+    assert Tour.objects.get(id=tour.id).nocc_person_assigned == 'Test Person'
+
+    # test POST request with invalid form data
+    request.POST = {'location': 'invalid'}
+    response = tour_details(request, tour.id)
+    assert response.status_code == 200
+    assert 'This field is required.' in str(response.content)
+
 
 # # Test view_calendar view
 # def test_view_calendar_view(rf):
