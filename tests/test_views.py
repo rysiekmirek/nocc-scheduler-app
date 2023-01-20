@@ -34,7 +34,7 @@ def test_tour_details(request, rf):
     division= 'Compute', attendees_akamai= '2', attendees_guests= '2', customer_or_group_name= 'test', customers_website='website.com', type_of_customers= 'Manufacturing', 
     category= 'investors', opportunity_ID= '0', comment= 'aaaa', id='9b31ede7-36ba-44cb-b492-c493fd99daaa')
 
-    form_data = {'location': location.id, 'tour_name': 'new tour name'}
+    form_data = {'customer_or_group_name': "new name", 'tour_name': 'new tour name'}
 
     request = rf.get(reverse('tour_details', args=['9b31ede7-36ba-44cb-b492-c493fd99daaa']) )
 
