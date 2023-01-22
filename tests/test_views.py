@@ -17,7 +17,7 @@ def test_user_login(client, django_user_model):
     #response = client.get('/archives')
     assert response.status_code == 302
 
-@pytest.mark.django_db
+
 def test_user_login_fail(client, django_user_model):
     login_data = dict (
         f_username = "test_user",
