@@ -8,7 +8,7 @@ def test_user_login(client, django_user_model):
     login_data = dict (
         f_username = "test_user",
         f_password = "test_pass")
-    user = django_user_model.objects.create_user(username=login_data['username'], password=login_data['password'])
+    user = django_user_model.objects.create_user(username=login_data['f_username'], password=login_data['f_password'])
     response = client.post("/login/", login_data )
     # Use this:
     #client.force_login(user)
