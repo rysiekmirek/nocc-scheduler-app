@@ -3,7 +3,7 @@ from django.test import Client
 
 client=Client()
 
-@pytest.mark.django_db
+#@pytest.mark.django_db
 def test_user_login(client, django_user_model):
     login_data = dict (
         f_username = "test_user",
