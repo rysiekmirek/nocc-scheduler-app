@@ -6,8 +6,8 @@ client=Client()
 @pytest.mark.django_db
 def test_user_login(client, django_user_model):
     login_data = dict (
-        username = "test_user",
-        password = "test_pass")
+        f_username = "test_user",
+        f_password = "test_pass")
     user = django_user_model.objects.create_user(username=login_data['username'], password=login_data['password'])
     response = client.post("/login/", login_data )
     # Use this:
