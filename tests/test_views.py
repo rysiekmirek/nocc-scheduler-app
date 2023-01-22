@@ -1,7 +1,7 @@
 import pytest
-from rest_framework import APIClient
+from django.test import Client
 
-client=APIClient()
+client=Client()
 
 @pytest.mark.django_db
 def test_user_login(client, django_user_model):
