@@ -15,4 +15,4 @@ def test_user_login(client, django_user_model):
     # Or this:
     #client.login(username=login_data['username'], password=login_data['password'])
     #response = client.get('/archives')
-    assert response.status_code == 200
+    assert response.status_code == 302
