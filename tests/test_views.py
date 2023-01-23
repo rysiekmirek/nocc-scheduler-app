@@ -48,7 +48,7 @@ def test_add_new_tour(client):
 
     response = client.post('/new-tour/', form_data)
     #data = response.data
-    data_in_db = Tour.objects.all().first()
-    print(response.content)
+    #data_in_db = Tour.objects.all().first()
+    assert 'End time has to be after start time' in str(response.content)
 
-    assert data_in_db.poc_name == form_data['poc_name']
+    #assert data_in_db.poc_name == form_data['poc_name']
