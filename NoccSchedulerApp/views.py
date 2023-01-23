@@ -310,26 +310,19 @@ def settings(request):
                         'avail_time': avail_time,
                         'avail_date': day
                         })
-            messages.success(request, 'Time slots updated successfully')
+            messages.success(request, f'{location_instance}\'s time slots updated successfully')
 
-        context = {
-            'current_location': location_instance,
-            'availability_data_cambridge': Availability.objects.filter(location__location='Cambridge', avail_date__gte=date.today()).order_by('avail_date'),
-            'nocc_representatives_list_cambridge' : Location.objects.get(location='Cambridge').nocc_representatives_list,
-            'availability_data_krakow': Availability.objects.filter(location__location='Krakow', avail_date__gte=date.today()).order_by('avail_date'),
-            'nocc_representatives_list_krakow' : Location.objects.get(location='Krakow').nocc_representatives_list,
-            'availability_data_bangalore': Availability.objects.filter(location__location='Bangalore', avail_date__gte=date.today()).order_by('avail_date'),
-            'nocc_representatives_list_bangalore' : Location.objects.get(location='Bangalore').nocc_representatives_list,
-        }
-        print('post',location_instance)
-        return redirect('/settings/')
-
-    else:
-        location_instance='Cambridge'
-
+        # context = {
+        #     'availability_data_cambridge': Availability.objects.filter(location__location='Cambridge', avail_date__gte=date.today()).order_by('avail_date'),
+        #     'nocc_representatives_list_cambridge' : Location.objects.get(location='Cambridge').nocc_representatives_list,
+        #     'availability_data_krakow': Availability.objects.filter(location__location='Krakow', avail_date__gte=date.today()).order_by('avail_date'),
+        #     'nocc_representatives_list_krakow' : Location.objects.get(location='Krakow').nocc_representatives_list,
+        #     'availability_data_bangalore': Availability.objects.filter(location__location='Bangalore', avail_date__gte=date.today()).order_by('avail_date'),
+        #     'nocc_representatives_list_bangalore' : Location.objects.get(location='Bangalore').nocc_representatives_list,
+        # }
+        # return redirect('/settings/')
 
     context = {
-        'current_location': location_instance,
         'availability_data_cambridge': Availability.objects.filter(location__location='Cambridge', avail_date__gte=date.today()).order_by('avail_date'),
         'nocc_representatives_list_cambridge' : Location.objects.get(location='Cambridge').nocc_representatives_list,
         'availability_data_krakow': Availability.objects.filter(location__location='Krakow', avail_date__gte=date.today()).order_by('avail_date'),
@@ -337,8 +330,9 @@ def settings(request):
         'availability_data_bangalore': Availability.objects.filter(location__location='Bangalore', avail_date__gte=date.today()).order_by('avail_date'),
         'nocc_representatives_list_bangalore' : Location.objects.get(location='Bangalore').nocc_representatives_list,
      }
-    print('get', location_instance)
     return render(request, "settings.html", context )
+
+    
 
 def send_email_ics(pk):
 
