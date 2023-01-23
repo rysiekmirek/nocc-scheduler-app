@@ -31,5 +31,5 @@ def test_user_login_fail(client, django_user_model):
     assert response.status_code == 200
 
 def test_check_access(auth_user):
-    response = auth_user.get('/archives')
+    response = auth_user.get('/archives/')
     assert response.status_code == 200
