@@ -2,8 +2,8 @@ import pytest
 from django.test import Client
 
 client=Client()
+pytest_mark = pytest.mark.django_db
 
-#@pytest.mark.django_db
 def test_user_login(client, django_user_model):
     login_data = dict (
         f_username = "test_user",
@@ -14,7 +14,7 @@ def test_user_login(client, django_user_model):
     #client.force_login(user)
     # Or this:
     #client.login(username=login_data['username'], password=login_data['password'])
-    #response = client.get('/archives')
+    assert client.get('/archives').status_code == 200
     assert response.status_code == 302
 
 
@@ -29,4 +29,5 @@ def test_user_login_fail(client, django_user_model):
     # Or this:
     #client.login(username=login_data['username'], password=login_data['password'])
     #response = client.get('/archives')
+    assert client.get('/archives').status_code == 302
     assert response.status_code == 200
