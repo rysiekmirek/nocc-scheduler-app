@@ -295,7 +295,7 @@ def settings(request):
         if 'nocc_representatives_list' in r:
             nocc_representatives_list = r['nocc_representatives_list'].strip()
             Location.objects.filter(location=location).update(nocc_representatives_list=nocc_representatives_list)
-            messages.success(request, 'NOCC representatives list updated successfully')
+            messages.success(request, f'{location_instance}\'s NOCC representatives list updated successfully')
 
         else:
             from_date = datetime.strptime(r['from_date'], "%Y-%m-%d").date()
