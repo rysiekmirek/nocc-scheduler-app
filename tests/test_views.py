@@ -41,6 +41,7 @@ def test_check_admin_access(auth_user):
 def test_add_new_tour(client):
     #create test data
     location = Location.objects.create(location='Krakow')
+    print(location)
     form_data = dict(location=1, nocc_person_assigned='Test Person', tour_name='Test tour', date= "2024-01-13", start_time="15:30", end_time='16:00',
     nocc_personnel_required='Yes', requestor_name='Thomas', requestor_email='thomas@mail.com', poc_name= 'John', poc_email= 'john@akamai.com', cc_this_request_to= 'john2@akamai.com',
     division= 'Compute', attendees_akamai= '2', attendees_guests= '2', customer_or_group_name= 'test', customers_website='website.com', type_of_customers= 'Manufacturing', 
