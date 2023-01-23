@@ -29,3 +29,7 @@ def test_user_login_fail(client, django_user_model):
     #client.login(username=login_data['username'], password=login_data['password'])
     #response = client.get('/archives')
     assert response.status_code == 200
+
+def test_check_access(auth_user):
+    response = auth_user.get('/archives')
+    assert response.status_code == 200
