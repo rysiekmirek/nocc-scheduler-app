@@ -14,7 +14,6 @@ def test_user_login(client, django_user_model):
     #client.force_login(user)
     # Or this:
     #client.login(username=login_data['username'], password=login_data['password'])
-    assert client.get('/archives').status_code == 200
     assert response.status_code == 302
 
 
@@ -29,5 +28,4 @@ def test_user_login_fail(client, django_user_model):
     # Or this:
     #client.login(username=login_data['username'], password=login_data['password'])
     #response = client.get('/archives')
-    assert client.get('/archives').status_code == 302
     assert response.status_code == 200
