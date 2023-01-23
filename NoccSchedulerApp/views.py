@@ -26,7 +26,7 @@ def main(request):
     }
     return render(request, "main.html", context)
 
-#@login_required(login_url='/login/')
+@login_required(login_url='/login/')
 def tour_details(request, pk):
     tour_data = Tour.objects.filter(id=pk).values()[0]
 
@@ -312,16 +312,6 @@ def settings(request):
                         })
             messages.success(request, f'{location_instance}\'s time slots updated successfully')
 
-        # context = {
-        #     'availability_data_cambridge': Availability.objects.filter(location__location='Cambridge', avail_date__gte=date.today()).order_by('avail_date'),
-        #     'nocc_representatives_list_cambridge' : Location.objects.get(location='Cambridge').nocc_representatives_list,
-        #     'availability_data_krakow': Availability.objects.filter(location__location='Krakow', avail_date__gte=date.today()).order_by('avail_date'),
-        #     'nocc_representatives_list_krakow' : Location.objects.get(location='Krakow').nocc_representatives_list,
-        #     'availability_data_bangalore': Availability.objects.filter(location__location='Bangalore', avail_date__gte=date.today()).order_by('avail_date'),
-        #     'nocc_representatives_list_bangalore' : Location.objects.get(location='Bangalore').nocc_representatives_list,
-        # }
-        # return redirect('/settings/')
-
     context = {
         'availability_data_cambridge': Availability.objects.filter(location__location='Cambridge', avail_date__gte=date.today()).order_by('avail_date'),
         'nocc_representatives_list_cambridge' : Location.objects.get(location='Cambridge').nocc_representatives_list,
@@ -332,7 +322,7 @@ def settings(request):
      }
     return render(request, "settings.html", context )
 
-    
+
 
 def send_email_ics(pk):
 
