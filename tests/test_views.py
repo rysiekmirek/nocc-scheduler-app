@@ -6,7 +6,6 @@ from NoccSchedulerApp.forms import TourFormDetails, TourFormFeedbackDetails
 from NoccSchedulerApp.views import main, tour_details, view_calendar, archives, login_user, logout_user, ask_for_feedback
 
 client=Client()
-pytest_mark = pytest.mark.django_db
 
 def test_user_login(client, django_user_model):
     login_data = dict (
@@ -38,8 +37,8 @@ def test_check_admin_access(auth_user):
     response = auth_user.get('/archives/')
     assert response.status_code == 200
 
+@pytest.mark.django_db
 def test_add_new_tour(client):
-
     #create test data
     location = Location.objects.create(location='Krakow')
     form_data = dict(location=location, nocc_person_assigned='Test Person', tour_name='Test tour', date= datetime.now().date(), start_time="15:30", end_time='16:00',
