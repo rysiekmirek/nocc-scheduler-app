@@ -49,6 +49,7 @@ def test_add_new_tour(client):
 
     response = client.post('/new-tour/', form_data)
     #data = response.data
-    data_in_db = Tour.objects.get(id='9b31ede7-36ba-44cb-b492-c493fd99daaa')
+    data_in_db = Tour.objects.all().first()
+    print(data_in_db)
 
     assert data_in_db.poc_name == form_data['poc_name']
