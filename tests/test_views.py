@@ -48,7 +48,7 @@ def test_add_new_tour(client):
     category= 'investors', opportunity_ID= '0', comment= 'aaaa', id='9b31ede7-36ba-44cb-b492-c493fd99daaa')
 
     response = client.post('/new-tour/', form_data)
-    data = response.data
+    #data = response.data
     data_in_db = Tour.objects.all().first()
 
-    assert data['poc_name'] == form_data['poc_name']
+    assert data_in_db['poc_name'] == form_data['poc_name']
