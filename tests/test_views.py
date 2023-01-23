@@ -7,7 +7,7 @@ from NoccSchedulerApp.views import main, tour_details, view_calendar, archives, 
 
 client=Client()
 
-def test_main_loading(client):
+def test_main_loading(client, django_user_model):
     response = client.get("/")
     assert response.status_code == 200
 
