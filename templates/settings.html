@@ -7,30 +7,16 @@
 <div class="container-md mx-auto col-7 mt-5">
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      {% if current_location == "Cambridge" %}
       <button class="nav-link active" id="nav-cambridge-tab" data-bs-toggle="tab" data-bs-target="#nav-cambridge" type="button" role="tab" aria-controls="nav-cambridge" aria-selected="true">Cambridge</button>
-      {% else %}
-      <button class="nav-link" id="nav-cambridge-tab" data-bs-toggle="tab" data-bs-target="#nav-cambridge" type="button" role="tab" aria-controls="nav-cambridge" aria-selected="true">Cambridge</button>
-      {% endif %}
-      {% if current_location == "Krakow" %}
-      <button  class="nav-link active" id="nav-krakow-tab" data-bs-toggle="tab" data-bs-target="#nav-krakow" type="button" role="tab" aria-controls="nav-krakow" aria-selected="false" >Krakow</button>
-      {% else %} 
       <button  class="nav-link" id="nav-krakow-tab" data-bs-toggle="tab" data-bs-target="#nav-krakow" type="button" role="tab" aria-controls="nav-krakow" aria-selected="false" >Krakow</button>
-      {% endif %}
-      {% if current_location == "Bangalore" %}
-      <button class="nav-link active" id="nav-bangalore-tab" data-bs-toggle="tab" data-bs-target="#nav-bangalore" type="button" role="tab" aria-controls="nav-bangalore" aria-selected="false">Bangalore</button>
-      {% else %} 
       <button class="nav-link" id="nav-bangalore-tab" data-bs-toggle="tab" data-bs-target="#nav-bangalore" type="button" role="tab" aria-controls="nav-bangalore" aria-selected="false">Bangalore</button>
-      {% endif %}
     </div>
  </nav>
 
   <div class="tab-content" id="nav-tabContent">
-    {% if current_location == "Cambridge" %}
+
     <div class="tab-pane fade show active" id="nav-cambridge" role="tabpanel" aria-labelledby="nav-cambridge-tab" tabindex="0">
-    {% else %}
-    <div class="tab-pane fade" id="nav-cambridge" role="tabpanel" aria-labelledby="nav-cambridge-tab" tabindex="0"></div>
-    {% endif %}
+
         <div class="container-md mx-auto mt-5">
 
               <h4>Set availabilities for following dates</h4> 
@@ -105,11 +91,9 @@
 
     </div>
     
-    {% if current_location == "Krakow" %}
-    <div class="tab-pane fade show active" id="nav-krakow" role="tabpanel" aria-labelledby="nav-krakow-tab" tabindex="0">
-    {% else %}
-    <div class="tab-pane fade" id="nav-krakow" role="tabpanel" aria-labelledby="nav-krakow-tab" tabindex="0"></div>
-    {% endif %}
+
+    <div class="tab-pane fade" id="nav-krakow" role="tabpanel" aria-labelledby="nav-krakow-tab" tabindex="0">
+
 
       <div class="container-md mx-auto mt-5">
 
@@ -183,11 +167,8 @@
 
 
     </div>
-    {% if current_location == "Bangalore" %}
-    <div class="tab-pane fade show active" id="nav-bangalore" role="tabpanel" aria-labelledby="nav-bangalore-tab" tabindex="0">
-    {% else %}
+
     <div class="tab-pane fade" id="nav-bangalore" role="tabpanel" aria-labelledby="nav-bangalore-tab" tabindex="0">
-    {% endif %}
 
       <div class="container-md mx-auto mt-5">
 
