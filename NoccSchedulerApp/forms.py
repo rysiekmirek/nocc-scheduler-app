@@ -44,11 +44,11 @@ class TourForm(ModelForm):
             if start_time <= now or end_time <= now:
                 self.add_error('date', ValidationError(_('Tour cannot start or end in the past')))
         for existing_tour in Tour.objects.filter(location=location).exclude(status="Rejected").exclude(status="Canceled"):
-            if date == existing_tour.date and existing_tour.status != "Rejected":
-                if existing_tour.start_time <= start_time <= existing_tour.end_time:
+            if date == existing_tour.date:
+                if existing_tour.start_time <= start_time < existing_tour.end_time:
                     raise ValidationError(
                         {'start_time': _("Start time colides with an exising tour")})
-                if existing_tour.start_time <= end_time <= existing_tour.end_time:
+                if existing_tour.start_time < end_time <= existing_tour.end_time:
                     raise ValidationError(
                         {'end_time': _("End time colides with an exising tour")})
                 if start_time <= existing_tour.start_time and end_time >= existing_tour.end_time:
