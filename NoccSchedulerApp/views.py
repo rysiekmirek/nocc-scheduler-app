@@ -17,6 +17,7 @@ import pytz
 import os
 from pathlib import Path
 import zoneinfo
+from emailsender.settings import BASE_DIR
 
 
 def main(request):
@@ -395,8 +396,8 @@ def send_email_ics(pk):
 
     # Send the email
     msg.send()
-    # try:
-    #     os.remove('media/ics_files/invitation.ics')
-    # except:
-    #     print ('File not removed')
+    try:
+        os.remove('media/ics_files/invitation.ics')
+    except:
+        print ('File not removed')
 
