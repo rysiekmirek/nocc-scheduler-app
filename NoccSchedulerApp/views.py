@@ -368,7 +368,7 @@ def send_email_ics(pk):
     # Adding events to calendar
     cal.add_component(event)
 
-    directory = str(Path(__file__).parent.parent) + "/ics_files/"
+    directory = str(Path(__file__).parent.parent) + "/media/ics_files/"
     print("ics file will be generated at ", directory)
     f = open(os.path.join(directory, 'invitation.ics'), 'wb')
     f.write(cal.to_ical())
@@ -390,13 +390,13 @@ def send_email_ics(pk):
     # Create the email message
     msg = EmailMultiAlternatives(subject, message, from_email, [to_email])
     msg.attach_alternative(html_content, "text/html")
-    msg.attach_file('ics_files/invitation1.ics', 'text/calendar')
+    msg.attach_file('media/ics_files/invitation.ics', 'text/calendar')
 
 
     # Send the email
     msg.send()
     # try:
-    #     os.remove('ics_files/invitation.ics')
+    #     os.remove('media/ics_files/invitation.ics')
     # except:
     #     print ('File not removed')
 
