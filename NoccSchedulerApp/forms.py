@@ -2,7 +2,7 @@ from .models import Tour, Location, Availability
 from django.forms import ModelForm, DateTimeInput, TextInput, Textarea, RadioSelect, CharField, ChoiceField, TimeField, DateTimeField, DateInput
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 
 
 class TourForm(ModelForm):
@@ -12,7 +12,7 @@ class TourForm(ModelForm):
         #fields = '__all__'
         exclude = ('id','status','nocc_person_assigned','feedback', 'tour_name')
         widgets = {
-            'date': DateInput(format=('%Y-%m-%d'),attrs={'type': 'date', 'min': (date.today() + timedelta(days=1))}),
+            'date': DateInput(format=('%Y-%m-%d'),attrs={'type': 'date', 'min': (date.today())}),
             'comment': Textarea(attrs={'rows':1, 'cols':50}),
             'attendees_guests': TextInput(attrs={'min':0,'max': '50','type': 'number'}),
             'attendees_akamai': TextInput(attrs={'min':0,'max': '50','type': 'number'}),
@@ -35,11 +35,15 @@ class TourForm(ModelForm):
         end_time = cleaned_data.get('end_time')
         location = cleaned_data.get('location')
         today = date.today()
+        now = datetime.now().time()
         if start_time >= end_time:
             self.add_error('end_time', ValidationError(_('End time has to be after start time')))
-        if date <= today:
-            self.add_error('date', ValidationError(_('Tour cannot be scheduled for the same day or in the past')))
-        for existing_tour in Tour.objects.filter(location=location):
+        if date < today:
+            self.add_error('date', ValidationError(_('Tour cannot be scheduled in the past')))
+        if date == today:
+            if start_time <= now or end_time <= now:
+                self.add_error('date', ValidationError(_('Tour cannot start or end in the past')))
+        for existing_tour in Tour.objects.filter(location=location).exclude(status="Rejected").exclude(status="Canceled"):
             if date == existing_tour.date and existing_tour.status != "Rejected":
                 if existing_tour.start_time <= start_time <= existing_tour.end_time:
                     raise ValidationError(
