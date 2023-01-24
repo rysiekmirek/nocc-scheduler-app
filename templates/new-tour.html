@@ -294,9 +294,9 @@
             var options_start = response['start_times'];
             if (options_start == ""){
               console.log("No start times");
-              $('#id_start_time').empty().append('<option selected="selected" value="">No start time</option>');
+              $('#id_start_time').empty().append('<option selected="selected" value="">No available times</option>');
             } else {
-            $('#id_start_time').empty().append('<option selected="selected" disabled value="">Choose start time</option>');
+            $('#id_start_time').empty().append('<option selected="selected" disabled value="">Choose available time</option>');
             for(var i = 0; i < options_start.length; i++) {
                 var opt = options_start[i];
                 var el = document.createElement("option");
@@ -345,9 +345,9 @@
             var options_start = response['start_times'];
             if (options_start == ""){
               console.log("No start times");
-              $('#id_start_time').empty().append('<option selected="selected" value="">No start time</option>');
+              $('#id_start_time').empty().append('<option selected="selected" value="">No available times</option>');
             } else {
-            $('#id_start_time').empty().append('<option selected="selected" disabled value="">Choose start time</option>');
+            $('#id_start_time').empty().append('<option selected="selected" disabled value="">Choose available time</option>');
             for(var i = 0; i < options_start.length; i++) {
                 var opt = options_start[i];
                 var el = document.createElement("option");
