@@ -96,6 +96,7 @@ class Tour(models.Model):
     customers_website = models.CharField(max_length=500,null=True,blank=True)
 
     TYPE_OF_CUSTOMERS=[
+        ('Akamai Internal', 'Akamai Internal'),
         ('Financial Services', 'Financial Services'),
         ('Media', 'Media'),
         ('High Tech', 'High Tech'),
