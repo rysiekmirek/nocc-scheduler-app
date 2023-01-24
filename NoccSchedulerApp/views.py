@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.core.mail import send_mail, EmailMessage, EmailMultiAlternatives
 from django.contrib import messages
 from .models import Tour, Location, Availability
-from .forms import TourForm, TourFormDetails, AvailabilityForm, TourFormFeedback, TourFormFeedbackDetails
+from .forms import TourForm, TourFormDetails, TourFormFeedback, TourFormFeedbackDetails
 import requests
 import uuid
 import calendar
@@ -16,8 +16,6 @@ from icalendar import Calendar, Event, vCalAddress, vText
 import pytz
 import os
 from pathlib import Path
-import zoneinfo
-from emailsender.settings import BASE_DIR
 
 
 def main(request):
