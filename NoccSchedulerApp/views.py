@@ -135,8 +135,8 @@ def status_change(request, pk):
     tour_data = Tour.objects.filter(id=pk).values()[0]
     if request.method == 'POST':
         status=request.POST['f_status']
-        if tour_data['nocc_person_assigned'] == None and status == "Approved":
-            messages.error(request, 'You can\'t approve tour without NOCC person being assigned to it, please do that first')
+        if tour_data['nocc_person_assigned'] == None and tour_data['nocc_personnel_required'] == "Yes" and status == "Approved":
+            messages.error(request, 'You can\'t approve this tour without NOCC person being assigned to it, please do that first')
             return redirect("/tour-details/"+pk)
         else:
             if tour_data['status'] != status:
