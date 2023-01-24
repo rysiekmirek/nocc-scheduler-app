@@ -395,8 +395,8 @@ def send_email_ics(pk):
 
     # Send the email
     msg.send()
-    try:
-        os.remove('ics_files/invitation.ics')
-    except:
-        print ('File not removed')
+    # try:
+    #     os.remove('ics_files/invitation.ics')
+    # except:
+    #     print ('File not removed')
 
