@@ -291,6 +291,7 @@ def settings(request):
         r=request.POST
         location=r['location']
         location_instance=Location.objects.get(location=location)
+        print(r)
         if 'name' in r and 'email' in r:
             NoccRepresentatives.objects.create(location=location_instance, name= r['name'], email = r['email'])
             messages.success(request, f'{location_instance}\'s NOCC representatives list updated successfully')
