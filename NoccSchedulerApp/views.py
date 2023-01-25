@@ -48,6 +48,8 @@ def tour_details(request, pk):
         'form_edit': TourFormDetails(initial=tour_data),
         'form_feedback': TourFormFeedbackDetails(initial=tour_data),
     }
+
+    print (context)
     return render(request, "tour-details.html", context)
 
 
