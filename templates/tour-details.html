@@ -17,9 +17,9 @@
                 <option value="None">None</option>
                 {% for person in nocc_representatives_list %}
                   {%if person == selected_nocc_representative %}
-                  <option value="{{person}}" selected>{{person}}</option>
+                  <option value="{{person.name}}" selected>{{person}}</option>
                   {%else%}
-                  <option value="{{person}}">{{person}}</option>
+                  <option value="{{person.name}}">{{person}}</option>
                   {%endif%}
                 {%endfor%}
               </select>
