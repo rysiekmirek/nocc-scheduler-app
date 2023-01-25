@@ -76,7 +76,9 @@
                               <tr>
                                 <td>{{person.name}}</td>
                                 <td>{{person.email}}</td>
-                                <td>Delete</td>
+                                <td> <form>
+                                  <button formaction="/settings/{{person.id}}">Delete</button>
+                                </form></td>
                               </tr>
                               {% endfor %}
                       </table>
