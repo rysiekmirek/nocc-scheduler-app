@@ -322,9 +322,9 @@ def settings(request):
         'availability_data_cambridge': Availability.objects.filter(location__location='Cambridge', avail_date__gte=date.today()).order_by('avail_date'),
         'nocc_representatives_list_cambridge' : NoccRepresentatives.objects.filter(location__location='Cambridge'),
         'availability_data_krakow': Availability.objects.filter(location__location='Krakow', avail_date__gte=date.today()).order_by('avail_date'),
-        'nocc_representatives_list_krakow' : Location.objects.get(location='Krakow').nocc_representatives_list,
+        'nocc_representatives_list_krakow' : NoccRepresentatives.objects.filter(location__location='Krakow'),
         'availability_data_bangalore': Availability.objects.filter(location__location='Bangalore', avail_date__gte=date.today()).order_by('avail_date'),
-        'nocc_representatives_list_bangalore' : Location.objects.get(location='Bangalore').nocc_representatives_list,
+        'nocc_representatives_list_bangalore' : NoccRepresentatives.objects.filter(location__location='Bangalore'),
      }
     return render(request, "settings.html", context )
 
