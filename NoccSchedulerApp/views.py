@@ -316,6 +316,8 @@ def settings(request):
     except:
         nocc_representatives_list_cambridge = ''
 
+    print(nocc_representatives_list_cambridge)
+
     context = {
         'availability_data_cambridge': Availability.objects.filter(location__location='Cambridge', avail_date__gte=date.today()).order_by('avail_date'),
         'nocc_representatives_list_cambridge' : nocc_representatives_list_cambridge,
