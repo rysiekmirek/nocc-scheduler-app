@@ -312,7 +312,7 @@ def settings(request):
             messages.success(request, f'{location_instance}\'s time slots updated successfully')
 
     try:
-        nocc_representatives_list_cambridge = NoccRepresentatives.objects.get(location__location='Cambridge'),
+        nocc_representatives_list_cambridge = NoccRepresentatives.objects.get(location__location='Cambridge')
     except:
         nocc_representatives_list_cambridge = ''
 
