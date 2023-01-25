@@ -16,7 +16,7 @@
   <div class="table-responsive">
     <table class="table table-hover table-sm table-borderless">
             <tr>
-                <th>Tour<br/>name</th>
+                <th>Tour name</th>
                 <th>Requestor<br/>name</th>
                 <th>POC<br/>name</th>
                 <th>Division</th>
@@ -53,7 +53,12 @@
                 <td>{{tour.nocc_person_assigned}}</td>
                 <td>{{tour.status}}</td>
                 {% if request.user.is_authenticated %}
-                <td><a href="/tour-details/{{tour.id}}">Details</a></td>
+                <td>
+                  <form action="" method="post">
+                    {% csrf_token %}
+                  <button class="btn btn-light btn-sm" formaction="/tour-details/{{tour.id}}">Details</button>
+                </form> 
+                </td>
                 {% endif %}
             </tr>
           {% endfor %}
