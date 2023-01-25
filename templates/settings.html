@@ -61,14 +61,30 @@
                     </div>
 
                     <div class="input-group mb-3">
-                      <input type="text" class="form-control" placeholder="Name" aria-label="Name" id="name">
+                      <input type="text" class="form-control" placeholder="Name" aria-label="Name" id="Name">
                       <span class="input-group-text"></span>
-                      <input type="text" class="form-control" placeholder="email" aria-label="email" id="email">
+                      <input type="text" class="form-control" placeholder="email" aria-label="Email" id="Email">
                       <button class="btn btn-primary" type="submit" id="button-addon2">Add</button>
                     </div>
-                    
 
                     </form>
+
+                    <div class="table-responsive">
+                      <table class="table table-hover table-sm table-borderless">
+                              <tr>
+                                  <th>Name</th>
+                                  <th>Email</th>
+                                  <th></th>
+                              </tr>
+                              {% for person in nocc_representatives_list_cambridge %}
+                              <tr class="table-secondary">
+                                <td>{{person.name}}</td>
+                                <td>{{person.email}}</td>
+                                <td>delete</td>
+                              </tr>
+                              {% endfor %}
+
+
                   </div>
               
 
