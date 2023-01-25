@@ -295,7 +295,10 @@ def settings(request):
         if 'name' in r and 'email' in r:
             NoccRepresentatives.objects.create(location=location_instance, name= r['name'], email = r['email'])
             messages.success(request, f'{location_instance}\'s NOCC representatives list updated successfully')
-        elif 
+        elif 'person_id' in r:
+            person = NoccRepresentatives.objects.get(location__location=location_instance, id=int(r['person_id']))
+            person.delete()
+            messages.success(request, f' Person removed from NOCC representatives list')
 
         else:
             from_date = datetime.strptime(r['from_date'], "%Y-%m-%d").date()
