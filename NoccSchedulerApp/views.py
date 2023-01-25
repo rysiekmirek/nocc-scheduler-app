@@ -298,7 +298,7 @@ def settings(request):
         elif 'person_id' in r:
             person = NoccRepresentatives.objects.get(location__location=location_instance, id=int(r['person_id']))
             person.delete()
-            messages.success(request, f' Person removed from NOCC representatives list')
+            messages.warning(request, f' Person removed from NOCC representatives list')
 
         else:
             from_date = datetime.strptime(r['from_date'], "%Y-%m-%d").date()
