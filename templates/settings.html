@@ -66,14 +66,14 @@
                     </form>
                     <h5>Current NOCC representatives</h5> 
                     <div class="table-responsive">
-                      <table class="table table-hover table-sm table-borderless">
+                      <table class="table table-hover table-sm table-borderless table-striped">
                               <tr>
                                   <th>Name</th>
                                   <th>Email</th>
                                   <th></th>
                               </tr>
                               {% for person in nocc_representatives_list_cambridge %}
-                              <tr class="table-secondary">
+                              <tr>
                                 <td>{{person.name}}</td>
                                 <td>{{person.email}}</td>
                                 <td>Delete</td>
