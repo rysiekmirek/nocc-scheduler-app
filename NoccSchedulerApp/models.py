@@ -21,7 +21,7 @@ class Location(models.Model):
 
 class NoccRepresentatives(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
-    name = models.DateField()
+    name = models.CharField(max_length=300)
     email = models.EmailField()
     def __str__(self):
         return str(self.name) + "-" + str(self.email)
