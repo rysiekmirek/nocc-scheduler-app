@@ -76,8 +76,12 @@
                               <tr>
                                 <td>{{person.name}}</td>
                                 <td>{{person.email}}</td>
-                                <td> <form>
-                                  <button class="btn btn-danger btn-sm" formaction="/settings/{{person.id}}">Delete</button>
+                                <td>
+                                  <form action="" method="post">
+                                    {% csrf_token %}
+                                  <input type="hidden" id="id_location" name="location" value="Cambridge">
+                                  <input type="hidden" id="person_id" name="person_id" value="{{person.id}}">
+                                  <button class="btn btn-danger btn-sm" ">Delete</button>
                                 </form></td>
                               </tr>
                               {% endfor %}
