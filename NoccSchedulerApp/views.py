@@ -310,9 +310,14 @@ def settings(request):
                         })
             messages.success(request, f'{location_instance}\'s time slots updated successfully')
 
+    try:
+        nocc_representatives_list_cambridge = NoccRepresentatives.objects.get(location__location='Cambridge'),
+    except:
+        nocc_representatives_list_cambridge = ''
+
     context = {
         'availability_data_cambridge': Availability.objects.filter(location__location='Cambridge', avail_date__gte=date.today()).order_by('avail_date'),
-        'nocc_representatives_list_cambridge' : NoccRepresentatives.objects.get(location__location='Cambridge'),
+        'nocc_representatives_list_cambridge' : nocc_representatives_list_cambridge,
         'availability_data_krakow': Availability.objects.filter(location__location='Krakow', avail_date__gte=date.today()).order_by('avail_date'),
         'nocc_representatives_list_krakow' : Location.objects.get(location='Krakow').nocc_representatives_list,
         'availability_data_bangalore': Availability.objects.filter(location__location='Bangalore', avail_date__gte=date.today()).order_by('avail_date'),
