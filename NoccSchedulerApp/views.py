@@ -316,11 +316,6 @@ def settings(request):
             messages.success(request, f'{location_instance}\'s time slots updated successfully')
 
 
-        nocc_representatives_list_cambridge = NoccRepresentatives.objects.filter(location__location='Cambridge')
-
-
-    print(nocc_representatives_list_cambridge)
-
     context = {
         'availability_data_cambridge': Availability.objects.filter(location__location='Cambridge', avail_date__gte=date.today()).order_by('avail_date'),
         'nocc_representatives_list_cambridge' : NoccRepresentatives.objects.filter(location__location='Cambridge'),
