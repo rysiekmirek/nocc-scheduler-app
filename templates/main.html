@@ -54,9 +54,9 @@
                 <td>{{tour.status}}</td>
                 {% if request.user.is_authenticated %}
                 <td>
-                  <form action="" method="post">
+                  <form>
                     {% csrf_token %}
-                  <button class="btn btn-light btn-sm" formaction="/tour-details/{{tour.id}}">Details</button>
+                  <button class="btn btn-light btn-sm" formaction="/tour-details/{{tour.id}}/">Details</button>
                 </form> 
                 </td>
                 {% endif %}
