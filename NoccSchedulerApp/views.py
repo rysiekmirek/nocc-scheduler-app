@@ -291,9 +291,8 @@ def settings(request):
         r=request.POST
         location=r['location']
         location_instance=Location.objects.get(location=location)
-        if 'nocc_representatives_list' in r:
-            nocc_representatives_list = r['nocc_representatives_list'].strip()
-            Location.objects.filter(location=location).update(nocc_representatives_list=nocc_representatives_list)
+        if 'name' in r and 'email' in r:
+            NoccRepresentatives.objects.create(location=location_instance, name= r['name'], email = r['email'])
             messages.success(request, f'{location_instance}\'s NOCC representatives list updated successfully')
 
         else:
@@ -313,7 +312,7 @@ def settings(request):
 
     context = {
         'availability_data_cambridge': Availability.objects.filter(location__location='Cambridge', avail_date__gte=date.today()).order_by('avail_date'),
-        'nocc_representatives_list_cambridge' : Location.objects.get(location='Cambridge').nocc_representatives_list,
+        'nocc_representatives_list_cambridge' : NoccRepresentatives.objects.get(location__location='Cambridge'),
         'availability_data_krakow': Availability.objects.filter(location__location='Krakow', avail_date__gte=date.today()).order_by('avail_date'),
         'nocc_representatives_list_krakow' : Location.objects.get(location='Krakow').nocc_representatives_list,
         'availability_data_bangalore': Availability.objects.filter(location__location='Bangalore', avail_date__gte=date.today()).order_by('avail_date'),
