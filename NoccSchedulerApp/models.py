@@ -19,6 +19,13 @@ class Location(models.Model):
     def __str__(self):
         return self.location
 
+class NoccRepresentatives(models.Model):
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    name = models.DateField()
+    email = models.EmailField()
+    def __str__(self):
+        return str(self.name) + "-" + str(self.email)
+
 class Availability(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     avail_date = models.DateField(null=True)
