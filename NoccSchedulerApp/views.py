@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.core.mail import send_mail, EmailMessage, EmailMultiAlternatives
 from django.contrib import messages
-from .models import Tour, Location, Availability
+from .models import Tour, Location, Availability, NoccRepresentatives
 from .forms import TourForm, TourFormDetails, TourFormFeedback, TourFormFeedbackDetails
 import requests
 import uuid
