@@ -41,7 +41,7 @@ def tour_details(request, pk):
     location = Location.objects.get(id=tour_data['location_id'])
 
     context = {
-        'nocc_representatives_list': location.nocc_representatives_list.split(','),
+        'nocc_representatives_list': NoccRepresentatives.objects.filter(location=int(tour_data['location_id'])),
         'selected_nocc_representative': tour_data['nocc_person_assigned'],
         'selected_location': location.location,
         'tour_data': tour_data,
