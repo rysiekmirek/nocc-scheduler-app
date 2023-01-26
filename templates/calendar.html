@@ -148,7 +148,7 @@
                 {% for day in week %}
                     {% for tour in tours %}
                         {% if day == tour.date %}
-                            <tbody class="day_tours {{ day|date:"Y-n-d" }}">
+                            <tbody class="day_tours {{ day|date:"Y-n-d" }}" class="table-group-divider">
                                 <tr {% if tour.status == "Approved" %} class="table-success" {% elif tour.status == "Rejected" %} class="table-danger" {% else %} class="table-warning" {% endif %}>
                                     <td>{{ tour.tour_name }}</td>
                                     <td>{{ tour.requestor_name }}</td>
