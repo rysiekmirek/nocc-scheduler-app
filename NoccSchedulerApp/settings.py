@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-h))_m2gl!@m@)7)+kpb%*jm^n8tc9s$_h$4%l^9u@$gg9lu06q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['194.233.175.38', 'nvs.akamai.com', 'smtp.gmail.com']
+ALLOWED_HOSTS = ['194.233.175.38', 'nvs.akamai.com', 'smtp.gmail.com', 'localhost']
 
 
 # Application definition
