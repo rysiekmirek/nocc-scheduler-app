@@ -4,7 +4,7 @@
     <hr/>
     <form class="row justify-content-center pb-4" action="" method="post">
         {% csrf_token %}
-        <div class="col-1">
+        <div class="col-1 d-flex flex-nowrap">
             <label for="month">Month:</label>
             <select class="form-control" id="month" name="month" value="{{ month }}">
                 <option value="01" {% if month == 1 %} selected{% endif %}>
