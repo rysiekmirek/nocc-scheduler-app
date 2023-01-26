@@ -24,6 +24,7 @@
 
               <form action="" method="post">
                 {% csrf_token %}
+                <fieldset class="rounded p-2 my-2 bg-secondary bg-gradient bg-opacity-10">
 
                 <input type="hidden" id="id_location" name="location" value="Cambridge">
                 <div class="input-group mb-3">
@@ -35,6 +36,7 @@
                     <input type="text" class="form-control" aria-label="avail_time" aria-describedby="button-addon2" id="id_avail_time" name="avail_time" placeholder="e.g. 8:00-16:00" required></input>
                     <button class="btn btn-primary" type="submit" id="button-addon2">Set</button>
                 </div>
+                </fieldset>
               </form>
         </div>
 
