@@ -8,7 +8,7 @@
   <br>
   <div class="table-responsive">
     <table class="table table-hover table-sm" style='font-size:90%'>
-      
+      <thead>
             <tr>
               <th>Tour<br/>name</th>
                 <th scope="col">Requestor<br/>name</th>
@@ -26,6 +26,7 @@
                 <th scope="col">Nocc Personnel<br/>assigned</th>
                 <th scope="col">Status</th>
             </tr>
+          </thead>
             <tbody id="myTable" class="table-group-divider"> 
       {%for tour in tours %}
             <tr {%if tour.status == "Approved" %} class="table-success" {% elif tour.status == "Rejected" %} class="table-danger" {% elif tour.status == "Canceled" %} class="table-secondary" 
