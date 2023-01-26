@@ -35,7 +35,7 @@
                 <th scope="col"></th>
             </tr>
     </thead>
-            <tbody id="myTable">
+            <tbody id="myTable" class="table-group-divider">
       {%for tour in tours %}
             <tr {%if tour.status == "Approved" %} class="table-success" {% else %} class="table-warning" {% endif %}>
                 <td>{{tour.tour_name}}</td>
