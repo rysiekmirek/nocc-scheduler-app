@@ -134,7 +134,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #email settings
 
-# EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+
 # EMAIL_HOST='h19.microhost.pl'
 # EMAIL_PORT='465'
 # EMAIL_HOST_USER='nocc-tour-scheduler@srv30945.seohost.com.pl'
@@ -148,7 +148,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # EMAIL_HOST_PASSWORD = '7d8645ccbe017b'
 # EMAIL_PORT = '2525'
 
-
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'nvsakamai@gmail.com'
 EMAIL_HOST_PASSWORD = 'vfoetkhbxgxsyjfe'
@@ -156,4 +156,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 # from django.core.mail import send_mail
-# send_mail('Test', 'This is a test', 'nvsakamai@email.com', ['rysiekmirek@email.com'], fail_silently=False)
+# send_mail('Test', 'This is a test', 'nvsakamai@gmail.com', ['rysiekmirek@gmail.com'], fail_silently=False)
