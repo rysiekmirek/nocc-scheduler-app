@@ -134,18 +134,23 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #email settings
 
-""" EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST='h19.microhost.pl'
-EMAIL_PORT='465'
-EMAIL_HOST_USER='nocc-tour-scheduler@srv30945.seohost.com.pl'
-EMAIL_HOST_PASSWORD='nocc-tour-scheduler'
-EMAIL_USE_TLS=False
-EMAIL_USE_SSL=True """
+# EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST='h19.microhost.pl'
+# EMAIL_PORT='465'
+# EMAIL_HOST_USER='nocc-tour-scheduler@srv30945.seohost.com.pl'
+# EMAIL_HOST_PASSWORD='nocc-tour-scheduler'
+# EMAIL_USE_TLS=False
+# EMAIL_USE_SSL=True 
 
 
-EMAIL_HOST = 'smtp.mailtrap.io'
-EMAIL_HOST_USER = '28d00acef20c13'
-EMAIL_HOST_PASSWORD = '7d8645ccbe017b'
-EMAIL_PORT = '2525'
+# EMAIL_HOST = 'smtp.mailtrap.io'
+# EMAIL_HOST_USER = '28d00acef20c13'
+# EMAIL_HOST_PASSWORD = '7d8645ccbe017b'
+# EMAIL_PORT = '2525'
 
-GMAIL_PASS= 'vfoetkhbxgxsyjfe'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'nvsakamai@gmail.com'
+EMAIL_HOST_PASSWORD = 'vfoetkhbxgxsyjfe'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
