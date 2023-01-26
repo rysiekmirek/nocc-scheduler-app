@@ -154,3 +154,6 @@ EMAIL_HOST_USER = 'nvsakamai@gmail.com'
 EMAIL_HOST_PASSWORD = 'vfoetkhbxgxsyjfe'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+# from django.core.mail import send_mail
+# send_mail('Test', 'This is a test', 'nvsakamai@email.com', ['rysiekmirek@email.com'], fail_silently=False)
