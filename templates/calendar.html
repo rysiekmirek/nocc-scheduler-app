@@ -94,6 +94,7 @@
         <h3 id="date_head">NOCC Tours for {{ date }}</h3>
         <hr/>
         <table class="table table-hover table-sm caption-top" style='font-size:90%'>
+        <thead>
             <tr>
                 <th scope="col">
                     Tour
@@ -142,6 +143,7 @@
                 </th>
                 <th scope="col"></th>
             </tr>
+            </thead>
             {% for week in month_dates %}
                 {% for day in week %}
                     {% for tour in tours %}
