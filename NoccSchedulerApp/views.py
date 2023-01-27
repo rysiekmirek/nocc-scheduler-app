@@ -66,9 +66,10 @@ def view_calendar(request):
         year = datetime.now().year
     month_dates = calendar.Calendar().monthdatescalendar(year, month)
     context = {
-        'tours': Tour.objects.filter(date__gte=month_dates[0][0]).exclude(date__gte=month_dates[-1][-1]).exclude(status="Rejected").exclude(status="Canceled").order_by('date', 'start_time'),
+        'tours': Tour.objects.filter(date__gte=datetime(year, month, 1)).exclude(date__gte=datetime(year, month, calendar.monthrange(year, month)[1])).exclude(status="Rejected").exclude(status="Canceled").order_by('date', 'start_time'),
         'month': month,
         'year': year,
+        'today': datetime.today().date(),
         'month_dates': month_dates,
     }
     return render(request, "calendar.html", context)
@@ -333,7 +334,7 @@ def send_email_ics(pk):
 
     tour_data = Tour.objects.get(id=pk)
     print(tour_data.requestor_name)
-    
+
     cal = Calendar()
     cal.add('attendee', 'MAILTO:' + tour_data.requestor_email)
     cal.add('attendee', 'MAILTO:'+ tour_data.poc_email)
@@ -359,7 +360,7 @@ def send_email_ics(pk):
 
     print(aware_combined_date_time_start, aware_combined_date_time_start.tzinfo)
 
-    
+
     event = Event()
     event.add('name', 'Akamai NOCC tour in '+ str(tour_data.location))
     event.add('summary', 'Akamai NOCC tour in '+ str(tour_data.location))
