@@ -5,6 +5,16 @@ from django.utils.translation import gettext_lazy as _
 from datetime import date, timedelta, datetime
 
 
+class AvailabilityForm(ModelForm):
+    class Meta:
+        model = Availability
+    def __init__(self, *args, **kwargs):
+        super(AvailabilityForm, self).__init__(*args, **kwargs)
+    def clean(self):
+        cleaned_data = super().clean()
+
+
+
 class TourForm(ModelForm):
 
     class Meta:

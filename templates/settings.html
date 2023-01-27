@@ -26,7 +26,6 @@
               <form action="" method="post">
                 {% csrf_token %}
                 
-
                 <input type="hidden" id="id_location" name="location" value="Cambridge">
                 <div class="input-group mb-3">
                     <span class="input-group-text">From</span>
@@ -35,7 +34,7 @@
                     <input type="date" id="id_to_date" name="to_date" class="form-control form-control-sm" placeholder="To" required> </input>
                     <span class="input-group-text">Availability time frame</span>
                     <input type="text" class="form-control" aria-label="avail_time" aria-describedby="button-addon2" id="id_avail_time" name="avail_time" placeholder="e.g. 8:00-16:00" required></input>
-                    <button class="btn btn-primary" type="submit" id="button-addon2">Set</button>
+                    <button class="btn btn-primary" type="submit" id="btn-avail-dates">Set</button>
                 </div>
                 
               </form>
@@ -327,6 +326,29 @@
     });
 
   });
+
+   // Get references to the start and end date input elements
+    const startDateInput = document.getElementById("id_from_date");
+    const endDateInput = document.getElementById("id_to_date");
+
+    // Get a reference to the form's submit button
+    const submitBtn = document.getElementById("btn-avail-dates");
+
+    // Add an event listener to the submit button to validate the form when it is clicked
+    submitBtn.addEventListener("click", function(event) {
+    // Get the start and end dates from the form inputs
+    const startDate = new Date(startDateInput.value);
+    const endDate = new Date(endDateInput.value);
+
+    // Check if the end date is after the start date
+    if (endDate <= startDate) {
+        // If not, display an error message and prevent the form from being submitted
+        alert("End date must be after start date!");
+        event.preventDefault();
+      }
+    });
+
+
   </script>
 
 {% endblock %}
