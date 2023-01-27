@@ -201,7 +201,7 @@ def new_tour(request):
             end_time = r['end_time']
             date = r['date']
             dbentry = form.save(commit=False)
-            dbentry.tour_name = str(r['customer_or_group_name']) + "--" + str(r['category']) + "--" + str(r['date'])
+            dbentry.tour_name = str(r['customer_or_group_name']) + "-" + str(r['date'])
             uuid_value = uuid.uuid4()
             dbentry.id = uuid_value
             dbentry.date = datetime.strptime(date, '%Y-%m-%d').date()
