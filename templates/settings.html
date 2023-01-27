@@ -341,9 +341,9 @@
     const endDate = new Date(endDateInput.value);
 
     // Check if the end date is after the start date
-    if (endDate <= startDate) {
+    if (endDate < startDate) {
         // If not, display an error message and prevent the form from being submitted
-        alert("End date must be after start date!");
+        alert("End date can't be before start date!");
         event.preventDefault();
       }
     });
