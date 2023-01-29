@@ -143,17 +143,17 @@ EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_USE_SSL=True 
 
 
-EMAIL_HOST = 'smtp.mailtrap.io'
-EMAIL_HOST_USER = '28d00acef20c13'
-EMAIL_HOST_PASSWORD = '7d8645ccbe017b'
-EMAIL_PORT = '2525'
+# EMAIL_HOST = 'smtp.mailtrap.io'
+# EMAIL_HOST_USER = '28d00acef20c13'
+# EMAIL_HOST_PASSWORD = '7d8645ccbe017b'
+# EMAIL_PORT = '2525'
 
 
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'nvsakamai@gmail.com'
-# EMAIL_HOST_PASSWORD = 'vfoetkhbxgxsyjfe'
-# EMAIL_PORT = '587'
-# EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'nvsakamai@gmail.com'
+EMAIL_HOST_PASSWORD = 'vfoetkhbxgxsyjfe'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
 
 # from django.core.mail import send_mail
 # send_mail('Test', 'This is a test', 'nvsakamai@gmail.com', ['rysiekmirek@gmail.com'], fail_silently=False)
