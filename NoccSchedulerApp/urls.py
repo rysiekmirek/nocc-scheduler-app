@@ -33,6 +33,6 @@ urlpatterns = [
     path('feedback/<str:pk>/', views.feedback, name='feedback'),
     path('settings/', views.settings, name='settings'),
     path('avail-times/', views.get_avail_times, name='get_avail_times'),
-    #path('settings/delete/<str:id>', views.delete_nocc_representative, name='delete_nocc_representative'),
+    path('thank-you', views.thank_you, name='thank_you'),
     path('', views.main, name = 'main' ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

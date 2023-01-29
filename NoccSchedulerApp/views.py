@@ -189,6 +189,10 @@ def feedback(request, pk):
 
     return render(request, "feedback.html", context )
 
+def thank_you(request):
+
+    return render(request, "thank-you.html" )
+
 def new_tour(request):
     if request.method == 'POST':
         form = TourForm(request.POST)
