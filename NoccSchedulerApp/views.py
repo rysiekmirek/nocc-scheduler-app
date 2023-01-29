@@ -214,8 +214,8 @@ def new_tour(request):
             subject = '[NOCC-Visit-Scheduler] - New Tour " ' + tour_data['tour_name'] + " \" was requested, please wait for approval email"
             from_email = 'nvs@akamai.com'
             to = [tour_data['requestor_email'], 'rmirek@akamai.com']
-            if tour_data['nocc_personnel_required'] == "Yes":
-                to.append('nocc-tix@akamai.com')
+            # if tour_data['nocc_personnel_required'] == "Yes":
+            #     to.append('nocc-tix@akamai.com')
             html_content = '<h2>Hi '+ tour_data['requestor_name'] + ',</h2><br><h3>Tour details:</h3>'
             for key, data in tour_data.items():
                 html_content += "<b>" + str(key) + "</b> : "
