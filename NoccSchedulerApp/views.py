@@ -231,7 +231,7 @@ def new_tour(request):
             msg.content_subtype = "html"
             msg.send()
             messages.success(request, 'Your tour has been submited and confirmation email sent to You. Please wait for approval from local representative.')
-            return redirect("/")
+            return redirect("/thank-you")
         except:
             context={
             'locations': Location.objects.all(),
