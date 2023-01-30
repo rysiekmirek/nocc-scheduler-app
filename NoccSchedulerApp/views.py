@@ -27,22 +27,31 @@ def main(request):
 
 @login_required(login_url='/login/')
 def tour_details(request, pk):
-    tour_data = Tour.objects.filter(id=pk).values()[0]
+    r = request.POST
+    tour_data = Tour.objects.get(id=pk)
 
     if request.method == 'POST':
-        instance = Tour.objects.get(id=pk)
-        form = TourFormDetails(request.POST, instance=instance)
+        form = TourFormDetails(request.POST, instance=tour_data)
         if form.is_valid():
             if form.has_changed():
+                if r['nocc_person_assigned'] != tour_data.nocc_person_assigned and r['nocc_person_assigned'] != None :
+                    subject = f'[NOCC-Visit-Scheduler] - tour requested by You got assigned to {r["nocc_person_assigned"]}'
+                    from_email = 'nvs@akamai.com'
+                    to = [tour_data.requestor_email, 'rmirek@akamai.com']
+                    html_content = f'<h2>Hi {tour_data.requestor_name}, </h2><br> this is just inromation that you tour got assigned to {r["nocc_person_assigned"]} from NOCC in {tour_data.location} '
+                    msg = EmailMessage(subject, html_content, from_email, to)
+                    msg.content_subtype = "html"
+                    msg.send()
+
                 messages.success(request, 'Tour details updated')
                 form.save()
                 return redirect('/tour-details/'+pk)
 
-    location = Location.objects.get(id=tour_data['location_id'])
+    location = Location.objects.get(id=tour_data.location_id)
 
     context = {
-        'nocc_representatives_list': NoccRepresentatives.objects.filter(location=int(tour_data['location_id'])),
-        'selected_nocc_representative': tour_data['nocc_person_assigned'],
+        'nocc_representatives_list': NoccRepresentatives.objects.filter(location=int(tour_data.location_id)),
+        'selected_nocc_representative': tour_data.nocc_person_assigned,
         'selected_location': location.location,
         'tour_data': tour_data,
         'form_edit': TourFormDetails(initial=tour_data),
@@ -121,17 +130,20 @@ def logout_user(request):
 @login_required(login_url='/login/')
 def ask_for_feedback(request, pk):
     tour_data = Tour.objects.get(id=pk)
-    subject = f'[NOCC-Visit-Scheduler] - Please tell us more about Your visit at Akamai NOCC on {tour_data.date}'
-    from_email = 'nvs@akamai.com'
-    to = [tour_data.requestor_email, 'rmirek@akamai.com']
-    html_content = f'<h2>Hi {tour_data.requestor_name}, </h2><br> Please visit <br> <a href="http://nvs.akamai.com/feedback/{pk}">Link</a> and share Your feedback with us'
-    msg = EmailMessage(subject, html_content, from_email, to)
-    msg.content_subtype = "html"
-    msg.send()
-    Tour.objects.filter(id=pk).update(feedback_status='Request sent')
-    messages.success(request, 'Invitation for after-tour survey sent to requestor')
+    if tour_data.feedback_status != 'Provided':
+        subject = f'[NOCC-Visit-Scheduler] - Please tell us more about Your visit at Akamai NOCC on {tour_data.date}'
+        from_email = 'nvs@akamai.com'
+        to = [tour_data.requestor_email, 'rmirek@akamai.com']
+        html_content = f'<h2>Hi {tour_data.requestor_name}, </h2><br> Please visit <br> <a href="http://nvs.akamai.com/feedback/{pk}">Link</a> and share Your feedback with us'
+        msg = EmailMessage(subject, html_content, from_email, to)
+        msg.content_subtype = "html"
+        msg.send()
+        Tour.objects.filter(id=pk).update(feedback_status='Request sent')
+        messages.success(request, 'Invitation for after-tour survey sent to requestor')
+    else:
+        messages.warning(request, f'Feedback status is {tour_data.feedback_status}, invitation for after-tour survey not sent to requestor')
 
-    return redirect("/tour-details/"+pk)
+        return redirect("/tour-details/"+pk)
 
 @login_required(login_url='/login/')
 def status_change(request, pk):
