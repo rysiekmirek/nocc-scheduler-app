@@ -132,6 +132,16 @@ class Tour(models.Model):
     ]
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Requested')
 
+    FEEDBACK_STATUS_CHOICES = [
+        ('Request not sent', 'Request not sent'),
+        ('Requested', 'Requested'),
+        ('No answer 3 days', 'No answer 3 days'),
+        ('Provided', 'Provided'),
+    ]
+    feedback_status = models.CharField(max_length=5, choices=FEEDBACK_STATUS_CHOICES, default='Request not sent')
+
+
+
     SATISFACTION_CHOICES = [
         ('1', '1'),
         ('2', '2'),

@@ -9,7 +9,7 @@ class TourForm(ModelForm):
     class Meta:
         model = Tour
         #fields = '__all__'
-        exclude = ('id','status','nocc_person_assigned','feedback', 'tour_name')
+        exclude = ('id','status','nocc_person_assigned','feedback', 'tour_name', 'feedback_status')
         widgets = {
             'date': DateInput(format=('%Y-%m-%d'),attrs={'type': 'date', 'min': (date.today())}),
             'comment': Textarea(attrs={'rows':1, 'cols':50}),
@@ -109,7 +109,7 @@ class TourFormDetails(ModelForm):
         model = Tour
         #fields = '__all__'
         exclude = ('feedback','status', 'satisfaction', 'key_take_aways', 'overall_feedback', 'internal_or_external_audience', 'feedback_name', 'sessions_welcoming', 
-        'sessions_speaker', 'sessions_walls_displays', 'sessions_daily_work', 'sessions_scheduling_arrangement')
+        'sessions_speaker', 'sessions_walls_displays', 'sessions_daily_work', 'sessions_scheduling_arrangement','feedback_status')
         widgets = {
             'start_time': TextInput(attrs={'readonly': 'readonly'}),
             'end_time': TextInput(attrs={'readonly': 'readonly'}),

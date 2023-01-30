@@ -120,12 +120,11 @@ def logout_user(request):
 
 @login_required(login_url='/login/')
 def ask_for_feedback(request, pk):
-    tour_data = Tour.objects.filter(id=pk).values()[0]
-    subject = '[NOCC-Tour-Scheduler] - Please tell us more about Your visit at Akamai NOCC '
-    from_email = 'nocc-tour-scheduler@akamai.com'
-    to = [tour_data['requestor_email'], 'rmirek@akamai.com']
-    html_content = "<h2>Hi " + tour_data['requestor_name'] + \
-        ", </h2><br> Please visit <br> <a href=\"http://nvs.akamai.com/feedback/"+pk+"\">Link</a>"
+    tour_data = Tour.objects.get(id=pk)
+    subject = '[NOCC-Visit-Scheduler] - Please tell us more about Your visit at Akamai NOCC '
+    from_email = 'nvs@akamai.com'
+    to = [tour_data.requestor_email, 'rmirek@akamai.com']
+    html_content = f"<h2>Hi {tour_data.requestor_name}, </h2><br> Please visit <br> <a href=\"http://nvs.akamai.com/feedback/"+pk+"\">Link</a>"
     msg = EmailMessage(subject, html_content, from_email, to)
     msg.content_subtype = "html"
     msg.send()
@@ -179,8 +178,8 @@ def feedback(request, pk):
         form = TourFormFeedback(request.POST, instance=instance)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Thank You, feedback submitted successfully')
-            return redirect('/')
+            messages.success(request, 'Feedback submitted successfully')
+            return redirect('/thank-you')
 
     context={
             'form': TourFormFeedback(),

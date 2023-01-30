@@ -75,7 +75,7 @@
     <div class="px-4 py-3 my-3 text-center container-md mx-auto col-6">
       <h4 class="text-start">Feedback results</h4>
       <hr>
-      {% if tour_data.satisfaction != None %}
+      {% if tour_data.feedback_status == 'Provided' %}
 
       {% for field in form_feedback %}
       <div class="form-floating my-2">
@@ -91,7 +91,7 @@
         {% csrf_token %}
       <div class="px-4 py-3 my-3 text-center">
 
-        <h5> No feedback yet, You can send email request by pressing below button</h5>
+        <h5> Feedback status is "{{tour_data.feedback_status}}"", You can send email request manually by pressing below button</h5>
         <br><br>
 
         <button class="btn btn-primary" type="submit" id="button-addon2">Ask for feedback</button>
