@@ -3,6 +3,7 @@ from django.forms import ModelForm, DateTimeInput, TextInput, Textarea, RadioSel
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from datetime import date, timedelta, datetime
+import pytz
 
 class TourForm(ModelForm):
 
@@ -34,14 +35,25 @@ class TourForm(ModelForm):
         end_time = cleaned_data.get('end_time')
         location = cleaned_data.get('location')
         today = date.today()
+        now_wit_date = datetime.now()
         now = datetime.now().time()
         if start_time >= end_time:
             self.add_error('end_time', ValidationError(_('End time has to be after start time')))
         if date < today:
             self.add_error('date', ValidationError(_('Tour cannot be scheduled in the past')))
         if date == today:
-            if start_time <= now or end_time <= now:
+            if location == 'Krakow':
+                timezone = pytz.timezone('Europe/Warsaw')
+            elif location == 'Bangalore':
+                timezone = pytz.timezone('Asia/Calcutta')
+            else:
+                timezone = pytz.timezone('America/New_York')
+
+            local_now = now_wit_date.astimezone(timezone).time()
+
+            if start_time <= local_now or end_time <= local_now:
                 self.add_error('date', ValidationError(_('Tour cannot start or end in the past')))
+
         for existing_tour in Tour.objects.filter(location=location).exclude(status="Rejected").exclude(status="Canceled"):
             if date == existing_tour.date:
                 if existing_tour.start_time <= start_time < existing_tour.end_time:
