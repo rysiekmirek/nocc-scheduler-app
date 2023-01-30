@@ -42,8 +42,9 @@ def tour_details(request, pk):
                     msg = EmailMessage(subject, html_content, from_email, to)
                     msg.content_subtype = "html"
                     msg.send()
-
-                messages.success(request, 'Tour details updated')
+                    messages.success(request, 'Tour details updated and email sent to requestor with information about NOCC person assigned to the tour')
+                else:
+                    messages.success(request, 'Tour details updated')
                 form.save()
                 return redirect('/tour-details/'+pk)
 
