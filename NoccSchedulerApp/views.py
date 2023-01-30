@@ -239,7 +239,6 @@ def new_tour(request):
                 html_content += "<i>" + str(data) + "</i><br>"
                 if key == "status":
                     break
-            # html_content += "<br> To check status of the request see <br> <a href=\"http://nvs.akamai.com\">http://nvs.akamai.com</a>"
             msg = EmailMessage(subject, html_content, from_email, to)
             msg.content_subtype = "html"
             msg.send()
