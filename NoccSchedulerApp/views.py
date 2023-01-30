@@ -29,6 +29,7 @@ def main(request):
 def tour_details(request, pk):
     r = request.POST
     tour_data = Tour.objects.get(id=pk)
+    initial_tour_data = Tour.objects.filter(id=pk).values()[0]
 
     if request.method == 'POST':
         form = TourFormDetails(request.POST, instance=tour_data)
@@ -55,8 +56,8 @@ def tour_details(request, pk):
         'selected_nocc_representative': tour_data.nocc_person_assigned,
         'selected_location': location.location,
         'tour_data': tour_data,
-        'form_edit': TourFormDetails(initial=dict(tour_data)),
-        'form_feedback': TourFormFeedbackDetails(initial=dict(tour_data)),
+        'form_edit': TourFormDetails(initial=initial_tour_data),
+        'form_feedback': TourFormFeedbackDetails(initial=initial_tour_data),
     }
 
     print (context)
