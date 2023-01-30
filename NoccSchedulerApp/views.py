@@ -383,7 +383,8 @@ def send_email_ics(pk):
 
     directory = str(Path(__file__).parent.parent) + "/media/ics_files/"
     print("ics file will be generated at ", directory)
-    f = open(os.path.join(directory, 'invitation.ics'), 'wb')
+    filename=f'invitation{tour_data.date}-{tour_data.start_time}.ics'
+    f = open(os.path.join(directory, filename), 'wb')
     f.write(cal.to_ical())
     f.close()
 
@@ -403,13 +404,13 @@ def send_email_ics(pk):
     # Create the email message
     msg = EmailMultiAlternatives(subject, message, from_email, [to_email])
     msg.attach_alternative(html_content, "text/html")
-    msg.attach_file('media/ics_files/invitation.ics', 'text/calendar')
+    msg.attach_file(f'media/ics_files/{filename}', 'text/calendar')
 
 
     # Send the email
     msg.send()
     try:
-        os.remove('media/ics_files/invitation.ics')
+        os.remove(f'media/ics_files/{filename}')
     except:
         print ('File not removed')
 
