@@ -9,7 +9,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Query the database for all dates in the past
-        tours = Tour.objects.filter(date__lt=timezone.now().date(), feedback_status='Request not sent')
+        tours = Tour.objects.filter(date__lt=timezone.now().date(), feedback_status='Request not sent').exclude(status="Rejected").exclude(status="Canceled")
 
         for tour in tours:
             subject = '[NOCC-Visit-Scheduler] - Please tell us more about Your visit at Akamai NOCC '
