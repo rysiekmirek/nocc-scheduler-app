@@ -34,21 +34,20 @@ def tour_details(request, pk):
     if request.method == 'POST':
         form = TourFormDetails(request.POST, instance=tour_data)
         print (r['nocc_person_assigned'], '------', tour_data.nocc_person_assigned)
-        if form.is_valid():
-            if form.has_changed():
-                if r['nocc_person_assigned'] != tour_data.nocc_person_assigned:
-                    subject = f'[NOCC-Visit-Scheduler] - tour requested by You got assigned to {r["nocc_person_assigned"]}'
-                    from_email = 'nvs@akamai.com'
-                    to = [tour_data.requestor_email, 'rmirek@akamai.com']
-                    html_content = f'<h2>Hi {tour_data.requestor_name}, </h2><br> this is just inromation that you tour got assigned to {r["nocc_person_assigned"]} from NOCC in {tour_data.location} '
-                    msg = EmailMessage(subject, html_content, from_email, to)
-                    msg.content_subtype = "html"
-                    msg.send()
-                    messages.success(request, 'Tour details updated and email sent to requestor with information about NOCC person assigned to the tour')
-                else:
-                    messages.success(request, 'Tour details updated')
-                form.save()
-                return redirect('/tour-details/'+pk)
+        if form.is_valid() and form.has_changed():
+            if r['nocc_person_assigned'] != tour_data.nocc_person_assigned:
+                subject = f'[NOCC-Visit-Scheduler] - tour requested by You got assigned to {r["nocc_person_assigned"]}'
+                from_email = 'nvs@akamai.com'
+                to = [tour_data.requestor_email, 'rmirek@akamai.com']
+                html_content = f'<h2>Hi {tour_data.requestor_name}, </h2><br> this is just inromation that you tour got assigned to {r["nocc_person_assigned"]} from NOCC in {tour_data.location} '
+                msg = EmailMessage(subject, html_content, from_email, to)
+                msg.content_subtype = "html"
+                msg.send()
+                messages.success(request, 'Tour details updated and email sent to requestor with information about NOCC person assigned to the tour')
+            else:
+                messages.success(request, 'Tour details updated')
+            form.save()
+            return redirect('/tour-details/'+pk)
 
     location = Location.objects.get(id=tour_data.location_id)
 
@@ -137,7 +136,7 @@ def ask_for_feedback(request, pk):
         subject = f'[NOCC-Visit-Scheduler] - Please tell us more about Your visit at Akamai NOCC on {tour_data.date} - it takes just 1 minute to complete'
         from_email = 'nvs@akamai.com'
         to = [tour_data.requestor_email, 'rmirek@akamai.com']
-        html_content = f'<h2>Hi {tour.requestor_name}, </h2><br> Please go to our <br> <a href="http://nvs.akamai.com/feedback/{pk}">feedback form </a> and share Your feedback with us'
+        html_content = f'<h2>Hi {tour_data.requestor_name}, </h2><br> Please go to our <br> <a href="http://nvs.akamai.com/feedback/{pk}">feedback form </a> and share Your feedback with us'
         msg = EmailMessage(subject, html_content, from_email, to)
         msg.content_subtype = "html"
         msg.send()
