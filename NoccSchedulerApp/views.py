@@ -36,7 +36,7 @@ def tour_details(request, pk):
         print (r['nocc_person_assigned'], '------', tour_data.nocc_person_assigned)
         if form.is_valid() and form.has_changed():
             if 1 != 2:
-                subject = f'[NOCC-Visit-Scheduler] - tour requested by You got assigned to {r["nocc_person_assigned"]}'
+                subject = f'[NOCC-Visit-Scheduler] - tour requested by You has been assigned to NOCC'
                 from_email = 'nvs@akamai.com'
                 to = [tour_data.requestor_email, 'rmirek@akamai.com']
                 html_content = f'<h2>Hi {tour_data.requestor_name}, </h2><br> this is just inromation that you tour got assigned to {r["nocc_person_assigned"]} from NOCC in {tour_data.location} '
