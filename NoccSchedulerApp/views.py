@@ -61,8 +61,6 @@ def tour_details(request, pk):
     }
 
     print (initial_tour_data)
-    print('-----------------------------------------------------------')
-    print (tour_data.__dict__)
     return render(request, "tour-details.html", context)
 
 
