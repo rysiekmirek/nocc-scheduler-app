@@ -33,8 +33,8 @@ def tour_details(request, pk):
 
     if request.method == 'POST':
         form = TourFormDetails(request.POST, instance=tour_data)
-        print (r['nocc_person_assigned'], '------', tour_data.nocc_person_assigned)
         if form.is_valid() and form.has_changed():
+            print (r['nocc_person_assigned'], '------', tour_data.nocc_person_assigned)
             if 1 != 2:
                 subject = f'[NOCC-Visit-Scheduler] - tour requested by You has been assigned to NOCC'
                 from_email = 'nvs@akamai.com'
@@ -60,7 +60,7 @@ def tour_details(request, pk):
         'form_feedback': TourFormFeedbackDetails(initial=initial_tour_data),
     }
 
-    print (initial_tour_data)
+    #print (initial_tour_data)
     return render(request, "tour-details.html", context)
 
 
