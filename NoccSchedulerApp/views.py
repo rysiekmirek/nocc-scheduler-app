@@ -35,7 +35,7 @@ def tour_details(request, pk):
         form = TourFormDetails(request.POST, instance=tour_data)
         print (r['nocc_person_assigned'], '------', tour_data.nocc_person_assigned)
         if form.is_valid() and form.has_changed():
-            if r['nocc_person_assigned'] != tour_data.nocc_person_assigned:
+            if 1 != 2:
                 subject = f'[NOCC-Visit-Scheduler] - tour requested by You got assigned to {r["nocc_person_assigned"]}'
                 from_email = 'nvs@akamai.com'
                 to = [tour_data.requestor_email, 'rmirek@akamai.com']
