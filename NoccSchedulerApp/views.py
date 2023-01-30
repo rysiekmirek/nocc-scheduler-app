@@ -33,6 +33,7 @@ def tour_details(request, pk):
 
     if request.method == 'POST':
         form = TourFormDetails(request.POST, instance=tour_data)
+        print (r['nocc_person_assigned'], '------', tour_data.nocc_person_assigned)
         if form.is_valid():
             if form.has_changed():
                 if r['nocc_person_assigned'] != tour_data.nocc_person_assigned and r['nocc_person_assigned'] != None :
