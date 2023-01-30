@@ -60,7 +60,9 @@ def tour_details(request, pk):
         'form_feedback': TourFormFeedbackDetails(initial=initial_tour_data),
     }
 
-    print (context)
+    print (initial_tour_data)
+    print('-----------------------------------------------------------')
+    print (tour_data)
     return render(request, "tour-details.html", context)
 
 
