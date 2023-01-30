@@ -85,8 +85,8 @@
                 {% for week in month_dates %}
                     <tr>
                         {% for day in week %}
-                            <td {% for tour in tours %} {% if tour.date == day %}class="day_with_tour table-secondary" id="{{ day|date:"Y-n-d" }}" {% endif %} {% endfor %}
-                                {% if today == day %}class="table-primary"{% endif %}>
+                            <td {% if today == day %}class="table-primary"{% endif %}
+                            {% for tour in tours %} {% if tour.date == day %}class="day_with_tour table-secondary" id="{{ day|date:"Y-n-d" }}" {% endif %} {% endfor %}>
                                 {% if day.month == month %}
                                     <b>{{ day.day }}</b>
                                 {% else %}
