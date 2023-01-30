@@ -344,6 +344,7 @@ def send_email_ics(pk):
     cal = Calendar()
     cal.add('attendee', 'MAILTO:' + tour_data.requestor_email)
     cal.add('attendee', 'MAILTO:'+ tour_data.poc_email)
+    cal.add('attendee', 'MAILTO:'+ 'rmirek@akamai.com')
 
     # Let's set time zones
 
