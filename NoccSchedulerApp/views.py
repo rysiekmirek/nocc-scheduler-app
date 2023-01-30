@@ -124,7 +124,7 @@ def ask_for_feedback(request, pk):
     subject = f'[NOCC-Visit-Scheduler] - Please tell us more about Your visit at Akamai NOCC on {tour_data.date}'
     from_email = 'nvs@akamai.com'
     to = [tour_data.requestor_email, 'rmirek@akamai.com']
-    html_content = f'<h2>Hi {tour_data.requestor_name}, </h2><br> Please visit <br> <a href="http://nvs.akamai.com/feedback/"{pk}>Link</a>'
+    html_content = f'<h2>Hi {tour_data.requestor_name}, </h2><br> Please visit <br> <a href="http://nvs.akamai.com/feedback/"{pk}>Link</a> and share Your feedback with us'
     msg = EmailMessage(subject, html_content, from_email, to)
     msg.content_subtype = "html"
     msg.send()
