@@ -133,7 +133,7 @@ def logout_user(request):
 @login_required(login_url='/login/')
 def ask_for_feedback(request, pk):
     tour_data = Tour.objects.get(id=pk)
-    if str(tour_data.feedback_status) != 'Provided':
+    if tour_data.feedback_status != 'Provided':
         subject = f'[NOCC-Visit-Scheduler] - Please tell us more about Your visit at Akamai NOCC on {tour_data.date}'
         from_email = 'nvs@akamai.com'
         to = [tour_data.requestor_email, 'rmirek@akamai.com']
@@ -146,7 +146,7 @@ def ask_for_feedback(request, pk):
     else:
         messages.warning(request, f'Feedback status is {tour_data.feedback_status}, invitation for after-tour survey not sent to requestor')
 
-        return redirect("/tour-details/"+pk)
+    return redirect("/tour-details/"+pk)
 
 @login_required(login_url='/login/')
 def status_change(request, pk):
