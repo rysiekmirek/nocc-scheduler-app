@@ -134,7 +134,7 @@ class Tour(models.Model):
 
     FEEDBACK_STATUS_CHOICES = [
         ('Request not sent', 'Request not sent'),
-        ('Requested', 'Requested'),
+        ('Request sent', 'Request sent'),
         ('No answer 3 days', 'No answer 3 days'),
         ('Provided', 'Provided'),
     ]

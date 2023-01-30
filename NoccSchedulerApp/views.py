@@ -121,13 +121,14 @@ def logout_user(request):
 @login_required(login_url='/login/')
 def ask_for_feedback(request, pk):
     tour_data = Tour.objects.get(id=pk)
-    subject = '[NOCC-Visit-Scheduler] - Please tell us more about Your visit at Akamai NOCC '
+    subject = f'[NOCC-Visit-Scheduler] - Please tell us more about Your visit at Akamai NOCC on {tour_data.date}'
     from_email = 'nvs@akamai.com'
     to = [tour_data.requestor_email, 'rmirek@akamai.com']
-    html_content = f"<h2>Hi {tour_data.requestor_name}, </h2><br> Please visit <br> <a href=\"http://nvs.akamai.com/feedback/"+pk+"\">Link</a>"
+    html_content = f'<h2>Hi {tour_data.requestor_name}, </h2><br> Please visit <br> <a href="http://nvs.akamai.com/feedback/"{pk}>Link</a>'
     msg = EmailMessage(subject, html_content, from_email, to)
     msg.content_subtype = "html"
     msg.send()
+    Tour.objects.filter(id=pk).update(feedback_status='Request sent')
     messages.success(request, 'Invitation for after-tour survey sent to requestor')
 
     return redirect("/tour-details/"+pk)
