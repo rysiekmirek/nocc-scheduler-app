@@ -52,7 +52,7 @@ class TourForm(ModelForm):
             local_now = now_wit_date.astimezone(timezone).time()
 
             if start_time <= local_now or end_time <= local_now:
-                self.add_error('date', ValidationError(_('Tour cannot start or end in the past')))
+                self.add_error('start_time', ValidationError(_('Tour cannot start or end in the past')))
 
         for existing_tour in Tour.objects.filter(location=location).exclude(status="Rejected").exclude(status="Canceled"):
             if date == existing_tour.date:
