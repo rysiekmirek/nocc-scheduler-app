@@ -69,7 +69,7 @@
         </div> -->
     </form>
     <div class="table-responsive col-8 justify-content-center container pb-5">
-        <table class="table table-bordered center-block table-hover">
+        <table class="table table-bordered center-block">
             <thead class="table-dark">
                 <tr>
                     <th>Mon</th>
@@ -85,8 +85,8 @@
                 {% for week in month_dates %}
                     <tr>
                         {% for day in week %}
-                            <td {% for tour in tours %} {% if tour.date == day %}class="day_with_tour table-secondary" id="{{ day|date:"Y-n-d" }}" {% endif %} {% endfor %}
-                            {% if today == day %}class="table-primary"{% endif %}>
+                            <td {% for tour in tours %} {% if tour.date == day %}class="day_with_tour table-secondary table-hover" id="{{ day|date:"Y-n-d" }}" {% endif %} {% endfor %}
+                            {% if today == day %}class="table-primary table-hover"{% endif %}>
                                 {% if day.month == month %}
                                     <b>{{ day.day }}</b>
                                 {% else %}
