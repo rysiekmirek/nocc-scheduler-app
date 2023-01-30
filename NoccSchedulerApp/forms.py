@@ -35,7 +35,7 @@ class TourForm(ModelForm):
         end_time = cleaned_data.get('end_time')
         location = cleaned_data.get('location')
         today = date.today()
-        now_wit_date = datetime.now()
+        now_with_date = datetime.now()
         now = datetime.now().time()
         if start_time >= end_time:
             self.add_error('end_time', ValidationError(_('End time has to be after start time')))
@@ -49,7 +49,7 @@ class TourForm(ModelForm):
             else:
                 timezone = pytz.timezone('America/New_York')
 
-            local_now = now_wit_date.astimezone(timezone).time()
+            local_now = now_with_date.astimezone(timezone).time()
 
             if start_time <= local_now:
                 self.add_error('start_time', ValidationError(_('Tour cannot start in the past')))
