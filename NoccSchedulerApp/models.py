@@ -14,7 +14,7 @@ class Location(models.Model):
         ('Bangalore', 'Bangalore')
     ]
     location = models.CharField(max_length=100, choices=LOCATION_CHOICES, default='Cambridge')
-    nocc_representatives_list = models.CharField(max_length=2000)
+    #nocc_representatives_list = models.CharField(max_length=2000)
 
     def __str__(self):
         return self.location
