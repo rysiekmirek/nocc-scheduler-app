@@ -183,14 +183,14 @@ def status_change(request, pk):
                         subject = '[NOCC-Visit-Scheduler] - Your tour " ' + \
                             tour_data['tour_name'] + " \" was canceled"
 
-                    from_email = 'nvs@akamai.com'
-                    to = [tour_data['requestor_email'], 'rmirek@akamai.com']
-                    html_content = "<h2>Hi " + \
+                    send_email(subject, 
+                        from_email='nvs@akamai.com', 
+                        to=[tour_data['requestor_email'], 
+                        'rmirek@akamai.com'], 
+                        html_content = "<h2>Hi " + \
                         tour_data['requestor_name'] + \
-                        ", </h2><br> To check status of the request see <br> <a href=\"http://nvs.akamai.com\">Link</a>"
-                    msg = EmailMessage(subject, html_content, from_email, to)
-                    msg.content_subtype = "html"
-                    msg.send()
+                        ", </h2><br> To check status of the request see <br> <a href=\"http://nvs.akamai.com\">Link</a>" )
+
 
     return redirect("/tour-details/"+pk)
 
@@ -437,3 +437,10 @@ def send_email_ics(pk):
     except:
         print ('File not removed')
 
+def send_email(subject, from_email, to, html_content):
+    #add footer to the email
+    html_content += f'<hr> <br> <b>Akamai Technologies NOCC </b> <br> <b>e-mail:</b> nocc-shift@akamai.com <br> <a href="http://www.akamai.com"> www.akamai.com </a>' \
+                    '<br> <b> Phone: </b> 1-877-6-AKAMAI (1-877-625-2624) | International +1-617-444-3007'
+    msg = EmailMessage(subject, html_content, from_email, to)
+    msg.content_subtype = "html"
+    msg.send()
