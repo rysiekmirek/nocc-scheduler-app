@@ -37,7 +37,7 @@ def tour_details(request, pk):
             if r['nocc_person_assigned'] != tour_data.nocc_person_assigned:
                 subject = f'[NOCC-Visit-Scheduler] - tour requested by You has been assigned to NOCC representative'
                 from_email = 'nvs@akamai.com'
-                to = [tour_data.requestor_email, 'rmirek@akamai.com']
+                to = [tour_data.requestor_email, tour_data.cc_this_request_to, 'rmirek@akamai.com']
                 html_content = f'<h2>Hi {tour_data.requestor_name}, </h2><br> this is an information that your tour got assigned to {r["nocc_person_assigned"]} from NOCC in {tour_data.location} '
                 msg = EmailMessage(subject, html_content, from_email, to)
                 msg.content_subtype = "html"
