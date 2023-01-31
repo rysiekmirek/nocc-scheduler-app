@@ -12,12 +12,13 @@ class Command(BaseCommand):
         tours = Tour.objects.filter(date__lt=timezone.now().date(), feedback_status='Request not sent', status="Approved")
 
         for tour in tours:
-            subject = '[NOCC-Visit-Scheduler] - Please tell us more about Your visit at Akamai NOCC on {tour.date} - it takes just 1 minute to complete'
-            from_email = 'nvs@akamai.com'
-            to = [tour.requestor_email, 'rmirek@akamai.com']
-            html_content = f'<h2>Hi {tour.requestor_name}, </h2><br> Please go to our <br> <a href="http://nvs.akamai.com/feedback/{tour.id}">feedback form </a> and share Your feedback with us'
-            msg = EmailMessage(subject, html_content, from_email, to)
-            msg.content_subtype = "html"
-            msg.send()
+            # subject = '[NOCC-Visit-Scheduler] - Please tell us more about Your visit at Akamai NOCC on {tour.date} - it takes just 1 minute to complete'
+            # from_email = 'nvs@akamai.com'
+            # to = [tour.requestor_email, 'rmirek@akamai.com']
+            # html_content = f'<h2>Hi {tour.requestor_name}, </h2><br> Please go to our <br> <a href="http://nvs.akamai.com/feedback/{tour.id}">feedback form </a> and share Your feedback with us'
+            # msg = EmailMessage(subject, html_content, from_email, to)
+            # msg.content_subtype = "html"
+            # msg.send()
+            print (tour)
 
 Command.command = "check_and_send_feedback_request"
