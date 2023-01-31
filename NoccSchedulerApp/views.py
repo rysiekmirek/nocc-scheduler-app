@@ -38,11 +38,22 @@ def tour_details(request, pk):
                 subject = f'[NOCC-Visit-Scheduler] - tour requested by You has been assigned to NOCC representative'
                 from_email = 'nvs@akamai.com'
                 to = [tour_data.requestor_email, 'rmirek@akamai.com']
-                html_content = f'<h2>Hi {tour_data.requestor_name}, </h2><br> this is just inromation that you tour got assigned to {r["nocc_person_assigned"]} from NOCC in {tour_data.location} '
+                html_content = f'<h2>Hi {tour_data.requestor_name}, </h2><br> this is an inromation that your tour got assigned to {r["nocc_person_assigned"]} from NOCC in {tour_data.location} '
                 msg = EmailMessage(subject, html_content, from_email, to)
                 msg.content_subtype = "html"
                 msg.send()
-                messages.success(request, 'Tour details updated and email sent to requestor with information about NOCC person assigned to the tour')
+
+                #sending email to NOCC representative    
+                nocc_rep = NoccRepresentatives.objects.get(name=r['nocc_person_assigned'])
+                print (nocc_rep.name, nocc_rep.email)
+                subject = f'[NOCC-Visit-Scheduler] - You has been assigned to tour {tour_data.name}'
+                from_email = 'nvs@akamai.com'
+                to = [nocc_rep.email, 'rmirek@akamai.com']
+                html_content = f'<h2>Hi {r["nocc_person_assigned"]}, </h2><br> this is an inromation that you has been assigned to <a href="http://nvs.akamai.com/feedback/{pk}"> this tour </a>'
+                msg = EmailMessage(subject, html_content, from_email, to)
+                msg.content_subtype = "html"
+                msg.send()
+                messages.success(request, 'Tour details updated, emails sent to both requestor and NOCC representative with information that NOCC person is assigned to the tour')
             else:
                 messages.success(request, 'Tour details updated')
             form.save()
@@ -230,7 +241,7 @@ def new_tour(request):
             tour_data = Tour.objects.filter(id=uuid_value).values()[0]
             subject = '[NOCC-Visit-Scheduler] - New Tour " ' + tour_data['tour_name'] + " \" was requested, please wait for approval email"
             from_email = 'nvs@akamai.com'
-            to = [tour_data['requestor_email'], 'rmirek@akamai.com']
+            to = [tour_data['requestor_email'], tour_data['cc_this_request_to'], 'rmirek@akamai.com']
             # if tour_data['nocc_personnel_required'] == "Yes":
             #     to.append('nocc-tix@akamai.com')
             html_content = '<h2>Hi '+ tour_data['requestor_name'] + ',</h2><br><h3>Tour details:</h3>'
