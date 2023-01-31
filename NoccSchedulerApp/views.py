@@ -49,7 +49,7 @@ def tour_details(request, pk):
                 subject = f'[NOCC-Visit-Scheduler] - You has been assigned to tour {tour_data.tour_name}'
                 from_email = 'nvs@akamai.com'
                 to = [nocc_rep.email, 'rmirek@akamai.com']
-                html_content = f'<h2>Hi {r["nocc_person_assigned"]}, </h2><br> this is an information that you has been assigned to <a href="http://nvs.akamai.com/feedback/{pk}"> this tour </a>'
+                html_content = f'<h2>Hi {r["nocc_person_assigned"]}, </h2><br> this is an information that you has been assigned to <a href="http://nvs.akamai.com/tour-details/{pk}"> this tour </a>'
                 msg = EmailMessage(subject, html_content, from_email, to)
                 msg.content_subtype = "html"
                 msg.send()
