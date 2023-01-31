@@ -46,7 +46,7 @@ def tour_details(request, pk):
                 #sending email to NOCC representative    
                 nocc_rep = NoccRepresentatives.objects.get(name=r['nocc_person_assigned'])
                 print (nocc_rep.name, nocc_rep.email)
-                subject = f'[NOCC-Visit-Scheduler] - You has been assigned to tour {tour_data.name}'
+                subject = f'[NOCC-Visit-Scheduler] - You has been assigned to tour {tour_data.tour_name}'
                 from_email = 'nvs@akamai.com'
                 to = [nocc_rep.email, 'rmirek@akamai.com']
                 html_content = f'<h2>Hi {r["nocc_person_assigned"]}, </h2><br> this is an inromation that you has been assigned to <a href="http://nvs.akamai.com/feedback/{pk}"> this tour </a>'
