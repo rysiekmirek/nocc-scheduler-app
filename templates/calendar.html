@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    <h3>Calendar</h3>
+    <h4> <b>Calendar</b></h4>
     <hr/>
     <form class="row justify-content-center pb-4" action="" method="post">
         {% csrf_token %}
@@ -100,7 +100,7 @@
         </table>
     </div>
     <div id="tours_table" class="table-responsive">
-        <h3 id="date_head">NOCC Tours for {{ date }}</h3>
+        <h4 id="date_head"> <b> NOCC Tours for {{ date }} </b></h4>
         <hr/>
         <table class="table table-hover table-sm caption-top" style="font-size:90%">
             <thead>
