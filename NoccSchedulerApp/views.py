@@ -472,6 +472,9 @@ def send_email(template, tour_data):
                         f'<br> Did you enjoy your time at the NOCC? We\'d like to hear from your.'\
                         f'Survey: <a href="http://nvs.akamai.com/feedback/{pk}">Feedback form </a>'
         to= [tour_data.requestor_email, tour_data.cc_this_request_to, tour_data.poc_email, 'rmirek@akamai.com']
+    else:
+        subject = f'Send function failed to match template'
+        to= ['rmirek@akamai.com']
 
     #add footer to the email
     html_content += f'<br> Regards, <br> <hr> <br> <b>Akamai Technologies NOCC </b> <br> <b>e-mail:</b> nocc-shift@akamai.com <br> <a href="http://www.akamai.com"> www.akamai.com </a>' \
