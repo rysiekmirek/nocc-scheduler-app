@@ -36,8 +36,8 @@ def tour_details(request, pk):
         if form.has_changed():
             if r['nocc_person_assigned'] != tour_data.nocc_person_assigned:
                 #sending email to NOCC representative and visitor
-                nocc_rep = NoccRepresentatives.objects.get(name=str(tour_data.nocc_person_assigned))
-                print(nocc_rep)
+                # nocc_rep = NoccRepresentatives.objects.get(name=str(tour_data.nocc_person_assigned))
+                # print(nocc_rep)
                 send_email(template='tour_assignment_nocc', tour_data=tour_data)
                 send_email(template='tour_assignment_visitor', tour_data=tour_data)
                 messages.success(request, 'Tour details updated, emails sent to both requestor and NOCC representative with information that NOCC person is assigned to the tour')
@@ -421,9 +421,9 @@ def send_email(template, tour_data):
 
     elif template == 'tour_assignment_nocc':
         print(tour_data.nocc_person_assigned)
-        # nocc_rep = NoccRepresentatives.objects.get(name='Juan Cambridge')
-        # print(nocc_rep)
-        # print(nocc_rep.name)
+        nocc_rep = NoccRepresentatives.objects.get(name='Juan Cambridge')
+        print(nocc_rep)
+        print(nocc_rep.name)
         subject = f'You\'ve been assigned a NOCC visit - {tour_data.tour_name}'
         html_content = f'Hi {tour_data.nocc_person_assigned}, <br> You have been assigned to the tour "{tour_data.tour_name}".' \
                         f'<br>  If you are not able to attend please notify the local NOCC team as soon as possible.'
