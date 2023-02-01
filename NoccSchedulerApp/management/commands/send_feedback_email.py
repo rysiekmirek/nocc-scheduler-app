@@ -10,7 +10,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Query the database for all dates in the past
-        tours = Tour.objects.filter(date__lt=timezone.now().date(), feedback_status='Request not sent', status="Approved")
+        tours = Tour.objects.filter(date__lt=timezone.now().date(), feedback_status='No answer 3 days', status="Approved")
         
         # subject = '[NOCC-Visit-Scheduler] - Testing crontab - run every 1h'
         # from_email = 'nvs@akamai.com'
@@ -39,7 +39,7 @@ class Command(BaseCommand):
             print (tour.tour_name)
             print(tour.feedback_status)
             print ('------------------------------------------------------------')
-            tour.feedback_status = 'No answer 3 days'
+            tour.feedback_status = 'Request not sent'
             tour.save()
             print (tour.tour_name)
             print(tour.feedback_status)
