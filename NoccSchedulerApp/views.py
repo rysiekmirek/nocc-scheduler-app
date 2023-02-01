@@ -420,7 +420,11 @@ def send_email(template, tour_data):
         to= [tour_data.requestor_email, tour_data.cc_this_request_to, tour_data.poc_email, 'rmirek@akamai.com']
 
     elif template == 'tour_assignment_nocc':
-        nocc_rep = NoccRepresentatives.objects.get(name=str(tour_data.nocc_person_assigned))
+        print(tour_data.nocc_person_assigned)
+
+        nocc_rep = NoccRepresentatives.objects.get(name='Juan Cambridge')
+        print(nocc_rep)
+        print(nocc_rep.name)
         subject = f'You\'ve been assigned a NOCC visit - {tour_data.tour_name}'
         html_content = f'Hi {tour_data.nocc_person_assigned}, <br> You have been assigned to the tour "{tour_data.tour_name}".' \
                         f'<br>  If you are not able to attend please notify the local NOCC team as soon as possible.'
@@ -434,7 +438,7 @@ def send_email(template, tour_data):
                 html_content += "<i>" + str(data) + "</i><br>"
                 if key == "status":
                     break
-        to= [nocc_rep.email, 'rmirek@akamai.com']
+        to= ['rmirek@akamai.com']
     
     elif template == 'tour_assignment_visitor':
         subject = f'NOCC visit has been assigned - {tour_data.tour_name}'
