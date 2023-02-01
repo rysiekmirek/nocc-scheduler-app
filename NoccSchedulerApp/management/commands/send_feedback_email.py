@@ -35,10 +35,11 @@ class Command(BaseCommand):
         #     print (tour.tour_name)
         #     print(tour.feedback_status)
 
-        tours.feedback_status = 'No answer 3 days'
-        tours.save()
-
         for tour in tours:
+            print (tour.tour_name)
+            print(tour.feedback_status)
             print ('------------------------------------------------------------')
+            tour.feedback_status = 'No answer 3 days'
+            tour.save()
             print (tour.tour_name)
             print(tour.feedback_status)
