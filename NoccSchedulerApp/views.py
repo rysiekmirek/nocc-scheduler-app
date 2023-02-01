@@ -215,7 +215,6 @@ def new_tour(request):
         print(form)
         try:
             r=request.POST
-            tour_data= r.dict()
             print(form.errors)
             start_time= r['start_time']
             end_time = r['end_time']
@@ -228,18 +227,8 @@ def new_tour(request):
             dbentry.start_time = datetime.strptime(start_time, "%H:%M").time()
             dbentry.end_time = datetime.strptime(end_time, "%H:%M").time()
             dbentry.save()
-            tour_data = Tour.objects.filter(id=uuid_value).values()[0]
-            
-            html_content = '<h2>Hi '+ tour_data['requestor_name'] + ',</h2><br><h3>Tour details:</h3>'
-            for key, data in tour_data.items():
-                html_content += "<b>" + str(key) + "</b> : "
-                html_content += "<i>" + str(data) + "</i><br>"
-                if key == "status":
-                    break
-            send_email(
-                subject = f'[NOCC-Visit-Scheduler] - New Tour {tour_data["tour_name"]} was requested, please wait for approval email', 
-                to= [tour_data['requestor_email'], tour_data['cc_this_request_to'], 'rmirek@akamai.com'], html_content=html_content)
-
+            tour_data=Tour.objects.get(id=uuid_value)
+            send_email(template='new_request', tour_data=tour_data)
             messages.success(request, 'Your tour has been submited and confirmation email sent to You. Please wait for approval from local representative.')
             return redirect("/thank-you")
         except:
