@@ -31,6 +31,8 @@ class Command(BaseCommand):
 
         # tours.feedback_status = 'Request sent'
         # tours.save()
-        # print ('------------------------------------------------------------')
-        # print (tours)
+        for tour in tours:
+            print ('------------------------------------------------------------')
+            print (tour.tour_name)
+            print(tour.feedback_status)
 
