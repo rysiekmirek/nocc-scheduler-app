@@ -36,6 +36,8 @@ def tour_details(request, pk):
         if form.has_changed():
             if r['nocc_person_assigned'] != tour_data.nocc_person_assigned:
                 #sending email to NOCC representative and visitor
+                nocc_rep = NoccRepresentatives.objects.get(name=tour_data.nocc_person_assigned)
+                print(nocc_rep)
                 send_email(template='tour_assignment_nocc', tour_data=tour_data)
                 send_email(template='tour_assignment_visitor', tour_data=tour_data)
                 messages.success(request, 'Tour details updated, emails sent to both requestor and NOCC representative with information that NOCC person is assigned to the tour')
