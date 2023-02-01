@@ -421,7 +421,6 @@ def send_email(template, tour_data):
 
     elif template == 'tour_assignment_nocc':
         print(tour_data.nocc_person_assigned)
-
         nocc_rep = NoccRepresentatives.objects.get(name='Juan Cambridge')
         print(nocc_rep)
         print(nocc_rep.name)
