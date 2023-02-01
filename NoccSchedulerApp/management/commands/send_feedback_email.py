@@ -20,5 +20,3 @@ class Command(BaseCommand):
             # msg.content_subtype = "html"
             # msg.send()
             print (tour)
-
-Command.command = "check_and_send_feedback_request"
