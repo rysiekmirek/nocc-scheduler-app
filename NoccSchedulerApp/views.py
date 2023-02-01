@@ -35,19 +35,9 @@ def tour_details(request, pk):
         form = TourFormDetails(request.POST, instance=tour_data)
         if form.has_changed():
             if r['nocc_person_assigned'] != tour_data.nocc_person_assigned:
-                send_email(
-                        subject= f'[NOCC-Visit-Scheduler] - tour requested by You has been assigned to NOCC representative',
-                        to = [tour_data.requestor_email, tour_data.cc_this_request_to, 'rmirek@akamai.com'],
-                        html_content = f'<h2>Hi {tour_data.requestor_name}, </h2><br> this is an information that your tour got assigned to' +
-                                        f'{r["nocc_person_assigned"]} from NOCC in {tour_data.location}')
-
-                #sending email to NOCC representative    
-                nocc_rep = NoccRepresentatives.objects.get(name=r['nocc_person_assigned'])
-
-                send_email(subject = f'[NOCC-Visit-Scheduler] - You has been assigned to tour {tour_data.tour_name}',
-                            to = [nocc_rep.email, 'rmirek@akamai.com'],
-                            html_content = f'<h2>Hi {r["nocc_person_assigned"]}, </h2><br> this is an information that you has been assigned' + 
-                                            f'to <a href="http://nvs.akamai.com/tour-details/{pk}"> this tour </a>')
+                #sending email to NOCC representative and visitor
+                send_email(template='tour_assignment_nocc', tour_data=tour_data)
+                send_email(template='tour_assignment_visitor', tour_data=tour_data)
                 messages.success(request, 'Tour details updated, emails sent to both requestor and NOCC representative with information that NOCC person is assigned to the tour')
             else:
                 messages.success(request, 'Tour details updated')
@@ -65,7 +55,6 @@ def tour_details(request, pk):
         'form_feedback': TourFormFeedbackDetails(initial=initial_tour_data),
     }
 
-    #print (initial_tour_data)
     return render(request, "tour-details.html", context)
 
 
@@ -138,13 +127,7 @@ def logout_user(request):
 def ask_for_feedback(request, pk):
     tour_data = Tour.objects.get(id=pk)
     if tour_data.feedback_status != 'Provided':
-        subject = f'[NOCC-Visit-Scheduler] - Please tell us more about Your visit at Akamai NOCC on {tour_data.date} - it takes just 1 minute to complete'
-        from_email = 'nvs@akamai.com'
-        to = [tour_data.requestor_email, 'rmirek@akamai.com']
-        html_content = f'<h2>Hi {tour_data.requestor_name}, </h2><br> Please go to our <br> <a href="http://nvs.akamai.com/feedback/{pk}">feedback form </a> and share Your feedback with us'
-        msg = EmailMessage(subject, html_content, from_email, to)
-        msg.content_subtype = "html"
-        msg.send()
+        send_email(template='feedback_form', tour_data=tour_data)
         Tour.objects.filter(id=pk).update(feedback_status='Request sent')
         messages.success(request, 'Invitation for after-tour survey sent to requestor')
     else:
@@ -155,6 +138,7 @@ def ask_for_feedback(request, pk):
 @login_required(login_url='/login/')
 def status_change(request, pk):
     tour_data = Tour.objects.filter(id=pk).values()[0]
+    tour_data2 = Tour.objects.get(id=pk)
     if request.method == 'POST':
         status=request.POST['f_status']
         if tour_data['nocc_person_assigned'] == None and tour_data['nocc_personnel_required'] == "Yes" and status == "Approved":
@@ -164,25 +148,17 @@ def status_change(request, pk):
             if tour_data['status'] != status:
                 Tour.objects.filter(id=pk).update(status=status)
                 if status == "Approved":
-                    send_email_ics(pk)
+                    send_email(template='approval', tour_data=tour_data2)
                     messages.success(request, 'Requestor will be informed via email that tour was approved')
                 elif status == "Requested":
                     messages.warning(request, 'Tour status set to requested')
                 else:
                     if status == "Rejected":
+                        send_email(template='rejection', tour_data=tour_data2)
                         messages.warning(request, 'Requestor will be informed via email that tour was rejected')
-                        subject = f'[NOCC-Visit-Scheduler] - Your tour { tour_data["tour_name"] } was rejected'
                     else:
+                        send_email(template='cancellation', tour_data=tour_data2)
                         messages.warning(request, 'Requestor will be informed via email that tour was canceled')
-                        subject = f'[NOCC-Visit-Scheduler] - Your tour { tour_data["tour_name"]} was canceled'
-
-                    send_email(subject=subject, 
-                        to=[tour_data['requestor_email'], 
-                        'rmirek@akamai.com'], 
-                        html_content = "<h2>Hi " + \
-                        tour_data['requestor_name'] + \
-                        ", </h2><br> To check status of the request see <br> <a href=\"http://nvs.akamai.com\">Link</a>" )
-
 
     return redirect("/tour-details/"+pk)
 
