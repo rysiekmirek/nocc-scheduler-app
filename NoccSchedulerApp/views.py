@@ -35,9 +35,8 @@ def tour_details(request, pk):
         form = TourFormDetails(request.POST, instance=tour_data)
         if form.has_changed():
             if r['nocc_person_assigned'] != tour_data.nocc_person_assigned:
-                #sending email to NOCC representative and visitor
-                # nocc_rep = NoccRepresentatives.objects.get(name=str(tour_data.nocc_person_assigned))
-                # print(nocc_rep)
+                tour_data.nocc_person_assigned = r['nocc_person_assigned']
+                tour_data.save()
                 send_email(template='tour_assignment_nocc', tour_data=tour_data)
                 send_email(template='tour_assignment_visitor', tour_data=tour_data)
                 messages.success(request, 'Tour details updated, emails sent to both requestor and NOCC representative with information that NOCC person is assigned to the tour')
@@ -420,10 +419,7 @@ def send_email(template, tour_data):
         to= [tour_data.requestor_email, tour_data.cc_this_request_to, tour_data.poc_email, 'rmirek@akamai.com']
 
     elif template == 'tour_assignment_nocc':
-        print(tour_data.nocc_person_assigned)
-        nocc_rep = NoccRepresentatives.objects.get(name='Juan Cambridge')
-        print(nocc_rep)
-        print(nocc_rep.name)
+        nocc_rep = NoccRepresentatives.objects.get(name=tour_data.nocc_person_assigned)
         subject = f'You\'ve been assigned a NOCC visit - {tour_data.tour_name}'
         html_content = f'Hi {tour_data.nocc_person_assigned}, <br> You have been assigned to the tour "{tour_data.tour_name}".' \
                         f'<br>  If you are not able to attend please notify the local NOCC team as soon as possible.'
@@ -437,7 +433,7 @@ def send_email(template, tour_data):
                 html_content += "<i>" + str(data) + "</i><br>"
                 if key == "status":
                     break
-        to= ['rmirek@akamai.com']
+        to= [nocc_rep.email, 'rmirek@akamai.com']
     
     elif template == 'tour_assignment_visitor':
         subject = f'NOCC visit has been assigned - {tour_data.tour_name}'
