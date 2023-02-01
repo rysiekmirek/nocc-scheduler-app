@@ -422,12 +422,16 @@ def send_email(template, tour_data):
         subject = f'You\'ve been assigned a NOCC visit - {tour_data.tour_name}'
         html_content = f'Hi {tour_data.nocc_person_assigned}, <br> You have been assigned to the tour "{tour_data.tour_name}".' \
                         f'<br>  If you are not able to attend please notify the local NOCC team as soon as possible.'
-        html_content += f'<br><h3>Tour details:</h3> <br>'
-        for key, data in tour_data.items():
-            html_content += "<b>" + str(key) + "</b> : "
-            html_content += "<i>" + str(data) + "</i><br>"
-            if key == "status":
-                break
+        html_content += f'<br><h3>Tour details:</h3>'
+        for key, data in tour_data.__dict__.items():
+            if key =='_state':
+                key=''
+                data=''
+            else:
+                html_content += "<b>" + str(key) + "</b> : "
+                html_content += "<i>" + str(data) + "</i><br>"
+                if key == "status":
+                    break
         to= [nocc_rep.email, 'rmirek@akamai.com']
     
     elif template == 'tour_assignment_visitor':
