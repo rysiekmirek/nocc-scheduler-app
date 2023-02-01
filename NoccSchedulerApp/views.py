@@ -189,9 +189,9 @@ def new_tour(request):
     if request.method == 'POST':
         form = TourForm(request.POST)
         print(form)
+        print(form.errors)
         try:
             r=request.POST
-            print(form.errors)
             start_time= r['start_time']
             end_time = r['end_time']
             date = r['date']
