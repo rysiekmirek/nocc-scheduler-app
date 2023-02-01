@@ -349,12 +349,10 @@ def settings(request):
 def send_email_ics(pk):
 
     tour_data = Tour.objects.get(id=pk)
-    print(tour_data.requestor_name)
 
     cal = Calendar()
     cal.add('attendee', 'MAILTO:' + tour_data.requestor_email)
     cal.add('attendee', 'MAILTO:'+ tour_data.poc_email)
-    cal.add('attendee', 'MAILTO:'+ 'rmirek@akamai.com')
 
     # Let's set time zones
 
@@ -365,23 +363,16 @@ def send_email_ics(pk):
     else:
         timezone = pytz.timezone('America/New_York')
 
-    print(timezone)
-
     combined_date_time_start = datetime.combine(tour_data.date,tour_data.start_time)
     combined_date_time_end = datetime.combine(tour_data.date,tour_data.end_time)
-
-    print(combined_date_time_end.tzinfo)
 
     aware_combined_date_time_start = timezone.localize(combined_date_time_start)
     aware_combined_date_time_end = timezone.localize(combined_date_time_end)
 
-    print(aware_combined_date_time_start, aware_combined_date_time_start.tzinfo)
-
-
     event = Event()
-    event.add('name', 'Akamai NOCC tour in '+ str(tour_data.location))
-    event.add('summary', 'Akamai NOCC tour in '+ str(tour_data.location))
-    event.add('description', 'Visit NOCC office to see how we work')
+    event.add('name', 'Akamai NOCC visit in '+ str(tour_data.location))
+    event.add('summary', 'Akamai NOCC visit in '+ str(tour_data.location))
+    event.add('description', 'Visit Akamai NOCC office')
     event.add('dtstart', aware_combined_date_time_start)
     event.add('dtend', aware_combined_date_time_end)
     event.add('dtstamp', datetime.now())
@@ -399,20 +390,24 @@ def send_email_ics(pk):
     f.close()
 
 
-    subject = '[NOCC-Visit-Scheduler] Your NOCC visit has been approved'
+    subject = f'NOCC visit approved - {tour_data.tour_name}'
     message = 'Some message here'
     from_email = 'nvs@akamai.com'
-    to_email = tour_data.requestor_email
+    to_email = [tour_data.requestor_email, tour_data.poc_email, tour_data.cc_this_request_to, 'rmirek@akamai.com']
 
     html_content = f'<p>Hi {tour_data.requestor_name}, <br>' +\
-                f'we would like to invite You to visit us in {tour_data.location}\'s NOCC office <br>' +\
+                f'Your NOCC visit has been approved with the following details {tour_data.location}\'s NOCC office <br>' +\
                 f'Date: {tour_data.date} <br>' +\
                 f'Time: {tour_data.start_time} - {tour_data.end_time} <br>' +\
-                f'Time zone: {aware_combined_date_time_start.tzinfo} </p>'
+                f'Time zone: {aware_combined_date_time_start.tzinfo} </p>' +\
+                f'Please find calendar invitation attached.'
+    #add footer to the email
+    html_content += f'<br> Regards, <br> <hr> <br> <b>Akamai Technologies NOCC </b> <br> <b>e-mail:</b> nocc-shift@akamai.com <br> <a href="http://www.akamai.com"> www.akamai.com </a>' \
+                    f'<br> <b> Phone: </b> 1-877-6-AKAMAI (1-877-625-2624) | International +1-617-444-3007'
 
 
     # Create the email message
-    msg = EmailMultiAlternatives(subject, message, from_email, [to_email])
+    msg = EmailMultiAlternatives(subject, message, from_email, to_email)
     msg.attach_alternative(html_content, "text/html")
     msg.attach_file(f'media/ics_files/{filename}', 'text/calendar')
 
@@ -424,10 +419,64 @@ def send_email_ics(pk):
     except:
         print ('File not removed')
 
-def send_email(subject, to, html_content, from_email='nvs@akamai.com'):
+def send_email(template, tour_data):
+    
+    if template == 'new_request':
+        subject = f'New Akamai NOCC visit Requested with title - {tour_data.tour_name}'
+        html_content = f'Hi {tour_data.requestor_name}, <br> we received your request for a NOCC visit. Your visit is not confirmed yet.' \
+                        f'<br> Next, we will review the details of the visit and get back to you.'
+        html_content += f'<br><h3>Tour details:</h3> <br>'
+        for key, data in tour_data.items():
+            html_content += "<b>" + str(key) + "</b> : "
+            html_content += "<i>" + str(data) + "</i><br>"
+            if key == "status":
+                break
+        to= [tour_data.requestor_email, tour_data.cc_this_request_to, tour_data.poc_email, 'rmirek@akamai.com']
+
+    elif template == 'approval':
+        send_email_ics(tour_data.id)
+
+    elif template == 'rejection':
+        subject = f'NOCC visit rejected - {tour_data.tour_name}'
+        html_content = f'Hi {tour_data.requestor_name}, <br> we are sorry to inform that Your request for a NOCC visit has been rejected.' \
+                        f'<br> For more information please contact {tour_data.poc_name}, {tour_data.poc_email}'
+        to= [tour_data.requestor_email, tour_data.cc_this_request_to, tour_data.poc_email, 'rmirek@akamai.com']
+
+    elif template == 'cancellation':
+        subject = f'NOCC visit canceled - {tour_data.tour_name}'
+        html_content = f'Hi {tour_data.requestor_name}, <br> we are sorry to inform that Your visit "{tour_data.tour_name}"  has been canceled.' \
+                        f'<br> For more information please contact {tour_data.poc_name}, {tour_data.poc_email}'
+        to= [tour_data.requestor_email, tour_data.cc_this_request_to, tour_data.poc_email, 'rmirek@akamai.com']
+
+    elif template == 'tour_assignment_nocc':
+        nocc_rep = NoccRepresentatives.objects.get(name=tour_data.nocc_person_assigned)
+        subject = f'You\'ve been assigned a NOCC visit - {tour_data.tour_name}'
+        html_content = f'Hi {tour_data.nocc_person_assigned}, <br> You have been assigned to the tour "{tour_data.tour_name}".' \
+                        f'<br>  If you are not able to attend please notify the local NOCC team as soon as possible.'
+        html_content += f'<br><h3>Tour details:</h3> <br>'
+        for key, data in tour_data.items():
+            html_content += "<b>" + str(key) + "</b> : "
+            html_content += "<i>" + str(data) + "</i><br>"
+            if key == "status":
+                break
+        to= [nocc_rep.email, 'rmirek@akamai.com']
+    
+    elif template == 'tour_assignment_visitor':
+        subject = f'NOCC visit has been assigned - {tour_data.tour_name}'
+        html_content = f'Hi {tour_data.requestor_name}, <br> Your NOCC visit "{tour_data.tour_name}" has been assigned to {tour_data.nocc_person_assigned}.'
+        to= [tour_data.requestor_email, tour_data.cc_this_request_to, tour_data.poc_email, 'rmirek@akamai.com']
+    
+    elif template == 'feedback_form':
+        subject = f'30 seconds survey - Did you enjoy your NOCC visit? - {tour_data.tour_name}'
+        html_content = f'Hi, <br> The survey below takes ~30 seconds to complete.' \
+                        f'<br> Did you enjoy your time at the NOCC? We\'d like to hear from your.'\
+                        f'Survey: <a href="http://nvs.akamai.com/feedback/{pk}">Feedback form </a>'
+        to= [tour_data.requestor_email, tour_data.cc_this_request_to, tour_data.poc_email, 'rmirek@akamai.com']
+
     #add footer to the email
-    html_content += f'<hr> <br> <b>Akamai Technologies NOCC </b> <br> <b>e-mail:</b> nocc-shift@akamai.com <br> <a href="http://www.akamai.com"> www.akamai.com </a>' \
-                    '<br> <b> Phone: </b> 1-877-6-AKAMAI (1-877-625-2624) | International +1-617-444-3007'
+    html_content += f'<br> Regards, <br> <hr> <br> <b>Akamai Technologies NOCC </b> <br> <b>e-mail:</b> nocc-shift@akamai.com <br> <a href="http://www.akamai.com"> www.akamai.com </a>' \
+                    f'<br> <b> Phone: </b> 1-877-6-AKAMAI (1-877-625-2624) | International +1-617-444-3007'
+    from_email='nvs@akamai.com'
     msg = EmailMessage(subject, html_content, from_email, to)
     msg.content_subtype = "html"
     msg.send()
