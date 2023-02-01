@@ -391,7 +391,7 @@ def send_email(template, tour_data):
         html_content = f'Hi {tour_data.requestor_name}, <br> we received your request for a NOCC visit. Your visit is not confirmed yet.' \
                         f'<br> Next, we will review the details of the visit and get back to you.'
         html_content += f'<br><h3>Tour details:</h3> <br>'
-        for key, data in tour_data.items():
+        for key, data in tour_data.__dict__.items():
             html_content += "<b>" + str(key) + "</b> : "
             html_content += "<i>" + str(data) + "</i><br>"
             if key == "status":
