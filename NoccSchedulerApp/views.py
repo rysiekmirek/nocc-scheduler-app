@@ -190,29 +190,29 @@ def new_tour(request):
         form = TourForm(request.POST)
         print(form)
         print(form.errors)
-        try:
-            r=request.POST
-            start_time= r['start_time']
-            end_time = r['end_time']
-            date = r['date']
-            dbentry = form.save(commit=False)
-            dbentry.tour_name = str(r['customer_or_group_name']) + "-" + str(r['date'])
-            uuid_value = uuid.uuid4()
-            dbentry.id = uuid_value
-            dbentry.date = datetime.strptime(date, '%Y-%m-%d').date()
-            dbentry.start_time = datetime.strptime(start_time, "%H:%M").time()
-            dbentry.end_time = datetime.strptime(end_time, "%H:%M").time()
-            dbentry.save()
-            tour_data=Tour.objects.get(id=uuid_value)
-            send_email(template='new_request', tour_data=tour_data)
-            messages.success(request, 'Your tour has been submited and confirmation email sent to You. Please wait for approval from local representative.')
-            return redirect("/thank-you")
-        except:
-            context={
-            'locations': Location.objects.all(),
-            'form': form,
-            }
-            return render (request, "new-tour.html", context)
+        #try:
+        r=request.POST
+        start_time= r['start_time']
+        end_time = r['end_time']
+        date = r['date']
+        dbentry = form.save(commit=False)
+        dbentry.tour_name = str(r['customer_or_group_name']) + "-" + str(r['date'])
+        uuid_value = uuid.uuid4()
+        dbentry.id = uuid_value
+        dbentry.date = datetime.strptime(date, '%Y-%m-%d').date()
+        dbentry.start_time = datetime.strptime(start_time, "%H:%M").time()
+        dbentry.end_time = datetime.strptime(end_time, "%H:%M").time()
+        dbentry.save()
+        tour_data=Tour.objects.get(id=uuid_value)
+        send_email(template='new_request', tour_data=tour_data)
+        messages.success(request, 'Your tour has been submited and confirmation email sent to You. Please wait for approval from local representative.')
+        return redirect("/thank-you")
+        #except:
+        # context={
+        # 'locations': Location.objects.all(),
+        # 'form': form,
+        # }
+        # return render (request, "new-tour.html", context)
 
     else:
         context={
