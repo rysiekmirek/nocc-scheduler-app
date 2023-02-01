@@ -35,24 +35,19 @@ def tour_details(request, pk):
         form = TourFormDetails(request.POST, instance=tour_data)
         if form.has_changed():
             if r['nocc_person_assigned'] != tour_data.nocc_person_assigned:
-                subject = f'[NOCC-Visit-Scheduler] - tour requested by You has been assigned to NOCC representative'
-                from_email = 'nvs@akamai.com'
-                to = [tour_data.requestor_email, tour_data.cc_this_request_to, 'rmirek@akamai.com']
-                html_content = f'<h2>Hi {tour_data.requestor_name}, </h2><br> this is an information that your tour got assigned to {r["nocc_person_assigned"]} from NOCC in {tour_data.location} '
-                msg = EmailMessage(subject, html_content, from_email, to)
-                msg.content_subtype = "html"
-                msg.send()
+                send_email(
+                        subject= f'[NOCC-Visit-Scheduler] - tour requested by You has been assigned to NOCC representative',
+                        to = [tour_data.requestor_email, tour_data.cc_this_request_to, 'rmirek@akamai.com'],
+                        html_content = f'<h2>Hi {tour_data.requestor_name}, </h2><br> this is an information that your tour got assigned to' +
+                                        f'{r["nocc_person_assigned"]} from NOCC in {tour_data.location}')
 
                 #sending email to NOCC representative    
                 nocc_rep = NoccRepresentatives.objects.get(name=r['nocc_person_assigned'])
-                print (nocc_rep.name, nocc_rep.email)
-                subject = f'[NOCC-Visit-Scheduler] - You has been assigned to tour {tour_data.tour_name}'
-                from_email = 'nvs@akamai.com'
-                to = [nocc_rep.email, 'rmirek@akamai.com']
-                html_content = f'<h2>Hi {r["nocc_person_assigned"]}, </h2><br> this is an information that you has been assigned to <a href="http://nvs.akamai.com/tour-details/{pk}"> this tour </a>'
-                msg = EmailMessage(subject, html_content, from_email, to)
-                msg.content_subtype = "html"
-                msg.send()
+
+                send_email(subject = f'[NOCC-Visit-Scheduler] - You has been assigned to tour {tour_data.tour_name}',
+                            to = [nocc_rep.email, 'rmirek@akamai.com'],
+                            html_content = f'<h2>Hi {r["nocc_person_assigned"]}, </h2><br> this is an information that you has been assigned' + 
+                                            f'to <a href="http://nvs.akamai.com/tour-details/{pk}"> this tour </a>')
                 messages.success(request, 'Tour details updated, emails sent to both requestor and NOCC representative with information that NOCC person is assigned to the tour')
             else:
                 messages.success(request, 'Tour details updated')
@@ -176,15 +171,12 @@ def status_change(request, pk):
                 else:
                     if status == "Rejected":
                         messages.warning(request, 'Requestor will be informed via email that tour was rejected')
-                        subject = '[NOCC-Visit-Scheduler] - Your tour " ' + \
-                            tour_data['tour_name'] + " \" was rejected"
+                        subject = f'[NOCC-Visit-Scheduler] - Your tour { tour_data["tour_name"] } was rejected'
                     else:
                         messages.warning(request, 'Requestor will be informed via email that tour was canceled')
-                        subject = '[NOCC-Visit-Scheduler] - Your tour " ' + \
-                            tour_data['tour_name'] + " \" was canceled"
+                        subject = f'[NOCC-Visit-Scheduler] - Your tour { tour_data["tour_name"]} was canceled'
 
-                    send_email(subject, 
-                        from_email='nvs@akamai.com', 
+                    send_email(subject=subject, 
                         to=[tour_data['requestor_email'], 
                         'rmirek@akamai.com'], 
                         html_content = "<h2>Hi " + \
@@ -224,7 +216,6 @@ def new_tour(request):
         try:
             r=request.POST
             tour_data= r.dict()
-            print(tour_data)
             print(form.errors)
             start_time= r['start_time']
             end_time = r['end_time']
@@ -236,23 +227,19 @@ def new_tour(request):
             dbentry.date = datetime.strptime(date, '%Y-%m-%d').date()
             dbentry.start_time = datetime.strptime(start_time, "%H:%M").time()
             dbentry.end_time = datetime.strptime(end_time, "%H:%M").time()
-            print (dbentry, dbentry.start_time , dbentry.end_time )
             dbentry.save()
             tour_data = Tour.objects.filter(id=uuid_value).values()[0]
-            subject = '[NOCC-Visit-Scheduler] - New Tour " ' + tour_data['tour_name'] + " \" was requested, please wait for approval email"
-            from_email = 'nvs@akamai.com'
-            to = [tour_data['requestor_email'], tour_data['cc_this_request_to'], 'rmirek@akamai.com']
-            # if tour_data['nocc_personnel_required'] == "Yes":
-            #     to.append('nocc-tix@akamai.com')
+            
             html_content = '<h2>Hi '+ tour_data['requestor_name'] + ',</h2><br><h3>Tour details:</h3>'
             for key, data in tour_data.items():
                 html_content += "<b>" + str(key) + "</b> : "
                 html_content += "<i>" + str(data) + "</i><br>"
                 if key == "status":
                     break
-            msg = EmailMessage(subject, html_content, from_email, to)
-            msg.content_subtype = "html"
-            msg.send()
+            send_email(
+                subject = f'[NOCC-Visit-Scheduler] - New Tour {tour_data["tour_name"]} was requested, please wait for approval email', 
+                to= [tour_data['requestor_email'], tour_data['cc_this_request_to'], 'rmirek@akamai.com'], html_content=html_content)
+
             messages.success(request, 'Your tour has been submited and confirmation email sent to You. Please wait for approval from local representative.')
             return redirect("/thank-you")
         except:
@@ -437,7 +424,7 @@ def send_email_ics(pk):
     except:
         print ('File not removed')
 
-def send_email(subject, from_email, to, html_content):
+def send_email(subject, to, html_content, from_email='nvs@akamai.com'):
     #add footer to the email
     html_content += f'<hr> <br> <b>Akamai Technologies NOCC </b> <br> <b>e-mail:</b> nocc-shift@akamai.com <br> <a href="http://www.akamai.com"> www.akamai.com </a>' \
                     '<br> <b> Phone: </b> 1-877-6-AKAMAI (1-877-625-2624) | International +1-617-444-3007'
