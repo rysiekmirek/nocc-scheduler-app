@@ -22,7 +22,7 @@
                 <th scope="col">Category</th>
                 <th scope="col">Attendees<br/>akamai</th>
                 <th scope="col">Attendees<br/>guests</th>
-                <th scope="col">Customer<br/>or group name</th>
+                <th scope="col">Feedback<br>status</th>
                 <th scope="col">Nocc Personnel<br/>assigned</th>
                 <th scope="col">Status</th>
             </tr>
@@ -43,11 +43,9 @@
                 <td>{{tour.category}}</td>
                 <td>{{tour.attendees_akamai}}</td>
                 <td>{{tour.attendees_guests}}</td>
-                <td>{{tour.customer_or_group_name}}</td>
+                <td>{{tour.feedback_status}}</td>
                 <td>{{tour.nocc_person_assigned}}</td>
                 <td>{{tour.status}}</td>
-                {% if request.user.is_authenticated %}
-                {% endif %}
             </tr>
           
       {% endfor %}
