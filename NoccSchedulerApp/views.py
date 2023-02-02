@@ -368,7 +368,7 @@ def send_email_ics(pk):
                 f'Time zone: {aware_combined_date_time_start.tzinfo} </p>' +\
                 f'Please find calendar invitation attached.'
     #add footer to the email
-    html_content += f'<br> Regards, <br> <hr> <br> <b>Akamai Technologies NOCC </b> <br> <b>e-mail:</b> nocc-shift@akamai.com <br> <a href="http://www.akamai.com"> www.akamai.com </a>' \
+    html_content += f'<br> Regards, <br> <br> <hr> <br> <b>Akamai Technologies NOCC </b> <br> <b>e-mail:</b> nocc-shift@akamai.com <br> <a href="http://www.akamai.com"> www.akamai.com </a>' \
                     f'<br> <b> Phone: </b> 1-877-6-AKAMAI (1-877-625-2624) | International +1-617-444-3007'
 
 
