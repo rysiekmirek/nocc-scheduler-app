@@ -127,12 +127,10 @@ def logout_user(request):
 @login_required(login_url='/login/')
 def ask_for_feedback(request, pk):
     tour_data = Tour.objects.get(id=pk)
-    if tour_data.feedback_status != 'Provided':
-        send_email(template='feedback_form', tour_data=tour_data)
-        Tour.objects.filter(id=pk).update(feedback_status='Request sent')
-        messages.success(request, 'Invitation for after-tour survey sent to requestor')
-    else:
-        messages.warning(request, f'Feedback status is {tour_data.feedback_status}, invitation for after-tour survey not sent to requestor')
+
+    send_email(template='feedback_form', tour_data=tour_data)
+    Tour.objects.filter(id=pk).update(feedback_status='Request sent')
+    messages.success(request, 'Invitation for after-tour survey sent to requestor')
 
     return redirect("/tour-details/"+pk)
 
