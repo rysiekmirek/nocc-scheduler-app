@@ -452,7 +452,7 @@ def send_email(template, tour_data):
         to= ['rmirek@akamai.com']
 
     #add footer to the email
-    html_content += f'<br> Regards, <br> <hr> <br> <b>Akamai Technologies NOCC </b> <br> <b>e-mail:</b> nocc-shift@akamai.com <br> <a href="http://www.akamai.com"> www.akamai.com </a>' \
+    html_content += f'<br> Regards, <br> <br> <hr> <br> <b>Akamai Technologies NOCC </b> <br> <b>e-mail:</b> nocc-shift@akamai.com <br> <a href="http://www.akamai.com"> www.akamai.com </a>' \
                     f'<br> <b> Phone: </b> 1-877-6-AKAMAI (1-877-625-2624) | International +1-617-444-3007'
     from_email='nvs@akamai.com'
     msg = EmailMessage(subject, html_content, from_email, to)
