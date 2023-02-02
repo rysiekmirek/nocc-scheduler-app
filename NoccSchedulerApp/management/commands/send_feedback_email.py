@@ -14,6 +14,7 @@ class Command(BaseCommand):
 
         for tour in tours:
             send_email(template='feedback_form', tour_data=tour)
+            send_email(template='cron_ran', tour_data=tour)
             tour.feedback_status = 'Request sent'
             tour.save()
             print(tour)
