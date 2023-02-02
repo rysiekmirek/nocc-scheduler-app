@@ -1,5 +1,4 @@
 from django.core.management.base import BaseCommand
-from django.core.mail import EmailMessage
 from django.utils import timezone
 from NoccSchedulerApp.models import Tour
 from NoccSchedulerApp.views import send_email

@@ -72,7 +72,7 @@ class TourFormFeedback(ModelForm):
     class Meta:
         model = Tour
         fields = ['satisfaction', 'key_take_aways', 'overall_feedback', 'internal_or_external_audience', 'feedback_name', 'sessions_welcoming', 
-        'sessions_speaker', 'sessions_walls_displays', 'sessions_daily_work', 'sessions_scheduling_arrangement']
+        'sessions_speaker', 'sessions_walls_displays', 'sessions_daily_work', 'sessions_scheduling_arrangement', 'feedback_status']
         #exclude = ('id','status','nocc_person_assigned','feedback', 'tour_name', 'start_time', 'end_time', 'requestor_name' )
         widgets = {
             'key_take_aways': TextInput,
