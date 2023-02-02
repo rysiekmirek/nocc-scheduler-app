@@ -11,10 +11,10 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         # Query the database for all dates in the past
         tours = Tour.objects.filter(date__lt=timezone.now().date(), feedback_status='Request not sent', status="Approved")
+        send_email(template='cron_ran', tour_data=tour)
 
         for tour in tours:
             send_email(template='feedback_form', tour_data=tour)
-            send_email(template='cron_ran', tour_data=tour)
             tour.feedback_status = 'Request sent'
             tour.save()
             print(tour)
