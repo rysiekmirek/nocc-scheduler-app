@@ -385,7 +385,7 @@ def send_email_ics(pk):
     except:
         print ('File not removed')
 
-def send_email(template, tour_data):
+def send_email(template, tour_data, subject='', html_content='', to=[]):
     
     if template == 'new_request':
         subject = f'New Akamai NOCC visit Requested with title - {tour_data.tour_name}'
@@ -447,6 +447,11 @@ def send_email(template, tour_data):
                         f'<br> Did you enjoy your time at the NOCC? We\'d like to hear from your.'\
                         f'Survey: <a href="http://nvs.akamai.com/feedback/{tour_data.id}">Feedback form </a>'
         to= [tour_data.requestor_email, tour_data.cc_this_request_to, tour_data.poc_email, 'rmirek@akamai.com']
+
+    elif template == 'custom':
+        subject = subject
+        html_content = html_content
+        to = to
     else:
         subject = f'Send function failed to match template'
         html_content = ''
