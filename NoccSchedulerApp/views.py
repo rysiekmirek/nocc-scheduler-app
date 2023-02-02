@@ -449,6 +449,7 @@ def send_email(template, tour_data):
         to= [tour_data.requestor_email, tour_data.cc_this_request_to, tour_data.poc_email, 'rmirek@akamai.com']
     else:
         subject = f'Send function failed to match template'
+        html_content = ''
         to= ['rmirek@akamai.com']
 
     #add footer to the email
