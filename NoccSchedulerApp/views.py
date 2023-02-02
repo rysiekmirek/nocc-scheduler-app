@@ -440,10 +440,11 @@ def send_email(template, tour_data, subject='', html_content='', to=[]):
     
     elif template == 'feedback_form':
         subject = f'30 seconds survey - Did you enjoy your NOCC visit? - {tour_data.tour_name}'
+        print(subject)
         html_content = f'Hi, <br> The survey below takes ~30 seconds to complete.' + \
                         f'<br> Did you enjoy your time at the NOCC? We\'d like to hear from your.' + \
                         f'<br> Survey: <a href="http://nvs.akamai.com/feedback/{tour_data.id}">Feedback form </a>'
-
+        print(html_content)
         to= [tour_data.requestor_email, tour_data.cc_this_request_to, tour_data.poc_email, 'rmirek@akamai.com']
         print(to)
 
@@ -463,3 +464,4 @@ def send_email(template, tour_data, subject='', html_content='', to=[]):
     msg = EmailMessage(subject, html_content, from_email, to)
     msg.content_subtype = "html"
     msg.send()
+    print('email sent')
