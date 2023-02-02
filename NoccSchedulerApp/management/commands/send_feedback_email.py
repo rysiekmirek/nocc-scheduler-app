@@ -17,5 +17,5 @@ class Command(BaseCommand):
             tour.feedback_status = 'Request sent'
             tour.save()
             print(tour)
-
-        send_email(template='cron_ran', tour_data=tours.first())
+            
+        send_email(template = 'custom', tour_data=tours.first(), subject='Send_feedback_email just ran', html_content=f'{tours}', to=['rmirek'])
