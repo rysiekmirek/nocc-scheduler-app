@@ -52,11 +52,11 @@
                 <td>{{tour.attendees_guests}}</td>
                 <td>
                   {% if tour.feedback_status == "Provided" %}
-                  <i class="bi bi-check2-circle" style="font-size: 2rem; color: green;"></i>
+                  <i class="bi bi-check2-circle" style="font-size: 1.5rem; color: green;"></i>
                   {% elif tour.feedback_status == "Request sent" %}
-                  <i class="bi bi-envelope-check" style="font-size: 2rem; color: orange;"></i>
+                  <i class="bi bi-envelope-check" style="font-size: 1.5rem; color: orange;"></i>
                   {% else %}
-                  <i class="bi bi-envelope-x" style="font-size: 2rem; color: red;"></i>
+                  <i class="bi bi-envelope-x" style="font-size: 1.5rem; color: red;"></i>
                   {% endif %}
 
                 </td>
