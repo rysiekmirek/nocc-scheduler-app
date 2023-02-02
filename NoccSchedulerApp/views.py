@@ -405,7 +405,7 @@ def send_email(template, tour_data):
 
     elif template == 'approval':
         send_email_ics(tour_data.id)
-        return redirect ('/tour-details/'+tour_data.id)
+        return redirect ('/tour-details/'+str(tour_data.id))
 
     elif template == 'rejection':
         subject = f'NOCC visit rejected - {tour_data.tour_name}'
