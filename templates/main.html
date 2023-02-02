@@ -51,9 +51,9 @@
                 <td>{{tour.attendees_akamai}}</td>
                 <td>{{tour.attendees_guests}}</td>
                 <td>
-                  {% if tour.feedback_status == "Provided"}
+                  {% if tour.feedback_status == "Provided" %}
                   <i class="bi bi-check2-circle" style="font-size: rem; color: green;"></i>
-                  {% elif tour.feedback_status == "Request sent"}
+                  {% elif tour.feedback_status == "Request sent" %}
                   <i class="bi bi-envelope-check" style="font-size: rem; color: yellow;"></i>
                   {% else %}
                   <i class="bi bi-envelope-x" style="font-size: rem; color: red;"></i>
