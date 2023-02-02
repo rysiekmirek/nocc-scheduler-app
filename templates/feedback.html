@@ -47,7 +47,7 @@ We really appreciate your feedback or how we can keep improving our logistics an
 Please fill this quick survey and let us know your thoughts.</h5> <br>
   <form action="" method="POST" id="f_feedback">
     {% csrf_token %}
-
+  <input type="hidden" id="id_feedback_status" name="feedback_status" value="Provided">
   <fieldset class="rounded border p-2 my-2">
     <legend>How satisfied were you with the NOCC Tour?</legend>
     Poor &nbsp;
