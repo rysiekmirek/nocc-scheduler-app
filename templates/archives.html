@@ -10,21 +10,21 @@
     <table class="table table-hover table-sm" style='font-size:90%'>
       <thead>
             <tr>
-                <th scope="col">Tour name</th>
-                <th scope="col">Requestor<br/>name</th>
-                <th scope="col">POC<br/>name</th>
-                <th scope="col">Division</th>
-                <th scope="col">Location</th>
-                <th scope="col">Date</th>
-                <th scope="col">Start time</th>
-                <th scope="col">End time</th>
-                <th scope="col">Nocc<br/>required?</th>
-                <th scope="col">Category</th>
+                <th scope="col" class="col-sm-1">Tour name</th>
+                <th scope="col" class="col-sm-1">Requestor<br/>name</th>
+                <th scope="col" class="col-sm-1">POC<br/>name</th>
+                <!-- <th scope="col">Division</th> -->
+                <th scope="col" class="col-sm-1">Location</th>
+                <th scope="col" class="col-sm-2">Date</th>
+                <th scope="col" class="col-sm-1">Start time</th>
+                <th scope="col" class="col-sm-1">End time</th>
+                <th scope="col" class="col-sm-1">Nocc<br/>required?</th>
+                <th scope="col" class="col-sm-2">Category</th>
                 <!-- <th scope="col">Attendees<br/>akamai</th>
                 <th scope="col">Attendees<br/>guests</th> -->
-                <th scope="col">Feedback<br>status</th>
-                <th scope="col">Nocc Personnel<br/>assigned</th>
-                <th scope="col">Status</th>
+                <th scope="col" class="col-sm-1">Feedback<br>status</th>
+                <th scope="col" class="col-sm-1">Nocc Personnel<br/>assigned</th>
+                <th scope="col" class="col-sm-1">Status</th>
             </tr>
           </thead>
             <tbody id="myTable" class="table-group-divider"> 
@@ -34,7 +34,7 @@
               <td>{{tour.tour_name}}</td>
                 <td>{{tour.requestor_name}}</td>
                 <td>{{tour.poc_name}}</td>
-                <td>{{tour.division}}</td>
+                <!-- <td>{{tour.division}}</td> -->
                 <td>{{tour.location}}</td>
                 <td>{{tour.date}}</td>
                 <td>{{tour.start_time}}</td>
