@@ -198,6 +198,8 @@
                 {% endfor %}
             {% endfor %}
         </table>
+        <hr/>
+        <div><h5 id="date_foot"> Tours in total: </h5></div>
     </div>
     <script>
         //f_hide_all();
@@ -205,6 +207,7 @@
         month = select_month[select_month.selectedIndex].text;
         var head = document.getElementById("date_head");
         head.innerHTML = "NOCC Tours for " + month;
+        count_tours();
 
         let clickers = document.getElementsByClassName("day_with_tour");
         for (const clicker of clickers) {
@@ -231,6 +234,15 @@
             for (day of day_table){
                 day.hidden = false;
             }
+            count_tours();
+        }
+
+        function count_tours() {
+            let day_tours = document.getElementsByClassName("day_tours");
+            let tour_count = Array.from(day_tours).filter(tour => tour.hidden == false).length;
+
+            var foot = document.getElementById("date_foot");
+            foot.innerHTML = " Tours in total: " + tour_count
         }
 
         $('#month').on('change', function(){
