@@ -43,7 +43,15 @@
                 <td>{{tour.category}}</td>
                 <td>{{tour.attendees_akamai}}</td>
                 <td>{{tour.attendees_guests}}</td>
-                <td>{{tour.feedback_status}}</td>
+                <td>
+                  {% if tour.feedback_status == "Provided" %}
+                  <i class="bi bi-check2-circle" style="font-size: 1.5rem; color: green;"></i>
+                  {% elif tour.feedback_status == "Request sent" %}
+                  <i class="bi bi-envelope-check" style="font-size: 1.5rem; color: orange;"></i>
+                  {% else %}
+                  <i class="bi bi-envelope-x" style="font-size: 1.5rem; color: red;"></i>
+                  {% endif %}
+                </td>
                 <td>{{tour.nocc_person_assigned}}</td>
                 <td>{{tour.status}}</td>
             </tr>
