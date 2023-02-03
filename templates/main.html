@@ -38,10 +38,10 @@
             <tbody id="myTable" class="table-group-divider">
       {%for tour in tours %}
             <tr {%if tour.status == "Approved" %} class="table-success" {% else %} class="table-warning" {% endif %}>
-                <td>{{tour.tour_name}}</td>
-                <td>{{tour.requestor_name}}</td>
-                <td>{{tour.poc_name}}</td>
-                <td>{{tour.division}}</td>
+                <td class="w-25">{{tour.tour_name}}</td>
+                <td class="w-25">{{tour.requestor_name}}</td>
+                <td class="w-25">{{tour.poc_name}}</td>
+                <td class="w-25">{{tour.division}}</td>
                 <td>{{tour.location}}</td>
                 <td>{{tour.date}}</td>
                 <td>{{tour.start_time}}</td>
