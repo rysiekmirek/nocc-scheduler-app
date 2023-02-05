@@ -7,7 +7,7 @@
     <div class="row">
       <div class="col"> <h4> <b> Tour "{{tour_data.tour_name}}" </b></h4></div>
 
-      <div class="btn-group text-end btn-group-sm col" role="group">
+      <div class="btn-group btn-group-sm col justify-content-md-end" role="group">
         <form action="/status-change/{{ tour_data.id }}/" method="POST" id="status-change">
           {% csrf_token %}
       <input type="radio" class="btn-check" value="Rejected" name="f_status" id="danger-outlined" autocomplete="off" {% if tour_data.status == "Rejected" %} checked {% endif %} onclick="this.form.submit()">
