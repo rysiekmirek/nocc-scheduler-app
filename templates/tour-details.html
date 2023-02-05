@@ -6,9 +6,9 @@
     <hr>
 
     <div class="container-md mx-auto">
+      <div class="container">
       <form action="" method="post">
         {% csrf_token %}
-      <div class="container">
         <div class="row">
         {% for field in form_edit %}
           <div class="form-floating my-2 col-md">
