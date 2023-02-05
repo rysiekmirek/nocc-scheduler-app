@@ -4,11 +4,12 @@
 
 
   <div class="text-start container-md mx-auto">
-    <h4> <b> Tour "{{tour_data.tour_name}}" </b></h4>
-      <hr>
-  <form action="/status-change/{{ tour_data.id }}/" method="POST" id="status-change">
-    {% csrf_token %}
-      <div class="btn-group px-4 py-3 my-3 text-center btn-group-sm" role="group">
+    <div class="row">
+      <div class="col"> <h4> <b> Tour "{{tour_data.tour_name}}" </b></h4></div>
+
+      <form action="/status-change/{{ tour_data.id }}/" method="POST" id="status-change">
+          {% csrf_token %}
+      <div class="btn-group px-4 py-3 my-3 text-center btn-group-sm col" role="group">
       <div class="input-group-text" id="btnGroupAddon">Status</div>
       <input type="radio" class="btn-check" value="Rejected" name="f_status" id="danger-outlined" autocomplete="off" {% if tour_data.status == "Rejected" %} checked {% endif %} onclick="this.form.submit()">
       <label class="btn btn-outline-danger" for="danger-outlined">Rejected</label>
@@ -24,7 +25,7 @@
       </div>
   </form>
 </div>
-
+</div>
 
     <div class="container-md mx-auto">
       <hr>
