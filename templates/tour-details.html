@@ -11,15 +11,15 @@
         {% for field in form_edit %}
           <div class="form-floating my-2">
             {% if field.name == "location" %}
-            <input id="id_location" name="location" class="form-control form-control-sm" placeholder="Location" value="{{ selected_location }}" disabled></input>
+                <input id="id_location" name="location" class="form-control form-control-sm" placeholder="Location" value="{{ selected_location }}" disabled></input>
             {%elif field.name == "nocc_person_assigned"%}
-              <select id="id_nocc_person_assigned" name="nocc_person_assigned" class="form-control form-control-sm" placeholder="NOCC person assigned">
+                <select id="id_nocc_person_assigned" name="nocc_person_assigned" class="form-control form-control-sm" placeholder="NOCC person assigned">
                 <option value="None">None</option>
                 {% for person in nocc_representatives_list %}
                   {%if person.name == selected_nocc_representative %}
-                  <option value="{{person.name}}" selected>{{person.name}}</option>
+                      <option value="{{person.name}}" selected>{{person.name}}</option>
                   {%else%}
-                  <option value="{{person.name}}">{{person.name}}</option>
+                      <option value="{{person.name}}">{{person.name}}</option>
                   {%endif%}
                 {%endfor%}
               </select>
@@ -33,7 +33,12 @@
             <label class="px-4" for="{{ field.auto_id }}"> {{ field.label }} </label>
             <i><small style="color:#e70a0a">{{ field.errors }}</small></i>
           </div>
-          {% endfor %}
+
+          {% if forloop.counter|divisibleby:"4" %}
+                        <br>
+                    {% endif %}
+
+        {% endfor %}
 
           <div class="form-floating my-2">
           <input id="id_created" name="created" class="form-control form-control-sm" placeholder="Form submitted" value="{{tour_data.created}}" disabled></input>
