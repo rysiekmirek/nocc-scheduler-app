@@ -90,14 +90,20 @@
       <h4 class="text-start">Feedback results</h4>
       <hr>
       {% if tour_data.feedback_status == 'Provided' %}
-
+      <div class="row">
       {% for field in form_feedback %}
-      <div class="form-floating my-2">
+      <div class="form-floating my-2 col">
         {{ field }}
         <label class="px-4" for="{{ field.auto_id }}"> {{ field.label }} </label>
         <i><small style="color:#e70a0a">{{ field.errors }}</small></i>
         </div>
+
+        {% if forloop.counter|divisibleby:"6" %}
+        </div> <div class="row">
+        {% endif %}
+
       {%  endfor  %}
+      </div>
       
       {% else %}
 
