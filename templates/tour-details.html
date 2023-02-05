@@ -7,7 +7,6 @@
   <div class="text-end container-md mx-auto">
   <form action="/status-change/{{ tour_data.id }}/" method="POST" id="status-change">
     {% csrf_token %}
-  <h5 class="text-start"> Status </h5>
       <div class="btn-group px-4 py-3 my-3 text-center btn-group-sm" role="group">
       
       <input type="radio" class="btn-check" value="Rejected" name="f_status" id="danger-outlined" autocomplete="off" {% if tour_data.status == "Rejected" %} checked {% endif %} onclick="this.form.submit()">
