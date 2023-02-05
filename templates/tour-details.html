@@ -2,10 +2,9 @@
 
 {% block content %}
 
-<div> <h4> <b> Tour details </b></h4>
-
   <div class="text-end container-md mx-auto">
-    <h4 class="text-start">Tour status</h4>
+    <h4 class="text-start"> <b> Tour details </b></h4>
+    <h5 class="text-end">Tour status</h5>
   <form action="/status-change/{{ tour_data.id }}/" method="POST" id="status-change">
     {% csrf_token %}
   <div class="btn-group px-4 py-3 my-3 text-center" role="group">
@@ -24,8 +23,6 @@
   </form>
 </div>
 
-
-</div>
     <hr>
 
     <div class="container-md mx-auto">
