@@ -4,7 +4,7 @@
 
 
   <div class="text-start container-md mx-auto">
-    <h4 class="text-start"> <b> Tour "{{tour_data.tour_name}}" </b></h4>
+    <h4> <b> Tour "{{tour_data.tour_name}}" </b></h4>
       <hr>
   <form action="/status-change/{{ tour_data.id }}/" method="POST" id="status-change">
     {% csrf_token %}
