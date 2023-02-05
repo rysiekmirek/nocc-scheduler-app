@@ -10,7 +10,6 @@
       <div class="btn-group px-4 py-3 my-3 text-end btn-group-sm col" role="group">
         <form action="/status-change/{{ tour_data.id }}/" method="POST" id="status-change">
           {% csrf_token %}
-      <div class="input-group-text" id="btnGroupAddon">Status</div>
       <input type="radio" class="btn-check" value="Rejected" name="f_status" id="danger-outlined" autocomplete="off" {% if tour_data.status == "Rejected" %} checked {% endif %} onclick="this.form.submit()">
       <label class="btn btn-outline-danger" for="danger-outlined">Rejected</label>
 
