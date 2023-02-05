@@ -137,7 +137,7 @@ class TourFormDetails(ModelForm):
                 'class': 'form-control form-control-sm',
                 'placeholder': field.label,
                 })
-            if name not in ['tour_name', 'customer_or_group_name', 'nocc_person_assigned']:
+            if name not in ['nocc_person_assigned']:
                 field.disabled = True
 
 
