@@ -2,11 +2,13 @@
 
 {% block content %}
 <h4 class="text-start"> <b> Tour {{tour_data.tour_name}} </b></h4>
+<hr>
 
   <div class="text-end container-md mx-auto">
   <form action="/status-change/{{ tour_data.id }}/" method="POST" id="status-change">
     {% csrf_token %}
   <div class="btn-group px-4 py-3 my-3 text-center" role="group">
+  <h5 class="text-start"> Tour {{tour_data.tour_name}}</h5> 
   <input type="radio" class="btn-check" value="Rejected" name="f_status" id="danger-outlined" autocomplete="off" {% if tour_data.status == "Rejected" %} checked {% endif %} onclick="this.form.submit()">
   <label class="btn btn-outline-danger btn-sm" for="danger-outlined">Rejected</label>
 
