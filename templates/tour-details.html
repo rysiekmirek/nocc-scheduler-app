@@ -12,13 +12,13 @@
   <label class="btn btn-outline-danger btn-sm" for="danger-outlined">Rejected</label>
 
   <input type="radio" class="btn-check" value="Requested" name="f_status" id="warning-outlined" autocomplete="off" {% if tour_data.status == "Requested" %} checked {% endif %} onclick="this.form.submit()">
-  <label class="btn btn-outline-warning" for="warning-outlined">Requested</label>
+  <label class="btn btn-outline-warning btn-sm" for="warning-outlined">Requested</label>
 
   <input type="radio" class="btn-check" value="Approved" name="f_status" id="success-outlined" autocomplete="off" {% if tour_data.status == "Approved" %} checked {% endif %} onclick="this.form.submit()">
-  <label class="btn btn-outline-success" for="success-outlined">Approved</label>
+  <label class="btn btn-outline-success btn-sm" for="success-outlined">Approved</label>
 
   <input type="radio" class="btn-check" value="Canceled" name="f_status" id="secondary-outlined" autocomplete="off" {% if tour_data.status == "Canceled" %} checked {% endif %} onclick="this.form.submit()">
-  <label class="btn btn-outline-secondary" for="secondary-outlined">Canceled</label>
+  <label class="btn btn-outline-secondary btn-sm" for="secondary-outlined">Canceled</label>
 </div>
   </form>
 </div>
