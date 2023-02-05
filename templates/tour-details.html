@@ -6,7 +6,6 @@
 
   <div class="text-end container-md mx-auto">
     <h4 class="text-start">Tour status</h4>
-  <hr>
   <form action="/status-change/{{ tour_data.id }}/" method="POST" id="status-change">
     {% csrf_token %}
   <div class="btn-group px-4 py-3 my-3 text-center" role="group">
