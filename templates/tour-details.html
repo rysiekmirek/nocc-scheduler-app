@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h4 class="text-start"> <b> Tour {{tour_data.tour_name}} </b></h4>
 
   <div class="text-end container-md mx-auto">
-    <h4 class="text-start"> <b> Tour details </b></h4>
   <form action="/status-change/{{ tour_data.id }}/" method="POST" id="status-change">
     {% csrf_token %}
   <div class="btn-group px-4 py-3 my-3 text-center" role="group">
@@ -81,7 +81,7 @@
       
       
 
-    <div class="px-4 py-3 my-3 text-center container-md mx-auto col-6">
+    <div class="px-4 py-3 my-3 text-center container-md mx-auto ">
       <h4 class="text-start">Feedback results</h4>
       <hr>
       {% if tour_data.feedback_status == 'Provided' %}
