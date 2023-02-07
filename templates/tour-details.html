@@ -2,7 +2,7 @@
 
 {% block content %}
 
-
+ {{ today }}
   <div class="text-start container-md mx-auto style='font-size:90%'">
     <div class="row">
       <div class="col"> <h4> <b> Tour "{{tour_data.tour_name}}" </b></h4></div>
@@ -11,7 +11,7 @@
         <form action="/status-change/{{ tour_data.id }}/" method="POST" id="status-change">
           {% csrf_token %}
       <input type="radio" class="btn-check" value="Rejected" name="f_status" id="danger-outlined" autocomplete="off" {% if tour_data.status == "Rejected" %} checked {% endif %} onclick="this.form.submit()">
-      <label class="btn btn-outline-danger" for="danger-outlined" disabled>Rejected</label>
+      <label class="btn btn-outline-danger" for="danger-outlined">Rejected</label>
 
       <input type="radio" class="btn-check" value="Requested" name="f_status" id="warning-outlined" autocomplete="off" {% if tour_data.status == "Requested" %} checked {% endif %} onclick="this.form.submit()">
       <label class="btn btn-outline-warning" for="warning-outlined">Requested</label>

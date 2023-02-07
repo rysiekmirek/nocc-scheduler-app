@@ -56,6 +56,7 @@ def tour_details(request, pk):
         'selected_nocc_representative': tour_data.nocc_person_assigned,
         'selected_location': location.location,
         'tour_data': tour_data,
+        'today': datetime.now().date(),
         'form_edit': TourFormDetails(initial=initial_tour_data),
         'form_feedback': TourFormFeedbackDetails(initial=initial_tour_data),
     }
