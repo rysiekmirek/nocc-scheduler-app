@@ -372,15 +372,15 @@ def send_email_ics(pk):
     # Create the email message
     msg = EmailMultiAlternatives(subject, message, from_email, to_email)
     msg.attach_alternative(html_content, "text/html")
-    msg.attach_file(f'/var/www/NoccSchedulerApp/media/ics_files/{filename}', 'text/calendar')
+    msg.attach_file(f'{directory}/{filename}', 'text/calendar')
 
 
     # Send the email
     msg.send()
-    # try:
-    #     os.remove(f'media/ics_files/{filename}')
-    # except:
-    #     print ('File not removed')
+    try:
+        os.remove(f'{directory}/{filename}')
+    except:
+        print ('File not removed')
 
 def send_email(template, tour_data, subject='', html_content='', to=[]):
     
