@@ -51,7 +51,7 @@ def tour_details(request, pk):
 
     location = Location.objects.get(id=tour_data.location_id)
 
-    if tour_data.date < datetime.now().date():
+    if tour_data.date < datetime.now().date() or tour_data.status == 'Rejected' or tour_data.status == 'Canceled':
         disable_edit = True
     else:
         disable_edit = False
