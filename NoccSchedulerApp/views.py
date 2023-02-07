@@ -347,7 +347,7 @@ def send_email_ics(pk):
 
     directory = str(Path(__file__).parent.parent) + "/media/ics_files/"
     print("ics file will be generated at ", directory)
-    filename=f'invitation{tour_data.date}-{tour_data.start_time}.ics'
+    filename=f'invitation-{tour_data.date}-{tour_data.start_time}.ics'
     f = open(os.path.join(directory, filename), 'wb')
     f.write(cal.to_ical())
     f.close()
@@ -377,10 +377,10 @@ def send_email_ics(pk):
 
     # Send the email
     msg.send()
-    try:
-        os.remove(f'media/ics_files/{filename}')
-    except:
-        print ('File not removed')
+    # try:
+    #     os.remove(f'media/ics_files/{filename}')
+    # except:
+    #     print ('File not removed')
 
 def send_email(template, tour_data, subject='', html_content='', to=[]):
     
