@@ -35,7 +35,7 @@
         {% csrf_token %}
         <div class="row">
         {% for field in form_edit %}
-          <div class="form-floating my-2 col-md">
+          <div class="col-md">
             {% if field.name == "location" %}
                 <input id="id_location" name="location" class="form-control form-control-sm" placeholder="Location" value="{{ selected_location }}" disabled></input>
             {%elif field.name == "nocc_person_assigned"%}
