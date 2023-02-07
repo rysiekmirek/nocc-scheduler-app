@@ -110,7 +110,7 @@ class TourFormFeedbackDetails(ModelForm):
         for name, field in self.fields.items():
             field.widget.attrs.update({
                 'class': 'form-control form-control-sm',
-                'placeholder': field.label,
+                'placeholder': field.value,
                 })
             field.disabled = True
 
