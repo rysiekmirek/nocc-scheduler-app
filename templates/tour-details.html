@@ -33,7 +33,7 @@
       <div class="container">
       <form action="" method="post">
         {% csrf_token %}
-        <div class="my-1 row">
+        <div class="my-2 row">
         {% for field in form_edit %}
           <div class="col-md">
             <label class="mx-2" for="{{ field.auto_id }}"> <b> {{ field.label }} </b></label>
