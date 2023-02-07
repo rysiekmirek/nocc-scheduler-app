@@ -134,7 +134,7 @@ class TourFormDetails(ModelForm):
 
         for name, field in self.fields.items():   
             field.widget.attrs.update({
-                #'class': 'form-control form-control-sm',
+                'class': 'form-control form-control-sm',
                 'placeholder': field.label,
                 })
             if name not in ['nocc_person_assigned']:
