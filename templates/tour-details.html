@@ -80,6 +80,7 @@
           {{ form.non_field_errors }}
       
       {% if disable_edit %}
+
       {% else %} 
       <div class="px-4 py-3 my-3 text-center">
       <button type="submit" class="btn btn-primary">Update</button>
@@ -96,11 +97,11 @@
       <h4>Feedback results</h4>
       <hr>
       {% if tour_data.feedback_status == 'Provided' %}
-      <div class="row">
+      <div class="my-2 row">
       {% for field in form_feedback %}
-      <div class="form-floating my-2 col-md">
+      <div class="col-md">
+        <label class="mx-2" for="{{ field.auto_id }}"><b> {{ field.label }} </b> </label>
         {{ field }}
-        <label class="px-4" for="{{ field.auto_id }}"> {{ field.label }} </label>
         <i><small style="color:#e70a0a">{{ field.errors }}</small></i>
         </div>
 
