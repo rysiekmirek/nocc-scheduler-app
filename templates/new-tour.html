@@ -367,7 +367,7 @@
             } else {
             $('#id_start_time').empty().append('<option selected="selected" disabled value="">Choose available time</option>');
             for(var i = 0; i < options_start.length; i++) {
-                var opt = options_start[i];
+                var opt = options_start[i][0];
                 var el = document.createElement("option");
                 el.textContent = opt;
                 el.value = opt;
