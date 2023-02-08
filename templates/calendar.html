@@ -192,15 +192,9 @@
                                     <td>{{ tour.attendees_guests }}</td>
                                     <td>{{ tour.nocc_required }}</td>
                                     <td>{{ tour.location }}</td>
-                                    <td>
-                                        {{ tour.date }}
-                                    </td>
-                                    <td>
-                                        {{ tour.start_time }}
-                                    </td>
-                                    <td>
-                                        {{ tour.end_time }}
-                                    </td>
+                                    <td>{{tour.date|date:"m-d-Y"}}</td>
+                                    <td>{{tour.start_time|time:"H:i"}}</td>
+                                    <td>{{tour.end_time|time:"H:i"}}</td>
                                     <td>
                                         {{ tour.status }}
                                     </td>
