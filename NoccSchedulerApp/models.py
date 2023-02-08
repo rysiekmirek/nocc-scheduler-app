@@ -118,6 +118,19 @@ class Tour(models.Model):
 
     nocc_person_assigned = models.CharField(max_length=200,null=True, blank=True)
 
+
+    WELCOME_SCREEN_CHOICES = [
+        ('No', 'No'),
+        ('Yes', 'Yes'),
+    ]
+    custom_welcome_screen_needed = models.CharField(
+        max_length=10,
+        choices=WELCOME_SCREEN_CHOICES,
+        default='No',
+        null=True, 
+        blank=True,
+    )
+
     comment = models.TextField(max_length=2000, null=True, blank=True)
 
 

@@ -215,7 +215,7 @@
            </div>
 
            <div style='display:none;' class="form-check" id="custom_welcome_screen_needed_id">
-            <input class="form-check-input" type="checkbox" value="yes" id="custom_welcome_screen_needed_checkbox">
+            <input class="form-check-input" type="checkbox" value="yes" id="custom_welcome_screen_needed_checkbox" name="">
             <label class="form-check-label" for="custom_welcome_screen_needed_checkbox">
               Custom welcome screen needed
             </label>
@@ -288,12 +288,10 @@
     location = document.getElementById('id_location').value;
     if ( location == '1')
           {
-            console.log('welcome screen button should be visibe');
             $("#custom_welcome_screen_needed_id").show();
           }
           else
           {
-            console.log('welcome screen button should be not visibe');
             $("#custom_welcome_screen_needed_id").hide();
           }
 
