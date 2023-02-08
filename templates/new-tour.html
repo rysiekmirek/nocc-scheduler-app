@@ -286,6 +286,16 @@
     var location;
     date = document.getElementById('id_date').value;
     location = document.getElementById('id_location').value;
+    if ( location == 'Cambridge')
+          {
+            $("#custom_welcome_screen_needed_id").show();
+          }
+          else
+          {
+            $("#custom_welcome_screen_needed_id").hide();
+          }
+
+
     $.ajax(
     {
         type:"GET",
@@ -329,17 +339,6 @@
             console.log("Should be start and end time time");
           }
      })
-
-     if ( location == 'Cambridge')
-          {
-            $("#custom_welcome_screen_needed_id").show();
-          }
-          else
-          {
-            $("#custom_welcome_screen_needed_id").hide();
-          }
-
-
     }).change();
 
 
