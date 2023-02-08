@@ -400,11 +400,25 @@ def send_email_ics(pk):
                 tour_data.cc_this_request_to, 'rmirek@akamai.com']
 
     html_content = f'<p>Hi {tour_data.requestor_name}, <br>' +\
-        f'Your NOCC visit has been approved with the following details {tour_data.location}\'s NOCC office <br>' +\
+        f'Your NOCC visit has been approved with the following details:' +\
+        f'<br> Location: {tour_data.location}\'s NOCC office <br>' +\
         f'Date: {tour_data.date} <br>' +\
         f'Time: {tour_data.start_time} - {tour_data.end_time} <br>' +\
-        f'Time zone: {aware_combined_date_time_start.tzinfo} </p>' +\
+        f'Time zone: {aware_combined_date_time_start.tzinfo} ' +\
+        f'Person assigned: {tour_data.nocc_person_assigned} </p>' +\
         f'Please find calendar invitation attached.'
+
+    html_content += f'<br><h3>Other tour details:</h3>'
+    for key, data in tour_data.__dict__.items():
+        if key == '_state':
+            key = ''
+            data = ''
+        else:
+            html_content += "<b>" + str(key) + "</b> : "
+            html_content += "<i>" + str(data) + "</i><br>"
+            if key == "status":
+                break
+
     # add footer to the email
     html_content += f'<br> Regards, <br> <br> <hr> <br> <b>Akamai Technologies NOCC </b> <br> <b>e-mail:</b> nocc-shift@akamai.com <br> <a href="http://www.akamai.com"> www.akamai.com </a>' \
                     f'<br> <b> Phone: </b> 1-877-6-AKAMAI (1-877-625-2624) | International +1-617-444-3007'
