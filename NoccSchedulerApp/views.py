@@ -296,8 +296,8 @@ def get_avail_times(request):
                 # end_times = list(set(end_times) -
                 #                  set(existing_tours_times[1:]))
 
-            d_start_times = dict(sorted(d_start_times.items(), key=lambda item : item[1]))
-            d_end_times = dict(sorted(d_end_times.items(), key=lambda item : item[1]))
+            d_start_times = dict(sorted(d_start_times.items(), key=lambda item: item[1]))
+            d_end_times = dict(sorted(d_end_times.items(), key=lambda item: item[1]))
             print(d_start_times)
             print(d_end_times)
 
