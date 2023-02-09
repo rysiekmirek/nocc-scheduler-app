@@ -275,7 +275,7 @@ def get_avail_times(request):
                 tour_end_time = tour['end_time']
                 i = tour_start_time
                 while i <= tour_end_time:
-                    print('i',i,'-----------------start times',start_times,'----------------', start_times['10:00'][1])
+                    #print('i',i,'-----------------start times',start_times,'----------------', start_times['10:00'][1])
                     i= i.strftime("%H:%M")
                     if any(i in sl for sl in start_times):
                         print(i,' in start times')
