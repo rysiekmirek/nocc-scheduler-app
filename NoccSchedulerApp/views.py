@@ -396,6 +396,7 @@ def send_email_ics(pk):
     from_email = 'nvs@akamai.com'
     to_email = [tour_data.requestor_email, tour_data.poc_email,
                 tour_data.cc_this_request_to, 'rmirek@akamai.com']
+                
     if tour_data.custom_welcome_screen_needed == 'Yes':
         to_email.append('marketing-dummy-test-mail@akamai.com')
 
