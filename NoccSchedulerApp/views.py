@@ -275,31 +275,16 @@ def get_avail_times(request):
                 tour_end_time = tour['end_time']
                 i = tour_start_time
                 while i < tour_end_time:
-                    #print('i',i,'-----------------start times',start_times,'----------------', start_times['10:00'][1])
                     str_i= i.strftime("%H:%M")
                     if str_i in d_start_times:
-                        print(str_i,' in start times')
                         d_start_times[str_i] = 0
-                        print('d_start_times[i]',d_start_times[str_i])
-                    #existing_tours_times.append(i.strftime("%H:%M"))
-                    i = (datetime.combine(date.today(), i) +
-                         timedelta(minutes=30)).time()
-                    print('second i', i)
+                    i = (datetime.combine(date.today(), i) + timedelta(minutes=30)).time()
                     str_i = i.strftime("%H:%M")
                     if str_i in d_end_times:
-                        print(str_i,' in end times')
                         d_end_times[str_i] = 0
-    
-
-                # start_times = list(set(start_times) -
-                #                    set(existing_tours_times[:-1]))
-                # end_times = list(set(end_times) -
-                #                  set(existing_tours_times[1:]))
 
             d_start_times = dict(sorted(d_start_times.items()))
             d_end_times = dict(sorted(d_end_times.items()))
-            print(d_start_times)
-            print(d_end_times)
 
         except:
             d_start_times = {}
