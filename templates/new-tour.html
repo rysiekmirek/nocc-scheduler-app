@@ -367,7 +367,7 @@
             } else {
             $('#id_start_time').empty().append('<option selected="selected" disabled value="">Choose available time</option>');
             for(let time in options_start) {
-                var opt = options_start[time];
+                var opt = time;
                 var el = document.createElement("option");
                 el.textContent = opt;
                 el.value = opt;
@@ -384,7 +384,7 @@
             } else {
             $('#id_end_time').empty().append('<option selected="selected" disabled value="">Choose end time</option>');
             for(let time in options_end) {
-                var opt = options_end[time];
+                var opt = time;
                 var el = document.createElement("option");
                 el.textContent = opt;
                 el.value = opt;
