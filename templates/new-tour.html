@@ -310,33 +310,41 @@
             var select_start = document.getElementById("id_start_time");
             var select_end = document.getElementById("id_end_time");
             var options_start = response['start_times'];
-            if (options_start == ""){
+            if (Object.keys(options_start).length === 0){
               console.log("No start times");
               $('#id_start_time').empty().append('<option selected="selected" value="">No available times</option>');
             } else {
             $('#id_start_time').empty().append('<option selected="selected" disabled value="">Choose available time</option>');
-            for(var i = 0; i < options_start.length; i++) {
-                var opt = options_start[i];
+            for(let time in options_start) {
+                var opt = time;
                 var el = document.createElement("option");
                 el.textContent = opt;
                 el.value = opt;
+                if (options_start[time] == 0) {
+                  el.style.color = "#D3D3D3";
+                  el.disabled = true;
+                }
                 select_start.appendChild(el);
             }}
+
             options_end = response['end_times']; //we need options_end to be global variable
-            if (options_end == ""){
+            if (Object.keys(options_end).length === 0){
               console.log("No end times");
               $('#id_end_time').empty().append('<option selected="selected" value="">No end time</option>');
             } else {
             $('#id_end_time').empty().append('<option selected="selected" disabled value="">Choose end time</option>');
-            for(var i = 0; i < options_end.length; i++) {
-                var opt = options_end[i];
+            for(let time in options_end) {
+                var opt = time;
                 var el = document.createElement("option");
                 el.textContent = opt;
                 el.value = opt;
-                select_end.appendChild(el);
-            }
-          }
-            console.log("Should be start and end time time");
+                if (options_end[time] == 0) {
+                  el.style.color = "#D3D3D3";
+                  el.disabled = true;
+                }
+                select_start.appendChild(el);
+            }}
+            console.log("Should be start and end time");
           }
      })
     }).change();
