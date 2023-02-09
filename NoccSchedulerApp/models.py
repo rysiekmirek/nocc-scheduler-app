@@ -188,4 +188,4 @@ class Tour(models.Model):
     
 
     def __str__(self):
-        return self.tour_name + str(self.start_time) + str(self.end_time)
+        return f'{self.tour_name}-{self.start_time}-{self.end_time}'
