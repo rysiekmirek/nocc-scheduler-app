@@ -296,18 +296,17 @@ def get_avail_times(request):
                 # end_times = list(set(end_times) -
                 #                  set(existing_tours_times[1:]))
 
-            
-            end_times = sorted(end_times)
-            start_times = sorted(start_times)
+            d_start_times = dict(sorted(d_start_times.items(), key=lambda item : item[1]))
+            d_end_times = dict(sorted(d_end_times.items(), key=lambda item : item[1]))
             print(d_start_times)
             print(d_end_times)
 
         except:
-            start_times = ""
-            end_times = ""
+            d_start_times = {}
+            d_end_times = {}
     else:
-        start_times = ""
-        end_times = ""
+        d_start_times = {}
+        d_end_times = {}
 
     return JsonResponse({
         "start_times": d_start_times,
