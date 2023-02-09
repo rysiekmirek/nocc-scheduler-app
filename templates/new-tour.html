@@ -366,12 +366,12 @@
               $('#id_start_time').empty().append('<option selected="selected" value="">No available times</option>');
             } else {
             $('#id_start_time').empty().append('<option selected="selected" disabled value="">Choose available time</option>');
-            for(var i = 0; i < options_start.length; i++) {
-                var opt = options_start[i][0];
+            for(let time in options_start) {
+                var opt = options_start[time];
                 var el = document.createElement("option");
                 el.textContent = opt;
                 el.value = opt;
-                if (options_start[i][1] == 0) {
+                if (options_start[time] == 0) {
                   el.style.color = "#D3D3D3";
                   el.disabled = true;
                 }
@@ -383,18 +383,18 @@
               $('#id_end_time').empty().append('<option selected="selected" value="">No end time</option>');
             } else {
             $('#id_end_time').empty().append('<option selected="selected" disabled value="">Choose end time</option>');
-            for(var i = 0; i < options_end.length; i++) {
-                var opt = options_end[i][0];
+            for(let time in options_end) {
+                var opt = options_end[time];
                 var el = document.createElement("option");
                 el.textContent = opt;
                 el.value = opt;
-                if (options_end[i][1] == 0) {
+                if (options_end[time] == 0) {
                   el.style.color = "#D3D3D3";
                   el.disabled = true;
                 }
                 select_end.appendChild(el);
             }}
-            console.log("Should be start and end time time");
+            console.log("Should be start and end time");
           }
      })
     }).change();
