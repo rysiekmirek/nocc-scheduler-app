@@ -409,16 +409,16 @@
 
     $('#id_start_time').on('change', function() {
 
-        var options_end_filter = {...options_end}
+        var options_end_filter = {...options_end};
 
         let n = 0;
         let len = Object.keys(options_end_filter).length;
 
         for (let time in options_end_filter){
+            delete options_end_filter[time];
             if (time === this.value){
-              delete options_end_filter[time]
+              break;
             }
-
         }
 
         // while (n < len) {
@@ -431,8 +431,8 @@
         //   n++;
         // }
 
-        if (options_end_filter.length === 0){
-          options_end_filter = options_end.slice(0)
+        if (Object.keys(options_end_filter).length === 0){
+          options_end_filter = {...options_end};
         }
 
         var select_end = document.getElementById("id_end_time");
