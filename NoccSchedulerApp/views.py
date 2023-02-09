@@ -264,24 +264,24 @@ def get_avail_times(request):
                 start_times.append([entry.strftime("%H:%M"),1])
                 entry = (datetime.combine(date.today(), entry) +
                          timedelta(minutes=30)).time()
-                end_times.append([entry.strftime("%H:%M"),0])
+                end_times.append([entry.strftime("%H:%M"),1])
 
-            # other_tours_that_day = Tour.objects.filter(date=f_date, location=f_location).exclude(
-            #     status="Rejected").exclude(status="Canceled").values()
-            # for tour in other_tours_that_day:
-            #     existing_tours_times = []
-            #     tour_start_time = tour['start_time']
-            #     tour_end_time = tour['end_time']
-            #     i = tour_start_time
-            #     while i <= tour_end_time:
-            #         existing_tours_times.append(i.strftime("%H:%M"))
-            #         i = (datetime.combine(date.today(), i) +
-            #              timedelta(minutes=30)).time()
-            #     start_times = list(set(start_times) -
-            #                        set(existing_tours_times[:-1]))
-            #     end_times = list(set(end_times) -
-            #                      set(existing_tours_times[1:]))
-            #     print(existing_tours_times)
+            other_tours_that_day = Tour.objects.filter(date=f_date, location=f_location).exclude(
+                status="Rejected").exclude(status="Canceled").values()
+            for tour in other_tours_that_day:
+                existing_tours_times = []
+                tour_start_time = tour['start_time']
+                tour_end_time = tour['end_time']
+                i = tour_start_time
+                while i <= tour_end_time:
+                    existing_tours_times.append(i.strftime("%H:%M"))
+                    i = (datetime.combine(date.today(), i) +
+                         timedelta(minutes=30)).time()
+                # start_times = list(set(start_times) -
+                #                    set(existing_tours_times[:-1]))
+                # end_times = list(set(end_times) -
+                #                  set(existing_tours_times[1:]))
+                print(existing_tours_times)
 
             end_times = sorted(end_times)
             start_times = sorted(start_times)
