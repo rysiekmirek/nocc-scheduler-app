@@ -409,40 +409,50 @@
 
     $('#id_start_time').on('change', function() {
 
-        var options_end_filter = options_end.slice(0)
+        var options_end_filter = {...options_end}
 
         let n = 0;
-        let len = options_end_filter.length;
+        let len = Object.keys(options_end_filter).length;
 
+        for (let time in options_end_filter){
+            if (time === this.value){
+              delete options_end_filter[time]
+            }
 
-        while (n < len) {
-
-          if (options_end_filter[0] === this.value) {
-          options_end_filter.shift(); //we need to delete 1 more entry before break
-          break;
-          }
-          options_end_filter.shift();
-          n++;
         }
 
+        // while (n < len) {
+
+        //   if (options_end_filter[0] === this.value) {
+        //   options_end_filter.shift(); //we need to delete 1 more entry before break
+        //   break;
+        //   }
+        //   options_end_filter.shift();
+        //   n++;
+        // }
+
         if (options_end_filter.length === 0){
-          options_end_filter =options_end.slice(0)
+          options_end_filter = options_end.slice(0)
         }
 
         var select_end = document.getElementById("id_end_time");
 
-        if (options_end_filter == ""){
+        if (Object.keys(options_end_filter).length === 0){
             console.log("No end times");
             $('#id_end_time').empty().append('<option selected="selected" value="">No end time</option>');
           } else {
           $('#id_end_time').empty().append('<option selected="selected" disabled value="">Choose end time</option>');
-          for(var i = 0; i < options_end_filter.length; i++) {
-              var opt = options_end_filter[i];
-              var el = document.createElement("option");
-              el.textContent = opt;
-              el.value = opt;
-              select_end.appendChild(el);
-          }}
+          for(let time in options_end_filter) {
+                var opt = time;
+                var el = document.createElement("option");
+                el.textContent = opt;
+                el.value = opt;
+                if (options_end_filter[time] == 0) {
+                  el.style.color = "#D3D3D3";
+                  el.disabled = true;
+                }
+                select_end.appendChild(el);
+            }}
         }).change();
 
 </script>
