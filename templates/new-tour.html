@@ -361,7 +361,7 @@
             var select_start = document.getElementById("id_start_time");
             var select_end = document.getElementById("id_end_time");
             var options_start = response['start_times'];
-            if (options_start == ""){
+            if (Object.keys(options_start).length === 0){
               console.log("No start times");
               $('#id_start_time').empty().append('<option selected="selected" value="">No available times</option>');
             } else {
@@ -378,7 +378,7 @@
                 select_start.appendChild(el);
             }}
             options_end = response['end_times']; //we need options_end to be global variable
-            if (options_end == ""){
+            if (Object.keys(options_end).length === 0){
               console.log("No end times");
               $('#id_end_time').empty().append('<option selected="selected" value="">No end time</option>');
             } else {
