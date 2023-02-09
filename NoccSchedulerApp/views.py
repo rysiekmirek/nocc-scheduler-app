@@ -258,15 +258,15 @@ def get_avail_times(request):
                 avail_start_time, "%H:%M").time()
             avail_end_time = datetime.strptime(avail_end_time, "%H:%M").time()
             entry = avail_start_time
-            start_times = []
-            end_times = []
+            d_start_times = {}
+            d_end_times = {}
             while entry < avail_end_time:
-                start_times.append([entry.strftime("%H:%M"),1])
+                d_start_times[entry.strftime("%H:%M")] = 1
                 entry = (datetime.combine(date.today(), entry) +
                          timedelta(minutes=30)).time()
-                end_times.append([entry.strftime("%H:%M"),1])
+                d_end_times[entry.strftime("%H:%M")] = 1
 
-            #print(start_times)
+            print(d_start_times)
 
             other_tours_that_day = Tour.objects.filter(date=f_date, location=f_location).exclude(
                 status="Rejected").exclude(status="Canceled").values()
@@ -296,8 +296,8 @@ def get_avail_times(request):
             
             end_times = sorted(end_times)
             start_times = sorted(start_times)
-            print(start_times)
-            print(end_times)
+            print(d_start_times)
+            print(d_end_times)
 
         except:
             start_times = ""
@@ -307,8 +307,8 @@ def get_avail_times(request):
         end_times = ""
 
     return JsonResponse({
-        "start_times": start_times,
-        "end_times": end_times,
+        "start_times": d_start_times,
+        "end_times": d_end_times,
     })
 
 
