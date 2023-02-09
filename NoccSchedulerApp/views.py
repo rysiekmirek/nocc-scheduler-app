@@ -280,7 +280,7 @@ def get_avail_times(request):
                     i= i.strftime("%H:%M")
                     if any(i in sl for sl in start_times):
                         print(i,' in start times')
-                        start_times[i][1]=0
+                        print(start_times[i][1])
                     #existing_tours_times.append(i.strftime("%H:%M"))
                     i = (datetime.combine(date.today(), i) +
                          timedelta(minutes=30)).time()
