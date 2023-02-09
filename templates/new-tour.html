@@ -411,25 +411,12 @@
 
         var options_end_filter = {...options_end};
 
-        let n = 0;
-        let len = Object.keys(options_end_filter).length;
-
         for (let time in options_end_filter){
             delete options_end_filter[time];
             if (time === this.value){
               break;
             }
         }
-
-        // while (n < len) {
-
-        //   if (options_end_filter[0] === this.value) {
-        //   options_end_filter.shift(); //we need to delete 1 more entry before break
-        //   break;
-        //   }
-        //   options_end_filter.shift();
-        //   n++;
-        // }
 
         if (Object.keys(options_end_filter).length === 0){
           options_end_filter = {...options_end};
