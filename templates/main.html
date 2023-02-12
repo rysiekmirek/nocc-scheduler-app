@@ -52,7 +52,7 @@
                 <td>{{tour.attendees_guests}}</td> -->
                 <td>
                   {% if tour.feedback_status == "Provided" %}
-                  <i title="Feedback provided" class="bi bi-check2-circle" style="font-size: 1.3rem; color: green;"></i>
+                  <i title="Feedback provided" class="bi bi-list-check" style="font-size: 1.3rem; color: green;"></i>
                   {% elif tour.feedback_status == "Request sent" %}
                   <i title="Feedback request sent" class="bi bi-send-check-fill" style="font-size: 1.3rem; color: orange;"></i>
                   {% else %}
@@ -61,7 +61,15 @@
 
                 </td>
                 <td>{{tour.nocc_person_assigned}}</td>
-                <td>{{tour.status}}</td>
+                <td>
+                  {% if tour.status == "Requested" %}
+                  <i title="Requested" class="bi bi-question-circle" style="font-size: 1.3rem; color: rgb(0, 0, 0);"></i>
+                  {% else %}
+                  <i title="Approved" class="bi bi-send-x-fill" style="font-size: 1.3rem; color: red;"></i>
+                  {% endif %}
+                  {{tour.status}}
+
+                </td>
                 {% if request.user.is_authenticated %}
                 <td>
                   <form>
