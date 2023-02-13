@@ -110,7 +110,7 @@
                     <tr>
                         {% for day in week %}
                             <td {% for tour in tours %} {% if tour.date == day %} class="day_with_tour {% if today == day %}table-primary {% else %}table-secondary{% endif %}"
-                                id="{{ day|date:"m/d/Y" }}"
+                                id="{{ day|date:"Y-n-d" }}"
                                 {% endif %}
                                 {% endfor %}
                                 {% if today == day %}class="table-primary"{% endif %}>
