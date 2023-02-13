@@ -169,12 +169,12 @@
                     <th scope="col">Date</th>
                     <th scope="col">Start time</th>
                     <th scope="col">End time</th>
-                    <th scope="col">Status</th>
                     <th scope="col">
                         Nocc <br>
                         Personnel <br/>
                         assigned
                     </th>
+                    <th scope="col">Status</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -196,15 +196,16 @@
                                     <td>{{tour.start_time|time:"H:i"}}</td>
                                     <td>{{tour.end_time|time:"H:i"}}</td>
                                     <td>
+                                        {{ tour.nocc_person_assigned }}
+                                    </td>
+                                    <td>
                                         {% if tour.status == "Requested" %}
                                         <i title="Requested" class="bi bi-question-circle" style="font-size: 1.3rem; color: rgb(0, 0, 0);"></i>
                                         {% else %}
                                         <i title="Approved" class="bi bi-check2-circle" style="font-size: 1.3rem; color: rgb(0, 0, 0);"></i>
                                         {% endif %}
                                     </td>
-                                    <td>
-                                        {{ tour.nocc_person_assigned }}
-                                    </td>
+
                                     {% if request.user.is_authenticated %}
                                         <td>
                                             <form>
