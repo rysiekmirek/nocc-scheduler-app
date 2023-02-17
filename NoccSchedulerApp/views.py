@@ -101,6 +101,7 @@ def archives(request):
         status="Rejected") | Q(status="Canceled")).order_by('-date', 'start_time')
     context = {
         'tours': tours,
+        'form_edit': TourFormDetails(),
     }
     return render(request, "archives.html", context)
 
