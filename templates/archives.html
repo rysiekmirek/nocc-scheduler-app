@@ -68,21 +68,13 @@
                 </td>
 
                 <td>
-                <form>
+                <!--<form>
                   {% csrf_token %}
-                <!-- <button class="btn btn-light btn-sm" formaction="/tour-details/{{tour.id}}/">Details</button> -->
+                 <button class="btn btn-light btn-sm" formaction="/tour-details/{{tour.id}}/">Details</button> -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#DetailsModal-{{tour.id}">
                   Details
                 </button>
-                
-                
-                             
-                </form>
-                </td>
-            </tr>
-          
-
-            <!-- Modal -->
+                            <!-- Modal -->
             <div class="modal fade" id="DetailsModal-{{tour.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -100,6 +92,15 @@
                 </div>
               </div>
             </div>
+                
+                
+                             
+                
+                </td>
+            </tr>
+          
+
+
 
 
           
