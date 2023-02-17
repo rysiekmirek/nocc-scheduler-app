@@ -74,13 +74,14 @@
                 <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDetails-{{tour.id}}" aria-expanded="false" aria-controls="collapseDetails-{{tour.id}}">
                   Details
                 </button>
+                <div class="collapse" id="collapseDetails-{{tour.id}}">
+                  <iframe src="/tour-details/{{tour.id}}"></iframe>
+              </div>
                              
                 </form>
                 </td>
             </tr>
-          <div class="collapse" id="collapseDetails-{{tour.id}}">
-              <iframe src="/tour-details/{{tour.id}}"></iframe>
-          </div>
+          
           
       {% endfor %}
 
