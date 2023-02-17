@@ -70,7 +70,16 @@
                 <td>
                 <form>
                   {% csrf_token %}
-                <button class="btn btn-light btn-sm" formaction="/tour-details/{{tour.id}}/">Details</button>
+                <!-- <button class="btn btn-light btn-sm" formaction="/tour-details/{{tour.id}}/">Details</button> -->
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDetails" aria-expanded="false" aria-controls="collapseDetails">
+                  Button with data-bs-target
+                </button>
+                <div class="collapse" id="collapseDetails">
+                  <div class="card card-body">
+                    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                  </div>
+                </div>
+              
                 </form>
                 </td>
             </tr>
