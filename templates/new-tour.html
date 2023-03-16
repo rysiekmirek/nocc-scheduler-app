@@ -270,14 +270,12 @@
     $(document).ready(function(){
 
         $('#id_category').on('change', function() {
-          if ( this.value == 'existing customer' || this.value ==  'new prospect')
-          {
+          if ( this.value == 'existing customer' || this.value ==  'new prospect'){
             $("#has_opportunity_id").show();
           }
-          else
-          {
+          else{
             $("#has_opportunity_id").hide();
-            document.getElementById("has_opportunity_id").checked = false;
+            document.getElementById("oportunity_ID_checkbox").checked = false;
             document.getElementById("opportunity_ID").value = "";
             $("#opportunity_ID").hide();
           }
