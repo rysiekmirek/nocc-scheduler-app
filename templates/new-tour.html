@@ -263,7 +263,7 @@
         if($(this).is(":checked")) {
             $("#opportunity_ID").show();
         } else {
-            $("#opportunity_ID").reset();
+            document.getElementById("opportunity_ID").reset();
             $("#opportunity_ID").hide();
         }
     });
@@ -277,7 +277,7 @@
           else{
             $("#has_opportunity_id").hide();
             document.getElementById("oportunity_ID_checkbox").checked = false;
-            $("#opportunity_ID").reset();
+            document.getElementById("opportunity_ID").reset();
             $("#opportunity_ID").hide();
           }
         });
