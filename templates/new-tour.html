@@ -262,7 +262,7 @@
       $("#oportunity_ID_checkbox").click(function() {
         if($(this).is(":checked")) {
             $("#opportunity_ID").show();
-            document.getElementById("opportunity_ID").reset();
+            document.getElementById("opportunity_ID").value = " ";
         } else {
             $("#opportunity_ID").hide();
         }
