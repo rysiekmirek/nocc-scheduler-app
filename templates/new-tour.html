@@ -264,7 +264,6 @@
             $("#opportunity_ID").show();
         } else {
             $("#opportunity_ID").hide();
-            document.getElementById("opportunity_ID").value = " ";
         }
     });
 
@@ -278,7 +277,7 @@
             $("#has_opportunity_id").hide();
             document.getElementById("oportunity_ID_checkbox").checked = false;
             $("#opportunity_ID").hide();
-            document.getElementById("opportunity_ID").value = " ";
+            document.getElementById("opportunity_ID").reset();
           }
         });
     });
