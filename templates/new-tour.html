@@ -263,6 +263,7 @@
         if($(this).is(":checked")) {
             $("#opportunity_ID").show();
         } else {
+            document.getElementById("opportunity_ID").value = 0;
             $("#opportunity_ID").hide();
         }
     });
