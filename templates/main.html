@@ -65,21 +65,12 @@
                 </td>
                 {% if request.user.is_authenticated %}
                 <td>
-                  <!-- <form>
+                  <form>
                     {% csrf_token %}
                   <button class="btn btn-light btn-sm" formaction="/tour-details/{{tour.id}}/">Details</button>
-                </form>  -->
-
-                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-{{tour.id}}" aria-expanded="false" aria-controls="collapseExample-{{tour.id}}">
-                  Button
-                </button>
+                </form> 
               
                 </td>
-                <tr class="collapse" id="collapseExample-{{tour.id}}">
-                  <td>
-                    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                  </td>
-                </tr>
                 {% endif %}
             </tr>
 
