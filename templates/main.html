@@ -20,15 +20,12 @@
                 <th scope="col" class="col-sm-2">Tour name</th>
                 <th scope="col" class="col-sm-1">Requestor<br/>name</th>
                 <th scope="col" class="col-sm-1">POC<br/>name</th>
-                <!-- <th scope="col" class="col-sm-1">Division</th> -->
                 <th scope="col" class="col-sm-1">Location</th>
                 <th scope="col" class="col-sm-2">Date</th>
                 <th scope="col" class="col-sm-1">Start time</th>
                 <th scope="col" class="col-sm-1">End time </th>
                 <th scope="col" class="col-sm-1">Nocc<br/>required?</th>
                 <th scope="col" class="col-sm-2">Category</th>
-                <!-- <th scope="col">Attendees<br/>akamai</th>
-                <th scope="col">Attendees<br/>guests</th> -->
                 <th scope="col" class="col-sm-1">Feedback<br>status</th>
                 <th scope="col" class="col-sm-1">Nocc Personnel<br/>assigned</th>
                 <th scope="col" class="col-sm-1">Status</th>
@@ -41,15 +38,12 @@
                 <td>{{tour.tour_name}}</td>
                 <td>{{tour.requestor_name}}</td>
                 <td>{{tour.poc_name}}</td>
-                <!-- <td>{{tour.division}}</td> -->
                 <td>{{tour.location}}</td>
                 <td>{{tour.date|date:"m/d/Y"}}</td>
                 <td>{{tour.start_time|time:"H:i"}}</td>
                 <td>{{tour.end_time|time:"H:i"}}</td>
                 <td>{{tour.nocc_personnel_required}}</td>
                 <td>{{tour.category}}</td>
-                <!-- <td>{{tour.attendees_akamai}}</td>
-                <td>{{tour.attendees_guests}}</td> -->
                 <td>
                   {% if tour.feedback_status == "Provided" %}
                   <i title="Feedback provided" class="bi bi-file-earmark-check" style="font-size: 1.3rem; color: green;"></i>
@@ -71,13 +65,38 @@
                 </td>
                 {% if request.user.is_authenticated %}
                 <td>
-                  <form>
+                  <!-- <form>
                     {% csrf_token %}
                   <button class="btn btn-light btn-sm" formaction="/tour-details/{{tour.id}}/">Details</button>
-                </form> 
+                </form>  -->
+
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Launch demo modal
+                </button>
+        
                 </td>
                 {% endif %}
             </tr>
+
+                        <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           {% endfor %}
         </tbody>
       </table>
